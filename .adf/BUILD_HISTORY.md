@@ -1,0 +1,50 @@
+# Build History
+
+Ledger of completed (and notable) BUILD increments. **Why:** future AIs must know what already shipped without re-reading the entire git history.
+
+## BUILD-001 — Repository Foundation
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.1.0-alpha` |
+| Branch | `develop` |
+| Purpose | Create the locked repository structure, root governance files, initial `.adf` operating set, bootstrap docs, prompt entry points, and foundation documentation |
+| Result | **Completed.** Architecture locked. Deferred packages contain purpose READMEs only. Repository became handoff-ready for cumulative builds. |
+| Key commits | Foundation series ending at `cf67df6` (+ follow-up VERSION/README fix `4657bc8`) |
+
+### Outcomes That Must Not Be Undone
+
+- Top-level folder lock
+- No-placeholder documentation rule
+- Initial AI contract / boot / state files
+
+## BUILD-002 — AI Runtime & Repository Intelligence
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.2.0-alpha` |
+| Branch | `develop` |
+| Purpose | Transform `.adf` into an AI Runtime SSOT with workflow, maps, indexes, standards, build tracking, bootstrap BUILD-002 pack, and expanded prompts/docs |
+| Result | **Completed.** SSOT and repository intelligence docs shipped. BUILD-003 not started. Pending Architecture Review gate. |
+
+### Outcomes That Must Not Be Undone
+
+- `.adf` as SSOT for AI operators
+- Build history/status tracking files
+- Architecture / naming / documentation standards
+
+## Template for Future Entries
+
+```markdown
+## BUILD-00N — Title
+
+| Field | Value |
+|-------|-------|
+| Date | YYYY-MM-DD |
+| Version | x.y.z-alpha |
+| Branch | develop |
+| Purpose | ... |
+| Result | Completed | Blocked | Partial — with notes |
+```
