@@ -10,6 +10,11 @@ Prompt library for operating ADF across sessions.
 | `resume.md` | Restarting work after interruption |
 | `handoff.md` | Ending a session and preparing the next operator |
 | `audit.md` | Checking contract/architecture/docs integrity |
+| `architecture.md` | Architecture evaluation without redesign |
+| `planning.md` | Specifying work before implementation |
+| `review.md` | Architecture / pre-merge review |
+| `release.md` | Version identity and release-note discipline |
+| `generator.md` | Generating docs/scaffolds inside locked paths |
 
 ## How to Use
 
@@ -20,7 +25,7 @@ Prompt library for operating ADF across sessions.
 
 ## Design Rules
 
-- Prompts must reinforce `AI_CONTRACT.md`
+- Prompts must reinforce `AI_CONTRACT.md` and `ARCHITECTURE_RULES.md`
 - Prompts must not authorize architecture redesign
 - Prompts must not authorize placeholder files
 - Formal schemas and stricter validation arrive in BUILD-004
@@ -28,5 +33,6 @@ Prompt library for operating ADF across sessions.
 ## Related
 
 - `bootstrap/BOOT_SEQUENCE.md`
+- `.adf/AI_RUNTIME.md`
 - `.adf/TOKEN_BUDGET.md`
 - `ROADMAP.md`

@@ -3,8 +3,8 @@
 This roadmap defines the cumulative build path from foundation to a usable ADF release.
 Each BUILD is additive. Later builds must not erase earlier architecture decisions.
 
-**Current version:** `0.1.0-alpha`  
-**Current build:** `BUILD-001`
+**Current version:** `0.2.0-alpha`  
+**Current build:** `BUILD-002`
 
 ## Build Path (BUILD-001 → BUILD-020)
 
@@ -40,6 +40,6 @@ Each BUILD is additive. Later builds must not erase earlier architecture decisio
 
 ## Status Legend
 
-- **Done:** BUILD-001 — Repository Foundation (completed 2026-07-29)
-- **Next:** BUILD-002 — Knowledge & DNA Hardening (queued, not started)
-- **Later:** BUILD-003 through BUILD-020
+- **Done:** BUILD-001 — Repository Foundation; BUILD-002 — AI Runtime & Repository Intelligence
+- **Next:** BUILD-003 — Bootstrap Automation (queued; requires Architecture Review of BUILD-002)
+- **Later:** BUILD-004 through BUILD-020

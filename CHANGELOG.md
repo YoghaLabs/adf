@@ -7,13 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 with an alpha/beta pre-release suffix during early builds.
 
 **Version source of truth:** root `VERSION`  
-Current identity from that file: **ADF** / **0.1.0-alpha** / **BUILD-001** / **develop**
+Current identity from that file: **ADF** / **0.2.0-alpha** / **BUILD-002** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-002: Project DNA and knowledge system expansion
+- BUILD-003: Bootstrap automation (after Architecture Review of BUILD-002)
 - Subsequent builds through BUILD-020 (see `ROADMAP.md`)
+
+## [0.2.0-alpha] — 2026-07-29
+
+### Added
+- AI Runtime SSOT files: `AI_RUNTIME.md`, `WORKFLOW.md`
+- Build tracking: `BUILD_HISTORY.md`, `BUILD_STATUS.md`
+- Repository intelligence: `REPOSITORY_MAP.md`, `MODULE_INDEX.md`, `FILE_INDEX.md`
+- Standards: `ARCHITECTURE_RULES.md`, `NAMING_CONVENTION.md`, `DOCUMENTATION_STANDARD.md`
+- `bootstrap/BUILD-002/` specification pack
+- Prompts: `architecture.md`, `planning.md`, `review.md`, `release.md`, `generator.md`
+- Docs: `adf-docs/AI_RUNTIME.md`, `BUILD_SYSTEM.md`, `WORKFLOW.md`, `BEST_PRACTICES.md`
+
+### Changed
+- Expanded existing `.adf` operating docs for multi-agent resume (manifest, state, task, DNA, contract, boot, contexts, todos, history, session, memory)
+- Declared `.adf/` as Single Source of Truth for AI operators
+- Advanced version identity to `0.2.0-alpha` / BUILD-002
+- Updated README Build Roadmap status for BUILD-002
+
+### Notes
+- BUILD-003 must not start until Architecture Review of BUILD-002
+- Runtime implementation of `adf-core` remains deferred to BUILD-005
 
 ## [0.1.0-alpha] — 2026-07-29
 
@@ -29,8 +50,6 @@ Current identity from that file: **ADF** / **0.1.0-alpha** / **BUILD-001** / **d
 
 ### Changed
 - Marked BUILD-001 as **Completed** in `.adf` state, task, session, and quick context files
-- Next queued build remains BUILD-002 (not started)
-- Finalized foundation commit series on `develop` (initialize → .adf → bootstrap → prompts → docs → finalize)
 - Standardized root `VERSION` format (project, version, current build, branch) and aligned changelog section tags to `0.1.0-alpha`
 - Added Build Roadmap status table in `README.md`
 
