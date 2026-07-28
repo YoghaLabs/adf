@@ -27,6 +27,7 @@ with an alpha/beta pre-release suffix during early builds.
 ### Changed
 - Marked BUILD-001 as **Completed** in `.adf` state, task, session, and quick context files
 - Next queued build remains BUILD-002 (not started)
+- Finalized foundation commit series on `develop` (initialize → .adf → bootstrap → prompts → docs → finalize)
 
 ### Notes
 - Runtime implementation of `adf-core` is deferred to BUILD-005

@@ -17,7 +17,13 @@ Execute BUILD-001: Repository Foundation.
 - Added `prompts/` library (build, resume, handoff, audit)
 - Added `adf-docs/` foundation pages
 - Finalized BUILD-001 state as Completed
-- Created incremental BUILD-001 commits
+- Created incremental BUILD-001 commits:
+  - `BUILD-001: initialize repository foundation`
+  - `BUILD-001: add .adf core`
+  - `BUILD-001: add bootstrap`
+  - `BUILD-001: add prompt library`
+  - `BUILD-001: add documentation`
+  - `BUILD-001: finalize repository foundation`
 
 ### Remaining
 
