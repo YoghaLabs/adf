@@ -2,6 +2,20 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-29 — `.adf` is AI Runtime SSOT (BUILD-002)
+
+- **Decision:** Declare `.adf/` the Single Source of Truth for AI operators across tools; expand runtime, workflow, maps, standards, and build tracking there.
+- **Why:** Chat is not portable; every new AI must resume from repository files alone.
+- **Consequences:** Status and mission truth must be written into `.adf` promptly; `adf-docs` teaches humans but must not contradict SSOT.
+- **Status:** Accepted
+
+## 2026-07-29 — Architecture Review gate before BUILD-003
+
+- **Decision:** BUILD-002 completion requires human Architecture Review before BUILD-003 starts.
+- **Why:** Repository intelligence changes affect all future agents; review prevents silent drift.
+- **Consequences:** Agents must stop after BUILD-002 even if tempted to automate bootstrap next.
+- **Status:** Accepted
+
 ## 2026-07-29 — Lock top-level architecture in BUILD-001
 
 - **Decision:** Freeze the top-level folder set and forbid inventing/renaming folders in later builds without an explicit architecture change BUILD.

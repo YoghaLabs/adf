@@ -2,12 +2,20 @@
 
 Narrative history of meaningful repository changes. Complements `CHANGELOG.md` with context for AI resume.
 
+## 2026-07-29 — BUILD-002 completed
+
+- Elevated `.adf/` to explicit AI Runtime SSOT
+- Added runtime/workflow docs, build tracking, repository maps/indexes, and architecture/documentation standards
+- Added `bootstrap/BUILD-002/` specification pack and expanded prompts/docs
+- Version advanced to `0.2.0-alpha`
+- **Next gate:** Architecture Review before BUILD-003
+
 ## 2026-07-29 — BUILD-001 completed
 
 - Locked architecture folders and root governance files are in place
 - `.adf` operating set, bootstrap contracts, prompt library, and `adf-docs` foundation shipped
 - Deferred packages (`adf-core`, `adf-studio`, examples, templates, testing, tools, release) have purpose READMEs only
-- Version remains `0.1.0-alpha`; next queued build is BUILD-002 (not started)
+- Version was `0.1.0-alpha`
 
 ## 2026-07-29 — BUILD-001 started
 
@@ -24,4 +32,4 @@ For each meaningful milestone, add a dated section with:
 2. Why it changed
 3. What a future agent must know next
 
-Keep entries factual. Detailed semver notes remain in `CHANGELOG.md`.
+Keep entries factual. Detailed semver notes remain in `CHANGELOG.md`. Build ledger detail lives in `BUILD_HISTORY.md`.
