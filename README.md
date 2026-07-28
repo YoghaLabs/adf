@@ -1,6 +1,6 @@
 # ADF — AI Development Framework
 
-**Version:** `v0.1.0-alpha`  
+**Version:** `0.1.0-alpha` (see root `VERSION`)  
 **Branch:** `develop`  
 **Current Build:** `BUILD-001` — Repository Foundation
 
@@ -41,7 +41,7 @@ Root files:
 | `README.md` | Project entry point |
 | `LICENSE` | MIT license |
 | `CHANGELOG.md` | Versioned change history |
-| `VERSION` | Current semver (pre-release) |
+| `VERSION` | Project version, current build, and branch |
 | `ROADMAP.md` | BUILD-001 → BUILD-020 plan |
 | `CONTRIBUTING.md` | Contribution rules |
 | `.gitignore` | Ignored artifacts and secrets |
@@ -50,13 +50,32 @@ Root files:
 
 ADF advances through **BUILD-001 to BUILD-020**. Each BUILD has a fixed mission.
 
-- **BUILD-001 (now):** Repository foundation — folders, docs, `.adf` contracts
-- **BUILD-002–004:** Knowledge, bootstrap automation, prompt contracts
-- **BUILD-005–012:** Core runtime, context engine, templates, examples, testing, release prep
-- **BUILD-013–015:** ADF Studio GUI and build runner
-- **BUILD-016–020:** Docs completeness, hardening, RC, v1.0 gate
+| Build | Status |
+|-------|--------|
+| BUILD-001 | ✅ |
+| BUILD-002 | ⏳ |
+| BUILD-003 | ⏳ |
+| BUILD-004 | ⏳ |
+| BUILD-005 | ⏳ |
+| BUILD-006 | ⏳ |
+| BUILD-007 | ⏳ |
+| BUILD-008 | ⏳ |
+| BUILD-009 | ⏳ |
+| BUILD-010 | ⏳ |
+| BUILD-011 | ⏳ |
+| BUILD-012 | ⏳ |
+| BUILD-013 | ⏳ |
+| BUILD-014 | ⏳ |
+| BUILD-015 | ⏳ |
+| BUILD-016 | ⏳ |
+| BUILD-017 | ⏳ |
+| BUILD-018 | ⏳ |
+| BUILD-019 | ⏳ |
+| BUILD-020 | ⏳ |
 
-See `ROADMAP.md` for the full table.
+Legend: ✅ completed · ⏳ pending
+
+Mission detail for each BUILD lives in `ROADMAP.md`.
 
 ## How to Start
 

@@ -41,4 +41,4 @@ Code still matters — `adf-core` and `adf-studio` come in later builds — but 
 
 ## Current Stage
 
-ADF is at `v0.1.0-alpha`, **BUILD-001**: repository foundation. The framework is operable as a process/documentation system now; runtime and Studio arrive in later builds.
+ADF is at `0.1.0-alpha`, **BUILD-001**: repository foundation. The framework is operable as a process/documentation system now; runtime and Studio arrive in later builds.

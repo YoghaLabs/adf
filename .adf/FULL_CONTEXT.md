@@ -8,7 +8,7 @@ Use this document when a task needs deeper orientation than `QUICK_CONTEXT.md`. 
 - **Repository:** `adf`
 - **Org:** YoghaLabs
 - **License:** MIT
-- **Version:** `v0.1.0-alpha`
+- **Version:** `0.1.0-alpha`
 - **Branch:** `develop`
 
 ## Active Delivery Unit

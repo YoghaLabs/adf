@@ -5,7 +5,7 @@
 | Repository | `adf` |
 | Full name | AI Development Framework |
 | Organization | YoghaLabs |
-| Version | `v0.1.0-alpha` |
+| Version | `0.1.0-alpha` |
 | Current build | `BUILD-001` |
 | Primary branch | `develop` |
 | License | MIT |

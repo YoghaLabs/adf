@@ -3,7 +3,7 @@
 This roadmap defines the cumulative build path from foundation to a usable ADF release.
 Each BUILD is additive. Later builds must not erase earlier architecture decisions.
 
-**Current version:** `v0.1.0-alpha`  
+**Current version:** `0.1.0-alpha`  
 **Current build:** `BUILD-001`
 
 ## Build Path (BUILD-001 → BUILD-020)

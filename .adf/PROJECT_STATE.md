@@ -7,7 +7,7 @@
 | Current Build | `BUILD-001` |
 | Build Name | Repository Foundation |
 | Status | `Completed` |
-| Version | `v0.1.0-alpha` |
+| Version | `0.1.0-alpha` |
 | Branch | `develop` |
 | Next Build | `BUILD-002` |
 | Last updated | 2026-07-29 |

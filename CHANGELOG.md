@@ -6,13 +6,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 with an alpha/beta pre-release suffix during early builds.
 
+**Version source of truth:** root `VERSION`  
+Current identity from that file: **ADF** / **0.1.0-alpha** / **BUILD-001** / **develop**
+
 ## [Unreleased]
 
 ### Planned
 - BUILD-002: Project DNA and knowledge system expansion
 - Subsequent builds through BUILD-020 (see `ROADMAP.md`)
 
-## [v0.1.0-alpha] — 2026-07-29
+## [0.1.0-alpha] — 2026-07-29
 
 ### Added
 - Repository foundation (BUILD-001)
@@ -28,7 +31,10 @@ with an alpha/beta pre-release suffix during early builds.
 - Marked BUILD-001 as **Completed** in `.adf` state, task, session, and quick context files
 - Next queued build remains BUILD-002 (not started)
 - Finalized foundation commit series on `develop` (initialize → .adf → bootstrap → prompts → docs → finalize)
+- Standardized root `VERSION` format (project, version, current build, branch) and aligned changelog section tags to `0.1.0-alpha`
+- Added Build Roadmap status table in `README.md`
 
 ### Notes
 - Runtime implementation of `adf-core` is deferred to BUILD-005
 - GUI implementation of `adf-studio` starts at BUILD-013
+- Bump version by editing `VERSION` first, then mirror the same version string in this changelog heading
