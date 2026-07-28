@@ -1,0 +1,74 @@
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors / IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node / frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+.next/
+.turbo/
+coverage/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Logs & temp
+*.log
+logs/
+tmp/
+temp/
+.cache/
+
+# Package managers
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Local ADF runtime artifacts (generated later)
+.adf/local/
+.adf/cache/
+.adf/sessions/*.local.md
+
+# Release artifacts
+release/dist/
+release/artifacts/
+*.tgz
+*.zip
+
+# Test artifacts
+testing/results/
+testing/reports/
+*.coverage
+htmlcov/
