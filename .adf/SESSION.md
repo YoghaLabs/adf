@@ -1,14 +1,13 @@
 # Session
 
-## Latest Session — 2026-07-29 (BUILD-006)
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Branch | `develop` |
+| Build | BUILD-007 complete (`0.7.0-alpha`) |
+| Focus | Template Engine shipped; next BUILD-008 separate |
 
-### Done
+## Notes
 
-- Plugin architecture in `adf-core` (contracts, manager, builtins, events, hooks, extensions)
-- RuntimeEngine discovers/loads plugins via PluginManager
-- CLI `plugins` skeleton; pytest 9 passed (foundation + plugin suite)
-- Version `0.6.0-alpha`; BUILD-007 not started
-
-### Remaining
-
-- Human Architecture Review of BUILD-006
+Batch mode allowed continuing to BUILD-008 after BUILD-007 commits land.
+Do not merge builds or start BUILD-009.

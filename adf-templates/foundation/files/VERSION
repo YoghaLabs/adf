@@ -1,10 +1,10 @@
 ADF
 
 Version:
-0.7.0-alpha
+{{version}}
 
 Current Build:
-BUILD-007
+BUILD-001
 
 Branch:
 develop

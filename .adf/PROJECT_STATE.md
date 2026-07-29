@@ -4,29 +4,28 @@
 
 | Field | Value |
 |-------|-------|
-| Current Version | `0.6.0-alpha` |
-| Current Build | `BUILD-006` |
-| Build Name | Plugin & Extension Engine |
+| Current Version | `0.7.0-alpha` |
+| Current Build | `BUILD-007` |
+| Build Name | Template Engine + Manifest System |
 | Status | `Completed` |
-| Completed Builds | `BUILD-001` … `BUILD-006` |
-| Pending Builds | `BUILD-007` … `BUILD-020` |
-| Current Sprint | Alpha — plugin-based runtime |
-| Current Milestone | Plugin architecture live; await Architecture Review before BUILD-007 |
+| Completed Builds | `BUILD-001` … `BUILD-007` |
+| Pending Builds | `BUILD-008` … `BUILD-020` |
+| Current Sprint | Alpha — template + generator path |
+| Current Milestone | Template Engine live; BUILD-008 next |
 | Current Branch | `develop` |
-| Current Objective | Keep plugin contracts stable; do not start BUILD-007 until review |
-| Next Build | `BUILD-007` |
+| Current Objective | Keep TemplateManager stable for generators |
+| Next Build | `BUILD-008` |
 | Last updated | 2026-07-29 |
 
-## BUILD-006 Checklist
+## BUILD-007 Checklist
 
-- [x] Plugin contracts/interfaces + PluginManager
-- [x] Built-in plugins + EventBus + HookRegistry + ExtensionAPI
-- [x] RuntimeEngine loads plugins via PluginManager (no direct concrete instantiation)
-- [x] Registry plugin registration + CLI plugins skeleton
-- [x] pytest coverage for plugins/events/hooks
-- [x] Docs/bootstrap/prompts + SSOT updated
-- [x] Stop without starting BUILD-007
+- [x] Template engine modules + TemplateManager
+- [x] YAML manifest schema 1.0 + foundation template
+- [x] Variable/renderer/validator/registry/builder
+- [x] Runtime wiring + docs/prompts/bootstrap
+- [x] pytest green
+- [x] Stop before combining with BUILD-008 commits
 
 ## Blockers
 
-None. **Gate:** Architecture Review of BUILD-006 before BUILD-007.
+None.

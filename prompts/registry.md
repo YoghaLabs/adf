@@ -1,9 +1,15 @@
 # Prompt — Registry
 
 ```text
-You are working on the ADF component Registry (adf-core/registry).
+You are working on ADF registries.
 
-API must remain: register, find, remove, list.
-Fail clearly on duplicates/missing keys.
-Keep registry in-memory unless a later BUILD specifies persistence.
+Component Registry (adf-core/registry):
+- API: register, find, remove, list (+ register_plugin / list_plugins)
+- Fail clearly on duplicates/missing keys
+- In-memory unless a later BUILD specifies persistence
+
+Template Registry (adf-core/templates/template_registry.py):
+- API: register, unregister, get, list, discover
+- Discover packages by template.yaml under adf-templates/
+- Used by TemplateManager; do not duplicate discovery logic elsewhere
 ```

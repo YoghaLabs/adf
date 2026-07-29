@@ -1,17 +1,15 @@
 # TODOs
 
-## BUILD-001 … BUILD-005
+## Now
 
-- [x] Complete
+- [ ] Architecture Review of BUILD-007 (optional gate)
+- [ ] Implement BUILD-008 Bootstrap Generator (separate commit series)
 
-## BUILD-006 — Plugin & Extension Engine
+## Later
 
-- [x] Contracts + PluginManager + builtins
-- [x] Events + hooks + ExtensionAPI
-- [x] RuntimeEngine/Registry/CLI wiring
-- [x] Tests + docs/bootstrap/prompts
-- [x] Stop (no BUILD-007)
+- [ ] Task & State Machine (re-homed after roadmap clarification)
+- [ ] Expand template catalog beyond foundation
 
-## BUILD-007 (Queued — Do Not Start Yet)
+## Done
 
-- [ ] Await Architecture Review + explicit master prompt
+- [x] BUILD-001 … BUILD-007

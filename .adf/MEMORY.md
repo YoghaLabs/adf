@@ -2,12 +2,12 @@
 
 ## Stable Facts
 
-- Locked architecture + ADR rules still apply.
-- Context Engine specs (BUILD-004) + Runtime foundation (BUILD-005) remain.
-- **BUILD-006:** future capabilities ship as plugins; RuntimeEngine depends on contracts/PluginManager, not concrete plugin classes.
-- Third-party plugins must use `extensions.ExtensionAPI` / `contracts` only.
-- CLI: `adf.py plugins list|info|enable|disable`.
+- Locked top-level architecture (ADR-001)
+- Docs are SSOT; no placeholders
+- Plugin architecture (BUILD-006): Runtime depends on contracts via PluginManager
+- Template Engine (BUILD-007): generators must use TemplateManager + template.yaml
 
-## Watch Items
+## Recent
 
-- Do not start BUILD-007 before Architecture Review of BUILD-006.
+- BUILD-007 delivered schema 1.0 manifests and `adf-templates/foundation`
+- ROADMAP themes may be superseded by master prompts (see MIGRATION notes)

@@ -1,8 +1,8 @@
 # ADF — AI Development Framework
 
-**Version:** `0.6.0-alpha` (see root `VERSION`)  
+**Version:** `0.7.0-alpha` (see root `VERSION`)  
 **Branch:** `develop`  
-**Current Build:** `BUILD-006` — Plugin & Extension Engine
+**Current Build:** `BUILD-007` — Template Engine + Manifest System
 
 ADF is an AI-first development framework that keeps project knowledge, architecture decisions, build state, and AI operating contracts inside the repository. Humans and AI agents share the same source of truth so work can pause, hand off, and resume without losing context.
 
@@ -58,10 +58,7 @@ ADF advances through **BUILD-001 to BUILD-020**. Each BUILD has a fixed mission.
 | BUILD-004 | ✅ |
 | BUILD-005 | ✅ |
 | BUILD-006 | ✅ |
-| BUILD-007 | ⏳ |
-| BUILD-005 | ⏳ |
-| BUILD-006 | ⏳ |
-| BUILD-007 | ⏳ |
+| BUILD-007 | ✅ |
 | BUILD-008 | ⏳ |
 | BUILD-009 | ⏳ |
 | BUILD-010 | ⏳ |

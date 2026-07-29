@@ -1,7 +1,7 @@
 # ADF Roadmap
 
-**Current version:** `0.6.0-alpha`  
-**Current build:** `BUILD-006` (completed; next BUILD-007)
+**Current version:** `0.7.0-alpha`  
+**Current build:** `BUILD-007` (completed; next BUILD-008)
 
 ## Build Path
 
@@ -12,10 +12,10 @@
 | BUILD-003 | Knowledge Architecture & ADR | ✅ |
 | BUILD-004 | Context Engine (spec) | ✅ |
 | BUILD-005 | Runtime Engine Foundation | ✅ |
-| **BUILD-006** | **Plugin & Extension Engine** | ✅ (review gate) |
-| BUILD-007 | Task & State Machine | ⏳ Next |
-| BUILD-008 | Dependency & Tooling | ⏳ |
-| BUILD-009 | Template System | ⏳ |
+| BUILD-006 | Plugin & Extension Engine | ✅ |
+| **BUILD-007** | **Template Engine + Manifest System** | ✅ |
+| BUILD-008 | Bootstrap Generator | ⏳ Next |
+| BUILD-009 | Task & State Machine | ⏳ |
 | BUILD-010 | Examples Pack | ⏳ |
 | BUILD-011 | Testing Framework | ⏳ |
 | BUILD-012 | Release Pipeline Prep | ⏳ |
@@ -30,5 +30,10 @@
 
 ## Status Legend
 
-- **Done:** BUILD-001 … BUILD-006
-- **Next:** BUILD-007 (after Architecture Review of BUILD-006)
+- **Done:** BUILD-001 … BUILD-007
+- **Next:** BUILD-008 Bootstrap Generator
+
+## Note
+
+Master prompts may supersede earlier roadmap labels; see each
+`bootstrap/BUILD-00N/MIGRATION.md`.

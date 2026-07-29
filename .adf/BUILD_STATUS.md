@@ -8,7 +8,7 @@
 | BUILD-004 | Completed |
 | BUILD-005 | Completed |
 | BUILD-006 | Completed |
-| BUILD-007 | Pending |
+| BUILD-007 | Completed |
 | BUILD-008 | Pending |
 | BUILD-009 | Pending |
 | BUILD-010 | Pending |
@@ -25,5 +25,5 @@
 
 ## Current Focus
 
-- Last completed: **BUILD-006** (`0.6.0-alpha`) — Plugin & Extension Engine
-- Next: **BUILD-007** (Pending — Architecture Review gate)
+- Last completed: **BUILD-007** (`0.7.0-alpha`) — Template Engine + Manifest System
+- Next: **BUILD-008** — Bootstrap Generator

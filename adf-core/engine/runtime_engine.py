@@ -19,6 +19,7 @@ from plugins.manager import PluginManager
 from registry.registry import Registry
 from runtime.config import RuntimeConfig
 from runtime.constants import ENGINE_BUILD, PACKAGE_VERSION
+from templates.engine import TemplateManager
 
 
 class RuntimeEngine:
@@ -37,6 +38,12 @@ class RuntimeEngine:
         self.context = ContextEngine(self.config.repo_root)
         self.memory = MemoryEngine(self.config.repo_root)
         self.bootstrap = BootstrapEngine(self.config.repo_root)
+        templates_root = self.config.repo_root / "adf-templates"
+        self.templates = TemplateManager(
+            search_paths=[templates_root] if templates_root.is_dir() else []
+        )
+        if templates_root.is_dir():
+            self.templates.discover(templates_root)
 
         self.registry = Registry()
         self.events = EventBus()
@@ -54,6 +61,8 @@ class RuntimeEngine:
         self.extensions.publish_service("memory", self.memory)
         self.extensions.publish_service("bootstrap", self.bootstrap)
         self.extensions.publish_service("registry", self.registry)
+        self.extensions.publish_service("templates", self.templates)
+        self.registry.register("templates", self.templates)
 
         state = self.state.load()
         plugin_context = self.extensions.build_context(

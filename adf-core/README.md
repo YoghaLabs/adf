@@ -1,14 +1,15 @@
 # adf-core
 
-Runtime Engine foundation for the AI Development Framework (BUILD-005).
+Runtime, plugins, and Template Engine for the AI Development Framework.
 
 ## Purpose
 
-`adf-core` is the first **executable** ADF package. It implements a minimal Runtime Engine that follows `.adf` documentation (Context Engine, state machine, sessions, checkpoints).
+`adf-core` is the executable ADF package: Runtime Engine (BUILD-005), plugin
+architecture (BUILD-006), and Template Engine (BUILD-007).
 
 ## Status
 
-**Implemented through BUILD-006** — Runtime Engine foundation plus plugin/extension architecture.
+**Implemented through BUILD-007** — TemplateManager + YAML manifests.
 
 ## Layout
 
@@ -16,17 +17,9 @@ Runtime Engine foundation for the AI Development Framework (BUILD-005).
 adf-core/
 ├── adf.py
 ├── contracts/ interfaces/ plugins/ events/ hooks/ extensions/
+├── templates/          # Template Engine (BUILD-007)
 ├── runtime/ core/ engine/ registry/ loader/ parser/
 └── tests/
-```
-
-## Plugin quick start
-
-```bash
-cd adf-core
-python adf.py plugins list --root ..
-python adf.py boot --root ..
-python -m pytest
 ```
 
 ## Quick start
@@ -40,26 +33,20 @@ python adf.py boot --root ..
 python -m pytest
 ```
 
-From repo root (with `adf-core` on `PYTHONPATH`):
-
-```bash
-python adf-core/adf.py status --root .
-```
-
-## CLI commands (skeleton)
+## CLI commands
 
 | Command | Role |
 |---------|------|
 | `version` | Package version |
 | `doctor` | Layout + SSOT checks |
-| `boot` | Minimal boot + session open |
+| `boot` | Boot + session open |
 | `status` | Derived/persisted state |
 | `context` | Assemble context pack |
 | `resume` | Resume skeleton |
+| `plugins …` | Plugin management skeleton |
 
 ## Related docs
 
 - `adf-docs/RUNTIME_ENGINE.md`
-- `.adf/CONTEXT_ENGINE.md`
-- `bootstrap/BUILD-005/`
-- `ROADMAP.md`
+- `adf-docs/PLUGIN_ENGINE.md`
+- `adf-docs/TEMPLATE_ENGINE.md`

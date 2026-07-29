@@ -7,7 +7,8 @@ Prompt library for operating ADF across sessions.
 | File | Use when |
 |------|----------|
 | `plugin.md`, `extension.md`, `event.md`, `hook.md`, `contract.md` | Plugin architecture prompts |
-| `runtime.md`, `engine.md`, `cli.md`, `registry.md`, `loader.md` | Runtime Engine implementation prompts |
+| `template.md`, `manifest.md`, `variables.md`, `renderer.md`, `registry.md` | Template Engine prompts |
+| `runtime.md`, `engine.md`, `cli.md`, `loader.md` | Runtime Engine implementation prompts |
 | `restore.md`, `context-engine.md`, `session.md`, `checkpoint.md`, `state.md` | Context Engine / session / state machine |
 | `knowledge.md`, `adr.md`, `documentation.md`, `context.md`, `bootstrap.md` | Knowledge-layer / ADR / bootstrap packs |
 | `architecture.md`, `planning.md`, `review.md`, `release.md`, `generator.md` | Expanded operator modes |

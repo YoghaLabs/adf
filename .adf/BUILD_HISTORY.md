@@ -100,6 +100,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Third-party plugins depend on contracts/ExtensionAPI only
 - Built-in plugins inherit BasePlugin
 
+## BUILD-007 — Template Engine + Manifest System
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.7.0-alpha` |
+| Branch | `develop` |
+| Purpose | Deliver TemplateManager + YAML manifests so all future generators share one engine |
+| Result | **Completed.** Foundation template, schema 1.0, pytest coverage. Independently releasable before BUILD-008. |
+
+### Outcomes That Must Not Be Undone
+
+- Generators must use TemplateManager / template.yaml contracts
+- Manifest schema versioning must remain explicit
+- `adf-templates/` remains the template package root
+
 ## Template for Future Entries
 
 ```markdown

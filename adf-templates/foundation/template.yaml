@@ -1,0 +1,30 @@
+# Foundation template — minimal ADF project seed (BUILD-007)
+
+schema_version: "1.0"
+metadata:
+  name: foundation
+  version: 0.7.0
+  description: Minimal foundation template for ADF project generation
+  author: YoghaLabs
+  tags:
+    - foundation
+    - builtin
+  build: BUILD-007
+variables:
+  project_name: adf-project
+  author: YoghaLabs
+  version: 0.1.0-alpha
+dependencies: []
+capabilities:
+  - scaffold
+  - documentation
+outputs:
+  - README.md
+  - VERSION
+permissions:
+  - write-files
+inherits: null
+plugin_compatibility:
+  - template
+  - generator
+  - bootstrap

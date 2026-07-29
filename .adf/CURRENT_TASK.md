@@ -1,23 +1,17 @@
 # Current Task
 
-## Active Build
+## Active
 
-**BUILD-006 — Plugin & Extension Engine**
+BUILD-007 complete. Ready for BUILD-008 (Bootstrap Generator) as a **separate**
+commit series — do not combine builds.
 
-## Status
+## Done this session (BUILD-007)
 
-**Completed.** Awaiting Architecture Review before BUILD-007.
+- Template Engine package + foundation template
+- Manifest schema 1.0 + docs/prompts/bootstrap
+- Runtime wiring of TemplateManager
 
-## Objectives (All Met)
+## Do not
 
-1. Introduce plugin contracts and PluginManager lifecycle APIs.
-2. Add EventBus + HookRegistry + public ExtensionAPI.
-3. Ship built-in plugins inheriting BasePlugin.
-4. Wire RuntimeEngine through PluginManager only.
-5. Extend Registry and CLI (`plugins list|info|enable|disable`).
-6. Add pytest coverage; update VERSION to `0.6.0-alpha`.
-7. Stop after BUILD-006.
-
-## Next Operator Action
-
-Architecture Review via `bootstrap/BUILD-006/REVIEW.md`.
+- Start BUILD-009
+- Merge BUILD-007 and BUILD-008 commits

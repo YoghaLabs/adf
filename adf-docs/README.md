@@ -32,6 +32,10 @@ Human-facing documentation for the AI Development Framework.
 | `EVENT_SYSTEM.md` | EventBus lifecycle events |
 | `HOOK_SYSTEM.md` | before/after hooks |
 | `EXTENSION_API.md` | Public extension surface |
+| `TEMPLATE_ENGINE.md` | Template Engine overview |
+| `TEMPLATE_MANIFEST.md` | `template.yaml` contract |
+| `VARIABLE_SYSTEM.md` | `{{variable}}` resolution |
+| `TEMPLATE_REGISTRY.md` | Template discovery/registry |
 | `README.md` | This index |
 
 ## Reading Order

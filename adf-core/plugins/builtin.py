@@ -39,14 +39,31 @@ class PromptPlugin(AbstractPlugin):
 
 
 class TemplatePlugin(AbstractPlugin):
-    """Template generation extension point."""
+    """Template generation extension point backed by TemplateManager."""
 
     metadata = PluginMetadata(
         name="template",
-        version="0.6.0",
-        description="Template system plugin (adf-templates)",
+        version="0.7.0",
+        description="Template Engine plugin (adf-templates via TemplateManager)",
         plugin_type="template",
     )
+
+    def execute(self, action: str, **kwargs: Any) -> dict[str, Any]:
+        templates = None
+        if self._context is not None and "templates" in self._context.services:
+            templates = self._context.service("templates")
+        if action == "list" and templates is not None:
+            return {"plugin": self.name, "action": action, "templates": templates.list()}
+        if action == "validate" and templates is not None and "path" in kwargs:
+            errors = templates.validate(kwargs["path"])
+            return {"plugin": self.name, "action": action, "ok": not errors, "errors": errors}
+        return {
+            "plugin": self.name,
+            "action": action,
+            "ok": True,
+            "supports": ["list", "validate", "render"],
+            "kwargs": kwargs,
+        }
 
 
 class GeneratorPlugin(AbstractPlugin):
