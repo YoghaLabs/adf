@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from distribution.manifest import AdfDistributionError
 from generator.filesystem import AdfGeneratorError
 from loader.project_loader import ProjectLoader
 from packages.manifest import AdfPackageError
@@ -115,9 +116,13 @@ def _gen_flags(args: argparse.Namespace) -> dict[str, Any]:
 
 
 def cmd_pkg_install(args: argparse.Namespace) -> int:
-    """Install a package from the registry."""
+    """Install a package id or distribution artifact via InstallerService."""
     return _emit(
-        _manager(args).registry().install(args.package_id, overwrite=bool(args.overwrite))
+        _manager(args).installer().install(
+            args.target,
+            overwrite=bool(args.overwrite),
+            mode=getattr(args, "mode", "auto") or "auto",
+        )
     )
 
 
@@ -126,9 +131,84 @@ def cmd_pkg_remove(args: argparse.Namespace) -> int:
     return _emit(_manager(args).package().remove(args.package_id))
 
 
+def cmd_uninstall(args: argparse.Namespace) -> int:
+    """Uninstall a distribution install or package."""
+    return _emit(
+        _manager(args).installer().uninstall(
+            args.install_id, package=bool(args.package)
+        )
+    )
+
+
 def cmd_pkg_update(args: argparse.Namespace) -> int:
-    """Update/reinstall a package from the registry."""
+    """Update packages or run distribution updater flows."""
+    updater = _manager(args).updater()
+    if bool(getattr(args, "apply", False)):
+        return _emit(updater.apply(overwrite=True))
+    if bool(getattr(args, "check", False)) or not getattr(args, "package_id", None):
+        if getattr(args, "version", None):
+            return _emit(updater.download(args.version, channel=args.channel))
+        return _emit(updater.check(channel=args.channel))
     return _emit(_manager(args).marketplace().update(args.package_id))
+
+
+def cmd_rollback(args: argparse.Namespace) -> int:
+    """Rollback distribution install to a snapshot."""
+    return _emit(_manager(args).updater().rollback(args.snapshot_id))
+
+
+def cmd_release(args: argparse.Namespace) -> int:
+    """Release management commands."""
+    release = _manager(args).release()
+    action = args.release_command
+    if action == "channels":
+        return _emit(release.channels())
+    if action == "list":
+        return _emit(release.list(channel=args.channel))
+    if action == "create":
+        kinds = args.kinds.split(",") if args.kinds else None
+        return _emit(
+            release.create(
+                args.source,
+                version=args.version,
+                channel=args.channel,
+                name=args.name,
+                notes=args.notes or "",
+                kinds=kinds,
+            )
+        )
+    if action == "publish":
+        return _emit(release.publish(args.version, channel=args.channel))
+    if action == "promote":
+        return _emit(
+            release.promote(
+                args.version,
+                source_channel=args.source_channel,
+                target_channel=args.target_channel,
+            )
+        )
+    if action == "archive":
+        return _emit(release.archive(args.version, channel=args.channel))
+    _print_json({"ok": False, "error": f"unknown release command: {action}"})
+    return 2
+
+
+def cmd_package(args: argparse.Namespace) -> int:
+    """Build a distribution package artifact."""
+    return _emit(
+        _manager(args).distribution().package(
+            args.source, name=args.name, version=args.version, kind=args.kind
+        )
+    )
+
+
+def cmd_bundle(args: argparse.Namespace) -> int:
+    """Build a distribution bundle."""
+    return _emit(
+        _manager(args).distribution().bundle(
+            args.source, name=args.name, version=args.version, kind=args.kind
+        )
+    )
 
 
 def cmd_pkg_search(args: argparse.Namespace) -> int:
@@ -159,8 +239,8 @@ def cmd_pkg_list(args: argparse.Namespace) -> int:
 
 
 def cmd_pkg_verify(args: argparse.Namespace) -> int:
-    """Verify installed package integrity / security against the registry."""
-    return _emit(_manager(args).registry().verify(args.package_id))
+    """Verify installed packages / distribution installs / security."""
+    return _emit(_manager(args).installer().verify(args.package_id))
 
 
 def cmd_publish(args: argparse.Namespace) -> int:
@@ -374,10 +454,16 @@ def build_parser() -> argparse.ArgumentParser:
     _add_generator_args(validate_parser)
     validate_parser.set_defaults(func=cmd_validate)
 
-    install_parser = sub.add_parser("install", help="Install an ADF package")
+    install_parser = sub.add_parser("install", help="Install a package or distribution artifact")
     _add_root(install_parser)
-    install_parser.add_argument("package_id", help="Package id")
+    install_parser.add_argument("target", help="Package id or artifact/manifest path")
     install_parser.add_argument("--overwrite", action="store_true")
+    install_parser.add_argument(
+        "--mode",
+        choices=["auto", "package", "distribution", "bundle"],
+        default="auto",
+        help="Install mode (default: auto)",
+    )
     install_parser.set_defaults(func=cmd_pkg_install)
 
     remove_parser = sub.add_parser("remove", help="Remove an installed ADF package")
@@ -385,10 +471,29 @@ def build_parser() -> argparse.ArgumentParser:
     remove_parser.add_argument("package_id", help="Package id")
     remove_parser.set_defaults(func=cmd_pkg_remove)
 
-    update_parser = sub.add_parser("update", help="Update an ADF package from the registry")
+    uninstall_parser = sub.add_parser("uninstall", help="Uninstall distribution install or package")
+    _add_root(uninstall_parser)
+    uninstall_parser.add_argument("install_id", help="Install id or package id")
+    uninstall_parser.add_argument(
+        "--package",
+        action="store_true",
+        help="Force package uninstall via PackageManager",
+    )
+    uninstall_parser.set_defaults(func=cmd_uninstall)
+
+    update_parser = sub.add_parser("update", help="Update package or check/apply distribution updates")
     _add_root(update_parser)
-    update_parser.add_argument("package_id", help="Package id")
+    update_parser.add_argument("package_id", nargs="?", default=None, help="Package id (APM update)")
+    update_parser.add_argument("--check", action="store_true", help="Check distribution updates")
+    update_parser.add_argument("--apply", action="store_true", help="Apply downloaded update")
+    update_parser.add_argument("--version", default=None, help="Download a release version")
+    update_parser.add_argument("--channel", default=None, help="Release channel")
     update_parser.set_defaults(func=cmd_pkg_update)
+
+    rollback_parser = sub.add_parser("rollback", help="Rollback distribution install")
+    _add_root(rollback_parser)
+    rollback_parser.add_argument("snapshot_id", nargs="?", default=None, help="Snapshot id")
+    rollback_parser.set_defaults(func=cmd_rollback)
 
     search_parser = sub.add_parser("search", help="Search the ADF marketplace/registry")
     _add_root(search_parser)
@@ -409,10 +514,65 @@ def build_parser() -> argparse.ArgumentParser:
     list_pkg_parser.add_argument("--installed", action="store_true", help="List installed packages")
     list_pkg_parser.set_defaults(func=cmd_pkg_list)
 
-    verify_parser = sub.add_parser("verify", help="Verify installed packages / lockfile / security")
+    verify_parser = sub.add_parser("verify", help="Verify installed packages / distribution / security")
     _add_root(verify_parser)
-    verify_parser.add_argument("package_id", nargs="?", default=None, help="Optional package id")
+    verify_parser.add_argument("package_id", nargs="?", default=None, help="Optional package/install id")
     verify_parser.set_defaults(func=cmd_pkg_verify)
+
+    release_parser = sub.add_parser("release", help="Release management")
+    release_sub = release_parser.add_subparsers(dest="release_command", required=True)
+    rel_channels = release_sub.add_parser("channels", help="List release channels")
+    _add_root(rel_channels)
+    rel_channels.set_defaults(func=cmd_release, release_command="channels")
+    rel_list = release_sub.add_parser("list", help="List releases")
+    _add_root(rel_list)
+    rel_list.add_argument("--channel", default=None)
+    rel_list.set_defaults(func=cmd_release, release_command="list")
+    rel_create = release_sub.add_parser("create", help="Create a release from a source tree")
+    _add_root(rel_create)
+    rel_create.add_argument("source", help="Source directory")
+    rel_create.add_argument("--version", required=True)
+    rel_create.add_argument("--channel", default="alpha")
+    rel_create.add_argument("--name", default="adf")
+    rel_create.add_argument("--notes", default="")
+    rel_create.add_argument("--kinds", default="zip,tar.gz,wheel", help="Comma-separated kinds")
+    rel_create.set_defaults(func=cmd_release, release_command="create")
+    rel_publish = release_sub.add_parser("publish", help="Publish a created release")
+    _add_root(rel_publish)
+    rel_publish.add_argument("version")
+    rel_publish.add_argument("--channel", default="alpha")
+    rel_publish.set_defaults(func=cmd_release, release_command="publish")
+    rel_promote = release_sub.add_parser("promote", help="Promote release across channels")
+    _add_root(rel_promote)
+    rel_promote.add_argument("version")
+    rel_promote.add_argument("--from", dest="source_channel", required=True)
+    rel_promote.add_argument("--to", dest="target_channel", required=True)
+    rel_promote.set_defaults(func=cmd_release, release_command="promote")
+    rel_archive = release_sub.add_parser("archive", help="Archive a release")
+    _add_root(rel_archive)
+    rel_archive.add_argument("version")
+    rel_archive.add_argument("--channel", default="alpha")
+    rel_archive.set_defaults(func=cmd_release, release_command="archive")
+
+    package_parser = sub.add_parser("package", help="Build a distribution package artifact")
+    _add_root(package_parser)
+    package_parser.add_argument("source")
+    package_parser.add_argument("--name", default="adf")
+    package_parser.add_argument("--version", required=True)
+    package_parser.add_argument("--kind", default="zip")
+    package_parser.set_defaults(func=cmd_package)
+
+    bundle_parser = sub.add_parser("bundle", help="Build a portable/offline/enterprise bundle")
+    _add_root(bundle_parser)
+    bundle_parser.add_argument("source")
+    bundle_parser.add_argument("--name", default="adf")
+    bundle_parser.add_argument("--version", required=True)
+    bundle_parser.add_argument(
+        "--kind",
+        default="portable",
+        choices=["portable", "offline", "enterprise", "desktop", "zip"],
+    )
+    bundle_parser.set_defaults(func=cmd_bundle)
 
     publish_parser = sub.add_parser("publish", help="Publish a package into the local registry")
     _add_root(publish_parser)
@@ -463,6 +623,7 @@ def main(argv: list[str] | None = None) -> int:
         AdfGeneratorError,
         AdfTemplateError,
         AdfPackageError,
+        AdfDistributionError,
         ServiceException,
     ) as exc:
         print(f"error: {exc}", file=sys.stderr)

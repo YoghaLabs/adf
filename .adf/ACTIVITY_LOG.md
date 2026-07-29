@@ -5,6 +5,12 @@ Chronological operator/AI activity log for continuity across sessions and model 
 
 ---
 
+## 2026-07-30 — BUILD-012 Distribution Platform
+
+- Added `adf-core/distribution/` installer/updater/release/packaging/offline/enterprise
+- Services/SDK/CLI wired; ADR-010; Phase 2 complete
+- Version `0.12.0-alpha`; **STOP before BUILD-013**
+
 ## 2026-07-30 — BUILD-011 Registry & Marketplace Platform
 
 - RegistryManager + providers; Marketplace presentation-only

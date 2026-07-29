@@ -12,6 +12,7 @@ Prompt library for operating ADF across sessions.
 | `package.md`, `registry.md`, `dependency.md`, `install.md`, `update.md` | Package Manager prompts |
 | `service.md`, `sdk.md`, `api.md`, `workspace.md`, `project.md` | Service Layer / SDK / Studio prompts |
 | `marketplace.md`, `publisher.md`, `security.md`, `verification.md` | Marketplace / registry security prompts |
+| `distribution.md`, `installer.md`, `updater.md`, `release.md`, `rollback.md` | Distribution / release prompts |
 | `runtime.md`, `engine.md`, `cli.md`, `loader.md` | Runtime Engine implementation prompts |
 | `restore.md`, `context-engine.md`, `session.md`, `checkpoint.md`, `state.md` | Context Engine / session / state machine |
 | `knowledge.md`, `adr.md`, `documentation.md`, `context.md`, `bootstrap.md` | Knowledge-layer / ADR / bootstrap packs |

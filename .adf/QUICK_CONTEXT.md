@@ -2,11 +2,10 @@
 
 | Field | Value |
 |-------|-------|
-| Version | `0.11.0-alpha` |
-| Phase | **2 — Platform & Distribution** |
-| Build | `BUILD-011` Registry & Marketplace — **complete** |
+| Version | `0.12.0-alpha` |
+| Phase | **2 — Platform & Distribution** (complete) |
+| Build | `BUILD-012` Distribution Platform — **complete** |
 | Branch | `develop` |
-| Next | `BUILD-012` Installer & Distribution — **not started** |
+| Next | `BUILD-013` ADF Studio Core — **not started** |
 | Resume | `.adf/RESUME_ME.md` |
-| Registry | `RegistryManager` + providers |
-| Marketplace | Presentation over Registry |
+| Distribution | `adf-core/distribution/` |

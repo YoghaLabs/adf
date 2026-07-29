@@ -58,6 +58,12 @@ Human-facing documentation for the AI Development Framework.
 | `REGISTRY_API.md` | Registry/Marketplace APIs |
 | `PUBLISHER_GUIDE.md` | Publisher profiles/publish |
 | `PACKAGE_SECURITY.md` | Checksum/signature/trust |
+| `DISTRIBUTION.md` | Distribution platform overview |
+| `INSTALLER.md` | InstallerManager |
+| `UPDATER.md` | UpdateManager |
+| `RELEASE_MANAGEMENT.md` | Channels + ReleaseManager |
+| `OFFLINE_MODE.md` | Offline bundles/snapshots |
+| `ENTERPRISE_DEPLOYMENT.md` | Enterprise profiles/bundles |
 | `README.md` | This index |
 
 ## Reading Order

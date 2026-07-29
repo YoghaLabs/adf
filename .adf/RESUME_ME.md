@@ -16,8 +16,8 @@ Resume ADF from repo SSOT. Do not ask me to re-explain prior builds.
 
 ## Current snapshot (update when builds finish)
 
-- Version: `0.11.0-alpha`
-- Phase: **2 — Platform & Distribution**
-- Last completed: **BUILD-011** (Registry & Marketplace)
-- Next: **BUILD-012** (Installer & Distribution) — not started
-- Do not start BUILD-012 until explicit master prompt
+- Version: `0.12.0-alpha`
+- Phase: **2 complete** — next is **3 User Experience**
+- Last completed: **BUILD-012** (Distribution Platform)
+- Next: **BUILD-013** (ADF Studio Core) — not started
+- Do not start BUILD-013 until explicit master prompt

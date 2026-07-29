@@ -7,15 +7,19 @@ from typing import Any
 
 from loader.project_loader import ProjectLoader
 from runtime.exceptions import AdfError
+from sdk.distribution import DistributionClient
 from sdk.generator import GeneratorAPI
+from sdk.installer import InstallerClient
 from sdk.marketplace import MarketplaceClient
 from sdk.package import PackageAPI
 from sdk.plugin import PluginAPI
 from sdk.project import ProjectAPI
 from sdk.publisher import PublisherClient
 from sdk.registry import RegistryClient
+from sdk.release import ReleaseClient
 from sdk.runtime import RuntimeAPI
 from sdk.template import TemplateAPI
+from sdk.updater import UpdaterClient
 from sdk.workspace import WorkspaceAPI
 from services.contracts import ServiceResult
 from services.service_manager import ServiceManager
@@ -106,6 +110,22 @@ class SDKClient:
     def publisher(self) -> PublisherClient:
         """Access PublisherService via typed SDK facade."""
         return PublisherClient(self._ensure().publisher())
+
+    def distribution(self) -> DistributionClient:
+        """Access DistributionService via typed SDK facade."""
+        return DistributionClient(self._ensure().distribution())
+
+    def installer(self) -> InstallerClient:
+        """Access InstallerService via typed SDK facade."""
+        return InstallerClient(self._ensure().installer())
+
+    def updater(self) -> UpdaterClient:
+        """Access UpdaterService via typed SDK facade."""
+        return UpdaterClient(self._ensure().updater())
+
+    def release(self) -> ReleaseClient:
+        """Access ReleaseService via typed SDK facade."""
+        return ReleaseClient(self._ensure().release())
 
     def result(self, service_result: ServiceResult) -> dict[str, Any]:
         """Normalize a ServiceResult for callers."""

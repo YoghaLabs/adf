@@ -13,7 +13,7 @@
 | BUILD-009 | Completed |
 | BUILD-010 | Completed |
 | BUILD-011 | Completed |
-| BUILD-012 | Pending |
+| BUILD-012 | Completed |
 | BUILD-013 | Pending |
 | BUILD-014 | Pending |
 | BUILD-015 | Pending |
@@ -25,5 +25,6 @@
 
 ## Current Focus
 
-- Last completed: **BUILD-011** (`0.11.0-alpha`) — Registry & Marketplace
-- Next: **BUILD-012** (Pending — do not start until explicit prompt)
+- Last completed: **BUILD-012** (`0.12.0-alpha`) — Distribution Platform
+- Next: **BUILD-013** (Pending — do not start until explicit prompt)
+- Phase 2 Platform & Distribution is complete

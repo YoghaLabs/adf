@@ -1,50 +1,34 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.11.0-alpha** / **BUILD-011** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.12.0-alpha** / **BUILD-012** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-012 Installer & Distribution (Phase 2 — after Architecture Review of BUILD-011)
+- BUILD-013 ADF Studio Core (Phase 3 — after Architecture Review of BUILD-012)
+
+## [0.12.0-alpha] — 2026-07-30
+
+### Added
+- Distribution platform in `adf-core/distribution/`
+- InstallerManager / UpdateManager / ReleaseManager / RollbackManager
+- Packaging: zip, tar.gz, wheel, portable, offline, enterprise, desktop marker
+- Services + SDK clients for distribution/installer/updater/release
+- CLI: uninstall, release, package, bundle, rollback; extended install/update/verify
+- ADR-010 Distribution & Release Architecture
+- Docs + prompts + `bootstrap/BUILD-012/`
+- pytest `tests/test_distribution.py`
+
+### Changed
+- Version identity advanced to `0.12.0-alpha` / BUILD-012
+- Phase 2 Platform & Distribution complete
 
 ## [0.11.0-alpha] — 2026-07-30
 
 ### Added
-- Registry & Marketplace platform in `adf-core/registry/` (alongside component Registry)
-- Providers: local, GitHub, GitLab, enterprise, mock cloud
-- MarketplaceManager presentation layer
-- RegistryService / MarketplaceService / PublisherService
-- SDK: RegistryClient, MarketplaceClient, PublisherClient
-- CLI: `publish`, `registry`, `sync` + marketplace search modes
-- ADR-009 Registry & Marketplace Architecture
-- Docs + prompts + `bootstrap/BUILD-011/`
-- pytest `tests/test_marketplace.py`
-
-### Changed
-- Package categories expanded for marketplace (legacy types still accepted)
-- Version identity advanced to `0.11.0-alpha` / BUILD-011
+- Registry & Marketplace platform
 
 ## [0.10.0-alpha] — 2026-07-30
 
 ### Added
-- Service Layer + Public SDK + SDKClient
-- ADR-008 Service Layer Architecture
-
-### Changed
-- CLI via Service Layer only
-- Version `0.10.0-alpha` / BUILD-010
-
-## [0.9.0-alpha] — 2026-07-30
-
-### Added
-- ADF Package Manager (APM)
-
-## [0.8.0-alpha] — 2026-07-29
-
-### Added
-- Bootstrap/project generator
-
-## [0.7.0-alpha] — 2026-07-29
-
-### Added
-- Template Engine
+- Service Layer & Public SDK

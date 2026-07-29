@@ -104,12 +104,15 @@ class ServiceManager:
 
     def configure_defaults(self) -> None:
         """Wire default services to existing engines/managers (no duplicated logic)."""
+        from distribution.distribution_manager import DistributionManager
         from engine.knowledge_engine import KnowledgeEngine
         from engine.runtime_engine import RuntimeEngine
         from registry.marketplace import MarketplaceManager
         from registry.registry_manager import RegistryManager
         from services.context_service import ContextService
+        from services.distribution_service import DistributionService
         from services.generator_service import GeneratorService
+        from services.installer_service import InstallerService
         from services.knowledge_service import KnowledgeService
         from services.marketplace_service import MarketplaceService
         from services.package_service import PackageService
@@ -117,8 +120,10 @@ class ServiceManager:
         from services.project_service import ProjectService
         from services.publisher_service import PublisherService
         from services.registry_service import RegistryService
+        from services.release_service import ReleaseService
         from services.runtime_service import RuntimeService
         from services.template_service import TemplateService
+        from services.updater_service import UpdaterService
         from services.workspace_service import WorkspaceService
 
         engine = RuntimeEngine(self.repo_root)
@@ -127,8 +132,12 @@ class ServiceManager:
 
         registry_manager = RegistryManager(self.repo_root, package_manager=engine.packages)
         marketplace_manager = MarketplaceManager(registry_manager)
+        distribution_manager = DistributionManager(
+            self.repo_root, package_manager=engine.packages
+        )
         self.registry_manager = registry_manager
         self.marketplace_manager = marketplace_manager
+        self.distribution_manager = distribution_manager
 
         # Clear and re-register defaults if empty / first configure.
         defaults = [
@@ -144,6 +153,10 @@ class ServiceManager:
             RegistryService(registry_manager),
             MarketplaceService(marketplace_manager),
             PublisherService(registry_manager),
+            DistributionService(distribution_manager),
+            InstallerService(distribution_manager.installer),
+            UpdaterService(distribution_manager.updater),
+            ReleaseService(distribution_manager.releases),
         ]
         for service in defaults:
             if service.name not in self._services:
@@ -154,8 +167,10 @@ class ServiceManager:
         engine.registry.register("services", self)
         engine.extensions.publish_service("registry_manager", registry_manager)
         engine.extensions.publish_service("marketplace", marketplace_manager)
+        engine.extensions.publish_service("distribution", distribution_manager)
         engine.registry.register("registry_manager", registry_manager)
         engine.registry.register("marketplace", marketplace_manager)
+        engine.registry.register("distribution", distribution_manager)
 
     def runtime(self) -> Any:
         """Typed accessor for RuntimeService."""
@@ -263,4 +278,40 @@ class ServiceManager:
         service = self.get("publisher")
         if not isinstance(service, PublisherService):
             raise ServiceException("publisher service missing")
+        return service
+
+    def distribution(self) -> Any:
+        """Typed accessor for DistributionService."""
+        from services.distribution_service import DistributionService
+
+        service = self.get("distribution")
+        if not isinstance(service, DistributionService):
+            raise ServiceException("distribution service missing")
+        return service
+
+    def installer(self) -> Any:
+        """Typed accessor for InstallerService."""
+        from services.installer_service import InstallerService
+
+        service = self.get("installer")
+        if not isinstance(service, InstallerService):
+            raise ServiceException("installer service missing")
+        return service
+
+    def updater(self) -> Any:
+        """Typed accessor for UpdaterService."""
+        from services.updater_service import UpdaterService
+
+        service = self.get("updater")
+        if not isinstance(service, UpdaterService):
+            raise ServiceException("updater service missing")
+        return service
+
+    def release(self) -> Any:
+        """Typed accessor for ReleaseService."""
+        from services.release_service import ReleaseService
+
+        service = self.get("release")
+        if not isinstance(service, ReleaseService):
+            raise ServiceException("release service missing")
         return service

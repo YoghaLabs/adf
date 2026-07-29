@@ -2,7 +2,7 @@
 
 **Purpose:** Next AI/operator can resume without re-explaining the project from scratch.  
 **Last handoff:** 2026-07-30  
-**Author of handoff:** Quadran + Cursor agent (BUILD-011 complete)
+**Author of handoff:** Quadran + Cursor agent (BUILD-012 complete)
 
 ---
 
@@ -12,12 +12,12 @@
 |-------|-------|
 | Repo | `adf` (YoghaLabs) |
 | Branch | `develop` |
-| Version | `0.11.0-alpha` |
-| Current build | **BUILD-011** — Registry & Marketplace (completed) |
-| Next build | **BUILD-012** — Installer & Distribution (**NOT STARTED**) |
-| Roadmap | **LOCKED** — `ROADMAP.md` phases 1–4 |
+| Version | `0.12.0-alpha` |
+| Current build | **BUILD-012** — Distribution Platform (completed) |
+| Next build | **BUILD-013** — ADF Studio Core (**NOT STARTED**) |
+| Phase 2 | **Complete** (BUILD-009…012) |
 
 ## Hard stops
 
-- Do **not** start BUILD-012 until an explicit master prompt.
-- Marketplace must stay presentation-only; installs via PackageManager/Registry.
+- Do **not** start BUILD-013 until an explicit master prompt.
+- Distribution must stay separate from APM/Marketplace; package installs still delegate to PackageManager.
