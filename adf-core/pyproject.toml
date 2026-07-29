@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adf-core"
+version = "0.5.0a0"
+description = "ADF Runtime Engine foundation — executable core for the AI Development Framework"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "YoghaLabs" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+adf = "adf:main"
+
+[tool.setuptools]
+py-modules = ["adf"]
+packages = [
+  "runtime",
+  "core",
+  "engine",
+  "context",
+  "memory",
+  "bootstrap",
+  "registry",
+  "parser",
+  "loader",
+  "shared",
+  "utils",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
