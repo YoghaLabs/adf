@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
-"""ADF CLI entry point.
+"""ADF CLI entry point — Service Layer only (never engines directly).
 
 Commands: boot, doctor, status, version, context, resume, plugins,
-init, new, generate.
+init, new, generate, dry-run, validate, install, remove, update,
+search, list, verify, cache.
 """
 
 from __future__ import annotations
@@ -13,15 +13,13 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from engine.runtime_engine import RuntimeEngine
 from generator.filesystem import AdfGeneratorError
-from generator.manager import GeneratorManager
 from loader.project_loader import ProjectLoader
-from packages.manager import PackageManager
 from packages.manifest import AdfPackageError
 from plugins.manager import AdfPluginError
-from runtime.constants import PACKAGE_NAME, PACKAGE_VERSION
 from runtime.exceptions import AdfError
+from services.contracts import ServiceException
+from services.service_manager import ServiceManager
 from templates.variables import AdfTemplateError
 
 
@@ -45,95 +43,64 @@ def _add_root(subparser: argparse.ArgumentParser) -> None:
     )
 
 
-def _generator(args: argparse.Namespace) -> GeneratorManager:
-    root = _resolve_root(getattr(args, "root", None))
-    engine = RuntimeEngine(root)
-    return engine.generator
+def _manager(args: argparse.Namespace) -> ServiceManager:
+    """CLI must obtain engines only through ServiceManager."""
+    manager = ServiceManager(_resolve_root(getattr(args, "root", None)))
+    manager.configure_defaults()
+    return manager
 
 
-def cmd_version(_: argparse.Namespace) -> int:
-    """Print package version."""
-    _print_json({"package": PACKAGE_NAME, "version": PACKAGE_VERSION})
-    return 0
+def _emit(result: Any) -> int:
+    payload = result.to_dict() if hasattr(result, "to_dict") else dict(result)
+    _print_json(payload if "ok" in payload else payload)
+    if hasattr(result, "ok"):
+        return 0 if result.ok else 1
+    return 0 if payload.get("ok", True) else 1
+
+
+def cmd_version(args: argparse.Namespace) -> int:
+    """Print package version via RuntimeService."""
+    return _emit(_manager(args).runtime().version())
 
 
 def cmd_boot(args: argparse.Namespace) -> int:
-    """Boot the runtime engine."""
-    engine = RuntimeEngine(_resolve_root(args.root))
-    report = engine.boot()
-    _print_json(report)
-    return 0 if report.get("ok") else 1
+    """Boot all services and the runtime engine."""
+    return _emit(_manager(args).boot())
 
 
 def cmd_doctor(args: argparse.Namespace) -> int:
     """Run repository health checks."""
-    engine = RuntimeEngine(_resolve_root(args.root))
-    report = engine.doctor()
-    _print_json(report)
-    return 0 if report.get("ok") else 1
+    return _emit(_manager(args).runtime().doctor())
 
 
 def cmd_status(args: argparse.Namespace) -> int:
     """Show derived project status."""
-    engine = RuntimeEngine(_resolve_root(args.root))
-    _print_json(engine.status())
-    return 0
+    return _emit(_manager(args).runtime().status())
 
 
 def cmd_context(args: argparse.Namespace) -> int:
     """Assemble a context pack."""
-    engine = RuntimeEngine(_resolve_root(args.root))
-    pack = engine.context.assemble(args.pack)
-    _print_json(
-        {
-            "pack": pack["pack"],
-            "summary": pack["summary"],
-            "files": list(pack["files"].keys()),
-            "missing": pack["missing"],
-        }
-    )
-    return 0
+    return _emit(_manager(args).context().assemble(args.pack))
 
 
 def cmd_resume(args: argparse.Namespace) -> int:
     """Resume protocol skeleton."""
-    engine = RuntimeEngine(_resolve_root(args.root))
-    state = engine.state.load()
-    checkpoint = None
-    try:
-        checkpoint = engine.checkpoints.restore()
-    except AdfError:
-        checkpoint = None
-    _print_json(
-        {
-            "message": "Resume skeleton: run full AI Resume Protocol via .adf docs",
-            "state": state,
-            "checkpoint": checkpoint,
-            "plugins": engine.plugins.list(),
-        }
-    )
-    return 0
+    return _emit(_manager(args).runtime().resume())
 
 
 def cmd_plugins(args: argparse.Namespace) -> int:
-    """Plugin CLI skeleton: list|info|enable|disable."""
-    engine = RuntimeEngine(_resolve_root(args.root))
+    """Plugin CLI: list|info|enable|disable."""
+    plugins = _manager(args).plugin()
     action = args.plugins_command
     if action == "list":
-        _print_json({"plugins": engine.plugins.list()})
-        return 0
+        return _emit(plugins.list())
     if action == "info":
-        _print_json(engine.plugins.info(args.name))
-        return 0
+        return _emit(plugins.info(args.name))
     if action == "enable":
-        engine.plugins.enable(args.name)
-        _print_json({"enabled": args.name, "ok": True})
-        return 0
+        return _emit(plugins.enable(args.name))
     if action == "disable":
-        engine.plugins.disable(args.name)
-        _print_json({"disabled": args.name, "ok": True})
-        return 0
-    _print_json({"error": f"unknown plugins command: {action}"})
+        return _emit(plugins.disable(args.name))
+    _print_json({"error": f"unknown plugins command: {action}", "ok": False})
     return 2
 
 
@@ -147,67 +114,55 @@ def _gen_flags(args: argparse.Namespace) -> dict[str, Any]:
     }
 
 
-def _packages(args: argparse.Namespace) -> PackageManager:
-    return PackageManager(_resolve_root(getattr(args, "root", None)))
-
-
 def cmd_pkg_install(args: argparse.Namespace) -> int:
     """Install a package from the registry."""
-    result = _packages(args).install(args.package_id, overwrite=bool(args.overwrite))
-    _print_json(result)
-    return 0 if result.get("ok") else 1
+    return _emit(
+        _manager(args).package().install(args.package_id, overwrite=bool(args.overwrite))
+    )
 
 
 def cmd_pkg_remove(args: argparse.Namespace) -> int:
     """Remove an installed package."""
-    _print_json(_packages(args).remove(args.package_id))
-    return 0
+    return _emit(_manager(args).package().remove(args.package_id))
 
 
 def cmd_pkg_update(args: argparse.Namespace) -> int:
     """Update/reinstall a package from the registry."""
-    result = _packages(args).update(args.package_id)
-    _print_json(result)
-    return 0 if result.get("ok") else 1
+    return _emit(_manager(args).package().update(args.package_id))
 
 
 def cmd_pkg_search(args: argparse.Namespace) -> int:
     """Search the package registry."""
-    rows = _packages(args).search(args.query or "", package_type=args.type)
-    _print_json({"packages": rows, "count": len(rows)})
-    return 0
+    return _emit(
+        _manager(args).package().search(args.query or "", package_type=args.type)
+    )
 
 
 def cmd_pkg_list(args: argparse.Namespace) -> int:
     """List registry or installed packages."""
-    rows = _packages(args).list(installed=bool(args.installed))
-    _print_json({"packages": rows, "count": len(rows), "installed": bool(args.installed)})
-    return 0
+    return _emit(_manager(args).package().list(installed=bool(args.installed)))
 
 
 def cmd_pkg_verify(args: argparse.Namespace) -> int:
     """Verify installed package integrity against the lockfile."""
-    result = _packages(args).verify(args.package_id)
-    _print_json(result)
-    return 0 if result.get("ok") else 1
+    return _emit(_manager(args).package().verify(args.package_id))
 
 
 def cmd_pkg_cache(args: argparse.Namespace) -> int:
     """Inspect or clear the APM cache."""
-    manager = _packages(args)
+    packages = _manager(args).package()
     if args.cache_command == "clear":
-        _print_json(manager.cache_clear())
-        return 0
-    _print_json(manager.cache_stats())
-    return 0
+        return _emit(packages.cache_clear())
+    return _emit(packages.cache_stats())
 
 
 def cmd_init(args: argparse.Namespace) -> int:
     """Initialize a new ADF project (``adf init``)."""
-    manager = _generator(args)
-    result = manager.init_project(args.name, args.destination, **_gen_flags(args))
-    _print_json(result)
-    return 0 if result.get("ok") else 1
+    return _emit(
+        _manager(args).generator().init_project(
+            args.name, args.destination, **_gen_flags(args)
+        )
+    )
 
 
 def cmd_new(args: argparse.Namespace) -> int:
@@ -217,7 +172,7 @@ def cmd_new(args: argparse.Namespace) -> int:
 
 def cmd_generate(args: argparse.Namespace) -> int:
     """Generate from an explicit manifest (``adf generate``)."""
-    manager = _generator(args)
+    generator = _manager(args).generator()
     manifest = {
         "name": args.name,
         "template": args.template,
@@ -226,21 +181,18 @@ def cmd_generate(args: argparse.Namespace) -> int:
         "destination": args.destination,
     }
     if getattr(args, "validate_only", False):
-        result = manager.validate(manifest)
-        _print_json(result)
-        return 0 if result.get("ok") else 1
-    result = manager.generate(
-        manifest,
-        dry_run=bool(args.dry_run),
-        overwrite=bool(args.overwrite),
+        return _emit(generator.validate(manifest))
+    return _emit(
+        generator.generate(
+            manifest,
+            dry_run=bool(args.dry_run),
+            overwrite=bool(args.overwrite),
+        )
     )
-    _print_json(result)
-    return 0 if result.get("ok") else 1
 
 
 def cmd_dry_run(args: argparse.Namespace) -> int:
     """Preview generation without writing (``adf dry-run``)."""
-    manager = _generator(args)
     manifest = {
         "name": args.name,
         "template": args.template,
@@ -248,14 +200,11 @@ def cmd_dry_run(args: argparse.Namespace) -> int:
         "version": args.project_version,
         "destination": args.destination,
     }
-    result = manager.dry_run(manifest)
-    _print_json(result)
-    return 0 if result.get("ok") else 1
+    return _emit(_manager(args).generator().dry_run(manifest))
 
 
 def cmd_validate(args: argparse.Namespace) -> int:
     """Validate generation inputs (``adf validate``)."""
-    manager = _generator(args)
     manifest = {
         "name": args.name,
         "template": args.template,
@@ -263,9 +212,7 @@ def cmd_validate(args: argparse.Namespace) -> int:
         "version": args.project_version,
         "destination": args.destination,
     }
-    result = manager.validate(manifest)
-    _print_json(result)
-    return 0 if result.get("ok") else 1
+    return _emit(_manager(args).generator().validate(manifest))
 
 
 def _add_generator_args(parser: argparse.ArgumentParser) -> None:
@@ -305,13 +252,14 @@ def _add_generator_args(parser: argparse.ArgumentParser) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     """Create the CLI argument parser."""
-    parser = argparse.ArgumentParser(prog="adf", description="ADF Runtime Engine CLI")
+    parser = argparse.ArgumentParser(prog="adf", description="ADF Service Layer CLI")
     sub = parser.add_subparsers(dest="command", required=True)
 
     version_parser = sub.add_parser("version", help="Show adf-core version")
+    _add_root(version_parser)
     version_parser.set_defaults(func=cmd_version)
 
-    boot_parser = sub.add_parser("boot", help="Boot runtime engine")
+    boot_parser = sub.add_parser("boot", help="Boot services and runtime engine")
     _add_root(boot_parser)
     boot_parser.set_defaults(func=cmd_boot)
 
@@ -337,7 +285,7 @@ def build_parser() -> argparse.ArgumentParser:
     _add_root(resume_parser)
     resume_parser.set_defaults(func=cmd_resume)
 
-    plugins_parser = sub.add_parser("plugins", help="Plugin management skeleton")
+    plugins_parser = sub.add_parser("plugins", help="Plugin management")
     plugins_sub = plugins_parser.add_subparsers(dest="plugins_command", required=True)
 
     list_parser = plugins_sub.add_parser("list", help="List plugins")
@@ -349,12 +297,12 @@ def build_parser() -> argparse.ArgumentParser:
     info_parser.add_argument("name", help="Plugin name")
     info_parser.set_defaults(func=cmd_plugins)
 
-    enable_parser = plugins_sub.add_parser("enable", help="Enable plugin (skeleton)")
+    enable_parser = plugins_sub.add_parser("enable", help="Enable plugin")
     _add_root(enable_parser)
     enable_parser.add_argument("name", help="Plugin name")
     enable_parser.set_defaults(func=cmd_plugins)
 
-    disable_parser = plugins_sub.add_parser("disable", help="Disable plugin (skeleton)")
+    disable_parser = plugins_sub.add_parser("disable", help="Disable plugin")
     _add_root(disable_parser)
     disable_parser.add_argument("name", help="Plugin name")
     disable_parser.set_defaults(func=cmd_plugins)
@@ -406,10 +354,10 @@ def build_parser() -> argparse.ArgumentParser:
     search_parser.add_argument("--type", dest="type", default=None, help="Filter by package type")
     search_parser.set_defaults(func=cmd_pkg_search)
 
-    list_parser = sub.add_parser("list", help="List registry or installed packages")
-    _add_root(list_parser)
-    list_parser.add_argument("--installed", action="store_true", help="List installed packages")
-    list_parser.set_defaults(func=cmd_pkg_list)
+    list_pkg_parser = sub.add_parser("list", help="List registry or installed packages")
+    _add_root(list_pkg_parser)
+    list_pkg_parser.add_argument("--installed", action="store_true", help="List installed packages")
+    list_pkg_parser.set_defaults(func=cmd_pkg_list)
 
     verify_parser = sub.add_parser("verify", help="Verify installed packages / lockfile")
     _add_root(verify_parser)
@@ -424,7 +372,6 @@ def build_parser() -> argparse.ArgumentParser:
     cache_clear = cache_sub.add_parser("clear", help="Clear cache")
     _add_root(cache_clear)
     cache_clear.set_defaults(func=cmd_pkg_cache, cache_command="clear")
-    # Default: stats when bare `adf cache`
     _add_root(cache_parser)
     cache_parser.set_defaults(func=cmd_pkg_cache, cache_command="stats")
 
@@ -437,7 +384,14 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         return int(args.func(args))
-    except (AdfError, AdfPluginError, AdfGeneratorError, AdfTemplateError, AdfPackageError) as exc:
+    except (
+        AdfError,
+        AdfPluginError,
+        AdfGeneratorError,
+        AdfTemplateError,
+        AdfPackageError,
+        ServiceException,
+    ) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 
