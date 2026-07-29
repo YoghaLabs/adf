@@ -2,6 +2,11 @@
 
 Narrative history of meaningful repository changes. Complements `CHANGELOG.md` with context for AI resume.
 
+## 2026-07-29 — BUILD-006 completed
+
+- Plugin & Extension Engine shipped (`0.6.0-alpha`)
+- Next gate: Architecture Review before BUILD-007
+
 ## 2026-07-29 — BUILD-005 completed
 
 - Runtime Engine foundation shipped in `adf-core` (`0.5.0-alpha`)

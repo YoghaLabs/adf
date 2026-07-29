@@ -2,19 +2,12 @@
 
 ## Stable Facts
 
-- Architecture locked (ADR-001); ADRs required for architecture changes.
-- `.adf/` is SSOT; Context Engine specs (BUILD-004) define restore.
-- **BUILD-005** introduces executable Runtime Engine in `adf-core` (Python 3.10+).
-- Machine state/sessions/checkpoints may live under `.adf/local/` (gitignored); markdown SSOT remains authoritative for humans/AIs.
-- CLI entry: `adf-core/adf.py`.
-- Do not start BUILD-006 until Architecture Review of BUILD-005.
+- Locked architecture + ADR rules still apply.
+- Context Engine specs (BUILD-004) + Runtime foundation (BUILD-005) remain.
+- **BUILD-006:** future capabilities ship as plugins; RuntimeEngine depends on contracts/PluginManager, not concrete plugin classes.
+- Third-party plugins must use `extensions.ExtensionAPI` / `contracts` only.
+- CLI: `adf.py plugins list|info|enable|disable`.
 
-## Working Preferences
+## Watch Items
 
-- Follow docs first; implement against Context Engine / state machine contracts.
-- Prefer small modules and typed public APIs.
-- Run `pytest` inside `adf-core` before handoff.
-
-## Do Not Store Here
-
-Secrets, large logs, ephemeral speculation.
+- Do not start BUILD-007 before Architecture Review of BUILD-006.

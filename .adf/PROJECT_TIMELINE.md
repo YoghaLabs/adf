@@ -15,9 +15,11 @@ BUILD-003 Knowledge Architecture & ADR
     ↓
 BUILD-004 Context Engine  ← completed
     ↓
-BUILD-005 Runtime Engine Foundation  ← current (completed; review gate)
+BUILD-005 Runtime Engine Foundation
     ↓
-BUILD-006 Context Engine Hardening
+BUILD-006 Plugin & Extension Engine  ← current (completed; review gate)
+    ↓
+BUILD-007 Task & State Machine
     ↓
 BUILD-006…012 engines, templates, examples, testing, release prep
     ↓
@@ -39,12 +41,13 @@ BUILD-020 v1.0 stabilization gate
 | BUILD-003 | `0.3.0-alpha` | Knowledge architecture + ADR system |
 | BUILD-004 | `0.4.0-alpha` | Context Engine specification |
 | BUILD-005 | `0.5.0-alpha` | Runtime Engine foundation (`adf-core`) |
+| BUILD-006 | `0.6.0-alpha` | Plugin & Extension Engine |
 
 ## Next
 
 | Build | Theme |
 |-------|-------|
-| BUILD-006 | Context Engine Hardening in runtime |
+| BUILD-007 | Task & State Machine |
 
 ## Narrative
 

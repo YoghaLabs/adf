@@ -2,33 +2,22 @@
 
 ## Active Build
 
-**BUILD-005 — Runtime Engine Foundation**
+**BUILD-006 — Plugin & Extension Engine**
 
 ## Status
 
-**Completed.** Awaiting Architecture Review before BUILD-006.
-
-## Current Objective
-
-Preserve the first executable Runtime Engine in `adf-core`. Do **not** start BUILD-006 until review approval.
+**Completed.** Awaiting Architecture Review before BUILD-007.
 
 ## Objectives (All Met)
 
-1. Initialize `adf-core` as a Python package with locked subpackage layout.
-2. Implement Runtime/Context/Memory/Bootstrap engines and core managers.
-3. Implement Registry, PromptLoader, ProjectLoader with markdown loading.
-4. Provide CLI skeleton commands.
-5. Add pytest suite.
-6. Ship bootstrap pack, prompts, and docs.
-7. Align identity to `0.5.0-alpha` / BUILD-005.
-8. Stop after BUILD-005.
-
-## Out of Scope
-
-- Full Context Engine hardening (BUILD-006+)
-- Studio GUI (BUILD-013+)
-- Folder redesign / deleting docs
+1. Introduce plugin contracts and PluginManager lifecycle APIs.
+2. Add EventBus + HookRegistry + public ExtensionAPI.
+3. Ship built-in plugins inheriting BasePlugin.
+4. Wire RuntimeEngine through PluginManager only.
+5. Extend Registry and CLI (`plugins list|info|enable|disable`).
+6. Add pytest coverage; update VERSION to `0.6.0-alpha`.
+7. Stop after BUILD-006.
 
 ## Next Operator Action
 
-Architecture Review via `bootstrap/BUILD-005/REVIEW.md`, then BUILD-006 only with explicit master prompt.
+Architecture Review via `bootstrap/BUILD-006/REVIEW.md`.

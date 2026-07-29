@@ -27,6 +27,11 @@ Human-facing documentation for the AI Development Framework.
 | `CLI_GUIDE.md` | CLI usage |
 | `ENGINE_OVERVIEW.md` | Engine/manager map |
 | `PACKAGE_STRUCTURE.md` | `adf-core` layout |
+| `PLUGIN_ENGINE.md` | Plugin architecture overview |
+| `PLUGIN_GUIDE.md` | How to use/author plugins |
+| `EVENT_SYSTEM.md` | EventBus lifecycle events |
+| `HOOK_SYSTEM.md` | before/after hooks |
+| `EXTENSION_API.md` | Public extension surface |
 | `README.md` | This index |
 
 ## Reading Order

@@ -84,6 +84,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Implementation follows `.adf` documentation (docs remain SSOT for process)
 - CLI + pytest foundation for later hardening builds
 
+## BUILD-006 — Plugin & Extension Engine
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.6.0-alpha` |
+| Branch | `develop` |
+| Purpose | Make RuntimeEngine plugin-based via contracts, PluginManager, events, hooks, and ExtensionAPI |
+| Result | **Completed.** Built-in plugins discoverable/loadable; CLI plugins skeleton; tests green. Pending Architecture Review. |
+
+### Outcomes That Must Not Be Undone
+
+- RuntimeEngine must not instantiate concrete plugin classes directly
+- Third-party plugins depend on contracts/ExtensionAPI only
+- Built-in plugins inherit BasePlugin
+
 ## Template for Future Entries
 
 ```markdown

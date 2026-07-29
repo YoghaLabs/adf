@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-29 — Plugin-based RuntimeEngine (BUILD-006)
+
+- **Decision:** Future capabilities are plugins behind contracts; RuntimeEngine uses PluginManager and must not instantiate concrete plugin classes directly.
+- **Why:** Keeps core stable while allowing Studio/testing/generators to extend ADF safely.
+- **Consequences:** Third parties depend on `contracts`/`extensions` only; built-ins live under `adf-core/plugins`.
+- **Status:** Accepted
+
 ## 2026-07-29 — Runtime Engine in `adf-core` with Python (BUILD-005)
 
 - **Decision:** Implement the first executable Runtime Engine as a Python package inside locked `adf-core/`, following Context Engine docs; keep markdown SSOT authoritative for process.

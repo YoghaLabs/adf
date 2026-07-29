@@ -17,11 +17,12 @@ python adf.py resume --root ..
 | Command | Purpose |
 |---------|---------|
 | `version` | Package version |
-| `doctor` | Locked layout + SSOT checks |
-| `boot` | Minimal boot + open session |
-| `status` | State snapshot |
-| `context` | Assemble context pack (file list summary) |
-| `resume` | Resume skeleton (state + latest checkpoint) |
+| `doctor` | Layout + SSOT + plugin validation |
+| `boot` | Boot + load enabled plugins |
+| `status` | State snapshot + plugin list |
+| `context` | Assemble context pack |
+| `resume` | Resume skeleton |
+| `plugins list\|info\|enable\|disable` | Plugin management skeleton |
 
 BUILD-005 provides a skeleton — not every future CLI feature.
 

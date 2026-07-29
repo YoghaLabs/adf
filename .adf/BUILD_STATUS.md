@@ -7,7 +7,7 @@
 | BUILD-003 | Completed |
 | BUILD-004 | Completed |
 | BUILD-005 | Completed |
-| BUILD-006 | Pending |
+| BUILD-006 | Completed |
 | BUILD-007 | Pending |
 | BUILD-008 | Pending |
 | BUILD-009 | Pending |
@@ -25,5 +25,5 @@
 
 ## Current Focus
 
-- Last completed: **BUILD-005** (`0.5.0-alpha`) — Runtime Engine Foundation
-- Next: **BUILD-006** (Pending — requires Architecture Review + explicit mission)
+- Last completed: **BUILD-006** (`0.6.0-alpha`) — Plugin & Extension Engine
+- Next: **BUILD-007** (Pending — Architecture Review gate)

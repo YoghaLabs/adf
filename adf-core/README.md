@@ -8,23 +8,25 @@ Runtime Engine foundation for the AI Development Framework (BUILD-005).
 
 ## Status
 
-**Implemented (foundation) in BUILD-005** — Python package with engines, managers, loaders, CLI skeleton, and pytest coverage.
+**Implemented through BUILD-006** — Runtime Engine foundation plus plugin/extension architecture.
 
 ## Layout
 
 ```text
 adf-core/
-├── adf.py              # CLI entry
-├── pyproject.toml
-├── requirements.txt
-├── runtime/            # config, constants, exceptions
-├── core/               # State/Session/Checkpoint managers
-├── engine/             # Runtime/Context/Memory/Bootstrap engines
-├── registry/           # Component registry
-├── loader/             # Prompt + project loaders
-├── parser/             # Markdown helpers
-├── context/ memory/ bootstrap/ shared/ utils/
+├── adf.py
+├── contracts/ interfaces/ plugins/ events/ hooks/ extensions/
+├── runtime/ core/ engine/ registry/ loader/ parser/
 └── tests/
+```
+
+## Plugin quick start
+
+```bash
+cd adf-core
+python adf.py plugins list --root ..
+python adf.py boot --root ..
+python -m pytest
 ```
 
 ## Quick start

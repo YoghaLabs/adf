@@ -5,15 +5,15 @@
 | Repository | `adf` |
 | Full name | AI Development Framework |
 | Organization | YoghaLabs |
-| Version | `0.5.0-alpha` |
-| Current build | `BUILD-005` |
+| Version | `0.6.0-alpha` |
+| Current build | `BUILD-006` |
 | Primary branch | `develop` |
 | License | MIT |
-| Status | Runtime Engine Foundation (executable `adf-core`) |
+| Status | Plugin & Extension Engine |
 | SSOT root | `.adf/` |
 | ADR root | `.adf/adr/` |
 | Context Engine | `.adf/CONTEXT_ENGINE.md` + `.adf/context/` |
-| Runtime package | `adf-core/` (Python) |
+| Runtime package | `adf-core/` (Python, plugin-based) |
 
 ## Product Summary
 
