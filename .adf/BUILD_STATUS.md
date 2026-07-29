@@ -2,14 +2,12 @@
 
 Live status board for BUILD-001 → BUILD-020.
 
-**Why:** `ROADMAP.md` describes intent; this file states **current truth** for agents under token pressure.
-
 | Build | Status |
 |-------|--------|
 | BUILD-001 | Completed |
 | BUILD-002 | Completed |
 | BUILD-003 | Completed |
-| BUILD-004 | Pending |
+| BUILD-004 | Completed |
 | BUILD-005 | Pending |
 | BUILD-006 | Pending |
 | BUILD-007 | Pending |
@@ -27,28 +25,11 @@ Live status board for BUILD-001 → BUILD-020.
 | BUILD-019 | Pending |
 | BUILD-020 | Pending |
 
-## Status Vocabulary
-
-| Status | Meaning |
-|--------|---------|
-| Pending | Not started |
-| In Progress | Active mission |
-| Completed | Mission done; may still await human review gate before next BUILD |
-| Blocked | Cannot proceed until listed blocker clears |
-
 ## Current Focus
 
-- Last completed: **BUILD-003** (`0.3.0-alpha`) — Knowledge Architecture & ADR System
-- Next: **BUILD-004** (Pending — Context Engine; requires Architecture Review approval + explicit master prompt)
+- Last completed: **BUILD-004** (`0.4.0-alpha`) — Context Engine
+- Next: **BUILD-005** — Runtime Engine (executable in `adf-core`; requires Architecture Review + explicit mission)
 
 ## Sync Rules
 
-When a BUILD changes status, update:
-
-1. This file
-2. `PROJECT_STATE.md`
-3. `BUILD_HISTORY.md` (on completion)
-4. Root `VERSION` (when version bumps with the BUILD)
-5. `CHANGELOG.md`
-6. README Build Roadmap table
-7. `PROJECT_TIMELINE.md` / `MILESTONES.md` when milestones move
+Update this file with `PROJECT_STATE`, `BUILD_HISTORY`, `VERSION`, `CHANGELOG`, README table, timeline/milestones when builds advance.

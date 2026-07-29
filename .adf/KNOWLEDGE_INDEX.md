@@ -41,6 +41,15 @@ Map of where knowledge lives in this repository.
 | `RISK_REGISTER.md` | Named risks and mitigations |
 | `TECH_STACK.md` | Operator/tech posture |
 | `adr/` | Architecture Decision Records |
+| `CONTEXT_ENGINE.md` | Context Engine entry |
+| `CONTEXT_PIPELINE.md` | Pipeline stages |
+| `RESTORE_SEQUENCE.md` | Restore order |
+| `BOOT_SEQUENCE_V2.md` | Boot V2 |
+| `SESSION_LIFECYCLE.md` | Session lifecycle |
+| `STATE_MACHINE.md` | Operator states |
+| `CHECKPOINTS.md` | Checkpoints |
+| `RESUME_PROTOCOL.md` | Resume protocol |
+| `context/` | Engine inputs/outputs/rules/pipeline |
 
 ## Human Docs (`adf-docs/`)
 
@@ -58,6 +67,11 @@ Map of where knowledge lives in this repository.
 | `CONTEXT_ENGINE.md` | Context restore / future engine |
 | `MEMORY_SYSTEM.md` | Memory/session model |
 | `PROJECT_LIFECYCLE.md` | Lifecycle across builds |
+| `CONTEXT_ENGINE_GUIDE.md` | Context Engine human guide |
+| `SESSION_MANAGEMENT.md` | Session practices |
+| `CHECKPOINT_SYSTEM.md` | Checkpoint guide |
+| `STATE_MACHINE.md` | State machine guide |
+| `AI_RESTORE_GUIDE.md` | Restore guide for all AIs |
 
 ## Process Docs
 

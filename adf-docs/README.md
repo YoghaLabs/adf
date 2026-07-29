@@ -18,6 +18,11 @@ Human-facing documentation for the AI Development Framework.
 | `CONTEXT_ENGINE.md` | Context restore / future engine |
 | `MEMORY_SYSTEM.md` | Memory/session model |
 | `PROJECT_LIFECYCLE.md` | Lifecycle across builds |
+| `CONTEXT_ENGINE_GUIDE.md` | Human guide to Context Engine |
+| `SESSION_MANAGEMENT.md` | Session lifecycle practices |
+| `CHECKPOINT_SYSTEM.md` | Checkpoint guide |
+| `STATE_MACHINE.md` | Operator state guide |
+| `AI_RESTORE_GUIDE.md` | Mandatory restore path for all AIs |
 | `README.md` | This index |
 
 ## Reading Order
@@ -25,10 +30,10 @@ Human-facing documentation for the AI Development Framework.
 1. `WHAT_IS_ADF.md`
 2. `GETTING_STARTED.md`
 3. `ARCHITECTURE.md`
-4. `AI_RUNTIME.md` + `BUILD_SYSTEM.md`
-5. `KNOWLEDGE_ARCHITECTURE.md` + `ADR_GUIDE.md`
-6. Root `ROADMAP.md` for build sequencing
-7. `.adf/AI_BOOT.md` if you will make changes via AI
+4. `AI_RUNTIME.md` + `AI_RESTORE_GUIDE.md`
+5. `CONTEXT_ENGINE_GUIDE.md` + `KNOWLEDGE_ARCHITECTURE.md`
+6. Root `ROADMAP.md`
+7. `.adf/BOOT_SEQUENCE_V2.md` before edits
 
 ## Maintenance
 

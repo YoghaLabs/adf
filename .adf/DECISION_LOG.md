@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-29 — Context Engine as first engine (BUILD-004)
+
+- **Decision:** Begin the engine phase with a normative Context Engine (shared restore/pipeline/state/checkpoints) before executable Runtime Engine code.
+- **Why:** Runnable ADF requires consistent multi-AI session continuity; coding without this contract recreates context loss in software form.
+- **Consequences:** BUILD-005 must implement these specs; all AIs must follow Resume Protocol; no new top-level engine folder.
+- **Status:** Accepted
+
 ## 2026-07-29 — Mandatory ADRs for architecture changes (BUILD-003)
 
 - **Decision:** From BUILD-003 through BUILD-020, every architecture change requires a new ADR under `.adf/adr/` and an `ADR_INDEX.md` entry.

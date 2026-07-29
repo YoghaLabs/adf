@@ -46,16 +46,18 @@ Human Architecture Review (or designated approver) signs off before the next BUI
 
 Version identity updates via root `VERSION` + `CHANGELOG.md`. Packaging automation matures in later builds (`release/`). A BUILD completion is not automatically a public release tag.
 
-## Mapping to AI Runtime
+## Mapping to AI Runtime / Context Engine
 
-| Lifecycle stage | Primary `.adf` / repo artifacts |
-|-----------------|-----------------------------------|
+| Lifecycle stage | Primary artifacts |
+|-----------------|-------------------|
 | Idea | `TODOS.md`, `CURRENT_TASK.md` |
-| Specification | `bootstrap/BUILD-00N/`, `ROADMAP.md` |
-| Implementation | working tree + SSOT updates |
-| Review | `prompts/review.md`, `BUILD_STATUS.md` |
-| Approval | `DECISION_LOG.md`, `SESSION.md` |
+| Specification | `bootstrap/BUILD-00N/` |
+| Implementation | state machine IMPLEMENT + SSOT updates |
+| Review | VERIFY + `prompts/review.md` |
+| Approval | Architecture Review gates |
 | Release | `VERSION`, `CHANGELOG.md`, `release/` |
+
+Operator micro-states during a session: see `STATE_MACHINE.md` (BOOT→HANDOFF) driven by Context Engine restore.
 
 ## Stop Gates
 

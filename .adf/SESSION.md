@@ -1,35 +1,30 @@
 # Session
 
-Latest session notes for handoff. Keep this file short and current.
-
-## Latest Session — 2026-07-29 (BUILD-003)
+## Latest Session — 2026-07-29 (BUILD-004)
 
 ### Goal
 
-Execute BUILD-003: Knowledge Architecture & ADR System.
+Ship Context Engine specification (first ADF engine; not GUI; not executable runtime yet).
 
 ### Done
 
-- Created `.adf/adr/` with ADR-001, ADR-002, ADR-003
-- Added knowledge architecture files (graphs, glossary, timeline, milestones, risks, tech stack, ADR index)
-- Updated state/manifest/history/indexes/memory/todos
-- Added `bootstrap/BUILD-003/` pack
-- Expanded prompts and `adf-docs` knowledge guides
-- Set version identity to `0.3.0-alpha`
-- Marked BUILD-003 complete; BUILD-004 not started
+- Context Engine specs: pipeline, restore, boot V2, session lifecycle, state machine, checkpoints, resume protocol
+- `.adf/context/` I/O package
+- bootstrap/BUILD-004 + prompts + adf-docs
+- Version `0.4.0-alpha`; BUILD-005 not started
+
+### Checkpoint
+
+`CP-2026-07-29-BUILD-004-close`
+
+- State machine: HANDOFF
+- Validation: locked folders unchanged; no placeholders intended
+- Next: Architecture Review → BUILD-005 only if approved
 
 ### Remaining
 
-- Human Architecture Review of BUILD-003
-- Do not implement BUILD-004 until approved + explicit mission
-
-### Next for Continuing Agent
-
-1. Boot via `.adf/AI_BOOT.md`
-2. Skim `ADR_INDEX.md` + `CONTEXT_GRAPH.md` if architecture questions arise
-3. Confirm `BUILD_STATUS` shows BUILD-003 Completed
-4. Wait for review outcome
+- Human Architecture Review of BUILD-004
 
 ### Boot Reminder
 
-Follow `.adf/AI_BOOT.md` and `.adf/AI_RUNTIME.md` before editing.
+Use `BOOT_SEQUENCE_V2.md` + `RESUME_PROTOCOL.md` before edits.

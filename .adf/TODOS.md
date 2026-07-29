@@ -1,39 +1,26 @@
 # TODOs
 
-Tracked work for ADF. Keep this file truthful; close items when done.
+## BUILD-001 … BUILD-003
 
-## BUILD-001 — Repository Foundation
+- [x] Complete (foundation, AI runtime SSOT, knowledge/ADR)
 
-- [x] Foundation deliverables complete
+## BUILD-004 — Context Engine
 
-## BUILD-002 — AI Runtime & Repository Intelligence
+- [x] Add Context Engine core specs
+- [x] Add restore protocol + boot V2 + session lifecycle
+- [x] Add state machine
+- [x] Add checkpoint system
+- [x] Add `.adf/context/` package
+- [x] Add bootstrap/BUILD-004 + prompts + docs
+- [x] Finalize SSOT/VERSION/README/ROADMAP
+- [x] Stop (no BUILD-005)
 
-- [x] SSOT runtime deliverables complete
+## BUILD-005 (Queued — Do Not Start Yet)
 
-## BUILD-003 — Knowledge Architecture & ADR System
-
-- [x] Create `.adf/adr/` + ADR-001/002/003
-- [x] Add ADR_INDEX, glossary, graphs, timeline, milestones, risks, tech stack
-- [x] Update state/manifest/history/indexes/memory/session/todos
-- [x] Add `bootstrap/BUILD-003/` pack (incl. MIGRATION)
-- [x] Add prompts: knowledge, adr, documentation, context, bootstrap
-- [x] Add adf-docs knowledge guides
-- [x] Update README Architecture Evolution + ROADMAP
-- [x] Finalize BUILD-003 and stop (no BUILD-004)
-
-## BUILD-004 (Queued — Do Not Start Yet)
-
-- [ ] Context Engine foundations consuming Knowledge Layer
-- [ ] Systematic quick/full context assembly rules/implementation plan
-
-## Backlog (Later Builds)
-
-- [ ] `adf-core` runtime foundation (BUILD-005)
-- [ ] Tooling/validators (BUILD-008)
-- [ ] ADF Studio shell (BUILD-013)
+- [ ] Executable Runtime Engine in `adf-core` implementing Context Engine contracts
+- [ ] Project load / state I/O / context assembly code (language TBD in BUILD-005 mission)
 
 ## Maintenance
 
-- [x] After BUILD-003: verify VERSION / PROJECT_STATE / BUILD_STATUS / CHANGELOG agree
 - [ ] After Architecture Review: record outcome in DECISION_LOG / SESSION
-- [ ] After each session: refresh SESSION.md
+- [ ] After each session: refresh SESSION.md (+ checkpoint if needed)

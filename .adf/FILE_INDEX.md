@@ -54,6 +54,15 @@ Important markdown files, their purpose, dependencies, and likely future updates
 | `RISK_REGISTER.md` | Named risks | architecture rules | As risks emerge |
 | `TECH_STACK.md` | Operator/tech posture | dependency index | Stack changes |
 | `adr/ADR-*.md` | Architecture Decision Records | ADR_INDEX | New decisions |
+| `CONTEXT_ENGINE.md` | First engine — shared restore contract | knowledge + runtime | Runtime Engine era |
+| `CONTEXT_PIPELINE.md` | Restore pipeline stages | CONTEXT_ENGINE | When packs evolve |
+| `RESTORE_SEQUENCE.md` | Ordered restore steps | RESUME_PROTOCOL | Additive only |
+| `BOOT_SEQUENCE_V2.md` | Engine-aligned boot | AI_BOOT | Extends V1 |
+| `SESSION_LIFECYCLE.md` | Session open→close | SESSION | Additive |
+| `STATE_MACHINE.md` | BOOT→HANDOFF states | Context Engine | Runtime automation later |
+| `CHECKPOINTS.md` | Checkpoint system | SESSION | Runtime store later |
+| `RESUME_PROTOCOL.md` | Mandatory resume rules | restore sequence | All AI sessions |
+| `context/*` | Engine I/O contracts | CONTEXT_ENGINE | Implemented in BUILD-005 |
 
 ## `bootstrap/`
 
@@ -61,7 +70,8 @@ Important markdown files, their purpose, dependencies, and likely future updates
 |-------------|---------|--------|
 | `README.md`, `BOOT_SEQUENCE.md`, `BUILD_CONTRACT.md` | Shared boot/process | Later automation helpers |
 | `BUILD-002/*` | BUILD-002 spec pack | Historical pack |
-| `BUILD-003/*` | BUILD-003 knowledge/ADR pack | Pattern continues |
+| `BUILD-003/*` | BUILD-003 knowledge/ADR pack | Historical pack |
+| `BUILD-004/*` | BUILD-004 Context Engine pack | Pattern continues |
 
 ## `prompts/`
 
@@ -69,7 +79,8 @@ Important markdown files, their purpose, dependencies, and likely future updates
 |------|---------|--------|
 | `build.md`, `resume.md`, `handoff.md`, `audit.md` | Core operator prompts | Later schemas |
 | `architecture.md`, `planning.md`, `review.md`, `release.md`, `generator.md` | Expanded operator modes | Ongoing |
-| `knowledge.md`, `adr.md`, `documentation.md`, `context.md`, `bootstrap.md` | Knowledge-layer prompts | Context Engine alignment |
+| `knowledge.md`, `adr.md`, `documentation.md`, `context.md`, `bootstrap.md` | Knowledge-layer prompts | Ongoing |
+| `restore.md`, `context-engine.md`, `session.md`, `checkpoint.md`, `state.md` | Context Engine prompts | Runtime Engine era |
 
 ## `adf-docs/`
 
@@ -77,7 +88,8 @@ Important markdown files, their purpose, dependencies, and likely future updates
 |------|---------|--------|
 | `WHAT_IS_ADF.md`, `GETTING_STARTED.md`, `ARCHITECTURE.md` | Foundations | BUILD-016 expansion |
 | `AI_RUNTIME.md`, `BUILD_SYSTEM.md`, `WORKFLOW.md`, `BEST_PRACTICES.md` | Human guides mirroring SSOT themes | Keep aligned with `.adf` |
-| `KNOWLEDGE_ARCHITECTURE.md`, `ADR_GUIDE.md`, `CONTEXT_ENGINE.md`, `MEMORY_SYSTEM.md`, `PROJECT_LIFECYCLE.md` | Knowledge layer guides | Keep aligned with `.adf` graphs/ADRs |
+| `KNOWLEDGE_ARCHITECTURE.md`, `ADR_GUIDE.md`, `CONTEXT_ENGINE.md`, `MEMORY_SYSTEM.md`, `PROJECT_LIFECYCLE.md` | Knowledge layer guides | Keep aligned with `.adf` |
+| `CONTEXT_ENGINE_GUIDE.md`, `SESSION_MANAGEMENT.md`, `CHECKPOINT_SYSTEM.md`, `STATE_MACHINE.md`, `AI_RESTORE_GUIDE.md` | Context Engine human guides | Keep aligned with engine specs |
 
 ## Maintenance Rule
 

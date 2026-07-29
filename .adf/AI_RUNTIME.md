@@ -22,7 +22,7 @@ Boot
 
 ### 1. Boot
 
-Follow `AI_BOOT.md` in order. Do not skip contract acceptance.
+Follow `BOOT_SEQUENCE_V2.md` (extends `AI_BOOT.md`). Acknowledge `CONTEXT_ENGINE.md`. Do not skip contract acceptance.
 
 ### 2. Read Manifest
 
@@ -46,7 +46,7 @@ Follow `AI_BOOT.md` in order. Do not skip contract acceptance.
 
 ### 7. Resume
 
-Summarize status in a few lines, then continue only unfinished in-scope work. Use `prompts/resume.md` when helpful.
+Follow `RESUME_PROTOCOL.md` exactly. Emit Context Engine outputs. Enter `STATE_MACHINE.md` at ANALYZE/PLAN. Use `prompts/restore.md` / `prompts/resume.md` when helpful.
 
 ### 8. Execute
 
@@ -74,12 +74,15 @@ If information exists both in chat and in `.adf`, **`.adf` wins** after it has b
 2. `PROJECT_STATE.md`
 3. `CURRENT_TASK.md`
 4. `AI_CONTRACT.md`
-5. `AI_RUNTIME.md` (this file)
+5. `CONTEXT_ENGINE.md` + `RESUME_PROTOCOL.md`
+6. `AI_RUNTIME.md` (this file)
 
-Then deepen via indexes only as needed.
+Then deepen via indexes / ADRs only as needed.
 
 ## Related
 
 - `WORKFLOW.md` — product lifecycle around the runtime loop
+- `STATE_MACHINE.md` — BOOT→HANDOFF operator states
+- `CHECKPOINTS.md` — session continuity records
 - `TOKEN_BUDGET.md` — how much to load
 - `adf-docs/AI_RUNTIME.md` — human-oriented explanation

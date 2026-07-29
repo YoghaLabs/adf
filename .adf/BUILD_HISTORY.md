@@ -51,6 +51,23 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Knowledge / Context / Dependency graphs
 - Rule: no architecture change without ADR (through BUILD-020)
 
+## BUILD-004 — Context Engine
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.4.0-alpha` |
+| Branch | `develop` |
+| Purpose | Specify the Context Engine — shared restore pipeline, state machine, checkpoints, and resume protocol for all AIs (spec only; not executable runtime yet) |
+| Result | **Completed.** First engine layer documented. Foundation for BUILD-005 Runtime Engine. Pending Architecture Review gate. |
+
+### Outcomes That Must Not Be Undone
+
+- Mandatory shared restore workflow for all AIs
+- State machine BOOT→HANDOFF
+- Checkpoint + resume protocols
+- `.adf/context/` I/O contracts
+
 ## Template for Future Entries
 
 ```markdown

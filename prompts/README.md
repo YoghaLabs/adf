@@ -6,24 +6,14 @@ Prompt library for operating ADF across sessions.
 
 | File | Use when |
 |------|----------|
-| `build.md` | Executing the active BUILD mission |
-| `resume.md` | Restarting work after interruption |
-| `handoff.md` | Ending a session and preparing the next operator |
-| `audit.md` | Checking contract/architecture/docs integrity |
-| `architecture.md` | Architecture evaluation without redesign |
-| `planning.md` | Specifying work before implementation |
-| `review.md` | Architecture / pre-merge review |
-| `release.md` | Version identity and release-note discipline |
-| `generator.md` | Generating docs/scaffolds inside locked paths |
-| `knowledge.md` | Updating knowledge graphs/indexes/glossary |
-| `adr.md` | Creating or updating ADRs |
-| `documentation.md` | Expanding docs to standard |
-| `context.md` | Restoring/assembling context tiers |
-| `bootstrap.md` | Working with `bootstrap/BUILD-00N/` packs |
+| `restore.md`, `context-engine.md`, `session.md`, `checkpoint.md`, `state.md` | Context Engine / session / state machine |
+| `knowledge.md`, `adr.md`, `documentation.md`, `context.md`, `bootstrap.md` | Knowledge-layer / ADR / bootstrap packs |
+| `architecture.md`, `planning.md`, `review.md`, `release.md`, `generator.md` | Expanded operator modes |
+| `build.md`, `resume.md`, `handoff.md`, `audit.md` | Core operator prompts |
 
 ## How to Use
 
-1. Complete `.adf/AI_BOOT.md` first.
+1. Complete `.adf/BOOT_SEQUENCE_V2.md` / `RESUME_PROTOCOL.md` first.
 2. Copy the relevant prompt into your AI session (or reference the file path).
 3. Keep the active BUILD boundary explicit in the conversation.
 4. Update state files as the prompt instructs.

@@ -2,6 +2,11 @@
 
 Narrative history of meaningful repository changes. Complements `CHANGELOG.md` with context for AI resume.
 
+## 2026-07-29 — BUILD-004 completed
+
+- Context Engine specification shipped (`0.4.0-alpha`)
+- Roadmap focus shifted to engines; next is BUILD-005 Runtime Engine (gated)
+
 ## 2026-07-29 — BUILD-003 completed
 
 - Added ADR system (ADR-001…003) and Knowledge Layer graphs/glossary/timeline/risks

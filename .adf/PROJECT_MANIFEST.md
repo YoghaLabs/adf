@@ -5,13 +5,14 @@
 | Repository | `adf` |
 | Full name | AI Development Framework |
 | Organization | YoghaLabs |
-| Version | `0.3.0-alpha` |
-| Current build | `BUILD-003` |
+| Version | `0.4.0-alpha` |
+| Current build | `BUILD-004` |
 | Primary branch | `develop` |
 | License | MIT |
-| Status | Knowledge Architecture & ADR System |
+| Status | Context Engine (first engine specification) |
 | SSOT root | `.adf/` |
 | ADR root | `.adf/adr/` |
+| Context Engine | `.adf/CONTEXT_ENGINE.md` + `.adf/context/` |
 
 ## Product Summary
 
@@ -29,7 +30,9 @@ ADF is an AI-first development framework that stores architecture, build state, 
 | Live status | `PROJECT_STATE.md` + `BUILD_STATUS.md` |
 | What to do now | `CURRENT_TASK.md` + `TODOS.md` |
 | How AI must behave | `AI_CONTRACT.md` + `AI_RUNTIME.md` |
-| How to resume | `AI_BOOT.md` |
+| How to resume | `RESUME_PROTOCOL.md` + `BOOT_SEQUENCE_V2.md` |
+| Context engine | `CONTEXT_ENGINE.md` + `context/` |
+| Operator states | `STATE_MACHINE.md` + `CHECKPOINTS.md` |
 | Why the project exists | `PROJECT_DNA.md` |
 | Where things live | `REPOSITORY_MAP.md` + `MODULE_INDEX.md` + `FILE_INDEX.md` |
 | Why decisions were made | `ADR_INDEX.md` + `.adf/adr/` |
@@ -60,11 +63,11 @@ Do not add or rename top-level folders.
 
 | Path | Role | First implementation BUILD |
 |------|------|----------------------------|
-| `.adf/` | Operating context / SSOT + Knowledge/ADR layer | BUILD-001…003 |
+| `.adf/` | SSOT + Knowledge/ADR + Context Engine specs | BUILD-001…004 |
 | `bootstrap/` | Boot contracts & per-BUILD packs | BUILD-001+ packs |
-| `prompts/` | Prompt library | BUILD-001…003 |
-| `adf-docs/` | Human documentation | BUILD-001…003 (later BUILD-016) |
-| `adf-core/` | Runtime core | BUILD-005 |
+| `prompts/` | Prompt library | BUILD-001…004 |
+| `adf-docs/` | Human documentation | BUILD-001…004 (later BUILD-016) |
+| `adf-core/` | Runtime Engine (executable) | BUILD-005 |
 | `adf-templates/` | Templates | BUILD-009 |
 | `adf-examples/` | Examples | BUILD-010 |
 | `testing/` | Test harness | BUILD-011 |
@@ -79,7 +82,9 @@ Do not add or rename top-level folders.
 - Build tracking: `BUILD_HISTORY.md`, `BUILD_STATUS.md`
 - Active work: `CURRENT_TASK.md`
 - Agent rules: `AI_CONTRACT.md`, `AI_RUNTIME.md`
-- Resume procedure: `AI_BOOT.md`
+- Resume procedure: `RESUME_PROTOCOL.md`, `BOOT_SEQUENCE_V2.md`, `AI_BOOT.md`
+- Context Engine: `CONTEXT_ENGINE.md`, `CONTEXT_PIPELINE.md`, `context/`
+- State machine / checkpoints: `STATE_MACHINE.md`, `CHECKPOINTS.md`, `SESSION_LIFECYCLE.md`
 - Workflow: `WORKFLOW.md`
 - Short snapshot: `QUICK_CONTEXT.md`
 - Maps & indexes: `REPOSITORY_MAP.md`, `MODULE_INDEX.md`, `FILE_INDEX.md`
