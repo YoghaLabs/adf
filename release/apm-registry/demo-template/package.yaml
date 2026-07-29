@@ -1,0 +1,19 @@
+# Seed APM local registry package — demo-template (depends on demo-core)
+schema_version: "1.0"
+name: demo-template
+id: demo-template
+version: 1.1.0
+author: YoghaLabs
+description: Demo template package depending on demo-core
+type: template
+engine: adf-core>=0.8.0
+license: MIT
+homepage: ""
+repository: ""
+dependencies:
+  demo-core: "^1.0.0"
+capabilities:
+  - scaffold
+entrypoint: ""
+checksum: ""
+signature: ""
