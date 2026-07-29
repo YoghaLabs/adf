@@ -2,12 +2,11 @@
 
 | Field | Value |
 |-------|-------|
-| Version | `0.10.0-alpha` |
+| Version | `0.11.0-alpha` |
 | Phase | **2 — Platform & Distribution** |
-| Build | `BUILD-010` Service Layer & Public SDK — **complete** |
+| Build | `BUILD-011` Registry & Marketplace — **complete** |
 | Branch | `develop` |
-| Next | `BUILD-011` Marketplace & Registry — **not started** |
+| Next | `BUILD-012` Installer & Distribution — **not started** |
 | Resume | `.adf/RESUME_ME.md` |
-| Roadmap | **Locked** — see `ROADMAP.md` phases 1–4 |
-| Public API | `from adf import SDKClient, RuntimeService, …` |
-| Orchestration | Service Layer only (`adf-core/services/`) |
+| Registry | `RegistryManager` + providers |
+| Marketplace | Presentation over Registry |

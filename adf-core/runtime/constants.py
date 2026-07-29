@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 PACKAGE_NAME = "adf-core"
-PACKAGE_VERSION = "0.10.0a0"
-ENGINE_BUILD = "BUILD-010"
+PACKAGE_VERSION = "0.11.0a0"
+ENGINE_BUILD = "BUILD-011"
 
 # Locked top-level folders (ADR-001) — used by doctor/validate.
 LOCKED_TOP_LEVEL = (

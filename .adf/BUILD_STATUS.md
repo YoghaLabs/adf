@@ -12,7 +12,7 @@
 | BUILD-008 | Completed |
 | BUILD-009 | Completed |
 | BUILD-010 | Completed |
-| BUILD-011 | Pending |
+| BUILD-011 | Completed |
 | BUILD-012 | Pending |
 | BUILD-013 | Pending |
 | BUILD-014 | Pending |
@@ -25,5 +25,5 @@
 
 ## Current Focus
 
-- Last completed: **BUILD-010** (`0.10.0-alpha`) — Service Layer & Public SDK
-- Next: **BUILD-011** (Pending — do not start until explicit prompt)
+- Last completed: **BUILD-011** (`0.11.0-alpha`) — Registry & Marketplace
+- Next: **BUILD-012** (Pending — do not start until explicit prompt)

@@ -53,6 +53,11 @@ Human-facing documentation for the AI Development Framework.
 | `SDK_GUIDE.md` | Public SDK guide |
 | `SDK_CLIENT.md` | SDKClient reference |
 | `PUBLIC_API.md` | `from adf import …` contract |
+| `REGISTRY.md` | Package registry SSOT |
+| `MARKETPLACE.md` | Marketplace presentation layer |
+| `REGISTRY_API.md` | Registry/Marketplace APIs |
+| `PUBLISHER_GUIDE.md` | Publisher profiles/publish |
+| `PACKAGE_SECURITY.md` | Checksum/signature/trust |
 | `README.md` | This index |
 
 ## Reading Order

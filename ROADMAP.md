@@ -2,9 +2,9 @@
 
 **Locked roadmap** (operator-approved). Do not rename phases or BUILD themes without an ADR + explicit approval.
 
-**Current version:** `0.10.0-alpha`  
-**Current build:** `BUILD-010` — SDK & Public API / Service Layer (**completed**)  
-**Next:** `BUILD-011` — Marketplace & Registry (**not started**)
+**Current version:** `0.11.0-alpha`  
+**Current build:** `BUILD-011` — Marketplace & Registry (**completed**)  
+**Next:** `BUILD-012` — Installer & Distribution (**not started**)
 
 ---
 
@@ -29,8 +29,8 @@
 |-------|--------|--------|
 | BUILD-009 | ADF Package Manager | ✅ |
 | BUILD-010 | SDK & Public API | ✅ |
-| BUILD-011 | Marketplace & Registry | ⏳ Next |
-| BUILD-012 | Installer & Distribution | ⏳ |
+| BUILD-011 | Marketplace & Registry | ✅ |
+| BUILD-012 | Installer & Distribution | ⏳ Next |
 
 ---
 
@@ -59,9 +59,9 @@
 ## Status Legend
 
 - **Phase 1:** complete (BUILD-001 … BUILD-008)
-- **Phase 2:** BUILD-009–010 complete; BUILD-011 next after Architecture Review / explicit master prompt
+- **Phase 2:** BUILD-009–011 complete; BUILD-012 next after Architecture Review / explicit master prompt
 - **Phases 3–4:** pending
 
 ## Continuity
 
-When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-011 until an explicit master prompt.
+When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-012 until an explicit master prompt.

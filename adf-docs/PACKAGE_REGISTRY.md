@@ -1,15 +1,19 @@
 # Package Registry
 
-**Class:** `RegistryClient`  
-**Module:** `adf-core/packages/registry.py`
+**Classes:** `RegistryManager`, `RegistryClient` (catalog)  
+**Module:** `adf-core/registry/`  
+**Installer dependency:** `packages.registry.RegistryClient` + `PackageManager`
 
-## Backends
+## Backends / Providers
 
 | Backend | Status |
 |---------|--------|
-| Local (`release/apm-registry`) | Enabled (BUILD-009) |
-| GitHub | Architected, not networked yet |
-| GitLab | Architected, not networked yet |
-| Private | Architected, not networked yet |
+| Local (`release/apm-registry`) | Enabled |
+| GitHub | Architected, not networked |
+| GitLab | Architected, not networked |
+| Enterprise | Architected, not networked |
+| Cloud (mock) | Empty catalog stand-in |
 
 Local packages are directories containing `package.yaml`.
+
+See also: `REGISTRY.md`, `MARKETPLACE.md`, ADR-009.

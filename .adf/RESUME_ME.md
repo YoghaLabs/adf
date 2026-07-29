@@ -16,25 +16,8 @@ Resume ADF from repo SSOT. Do not ask me to re-explain prior builds.
 
 ## Current snapshot (update when builds finish)
 
-- Version: `0.10.0-alpha`
+- Version: `0.11.0-alpha`
 - Phase: **2 — Platform & Distribution**
-- Last completed: **BUILD-010** (Service Layer & Public SDK)
-- Next: **BUILD-011** (Marketplace & Registry) — not started
-- Do not start BUILD-011 until explicit master prompt
-
-## After the AI summarizes
-
-Then send your next instruction, for example:
-
-- Architecture review of BUILD-010
-- `# ADF v1.0 — MASTER PROMPT BUILD-011` (Marketplace & Registry)
-- Or any scoped fix/question
-
-## Related files
-
-| File | Why |
-|------|-----|
-| `ROADMAP.md` | Locked phase/build plan |
-| `.adf/QUICK_CONTEXT.md` | 30-second status |
-| `.adf/HANDOFF.md` | Full continuity pack |
-| `.adf/ACTIVITY_LOG.md` | What we already did |
+- Last completed: **BUILD-011** (Registry & Marketplace)
+- Next: **BUILD-012** (Installer & Distribution) — not started
+- Do not start BUILD-012 until explicit master prompt

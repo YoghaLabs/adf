@@ -91,7 +91,7 @@ def test_sdk_client(tmp_path: Path) -> None:
     assert boot["ok"] is True
     version = client.runtime().version()
     assert version["ok"] is True
-    assert "0.10.0" in version["data"]["version"]
+    assert "0.11.0" in version["data"]["version"]
     workspace = client.workspace().describe()
     assert workspace["ok"] is True
     assert client.projects().info()["ok"] is True
