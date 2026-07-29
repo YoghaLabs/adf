@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """ADF CLI entry point.
 
-Commands: boot, doctor, status, version, context, resume, plugins.
+Commands: boot, doctor, status, version, context, resume, plugins,
+init, new, generate.
 """
 
 from __future__ import annotations
@@ -13,10 +14,13 @@ from pathlib import Path
 from typing import Any
 
 from engine.runtime_engine import RuntimeEngine
+from generator.filesystem import AdfGeneratorError
+from generator.project_generator import GeneratorManager
 from loader.project_loader import ProjectLoader
 from plugins.manager import AdfPluginError
 from runtime.constants import PACKAGE_NAME, PACKAGE_VERSION
 from runtime.exceptions import AdfError
+from templates.variables import AdfTemplateError
 
 
 def _print_json(payload: dict[str, Any]) -> None:
@@ -26,7 +30,10 @@ def _print_json(payload: dict[str, Any]) -> None:
 def _resolve_root(explicit: str | None) -> Path:
     if explicit:
         return Path(explicit).resolve()
-    return ProjectLoader.find_root().repo_root
+    try:
+        return ProjectLoader.find_root().repo_root
+    except AdfError:
+        return Path.cwd().resolve()
 
 
 def _add_root(subparser: argparse.ArgumentParser) -> None:
@@ -34,6 +41,12 @@ def _add_root(subparser: argparse.ArgumentParser) -> None:
         "--root",
         help="ADF repository root (auto-detected when omitted)",
     )
+
+
+def _generator(args: argparse.Namespace) -> GeneratorManager:
+    root = _resolve_root(getattr(args, "root", None))
+    engine = RuntimeEngine(root)
+    return engine.generator
 
 
 def cmd_version(_: argparse.Namespace) -> int:
@@ -122,6 +135,87 @@ def cmd_plugins(args: argparse.Namespace) -> int:
     return 2
 
 
+def _gen_flags(args: argparse.Namespace) -> dict[str, Any]:
+    return {
+        "template": args.template,
+        "dry_run": bool(args.dry_run),
+        "overwrite": bool(args.overwrite),
+        "author": args.author,
+        "version": args.project_version,
+    }
+
+
+def cmd_init(args: argparse.Namespace) -> int:
+    """Initialize a new ADF project (``adf init``)."""
+    manager = _generator(args)
+    result = manager.init_project(args.name, args.destination, **_gen_flags(args))
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_new(args: argparse.Namespace) -> int:
+    """Create a new ADF project (``adf new``)."""
+    return cmd_init(args)
+
+
+def cmd_generate(args: argparse.Namespace) -> int:
+    """Generate from an explicit manifest (``adf generate``)."""
+    manager = _generator(args)
+    manifest = {
+        "name": args.name,
+        "template": args.template,
+        "author": args.author,
+        "version": args.project_version,
+        "destination": args.destination,
+    }
+    if args.validate_only:
+        errors = manager.validate_manifest(manifest)
+        _print_json({"ok": not errors, "errors": errors, "manifest": manifest})
+        return 0 if not errors else 1
+    result = manager.generate(
+        manifest,
+        dry_run=bool(args.dry_run),
+        overwrite=bool(args.overwrite),
+    )
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def _add_generator_args(parser: argparse.ArgumentParser) -> None:
+    _add_root(parser)
+    parser.add_argument("name", help="New project name")
+    parser.add_argument(
+        "--destination",
+        default=".",
+        help="Parent directory for the new project",
+    )
+    parser.add_argument(
+        "--template",
+        default="foundation",
+        help="Template name (default: foundation)",
+    )
+    parser.add_argument(
+        "--author",
+        default="YoghaLabs",
+        help="Author variable for templates",
+    )
+    parser.add_argument(
+        "--project-version",
+        default="0.1.0-alpha",
+        help="Initial project VERSION value",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Plan generation without writing files",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Allow writing into a non-empty destination",
+    )
+
+
 def build_parser() -> argparse.ArgumentParser:
     """Create the CLI argument parser."""
     parser = argparse.ArgumentParser(prog="adf", description="ADF Runtime Engine CLI")
@@ -178,6 +272,23 @@ def build_parser() -> argparse.ArgumentParser:
     disable_parser.add_argument("name", help="Plugin name")
     disable_parser.set_defaults(func=cmd_plugins)
 
+    init_parser = sub.add_parser("init", help="Initialize a new ADF project")
+    _add_generator_args(init_parser)
+    init_parser.set_defaults(func=cmd_init)
+
+    new_parser = sub.add_parser("new", help="Create a new ADF project")
+    _add_generator_args(new_parser)
+    new_parser.set_defaults(func=cmd_new)
+
+    generate_parser = sub.add_parser("generate", help="Generate project from manifest options")
+    _add_generator_args(generate_parser)
+    generate_parser.add_argument(
+        "--validate-only",
+        action="store_true",
+        help="Validate manifest without generating",
+    )
+    generate_parser.set_defaults(func=cmd_generate)
+
     return parser
 
 
@@ -187,7 +298,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         return int(args.func(args))
-    except (AdfError, AdfPluginError) as exc:
+    except (AdfError, AdfPluginError, AdfGeneratorError, AdfTemplateError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 

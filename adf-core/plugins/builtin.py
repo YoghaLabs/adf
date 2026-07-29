@@ -67,14 +67,35 @@ class TemplatePlugin(AbstractPlugin):
 
 
 class GeneratorPlugin(AbstractPlugin):
-    """Artifact generator extension point."""
+    """Artifact generator extension point backed by GeneratorManager."""
 
     metadata = PluginMetadata(
         name="generator",
-        version="0.6.0",
-        description="Generator plugin for scaffolds and docs",
+        version="0.8.0",
+        description="Bootstrap/project generator plugin",
         plugin_type="generator",
     )
+
+    def execute(self, action: str, **kwargs: Any) -> dict[str, Any]:
+        generator = None
+        if self._context is not None and "generator" in self._context.services:
+            generator = self._context.service("generator")
+        if action == "init" and generator is not None and "name" in kwargs:
+            result = generator.init_project(
+                str(kwargs["name"]),
+                kwargs.get("destination", "."),
+                template=str(kwargs.get("template", "foundation")),
+                dry_run=bool(kwargs.get("dry_run", False)),
+                overwrite=bool(kwargs.get("overwrite", False)),
+            )
+            return {"plugin": self.name, "action": action, "result": result}
+        return {
+            "plugin": self.name,
+            "action": action,
+            "ok": True,
+            "supports": ["init", "generate"],
+            "kwargs": kwargs,
+        }
 
 
 class AuditPlugin(AbstractPlugin):

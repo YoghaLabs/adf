@@ -20,6 +20,7 @@ from registry.registry import Registry
 from runtime.config import RuntimeConfig
 from runtime.constants import ENGINE_BUILD, PACKAGE_VERSION
 from templates.engine import TemplateManager
+from generator.project_generator import GeneratorManager
 
 
 class RuntimeEngine:
@@ -44,6 +45,10 @@ class RuntimeEngine:
         )
         if templates_root.is_dir():
             self.templates.discover(templates_root)
+        self.generator = GeneratorManager(
+            repo_root=self.config.repo_root,
+            templates=self.templates,
+        )
 
         self.registry = Registry()
         self.events = EventBus()
@@ -62,7 +67,9 @@ class RuntimeEngine:
         self.extensions.publish_service("bootstrap", self.bootstrap)
         self.extensions.publish_service("registry", self.registry)
         self.extensions.publish_service("templates", self.templates)
+        self.extensions.publish_service("generator", self.generator)
         self.registry.register("templates", self.templates)
+        self.registry.register("generator", self.generator)
 
         state = self.state.load()
         plugin_context = self.extensions.build_context(
@@ -117,15 +124,18 @@ class RuntimeEngine:
         }
 
     def doctor(self) -> dict[str, Any]:
-        """Run health checks for locked layout, SSOT, and plugins."""
+        """Run health checks for locked layout, SSOT, plugins, and templates."""
         layout = self.bootstrap.verify_layout()
         state = self.state.load()
         errors = self.state.validate(state)
         plugin_errors = self.plugins.validate()
         plugin_ok = all(not errs for errs in plugin_errors.values())
+        templates = self.templates.list()
         return {
             "ok": layout["ok"] and not errors and plugin_ok,
             "layout": layout,
             "validation_errors": errors,
             "plugin_validation": plugin_errors,
+            "templates": templates,
+            "generator": {"ready": True, "default_template": "foundation"},
         }
