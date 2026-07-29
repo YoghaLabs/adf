@@ -15,7 +15,7 @@ from typing import Any
 
 from engine.runtime_engine import RuntimeEngine
 from generator.filesystem import AdfGeneratorError
-from generator.project_generator import GeneratorManager
+from generator.manager import GeneratorManager
 from loader.project_loader import ProjectLoader
 from plugins.manager import AdfPluginError
 from runtime.constants import PACKAGE_NAME, PACKAGE_VERSION
@@ -168,15 +168,45 @@ def cmd_generate(args: argparse.Namespace) -> int:
         "version": args.project_version,
         "destination": args.destination,
     }
-    if args.validate_only:
-        errors = manager.validate_manifest(manifest)
-        _print_json({"ok": not errors, "errors": errors, "manifest": manifest})
-        return 0 if not errors else 1
+    if getattr(args, "validate_only", False):
+        result = manager.validate(manifest)
+        _print_json(result)
+        return 0 if result.get("ok") else 1
     result = manager.generate(
         manifest,
         dry_run=bool(args.dry_run),
         overwrite=bool(args.overwrite),
     )
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_dry_run(args: argparse.Namespace) -> int:
+    """Preview generation without writing (``adf dry-run``)."""
+    manager = _generator(args)
+    manifest = {
+        "name": args.name,
+        "template": args.template,
+        "author": args.author,
+        "version": args.project_version,
+        "destination": args.destination,
+    }
+    result = manager.dry_run(manifest)
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_validate(args: argparse.Namespace) -> int:
+    """Validate generation inputs (``adf validate``)."""
+    manager = _generator(args)
+    manifest = {
+        "name": args.name,
+        "template": args.template,
+        "author": args.author,
+        "version": args.project_version,
+        "destination": args.destination,
+    }
+    result = manager.validate(manifest)
     _print_json(result)
     return 0 if result.get("ok") else 1
 
@@ -191,8 +221,8 @@ def _add_generator_args(parser: argparse.ArgumentParser) -> None:
     )
     parser.add_argument(
         "--template",
-        default="foundation",
-        help="Template name (default: foundation)",
+        default="generic",
+        help="Template/project type (default: generic)",
     )
     parser.add_argument(
         "--author",
@@ -288,6 +318,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Validate manifest without generating",
     )
     generate_parser.set_defaults(func=cmd_generate)
+
+    dry_run_parser = sub.add_parser("dry-run", help="Preview project generation without writing")
+    _add_generator_args(dry_run_parser)
+    dry_run_parser.set_defaults(func=cmd_dry_run)
+
+    validate_parser = sub.add_parser("validate", help="Validate generation inputs")
+    _add_generator_args(validate_parser)
+    validate_parser.set_defaults(func=cmd_validate)
 
     return parser
 
