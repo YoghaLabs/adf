@@ -20,7 +20,7 @@ from registry.registry import Registry
 from runtime.config import RuntimeConfig
 from runtime.constants import ENGINE_BUILD, PACKAGE_VERSION
 from templates.engine import TemplateManager
-from generator.project_generator import GeneratorManager
+from generator.manager import GeneratorManager
 
 
 class RuntimeEngine:
@@ -137,5 +137,9 @@ class RuntimeEngine:
             "validation_errors": errors,
             "plugin_validation": plugin_errors,
             "templates": templates,
-            "generator": {"ready": True, "default_template": "foundation"},
+            "generator": {
+                "ready": True,
+                "default_template": "generic",
+                "project_types": self.generator.list_project_types(),
+            },
         }

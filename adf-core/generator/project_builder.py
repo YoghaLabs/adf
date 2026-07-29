@@ -1,20 +1,24 @@
-"""Compose scaffold + template render into a coherent project build."""
+"""Compose manifest-driven project builds (no hardcoded structures)."""
 
 from __future__ import annotations
 
 from pathlib import Path
 from typing import Any
 
-from generator.filesystem import FileSystem
+from generator.dry_run import DryRunPlanner
+from generator.filesystem import AdfGeneratorError, FileSystem
 from generator.output import GenerationOutput
+from generator.progress import ProgressReporter
 from generator.project_manifest import ProjectManifest
-from generator.scaffolder import Scaffolder
+from generator.template_resolver import TemplateResolver
+from generator.validator import GenerationValidator
 from generator.writer import Writer
 from templates.engine import TemplateManager
+from templates.variables import VariableResolver
 
 
 class ProjectBuilder:
-    """Build a project root using scaffolder + TemplateManager."""
+    """Build a project solely from resolved template metadata and files."""
 
     def __init__(
         self,
@@ -27,78 +31,106 @@ class ProjectBuilder:
         self.templates = templates
         self.dry_run = dry_run
         self.overwrite = overwrite
-        self.fs = FileSystem(dry_run=dry_run)
-        self.writer = Writer(self.fs, dry_run=dry_run, overwrite=overwrite)
-        self.scaffolder = Scaffolder(self.writer, self.fs)
-
-    @property
-    def output(self) -> GenerationOutput:
-        """Access accumulated output."""
-        return self.writer.output
+        self.fs = FileSystem(dry_run=dry_run, overwrite=overwrite)
+        self.output = GenerationOutput(dry_run=dry_run)
+        self.writer = Writer(
+            self.fs, dry_run=dry_run, overwrite=overwrite, output=self.output
+        )
+        self.progress = ProgressReporter()
+        self.resolver = TemplateResolver(templates)
+        self.validator = GenerationValidator(templates, resolver=self.resolver)
+        self.dry_planner = DryRunPlanner()
+        self.var_resolver = VariableResolver(strict=True)
 
     def validate(self, manifest: ProjectManifest) -> list[str]:
         """Validate generation inputs before writing."""
-        errors: list[str] = []
-        if not manifest.name.strip():
-            errors.append("project name is required")
-        if any(ch in manifest.name for ch in r'<>:"/\|?*'):
-            errors.append(f"invalid project name: {manifest.name}")
-        try:
-            self.templates.load_by_name(manifest.template)
-        except Exception as exc:  # noqa: BLE001
-            errors.append(f"template unavailable: {exc}")
-        if not self.overwrite:
-            try:
-                self.fs.guard_destination(manifest.project_root, overwrite=False)
-            except Exception as exc:  # noqa: BLE001
-                errors.append(str(exc))
-        return errors
+        return self.validator.validate(manifest, overwrite=self.overwrite)
 
     def build(self, manifest: ProjectManifest) -> dict[str, Any]:
-        """Scaffold folders/docs and render the selected template."""
+        """Resolve templates and either dry-run or write the project tree."""
         errors = self.validate(manifest)
         if errors:
-            from generator.filesystem import AdfGeneratorError
-
             raise AdfGeneratorError("; ".join(errors))
 
+        resolved = self.resolver.resolve(manifest.template, manifest.variables())
+        self.progress.step(f"Resolved template chain: {' → '.join(t.name for t in resolved.chain)}")
+        self.output.progress(self.progress.messages[-1])
+
+        if self.dry_run:
+            plan = self.dry_planner.plan(
+                resolved.primary,
+                manifest,
+                resolved.variables,
+                chain=resolved.chain,
+            )
+            self.progress.step("Dry-run plan prepared (nothing written)")
+            result = plan.to_dict()
+            result.update(
+                {
+                    "ok": True,
+                    "manifest": manifest.to_dict(),
+                    "capabilities": list(resolved.capabilities),
+                    "messages": self.progress.to_list(),
+                    "rendered": [],
+                }
+            )
+            return result
+
         root = manifest.project_root
-        self.output.progress(f"Building project at {root}")
         self.fs.ensure_dir(root)
         self.output.record_folder(root)
-
-        self.scaffolder.scaffold_folders(root)
-        self.scaffolder.scaffold_root_docs(
-            root, project_name=manifest.name, version=manifest.version
-        )
-        self.scaffolder.scaffold_adf(
-            root, project_name=manifest.name, version=manifest.version
-        )
-        self.scaffolder.scaffold_prompts(root)
-        self.scaffolder.scaffold_bootstrap(root)
-        self.scaffolder.scaffold_runtime_config(root)
+        self.progress.step(f"Writing project at {root}")
+        self.output.progress(self.progress.messages[-1])
 
         rendered: list[str] = []
-        if not self.dry_run:
-            paths = self.templates.render(
-                manifest.template,
-                root,
-                manifest.variables(),
-                overwrite=True,  # scaffold already owns root docs; template may refine
-            )
-            rendered = [str(path) for path in paths]
-            self.output.progress(f"Rendered template '{manifest.template}' ({len(paths)} files)")
-        else:
-            self.output.progress(
-                f"Dry-run: skipped template render for '{manifest.template}'"
-            )
+        try:
+            for item in resolved.chain:
+                paths = self._render_package(item.files_root, root, resolved.variables)
+                rendered.extend(str(p) for p in paths)
+                self.progress.step(f"Rendered package '{item.name}' ({len(paths)} files)")
+                self.output.progress(self.progress.messages[-1])
+            output_errors = self.validator.validate_output(root, resolved)
+            if output_errors:
+                raise AdfGeneratorError("; ".join(output_errors))
+        except Exception:
+            self.output.rollback()
+            raise
 
         result = self.output.to_dict()
         result.update(
             {
                 "ok": True,
                 "manifest": manifest.to_dict(),
+                "capabilities": list(resolved.capabilities),
                 "rendered": rendered,
+                "messages": self.progress.to_list(),
             }
         )
         return result
+
+    def _render_package(
+        self,
+        source_root: Path,
+        destination_root: Path,
+        variables: dict[str, Any],
+    ) -> list[Path]:
+        """Render files from a template package into the destination."""
+        written: list[Path] = []
+        if not source_root.is_dir():
+            return written
+        for path in sorted(source_root.rglob("*")):
+            if not path.is_file() or path.name == "template.yaml":
+                continue
+            rel = path.relative_to(source_root)
+            rel_rendered = Path(
+                self.var_resolver.resolve(str(rel).replace("\\", "/"), variables)
+            )
+            dest = destination_root / rel_rendered
+            try:
+                text = path.read_text(encoding="utf-8")
+            except UnicodeDecodeError:
+                written.append(self.writer.write_bytes(dest, path.read_bytes()))
+                continue
+            rendered = self.var_resolver.resolve(text, variables)
+            written.append(self.writer.write_text(dest, rendered))
+        return written

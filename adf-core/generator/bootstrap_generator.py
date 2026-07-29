@@ -1,4 +1,4 @@
-"""Bootstrap-oriented generation helpers."""
+"""Bootstrap-oriented generation helpers (manifest-driven)."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from templates.engine import TemplateManager
 
 
 class BootstrapGenerator:
-    """Generate bootstrap docs and initial `.adf` for a new project."""
+    """Generate a bootstrapped ADF project from a template manifest."""
 
     def __init__(self, templates: TemplateManager, **builder_kwargs: Any) -> None:
         """Create a bootstrap generator."""
@@ -23,11 +23,11 @@ class BootstrapGenerator:
         name: str,
         destination: Path | str = ".",
         *,
-        template: str = "foundation",
+        template: str = "generic",
         author: str = "YoghaLabs",
         version: str = "0.1.0-alpha",
     ) -> dict[str, Any]:
-        """Generate a bootstrapped project."""
+        """Generate a bootstrapped project using the selected template."""
         manifest = ProjectManifest(
             name=name,
             template=template,

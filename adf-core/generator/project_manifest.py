@@ -21,7 +21,7 @@ class ProjectManifest:
     """
 
     name: str
-    template: str = "foundation"
+    template: str = "generic"
     author: str = "YoghaLabs"
     version: str = "0.1.0-alpha"
     destination: Path = field(default_factory=lambda: Path("."))
@@ -59,7 +59,7 @@ class ProjectManifest:
         """Build from a mapping."""
         return cls(
             name=str(data["name"]).strip(),
-            template=str(data.get("template", "foundation")).strip() or "foundation",
+            template=str(data.get("template", "generic")).strip() or "generic",
             author=str(data.get("author", "YoghaLabs")).strip() or "YoghaLabs",
             version=str(data.get("version", "0.1.0-alpha")).strip() or "0.1.0-alpha",
             destination=Path(str(data.get("destination", "."))),
