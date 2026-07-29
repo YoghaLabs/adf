@@ -1,36 +1,65 @@
 # adf-core
 
-Runtime core of the AI Development Framework.
+Runtime Engine foundation for the AI Development Framework (BUILD-005).
 
 ## Purpose
 
-`adf-core` will provide the executable foundation for ADF:
-
-- Loading a project and validating locked structure
-- Reading and writing `.adf` state (`PROJECT_STATE`, `CURRENT_TASK`, session memory)
-- Assembling quick and full context for AI sessions
-- Enforcing token budget and knowledge retrieval rules
-- Exposing APIs consumed by tools, tests, and ADF Studio
+`adf-core` is the first **executable** ADF package. It implements a minimal Runtime Engine that follows `.adf` documentation (Context Engine, state machine, sessions, checkpoints).
 
 ## Status
 
-**Not implemented in BUILD-001.**  
-Runtime implementation begins in **BUILD-005**.
+**Implemented through BUILD-006** — Runtime Engine foundation plus plugin/extension architecture.
 
-This package currently exists to reserve the locked architecture path and document intent so later builds do not invent alternate core locations.
+## Layout
 
-## Planned Surface (BUILD-005+)
+```text
+adf-core/
+├── adf.py
+├── contracts/ interfaces/ plugins/ events/ hooks/ extensions/
+├── runtime/ core/ engine/ registry/ loader/ parser/
+└── tests/
+```
 
-| Area | Responsibility |
-|------|----------------|
-| Project loader | Discover repo root, verify required folders/files |
-| State I/O | Safe updates to `.adf` operating files |
-| Context assembler | Build QUICK/FULL context packages |
-| Contracts | Validate AI_CONTRACT and build gates |
+## Plugin quick start
 
-## Related Docs
+```bash
+cd adf-core
+python adf.py plugins list --root ..
+python adf.py boot --root ..
+python -m pytest
+```
 
-- `adf-docs/ARCHITECTURE.md`
-- `.adf/AI_CONTRACT.md`
-- `.adf/PROJECT_MANIFEST.md`
-- `ROADMAP.md` (BUILD-005 through BUILD-008)
+## Quick start
+
+```bash
+cd adf-core
+python -m pip install -e ".[dev]"
+python adf.py version
+python adf.py doctor --root ..
+python adf.py boot --root ..
+python -m pytest
+```
+
+From repo root (with `adf-core` on `PYTHONPATH`):
+
+```bash
+python adf-core/adf.py status --root .
+```
+
+## CLI commands (skeleton)
+
+| Command | Role |
+|---------|------|
+| `version` | Package version |
+| `doctor` | Layout + SSOT checks |
+| `boot` | Minimal boot + session open |
+| `status` | Derived/persisted state |
+| `context` | Assemble context pack |
+| `resume` | Resume skeleton |
+
+## Related docs
+
+- `adf-docs/RUNTIME_ENGINE.md`
+- `.adf/CONTEXT_ENGINE.md`
+- `bootstrap/BUILD-005/`
+- `ROADMAP.md`

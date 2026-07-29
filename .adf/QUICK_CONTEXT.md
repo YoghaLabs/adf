@@ -2,17 +2,18 @@
 
 | Field | Value |
 |-------|-------|
-| Repository | `adf` (AI Development Framework) |
-| Current Build | `BUILD-001` — Repository Foundation |
-| Current Goal | BUILD-001 completed; wait for explicit BUILD-002 mission (Knowledge & DNA Hardening) |
-| Current Version | `v0.1.0-alpha` |
+| Repository | `adf` |
+| Current Version | `0.6.0-alpha` |
+| Current Build | `BUILD-006` — Plugin & Extension Engine |
+| Current Goal | BUILD-006 completed; Architecture Review before BUILD-007 |
 | Branch | `develop` |
 | Status | Completed |
-| Next Build | `BUILD-002` |
+| Completed Builds | BUILD-001 … BUILD-006 |
+| Next Build | `BUILD-007` |
+| Runtime | `adf-core` plugin-based |
 
 ## Immediate Pointers
 
-- Contract: `.adf/AI_CONTRACT.md`
-- Boot: `.adf/AI_BOOT.md`
-- Task detail: `.adf/CURRENT_TASK.md`
-- Roadmap: `ROADMAP.md`
+- Plugins: `python adf-core/adf.py plugins list --root .`
+- Docs: `adf-docs/PLUGIN_ENGINE.md`
+- Contracts: `adf-core/contracts/`

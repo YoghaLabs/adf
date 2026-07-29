@@ -4,16 +4,22 @@ Bootstrap defines how an ADF repository is brought online and how operators (hum
 
 ## Contents
 
-| File | Purpose |
-|------|---------|
+| File / path | Purpose |
+|-------------|---------|
 | `BUILD_CONTRACT.md` | Rules a BUILD must satisfy before it is considered complete |
 | `BOOT_SEQUENCE.md` | Ordered steps to boot into the repository safely |
+| `BUILD-002/` | BUILD-002 specification pack |
+| `BUILD-003/` | BUILD-003 knowledge/ADR specification pack |
+| `BUILD-004/` | BUILD-004 Context Engine specification pack |
+| `BUILD-005/` | BUILD-005 Runtime Engine foundation pack |
+| `BUILD-006/` | BUILD-006 Plugin & Extension Engine pack |
 | `README.md` | This overview |
 
 ## Role in ADF
 
-- **BUILD-001:** Documentation and contracts only
-- **BUILD-003:** Automation that validates and assists this sequence
+- **BUILD-001:** Shared bootstrap documentation and contracts
+- **BUILD-002+:** Per-BUILD specification packs (`BUILD-00N/`)
+- **Later:** Automation helpers may validate packs/structure without changing top-level layout
 
 ## Relationship to `.adf/`
 

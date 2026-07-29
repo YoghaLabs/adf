@@ -8,15 +8,17 @@ Use this document when a task needs deeper orientation than `QUICK_CONTEXT.md`. 
 - **Repository:** `adf`
 - **Org:** YoghaLabs
 - **License:** MIT
-- **Version:** `v0.1.0-alpha`
+- **Version:** `0.3.0-alpha`
 - **Branch:** `develop`
+- **SSOT:** `.adf/`
+- **ADR store:** `.adf/adr/`
 
 ## Active Delivery Unit
 
-- **Build:** BUILD-001 — Repository Foundation
+- **Build:** BUILD-003 — Knowledge Architecture & ADR System
 - **Status:** Completed
-- **Mission:** Establish locked structure and operating documentation only (done)
-- **Stop rule:** Do not continue into BUILD-002 unless explicitly instructed with a new mission
+- **Mission:** Make design rationale recoverable via ADRs and knowledge graphs
+- **Stop rule:** Do not continue into BUILD-004 unless Architecture Review approves and an explicit mission starts
 
 ## Architecture Lock
 
@@ -30,33 +32,33 @@ Root files:
 
 ## Philosophy (Compressed)
 
-- AI-first, documentation-first, cumulative builds
-- Never delete docs, never rename locked folders, never ship placeholders
-- Always keep `PROJECT_STATE`, `CHANGELOG`, and `TODOS` current
+- AI-first, documentation-first, cumulative builds, knowledge-first rationale
+- Never delete docs, never rename/move locked folders, never ship placeholders
+- No architecture change without ADR (from BUILD-003 through BUILD-020)
+- Always keep `PROJECT_STATE`, `CHANGELOG`, `TODOS`, and build tracking current
 
-## Package Reality in BUILD-001
+## Package Reality After BUILD-003
 
 | Package | Reality now |
 |---------|-------------|
-| `.adf`, `bootstrap`, `prompts`, `adf-docs` | Primary deliverables with full docs |
-| `adf-core`, `adf-studio`, examples, templates, testing, tools, release | Purpose README only; implementation later |
+| `.adf` | SSOT + Knowledge/ADR layer |
+| `bootstrap` | Shared boot docs + BUILD-002/003 packs |
+| `prompts` | Expanded operator library including knowledge/ADR/context |
+| `adf-docs` | Product + runtime + knowledge guides |
+| Deferred modules | Purpose README only |
 
 ## Roadmap Horizon
 
-BUILD-001 foundation → BUILD-002 knowledge hardening → bootstrap/prompt formalization → `adf-core` at BUILD-005 → Studio from BUILD-013 → v1.0 gate at BUILD-020. Details in `ROADMAP.md`.
+Foundation → AI Runtime SSOT → Knowledge/ADR → **Context Engine (next)** → core → Studio → v1.0 gate.
 
 ## How to Resume
 
-Follow `.adf/AI_BOOT.md` exactly. Use `prompts/resume.md` if you need a session prompt wrapper.
-
-## How to Hand Off
-
-Use `prompts/handoff.md` and update `SESSION.md`, state, todos, and changelog as needed.
+Follow `.adf/AI_BOOT.md`, deepen via `CONTEXT_GRAPH.md`, read ADRs when design is involved.
 
 ## Knowledge Map
 
-See `KNOWLEDGE_INDEX.md` for file roles. See `DEPENDENCY_INDEX.md` for external/runtime dependency posture (minimal in BUILD-001).
+See `KNOWLEDGE_INDEX.md`, `FILE_INDEX.md`, `KNOWLEDGE_GRAPH.md`.
 
 ## Token Guidance
 
-See `TOKEN_BUDGET.md`. Load full context only when quick context is insufficient for the task.
+See `TOKEN_BUDGET.md`. Load full context only when quick context is insufficient.

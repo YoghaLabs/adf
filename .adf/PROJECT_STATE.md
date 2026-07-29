@@ -4,43 +4,29 @@
 
 | Field | Value |
 |-------|-------|
-| Current Build | `BUILD-001` |
-| Build Name | Repository Foundation |
+| Current Version | `0.6.0-alpha` |
+| Current Build | `BUILD-006` |
+| Build Name | Plugin & Extension Engine |
 | Status | `Completed` |
-| Version | `v0.1.0-alpha` |
-| Branch | `develop` |
-| Next Build | `BUILD-002` |
+| Completed Builds | `BUILD-001` … `BUILD-006` |
+| Pending Builds | `BUILD-007` … `BUILD-020` |
+| Current Sprint | Alpha — plugin-based runtime |
+| Current Milestone | Plugin architecture live; await Architecture Review before BUILD-007 |
+| Current Branch | `develop` |
+| Current Objective | Keep plugin contracts stable; do not start BUILD-007 until review |
+| Next Build | `BUILD-007` |
 | Last updated | 2026-07-29 |
 
-## Completion Summary
+## BUILD-006 Checklist
 
-BUILD-001 delivered the locked repository structure, root governance files, full `.adf` operating set, bootstrap contracts, prompt library, and foundation docs. Deferred packages contain purpose READMEs only.
-
-## BUILD-001 Checklist
-
-- [x] Root files (`README`, `LICENSE`, `CHANGELOG`, `VERSION`, `ROADMAP`, `CONTRIBUTING`, `.gitignore`)
-- [x] Locked top-level folders with purpose READMEs
-- [x] Full `.adf` operating document set
-- [x] `bootstrap/` contracts
-- [x] `prompts/` library
-- [x] `adf-docs/` foundation docs
-- [x] Incremental commits and final BUILD-001 summary
+- [x] Plugin contracts/interfaces + PluginManager
+- [x] Built-in plugins + EventBus + HookRegistry + ExtensionAPI
+- [x] RuntimeEngine loads plugins via PluginManager (no direct concrete instantiation)
+- [x] Registry plugin registration + CLI plugins skeleton
+- [x] pytest coverage for plugins/events/hooks
+- [x] Docs/bootstrap/prompts + SSOT updated
+- [x] Stop without starting BUILD-007
 
 ## Blockers
 
-None.
-
-## Next Build Preview
-
-**BUILD-002** — Knowledge & DNA Hardening: expand knowledge discipline, decision logging practice, and session memory rules without changing the locked architecture.
-
-Do not start BUILD-002 until explicitly instructed.
-
-## State Update Rules
-
-When status changes, update this file and also:
-
-1. `CHANGELOG.md`
-2. `TODOS.md`
-3. `CURRENT_TASK.md` (if objectives change)
-4. `CHANGE_HISTORY.md` (for meaningful milestones)
+None. **Gate:** Architecture Review of BUILD-006 before BUILD-007.
