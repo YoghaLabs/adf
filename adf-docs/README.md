@@ -23,6 +23,10 @@ Human-facing documentation for the AI Development Framework.
 | `CHECKPOINT_SYSTEM.md` | Checkpoint guide |
 | `STATE_MACHINE.md` | Operator state guide |
 | `AI_RESTORE_GUIDE.md` | Mandatory restore path for all AIs |
+| `RUNTIME_ENGINE.md` | Executable runtime overview |
+| `CLI_GUIDE.md` | CLI usage |
+| `ENGINE_OVERVIEW.md` | Engine/manager map |
+| `PACKAGE_STRUCTURE.md` | `adf-core` layout |
 | `README.md` | This index |
 
 ## Reading Order
@@ -31,7 +35,7 @@ Human-facing documentation for the AI Development Framework.
 2. `GETTING_STARTED.md`
 3. `ARCHITECTURE.md`
 4. `AI_RUNTIME.md` + `AI_RESTORE_GUIDE.md`
-5. `CONTEXT_ENGINE_GUIDE.md` + `KNOWLEDGE_ARCHITECTURE.md`
+5. `CONTEXT_ENGINE_GUIDE.md` + `RUNTIME_ENGINE.md`
 6. Root `ROADMAP.md`
 7. `.adf/BOOT_SEQUENCE_V2.md` before edits
 

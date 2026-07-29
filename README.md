@@ -1,8 +1,8 @@
 # ADF — AI Development Framework
 
-**Version:** `0.4.0-alpha` (see root `VERSION`)  
+**Version:** `0.5.0-alpha` (see root `VERSION`)  
 **Branch:** `develop`  
-**Current Build:** `BUILD-004` — Context Engine
+**Current Build:** `BUILD-005` — Runtime Engine Foundation
 
 ADF is an AI-first development framework that keeps project knowledge, architecture decisions, build state, and AI operating contracts inside the repository. Humans and AI agents share the same source of truth so work can pause, hand off, and resume without losing context.
 
@@ -56,7 +56,8 @@ ADF advances through **BUILD-001 to BUILD-020**. Each BUILD has a fixed mission.
 | BUILD-002 | ✅ |
 | BUILD-003 | ✅ |
 | BUILD-004 | ✅ |
-| BUILD-005 | ⏳ |
+| BUILD-005 | ✅ |
+| BUILD-006 | ⏳ |
 | BUILD-005 | ⏳ |
 | BUILD-006 | ⏳ |
 | BUILD-007 | ⏳ |
@@ -91,14 +92,16 @@ BUILD-003  Knowledge Architecture & ADR (why-traceable decisions)
     ↓
 BUILD-004  Context Engine (shared restore — first engine, spec)
     ↓
-BUILD-005  Runtime Engine (executable `adf-core`) — next
+BUILD-005  Runtime Engine Foundation (executable `adf-core`) ← current
+    ↓
+BUILD-006  Context Engine Hardening — next
     ↓
 … through BUILD-020 (Studio + v1.0 gate)
 ```
 
 **Permanent rules:** architecture changes require ADRs; all AIs share Context Engine restore.
 
-Target end-state is a **runnable ADF**, not documentation alone. BUILD-001…003 built knowledge; engines begin at BUILD-004.
+Target end-state is a **runnable ADF**. BUILD-005 introduces the first executable package (`adf-core`).
 
 ## How to Start
 

@@ -68,6 +68,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Checkpoint + resume protocols
 - `.adf/context/` I/O contracts
 
+## BUILD-005 — Runtime Engine Foundation
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.5.0-alpha` |
+| Branch | `develop` |
+| Purpose | First executable implementation: Python `adf-core` Runtime Engine foundation (engines, managers, loaders, registry, CLI skeleton, tests) |
+| Result | **Completed.** Package runnable via CLI/pytest. Pending Architecture Review before BUILD-006. |
+
+### Outcomes That Must Not Be Undone
+
+- `adf-core` as the home of executable Runtime Engine code
+- Implementation follows `.adf` documentation (docs remain SSOT for process)
+- CLI + pytest foundation for later hardening builds
+
 ## Template for Future Entries
 
 ```markdown

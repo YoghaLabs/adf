@@ -9,6 +9,7 @@ Technologies and operator tools that define how ADF is authored and consumed tod
 | Layer | Technology | Role | Why |
 |-------|------------|------|-----|
 | Knowledge format | **Markdown** | Human/AI readable SSOT & docs | Portable, diffable, reviewable |
+| Runtime language | **Python 3.10+** | `adf-core` Runtime Engine (BUILD-005) | Fast foundation + pytest |
 | Version control | **Git** | History, branches, reviewable commits | Continuity beyond chat |
 | Hosting | **GitHub** | Remote collaboration, compare views, future PRs | Shared source of truth hosting |
 | Primary IDE agent | **Cursor** | Implements BUILD packs in-repo | Tight loop with working tree |

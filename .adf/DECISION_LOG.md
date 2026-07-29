@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-29 — Runtime Engine in `adf-core` with Python (BUILD-005)
+
+- **Decision:** Implement the first executable Runtime Engine as a Python package inside locked `adf-core/`, following Context Engine docs; keep markdown SSOT authoritative for process.
+- **Why:** Runnable ADF requires code without inventing new top-level architecture; Python enables fast foundation + pytest.
+- **Consequences:** CLI/tests live under `adf-core`; ephemeral state may use `.adf/local/`; later builds harden rather than relocate the engine.
+- **Status:** Accepted
+
 ## 2026-07-29 — Context Engine as first engine (BUILD-004)
 
 - **Decision:** Begin the engine phase with a normative Context Engine (shared restore/pipeline/state/checkpoints) before executable Runtime Engine code.

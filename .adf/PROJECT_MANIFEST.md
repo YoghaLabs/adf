@@ -5,14 +5,15 @@
 | Repository | `adf` |
 | Full name | AI Development Framework |
 | Organization | YoghaLabs |
-| Version | `0.4.0-alpha` |
-| Current build | `BUILD-004` |
+| Version | `0.5.0-alpha` |
+| Current build | `BUILD-005` |
 | Primary branch | `develop` |
 | License | MIT |
-| Status | Context Engine (first engine specification) |
+| Status | Runtime Engine Foundation (executable `adf-core`) |
 | SSOT root | `.adf/` |
 | ADR root | `.adf/adr/` |
 | Context Engine | `.adf/CONTEXT_ENGINE.md` + `.adf/context/` |
+| Runtime package | `adf-core/` (Python) |
 
 ## Product Summary
 
@@ -67,7 +68,7 @@ Do not add or rename top-level folders.
 | `bootstrap/` | Boot contracts & per-BUILD packs | BUILD-001+ packs |
 | `prompts/` | Prompt library | BUILD-001…004 |
 | `adf-docs/` | Human documentation | BUILD-001…004 (later BUILD-016) |
-| `adf-core/` | Runtime Engine (executable) | BUILD-005 |
+| `adf-core/` | Runtime Engine (executable Python package) | BUILD-005 |
 | `adf-templates/` | Templates | BUILD-009 |
 | `adf-examples/` | Examples | BUILD-010 |
 | `testing/` | Test harness | BUILD-011 |

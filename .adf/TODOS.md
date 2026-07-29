@@ -1,26 +1,25 @@
 # TODOs
 
-## BUILD-001 … BUILD-003
+## BUILD-001 … BUILD-004
 
-- [x] Complete (foundation, AI runtime SSOT, knowledge/ADR)
+- [x] Complete (foundation, SSOT, knowledge/ADR, Context Engine spec)
 
-## BUILD-004 — Context Engine
+## BUILD-005 — Runtime Engine Foundation
 
-- [x] Add Context Engine core specs
-- [x] Add restore protocol + boot V2 + session lifecycle
-- [x] Add state machine
-- [x] Add checkpoint system
-- [x] Add `.adf/context/` package
-- [x] Add bootstrap/BUILD-004 + prompts + docs
-- [x] Finalize SSOT/VERSION/README/ROADMAP
-- [x] Stop (no BUILD-005)
+- [x] Initialize Python package + layout
+- [x] Implement runtime core engines/managers
+- [x] Add registry + loaders
+- [x] Add CLI foundation
+- [x] Add pytest suite
+- [x] Docs/bootstrap/prompts + SSOT finalize
+- [x] Stop (no BUILD-006)
 
-## BUILD-005 (Queued — Do Not Start Yet)
+## BUILD-006 (Queued — Do Not Start Yet)
 
-- [ ] Executable Runtime Engine in `adf-core` implementing Context Engine contracts
-- [ ] Project load / state I/O / context assembly code (language TBD in BUILD-005 mission)
+- [ ] Context Engine hardening in runtime (token budget, richer assembly)
+- [ ] Deepen CLI beyond skeleton where specified by next mission
 
 ## Maintenance
 
 - [ ] After Architecture Review: record outcome in DECISION_LOG / SESSION
-- [ ] After each session: refresh SESSION.md (+ checkpoint if needed)
+- [ ] Keep `.adf/local/` artifacts untracked (gitignore)

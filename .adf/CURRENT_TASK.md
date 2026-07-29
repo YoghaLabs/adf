@@ -2,42 +2,33 @@
 
 ## Active Build
 
-**BUILD-004 — Context Engine**
+**BUILD-005 — Runtime Engine Foundation**
 
 ## Status
 
-**Completed.** Awaiting Architecture Review before BUILD-005 (Runtime Engine).
+**Completed.** Awaiting Architecture Review before BUILD-006.
 
 ## Current Objective
 
-Preserve the Context Engine as the shared restore specification for all AIs. Do **not** start executable Runtime Engine work until approved.
+Preserve the first executable Runtime Engine in `adf-core`. Do **not** start BUILD-006 until review approval.
 
 ## Objectives (All Met)
 
-1. Specify Context Engine, pipeline, restore sequence, boot V2, session lifecycle.
-2. Define state machine BOOT→HANDOFF with inputs/outputs.
-3. Document checkpoint create/restore/validate/cleanup.
-4. Document mandatory resume protocol.
-5. Create `.adf/context/` (README, INPUTS, OUTPUTS, RULES, PIPELINE).
-6. Ship bootstrap/BUILD-004 pack + prompts + adf-docs guides.
-7. Align VERSION `0.4.0-alpha` and roadmap focus (engines begin here).
-8. Stop after BUILD-004.
+1. Initialize `adf-core` as a Python package with locked subpackage layout.
+2. Implement Runtime/Context/Memory/Bootstrap engines and core managers.
+3. Implement Registry, PromptLoader, ProjectLoader with markdown loading.
+4. Provide CLI skeleton commands.
+5. Add pytest suite.
+6. Ship bootstrap pack, prompts, and docs.
+7. Align identity to `0.5.0-alpha` / BUILD-005.
+8. Stop after BUILD-005.
 
 ## Out of Scope
 
-- Python/TypeScript Runtime Engine implementation (BUILD-005)
-- GUI / Studio (BUILD-013+)
-- Folder redesign
-
-## Success Criteria
-
-- [x] Context Engine fully documented
-- [x] State Machine, Resume Protocol, Checkpoint System done
-- [x] `.adf/context/` created
-- [x] Bootstrap BUILD-004 complete
-- [x] Prompts + adf-docs expanded
-- [x] No placeholders; locked structure unchanged
+- Full Context Engine hardening (BUILD-006+)
+- Studio GUI (BUILD-013+)
+- Folder redesign / deleting docs
 
 ## Next Operator Action
 
-Architecture Review via `bootstrap/BUILD-004/REVIEW.md`, then BUILD-005 only with explicit master prompt.
+Architecture Review via `bootstrap/BUILD-005/REVIEW.md`, then BUILD-006 only with explicit master prompt.

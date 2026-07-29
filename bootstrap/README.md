@@ -11,6 +11,7 @@ Bootstrap defines how an ADF repository is brought online and how operators (hum
 | `BUILD-002/` | BUILD-002 specification pack |
 | `BUILD-003/` | BUILD-003 knowledge/ADR specification pack |
 | `BUILD-004/` | BUILD-004 Context Engine specification pack |
+| `BUILD-005/` | BUILD-005 Runtime Engine foundation pack |
 | `README.md` | This overview |
 
 ## Role in ADF
