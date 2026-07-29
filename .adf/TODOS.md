@@ -2,14 +2,14 @@
 
 ## Now
 
-- [ ] Architecture Review of BUILD-007 (optional gate)
-- [ ] Implement BUILD-008 Bootstrap Generator (separate commit series)
+- [ ] Architecture Review of BUILD-008
+- [ ] Await explicit BUILD-009 master prompt
 
 ## Later
 
-- [ ] Task & State Machine (re-homed after roadmap clarification)
-- [ ] Expand template catalog beyond foundation
+- [ ] Task & State Machine (BUILD-009 theme)
+- [ ] Expand template catalog
 
 ## Done
 
-- [x] BUILD-001 … BUILD-007
+- [x] BUILD-001 … BUILD-008

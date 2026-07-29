@@ -36,6 +36,10 @@ Human-facing documentation for the AI Development Framework.
 | `TEMPLATE_MANIFEST.md` | `template.yaml` contract |
 | `VARIABLE_SYSTEM.md` | `{{variable}}` resolution |
 | `TEMPLATE_REGISTRY.md` | Template discovery/registry |
+| `PROJECT_GENERATOR.md` | Project generation overview |
+| `BOOTSTRAP_GENERATOR.md` | Bootstrap generation |
+| `CLI_GENERATOR.md` | init/new/generate CLI |
+| `SCAFFOLDER.md` | Locked-folder scaffolder |
 | `README.md` | This index |
 
 ## Reading Order

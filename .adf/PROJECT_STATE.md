@@ -4,28 +4,27 @@
 
 | Field | Value |
 |-------|-------|
-| Current Version | `0.7.0-alpha` |
-| Current Build | `BUILD-007` |
-| Build Name | Template Engine + Manifest System |
+| Current Version | `0.8.0-alpha` |
+| Current Build | `BUILD-008` |
+| Build Name | Bootstrap Generator |
 | Status | `Completed` |
-| Completed Builds | `BUILD-001` … `BUILD-007` |
-| Pending Builds | `BUILD-008` … `BUILD-020` |
-| Current Sprint | Alpha — template + generator path |
-| Current Milestone | Template Engine live; BUILD-008 next |
+| Completed Builds | `BUILD-001` … `BUILD-008` |
+| Pending Builds | `BUILD-009` … `BUILD-020` |
+| Current Sprint | Alpha — generation path live |
+| Current Milestone | Generator + Template Engine complete |
 | Current Branch | `develop` |
-| Current Objective | Keep TemplateManager stable for generators |
-| Next Build | `BUILD-008` |
+| Current Objective | Stop; await review before BUILD-009 |
+| Next Build | `BUILD-009` |
 | Last updated | 2026-07-29 |
 
-## BUILD-007 Checklist
+## BUILD-008 Checklist
 
-- [x] Template engine modules + TemplateManager
-- [x] YAML manifest schema 1.0 + foundation template
-- [x] Variable/renderer/validator/registry/builder
-- [x] Runtime wiring + docs/prompts/bootstrap
-- [x] pytest green
-- [x] Stop before combining with BUILD-008 commits
+- [x] GeneratorManager + scaffolder/writer/filesystem
+- [x] CLI init/new/generate + doctor wiring
+- [x] Dry-run / overwrite / validation / progress
+- [x] Docs/prompts/bootstrap + tests
+- [x] Stop without BUILD-009
 
 ## Blockers
 
-None.
+None. **Gate:** Architecture Review before BUILD-009.

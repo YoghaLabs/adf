@@ -2,16 +2,14 @@
 
 ## Active
 
-BUILD-007 complete. Ready for BUILD-008 (Bootstrap Generator) as a **separate**
-commit series — do not combine builds.
+BUILD-008 complete. **STOP** — do not start BUILD-009 until an explicit master prompt.
 
-## Done this session (BUILD-007)
+## Done
 
-- Template Engine package + foundation template
-- Manifest schema 1.0 + docs/prompts/bootstrap
-- Runtime wiring of TemplateManager
+- BUILD-007 Template Engine
+- BUILD-008 Bootstrap Generator (separate commit series)
 
 ## Do not
 
 - Start BUILD-009
-- Merge BUILD-007 and BUILD-008 commits
+- Merge unrelated build commits

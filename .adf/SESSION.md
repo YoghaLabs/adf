@@ -4,10 +4,9 @@
 |-------|-------|
 | Date | 2026-07-29 |
 | Branch | `develop` |
-| Build | BUILD-007 complete (`0.7.0-alpha`) |
-| Focus | Template Engine shipped; next BUILD-008 separate |
+| Build | BUILD-008 complete (`0.8.0-alpha`) |
+| Focus | Stop after batch BUILD-007 + BUILD-008 |
 
 ## Notes
 
-Batch mode allowed continuing to BUILD-008 after BUILD-007 commits land.
-Do not merge builds or start BUILD-009.
+Builds committed separately. Do not continue to BUILD-009.

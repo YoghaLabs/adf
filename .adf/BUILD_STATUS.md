@@ -9,7 +9,7 @@
 | BUILD-005 | Completed |
 | BUILD-006 | Completed |
 | BUILD-007 | Completed |
-| BUILD-008 | Pending |
+| BUILD-008 | Completed |
 | BUILD-009 | Pending |
 | BUILD-010 | Pending |
 | BUILD-011 | Pending |
@@ -25,5 +25,5 @@
 
 ## Current Focus
 
-- Last completed: **BUILD-007** (`0.7.0-alpha`) — Template Engine + Manifest System
-- Next: **BUILD-008** — Bootstrap Generator
+- Last completed: **BUILD-008** (`0.8.0-alpha`) — Bootstrap Generator
+- Next: **BUILD-009** (Pending — do not start until explicit prompt)

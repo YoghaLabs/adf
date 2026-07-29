@@ -4,10 +4,10 @@
 
 - Locked top-level architecture (ADR-001)
 - Docs are SSOT; no placeholders
-- Plugin architecture (BUILD-006): Runtime depends on contracts via PluginManager
-- Template Engine (BUILD-007): generators must use TemplateManager + template.yaml
+- Plugin architecture (BUILD-006)
+- Template Engine (BUILD-007): TemplateManager + template.yaml
+- Bootstrap Generator (BUILD-008): GeneratorManager + CLI init/new/generate
 
 ## Recent
 
-- BUILD-007 delivered schema 1.0 manifests and `adf-templates/foundation`
-- ROADMAP themes may be superseded by master prompts (see MIGRATION notes)
+- Batch mode delivered BUILD-007 then BUILD-008 as independent releasable commit series

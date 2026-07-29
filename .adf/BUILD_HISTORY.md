@@ -116,6 +116,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Manifest schema versioning must remain explicit
 - `adf-templates/` remains the template package root
 
+## BUILD-008 — Bootstrap Generator
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.8.0-alpha` |
+| Branch | `develop` |
+| Purpose | Implement project generation via GeneratorManager + CLI |
+| Result | **Completed.** init/new/generate/doctor wired; tests green. Stop before BUILD-009. |
+
+### Outcomes That Must Not Be Undone
+
+- Generation must go through GeneratorManager + TemplateManager
+- Default overwrite protection and dry-run must remain available
+- Locked folder scaffolding must match ADR-001
+
 ## Template for Future Entries
 
 ```markdown

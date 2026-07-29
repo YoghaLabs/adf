@@ -1,27 +1,30 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.7.0-alpha** / **BUILD-007** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.8.0-alpha** / **BUILD-008** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-008 Bootstrap Generator (after BUILD-007 finalize)
+- BUILD-009 after Architecture Review of BUILD-008
+
+## [0.8.0-alpha] — 2026-07-29
+
+### Added
+- Bootstrap/project generator in `adf-core/generator` (`GeneratorManager`)
+- Scaffolder, Writer, FileSystem, ProjectBuilder, BootstrapGenerator
+- CLI: `adf init`, `adf new`, `adf generate` (+ dry-run/overwrite)
+- Docs: PROJECT_GENERATOR, BOOTSTRAP_GENERATOR, CLI_GENERATOR, SCAFFOLDER
+- `bootstrap/BUILD-008/` + generator prompts
+- pytest coverage for generator/filesystem/writer/manifest/dry-run
+
+### Changed
+- RuntimeEngine publishes `generator` service; doctor reports templates/generator
+- Version identity advanced to `0.8.0-alpha` / BUILD-008
 
 ## [0.7.0-alpha] — 2026-07-29
 
 ### Added
-- Template Engine in `adf-core/templates` (`TemplateManager`, loader, registry, builder)
-- YAML `template.yaml` manifest parser (schema 1.0) + built-in spec
-- VariableResolver + TemplateRenderer + TemplateValidator
-- Foundation template at `adf-templates/foundation`
-- Docs: TEMPLATE_ENGINE, TEMPLATE_MANIFEST, VARIABLE_SYSTEM, TEMPLATE_REGISTRY
-- `bootstrap/BUILD-007/` + template-related prompts
-- pytest coverage for load/validate/variables/manifest/render
-
-### Changed
-- RuntimeEngine discovers `adf-templates` and publishes `templates` service
-- Version identity advanced to `0.7.0-alpha` / BUILD-007
-- ROADMAP: BUILD-007 theme clarified to Template Engine (see pack MIGRATION)
+- Template Engine in `adf-core/templates`
 
 ## [0.6.0-alpha] — 2026-07-29
 
