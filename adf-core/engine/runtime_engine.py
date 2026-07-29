@@ -21,6 +21,7 @@ from runtime.config import RuntimeConfig
 from runtime.constants import ENGINE_BUILD, PACKAGE_VERSION
 from templates.engine import TemplateManager
 from generator.manager import GeneratorManager
+from packages.manager import PackageManager
 
 
 class RuntimeEngine:
@@ -49,6 +50,7 @@ class RuntimeEngine:
             repo_root=self.config.repo_root,
             templates=self.templates,
         )
+        self.packages = PackageManager(self.config.repo_root)
 
         self.registry = Registry()
         self.events = EventBus()
@@ -68,8 +70,10 @@ class RuntimeEngine:
         self.extensions.publish_service("registry", self.registry)
         self.extensions.publish_service("templates", self.templates)
         self.extensions.publish_service("generator", self.generator)
+        self.extensions.publish_service("packages", self.packages)
         self.registry.register("templates", self.templates)
         self.registry.register("generator", self.generator)
+        self.registry.register("packages", self.packages)
 
         state = self.state.load()
         plugin_context = self.extensions.build_context(
@@ -141,5 +145,9 @@ class RuntimeEngine:
                 "ready": True,
                 "default_template": "generic",
                 "project_types": self.generator.list_project_types(),
+            },
+            "packages": {
+                "registry_count": len(self.packages.list()),
+                "installed_count": len(self.packages.list(installed=True)),
             },
         }

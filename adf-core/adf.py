@@ -17,6 +17,8 @@ from engine.runtime_engine import RuntimeEngine
 from generator.filesystem import AdfGeneratorError
 from generator.manager import GeneratorManager
 from loader.project_loader import ProjectLoader
+from packages.manager import PackageManager
+from packages.manifest import AdfPackageError
 from plugins.manager import AdfPluginError
 from runtime.constants import PACKAGE_NAME, PACKAGE_VERSION
 from runtime.exceptions import AdfError
@@ -143,6 +145,61 @@ def _gen_flags(args: argparse.Namespace) -> dict[str, Any]:
         "author": args.author,
         "version": args.project_version,
     }
+
+
+def _packages(args: argparse.Namespace) -> PackageManager:
+    return PackageManager(_resolve_root(getattr(args, "root", None)))
+
+
+def cmd_pkg_install(args: argparse.Namespace) -> int:
+    """Install a package from the registry."""
+    result = _packages(args).install(args.package_id, overwrite=bool(args.overwrite))
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_pkg_remove(args: argparse.Namespace) -> int:
+    """Remove an installed package."""
+    _print_json(_packages(args).remove(args.package_id))
+    return 0
+
+
+def cmd_pkg_update(args: argparse.Namespace) -> int:
+    """Update/reinstall a package from the registry."""
+    result = _packages(args).update(args.package_id)
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_pkg_search(args: argparse.Namespace) -> int:
+    """Search the package registry."""
+    rows = _packages(args).search(args.query or "", package_type=args.type)
+    _print_json({"packages": rows, "count": len(rows)})
+    return 0
+
+
+def cmd_pkg_list(args: argparse.Namespace) -> int:
+    """List registry or installed packages."""
+    rows = _packages(args).list(installed=bool(args.installed))
+    _print_json({"packages": rows, "count": len(rows), "installed": bool(args.installed)})
+    return 0
+
+
+def cmd_pkg_verify(args: argparse.Namespace) -> int:
+    """Verify installed package integrity against the lockfile."""
+    result = _packages(args).verify(args.package_id)
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_pkg_cache(args: argparse.Namespace) -> int:
+    """Inspect or clear the APM cache."""
+    manager = _packages(args)
+    if args.cache_command == "clear":
+        _print_json(manager.cache_clear())
+        return 0
+    _print_json(manager.cache_stats())
+    return 0
 
 
 def cmd_init(args: argparse.Namespace) -> int:
@@ -327,6 +384,50 @@ def build_parser() -> argparse.ArgumentParser:
     _add_generator_args(validate_parser)
     validate_parser.set_defaults(func=cmd_validate)
 
+    install_parser = sub.add_parser("install", help="Install an ADF package")
+    _add_root(install_parser)
+    install_parser.add_argument("package_id", help="Package id")
+    install_parser.add_argument("--overwrite", action="store_true")
+    install_parser.set_defaults(func=cmd_pkg_install)
+
+    remove_parser = sub.add_parser("remove", help="Remove an installed ADF package")
+    _add_root(remove_parser)
+    remove_parser.add_argument("package_id", help="Package id")
+    remove_parser.set_defaults(func=cmd_pkg_remove)
+
+    update_parser = sub.add_parser("update", help="Update an ADF package from the registry")
+    _add_root(update_parser)
+    update_parser.add_argument("package_id", help="Package id")
+    update_parser.set_defaults(func=cmd_pkg_update)
+
+    search_parser = sub.add_parser("search", help="Search the ADF package registry")
+    _add_root(search_parser)
+    search_parser.add_argument("query", nargs="?", default="", help="Search query")
+    search_parser.add_argument("--type", dest="type", default=None, help="Filter by package type")
+    search_parser.set_defaults(func=cmd_pkg_search)
+
+    list_parser = sub.add_parser("list", help="List registry or installed packages")
+    _add_root(list_parser)
+    list_parser.add_argument("--installed", action="store_true", help="List installed packages")
+    list_parser.set_defaults(func=cmd_pkg_list)
+
+    verify_parser = sub.add_parser("verify", help="Verify installed packages / lockfile")
+    _add_root(verify_parser)
+    verify_parser.add_argument("package_id", nargs="?", default=None, help="Optional package id")
+    verify_parser.set_defaults(func=cmd_pkg_verify)
+
+    cache_parser = sub.add_parser("cache", help="APM cache stats/clear")
+    cache_sub = cache_parser.add_subparsers(dest="cache_command")
+    cache_stats = cache_sub.add_parser("stats", help="Show cache stats")
+    _add_root(cache_stats)
+    cache_stats.set_defaults(func=cmd_pkg_cache, cache_command="stats")
+    cache_clear = cache_sub.add_parser("clear", help="Clear cache")
+    _add_root(cache_clear)
+    cache_clear.set_defaults(func=cmd_pkg_cache, cache_command="clear")
+    # Default: stats when bare `adf cache`
+    _add_root(cache_parser)
+    cache_parser.set_defaults(func=cmd_pkg_cache, cache_command="stats")
+
     return parser
 
 
@@ -336,7 +437,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         return int(args.func(args))
-    except (AdfError, AdfPluginError, AdfGeneratorError, AdfTemplateError) as exc:
+    except (AdfError, AdfPluginError, AdfGeneratorError, AdfTemplateError, AdfPackageError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 
