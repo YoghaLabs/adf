@@ -1,33 +1,32 @@
 # adf-core
 
-Runtime, plugins, templates, and project generator for ADF.
+ADF Runtime Engine with **Service Layer** and **Public SDK**.
 
-## Status
+## Packages
 
-**Implemented through BUILD-008** — Bootstrap Generator + Template Engine + plugins.
+| Package | Role |
+|---------|------|
+| `adf` | Public API + CLI (`adf.cli:main`) |
+| `services` | Orchestration layer |
+| `sdk` | SDKClient facades |
+| `engine` / `packages` / `generator` / `templates` / `plugins` | Independent engines |
 
 ## Quick start
 
 ```bash
-cd adf-core
-python -m pip install -e ".[dev]"
-python adf.py version
-python adf.py doctor --root ..
-python adf.py init demo --destination %TEMP% --dry-run --root ..
-python -m pytest
+pip install -e ".[dev]"
+python -m adf version
+pytest
 ```
 
-## CLI
+```python
+from adf import SDKClient
 
-| Command | Role |
-|---------|------|
-| `version` / `doctor` / `boot` / `status` | Runtime |
-| `context` / `resume` | Context helpers |
-| `plugins …` | Plugin skeleton |
-| `init` / `new` / `generate` | Project generation |
+client = SDKClient()
+client.boot()
+print(client.runtime().version())
+```
 
-## Related docs
+## Version
 
-- `adf-docs/TEMPLATE_ENGINE.md`
-- `adf-docs/PROJECT_GENERATOR.md`
-- `adf-docs/CLI_GENERATOR.md`
+`0.10.0-alpha` / BUILD-010
