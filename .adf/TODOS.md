@@ -2,16 +2,14 @@
 
 ## Now
 
-- [x] Write AI continuity handoff (`.adf/HANDOFF.md`, `.adf/ACTIVITY_LOG.md`)
-- [ ] Optional Architecture Review of BUILD-008
-- [ ] Await explicit BUILD-009 master prompt
+- [ ] Architecture Review of BUILD-009
+- [ ] Await explicit BUILD-010 master prompt
 
 ## Later
 
-- [ ] BUILD-009 (theme per master prompt — ROADMAP currently says Task & State Machine)
-- [ ] Expand template catalog beyond built-ins
+- [ ] Networked GitHub/GitLab/private registries
+- [ ] Signed packages (checksum/signature enforcement)
 
 ## Done
 
-- [x] BUILD-001 … BUILD-008
-- [x] Push BUILD-008 refinement to `origin/develop`
+- [x] BUILD-001 … BUILD-009

@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-30 — ADF Package Manager / APM (BUILD-009 / ADR-007)
+
+- **Decision:** All installable ADF artifacts are packages with `package.yaml`; PackageManager is the API; local registry first.
+- **Why:** Extensible distribution without hardcoding templates/plugins/packs into core.
+- **Consequences:** `adf.lock` + `.adf/apm/` cache/install; remote registries later.
+- **Status:** Accepted
+
 ## 2026-07-29 — Manifest-driven project generation (BUILD-008 / ADR-006)
 
 - **Decision:** GeneratorManager creates projects only from template manifests/`files/`; no hardcoded project trees in Python.

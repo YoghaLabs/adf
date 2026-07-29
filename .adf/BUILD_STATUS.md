@@ -10,7 +10,7 @@
 | BUILD-006 | Completed |
 | BUILD-007 | Completed |
 | BUILD-008 | Completed |
-| BUILD-009 | Pending |
+| BUILD-009 | Completed |
 | BUILD-010 | Pending |
 | BUILD-011 | Pending |
 | BUILD-012 | Pending |
@@ -25,5 +25,5 @@
 
 ## Current Focus
 
-- Last completed: **BUILD-008** (`0.8.0-alpha`) — Bootstrap Generator
-- Next: **BUILD-009** (Pending — do not start until explicit prompt)
+- Last completed: **BUILD-009** (`0.9.0-alpha`) — ADF Package Manager
+- Next: **BUILD-010** (Pending — do not start until explicit prompt)

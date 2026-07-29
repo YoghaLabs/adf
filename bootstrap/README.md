@@ -15,6 +15,7 @@ Bootstrap defines how an ADF repository is brought online and how operators (hum
 | `BUILD-006/` | BUILD-006 Plugin & Extension Engine pack |
 | `BUILD-007/` | BUILD-007 Template Engine pack |
 | `BUILD-008/` | BUILD-008 Bootstrap Generator pack |
+| `BUILD-009/` | BUILD-009 Package Manager pack |
 | `README.md` | This overview |
 
 ## Role in ADF

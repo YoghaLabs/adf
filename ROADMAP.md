@@ -1,7 +1,7 @@
 # ADF Roadmap
 
-**Current version:** `0.8.0-alpha`  
-**Current build:** `BUILD-008` (completed; stop — do not start BUILD-009)
+**Current version:** `0.9.0-alpha`  
+**Current build:** `BUILD-009` (completed; stop — do not start BUILD-010)
 
 ## Build Path
 
@@ -14,9 +14,9 @@
 | BUILD-005 | Runtime Engine Foundation | ✅ |
 | BUILD-006 | Plugin & Extension Engine | ✅ |
 | BUILD-007 | Template Engine + Manifest System | ✅ |
-| **BUILD-008** | **Bootstrap Generator** | ✅ |
-| BUILD-009 | Task & State Machine | ⏳ Next |
-| BUILD-010 | Examples Pack | ⏳ |
+| BUILD-008 | Bootstrap Generator | ✅ |
+| **BUILD-009** | **ADF Package Manager (APM)** | ✅ |
+| BUILD-010 | Examples Pack | ⏳ Next |
 | BUILD-011 | Testing Framework | ⏳ |
 | BUILD-012 | Release Pipeline Prep | ⏳ |
 | BUILD-013 | ADF Studio Shell | ⏳ |
@@ -30,5 +30,10 @@
 
 ## Status Legend
 
-- **Done:** BUILD-001 … BUILD-008
-- **Next:** BUILD-009 (after Architecture Review — not started)
+- **Done:** BUILD-001 … BUILD-009
+- **Next:** BUILD-010 (after Architecture Review — not started)
+
+## Note
+
+Master prompts may supersede earlier roadmap labels; see each
+`bootstrap/BUILD-00N/MIGRATION.md`.

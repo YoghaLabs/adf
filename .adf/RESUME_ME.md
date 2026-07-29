@@ -13,12 +13,18 @@ Resume ADF from repo SSOT. Do not ask me to re-explain prior builds.
 6. Wait for my next BUILD master prompt (do not start the next BUILD yourself)
 ```
 
+## Current snapshot (update when builds finish)
+
+- Version: `0.9.0-alpha`
+- Last completed: **BUILD-009** (APM)
+- Do not start: **BUILD-010** until explicit master prompt
+
 ## After the AI summarizes
 
 Then send your next instruction, for example:
 
-- Architecture review of BUILD-008
-- `# ADF v1.0 — MASTER PROMPT BUILD-009` (when ready)
+- Architecture review of BUILD-009
+- `# ADF v1.0 — MASTER PROMPT BUILD-010` (when ready)
 - Or any scoped fix/question
 
 ## Related files

@@ -132,6 +132,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Default overwrite protection and dry-run must remain available
 - Locked folder scaffolding must match ADR-001
 
+## BUILD-009 — ADF Package Manager (APM)
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.9.0-alpha` |
+| Branch | `develop` |
+| Purpose | Package-based install of templates/plugins/packs via PackageManager |
+| Result | **Completed.** Local registry + lockfile/cache/CLI/tests. Stop before BUILD-010. |
+
+### Outcomes That Must Not Be Undone
+
+- Installable artifacts must be packages with `package.yaml`
+- CLI must wrap PackageManager only
+- No hardcoded package catalogs in RuntimeEngine
+
 ## Template for Future Entries
 
 ```markdown

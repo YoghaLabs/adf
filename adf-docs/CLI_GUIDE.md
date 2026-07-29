@@ -6,9 +6,10 @@
 cd adf-core
 python adf.py version
 python adf.py doctor --root ..
-python adf.py init my-app --template generic --destination .. --root ..
-python adf.py dry-run my-app --template python --destination .. --root ..
-python adf.py validate my-app --template fastapi --destination .. --root ..
+python adf.py search demo --root ..
+python adf.py install demo-template --root ..
+python adf.py list --installed --root ..
+python adf.py verify --root ..
 ```
 
 ## Commands
@@ -16,16 +17,14 @@ python adf.py validate my-app --template fastapi --destination .. --root ..
 | Command | Purpose |
 |---------|---------|
 | `version` | Package version |
-| `doctor` | Layout + SSOT + plugin/template checks |
+| `doctor` | Layout + SSOT + plugin/template/package checks |
 | `boot` / `status` / `context` / `resume` | Runtime helpers |
 | `plugins …` | Plugin management skeleton |
-| `init` / `new` | Generate a new ADF project |
-| `generate` | Generate with optional `--validate-only` |
-| `dry-run` | Preview generation (no writes) |
-| `validate` | Validate template/manifest/variables |
+| `init` / `new` / `generate` / `dry-run` / `validate` | Project generator |
+| `install` / `remove` / `update` | APM package lifecycle |
+| `search` / `list` | Registry discovery (`list --installed`) |
+| `verify` | Lockfile / install verification |
+| `cache stats\|clear` | APM cache |
 
-## Generator flags
-
-`--destination`, `--template`, `--dry-run`, `--overwrite`, `--author`, `--project-version`, `--root`
-
-Default template: `generic`
+Default generator template: `generic`  
+Local package registry: `release/apm-registry/`

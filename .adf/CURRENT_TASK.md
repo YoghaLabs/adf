@@ -2,20 +2,15 @@
 
 ## Active
 
-**Handoff / idle gate.** BUILD-008 is complete. Do **not** start BUILD-009 until the user pastes an explicit BUILD-009 master prompt.
+BUILD-009 complete. **STOP** — do not start BUILD-010 until an explicit master prompt.
 
-## Immediate operator goal
+## Done
 
-Keep SSOT accurate for AI switch continuity (HANDOFF + ACTIVITY_LOG).
-
-## Done recently
-
-- BUILD-007 Template Engine
-- BUILD-008 Bootstrap Generator (manifest-driven + ADR-006)
-- Continuity docs: `.adf/HANDOFF.md`, `.adf/ACTIVITY_LOG.md`
+- ADF Package Manager (APM)
+- ADR-007
+- CLI package commands + pytest
 
 ## Do not
 
-- Start BUILD-009 unprompted
-- Re-implement BUILD-001…008
-- Redesign locked top-level architecture
+- Start BUILD-010
+- Enable networked GitHub/GitLab installs without a later BUILD

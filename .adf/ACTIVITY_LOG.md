@@ -5,6 +5,13 @@ Chronological operator/AI activity log for continuity across sessions and model 
 
 ---
 
+## 2026-07-30 — BUILD-009 ADF Package Manager (APM)
+
+- Implemented `adf-core/packages` PackageManager + resolver/registry/cache/lockfile
+- CLI: install/remove/update/search/list/verify/cache
+- ADR-007 accepted; seed packages in `release/apm-registry`
+- Version `0.9.0-alpha`; tests 27 passed; **STOP before BUILD-010**
+
 ## 2026-07-30 — Handoff pack prepared (pre-BUILD-009)
 
 - Created/updated `.adf/HANDOFF.md` + this `ACTIVITY_LOG.md` so a new AI can resume without full re-brief

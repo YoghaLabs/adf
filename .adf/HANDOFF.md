@@ -12,10 +12,10 @@
 |-------|-------|
 | Repo | `adf` (YoghaLabs) — https://github.com/YoghaLabs/adf |
 | Branch | `develop` (synced with `origin/develop`) |
-| Version | `0.8.0-alpha` (root `VERSION`) |
-| Current build | **BUILD-008** — Bootstrap Generator (completed) |
-| HEAD | `b95c89c` — `BUILD-008: finalize bootstrap generator` |
-| Next build | **BUILD-009** — **NOT STARTED** (await explicit master prompt) |
+| Version | `0.9.0-alpha` (root `VERSION`) |
+| Current build | **BUILD-009** — ADF Package Manager (completed) |
+| HEAD | see `git log -1` on `develop` |
+| Next build | **BUILD-010** — **NOT STARTED** (await explicit master prompt) |
 | Main | Previously merged through BUILD-006 era; develop is integration branch |
 
 ---

@@ -1,8 +1,8 @@
 # ADF — AI Development Framework
 
-**Version:** `0.8.0-alpha` (see root `VERSION`)  
+**Version:** `0.9.0-alpha` (see root `VERSION`)  
 **Branch:** `develop`  
-**Current Build:** `BUILD-008` — Bootstrap Generator
+**Current Build:** `BUILD-009` — ADF Package Manager (APM)
 
 ADF is an AI-first development framework that keeps project knowledge, architecture decisions, build state, and AI operating contracts inside the repository. Humans and AI agents share the same source of truth so work can pause, hand off, and resume without losing context.
 
@@ -60,7 +60,7 @@ ADF advances through **BUILD-001 to BUILD-020**. Each BUILD has a fixed mission.
 | BUILD-006 | ✅ |
 | BUILD-007 | ✅ |
 | BUILD-008 | ✅ |
-| BUILD-009 | ⏳ |
+| BUILD-009 | ✅ |
 | BUILD-010 | ⏳ |
 | BUILD-011 | ⏳ |
 | BUILD-012 | ⏳ |

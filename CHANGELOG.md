@@ -1,43 +1,47 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.8.0-alpha** / **BUILD-008** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.9.0-alpha** / **BUILD-009** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-009 after Architecture Review of BUILD-008
+- BUILD-010 after Architecture Review of BUILD-009
+
+## [0.9.0-alpha] — 2026-07-30
+
+### Added
+- ADF Package Manager (APM) in `adf-core/packages`
+- `package.yaml` spec + local registry (`release/apm-registry`)
+- DependencyResolver (cycles + semver), cache, `adf.lock`
+- RegistryClient (local + remote-ready adapters)
+- CLI: `install` / `remove` / `update` / `search` / `list` / `verify` / `cache`
+- ADR-007 Package Management Architecture
+- Docs + prompts + `bootstrap/BUILD-009/`
+- pytest coverage for install/deps/manifest/version/lock/cache
+
+### Changed
+- RuntimeEngine publishes `packages` service
+- Version identity advanced to `0.9.0-alpha` / BUILD-009
 
 ## [0.8.0-alpha] — 2026-07-29
 
 ### Added
-- Bootstrap/project generator in `adf-core/generator` (`GeneratorManager`)
-- Manifest-driven pipeline: resolve → validate → dry-run/write → rollback
-- Filesystem abstraction (`DirectoryWriter`, `FileWriter`, `SafeOverwrite`, `AtomicWrite`)
-- CLI: `adf init`, `adf new`, `adf generate`, `adf dry-run`, `adf validate`
-- Built-in templates: foundation, generic, python, fastapi, laravel, nextjs
-- ADR-006 Project Generation Model
-- Docs: PROJECT_GENERATOR, BOOTSTRAP_GENERATOR, GENERATION_PIPELINE, FILESYSTEM_ABSTRACTION, DRY_RUN
-- pytest coverage for generator/filesystem/manifest/dry-run/rollback/validation
-
-### Changed
-- RuntimeEngine publishes `generator` service; doctor reports templates/project types
-- Generation structures come from template metadata (no hardcoded project trees)
-- Version identity: `0.8.0-alpha` / BUILD-008
+- Bootstrap/project generator (manifest-driven)
 
 ## [0.7.0-alpha] — 2026-07-29
 
 ### Added
-- Template Engine in `adf-core/templates`
+- Template Engine
 
 ## [0.6.0-alpha] — 2026-07-29
 
 ### Added
-- Plugin architecture in `adf-core`
+- Plugin architecture
 
 ## [0.5.0-alpha] — 2026-07-29
 
 ### Added
-- Executable `adf-core` Runtime Engine foundation
+- Runtime Engine foundation
 
 ## [0.4.0-alpha] — 2026-07-29
 
