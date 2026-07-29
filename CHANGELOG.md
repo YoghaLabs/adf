@@ -7,13 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 with an alpha/beta pre-release suffix during early builds.
 
 **Version source of truth:** root `VERSION`  
-Current identity from that file: **ADF** / **0.2.0-alpha** / **BUILD-002** / **develop**
+Current identity from that file: **ADF** / **0.3.0-alpha** / **BUILD-003** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-003: Bootstrap automation (after Architecture Review of BUILD-002)
+- BUILD-004: Context Engine (after Architecture Review of BUILD-003)
 - Subsequent builds through BUILD-020 (see `ROADMAP.md`)
+
+## [0.3.0-alpha] — 2026-07-29
+
+### Added
+- ADR system under `.adf/adr/` (`ADR-001` Repository Structure, `ADR-002` Build Lifecycle, `ADR-003` AI Runtime)
+- Knowledge architecture: `ADR_INDEX`, `GLOSSARY`, knowledge/context/dependency graphs, timeline, milestones, risk register, tech stack
+- `bootstrap/BUILD-003/` specification pack (incl. `MIGRATION.md`)
+- Prompts: `knowledge`, `adr`, `documentation`, `context`, `bootstrap`
+- Docs: `KNOWLEDGE_ARCHITECTURE`, `ADR_GUIDE`, `CONTEXT_ENGINE`, `MEMORY_SYSTEM`, `PROJECT_LIFECYCLE`
+
+### Changed
+- Advanced version identity to `0.3.0-alpha` / BUILD-003
+- Updated README Architecture Evolution + ROADMAP statuses
+- Clarified BUILD-003 mission as Knowledge Architecture & ADR (see bootstrap migration notes)
+
+### Notes
+- Permanent rule: architecture changes require ADRs through BUILD-020
+- BUILD-004 must not start until Architecture Review of BUILD-003
 
 ## [0.2.0-alpha] — 2026-07-29
 
@@ -27,33 +45,19 @@ Current identity from that file: **ADF** / **0.2.0-alpha** / **BUILD-002** / **d
 - Docs: `adf-docs/AI_RUNTIME.md`, `BUILD_SYSTEM.md`, `WORKFLOW.md`, `BEST_PRACTICES.md`
 
 ### Changed
-- Expanded existing `.adf` operating docs for multi-agent resume (manifest, state, task, DNA, contract, boot, contexts, todos, history, session, memory)
+- Expanded existing `.adf` operating docs for multi-agent resume
 - Declared `.adf/` as Single Source of Truth for AI operators
 - Advanced version identity to `0.2.0-alpha` / BUILD-002
-- Updated README Build Roadmap status for BUILD-002
 
 ### Notes
-- BUILD-003 must not start until Architecture Review of BUILD-002
 - Runtime implementation of `adf-core` remains deferred to BUILD-005
 
 ## [0.1.0-alpha] — 2026-07-29
 
 ### Added
 - Repository foundation (BUILD-001)
-- Locked top-level architecture: `.adf/`, `adf-core/`, `adf-studio/`, `adf-docs/`, `adf-examples/`, `adf-templates/`, `bootstrap/`, `prompts/`, `testing/`, `tools/`, `release/`
-- Root project files: `README.md`, `LICENSE`, `CHANGELOG.md`, `VERSION`, `ROADMAP.md`, `CONTRIBUTING.md`, `.gitignore`
-- `.adf` operating context: manifest, DNA, state, contracts, boot guides, indexes, memory, and session files
-- Bootstrap contracts and boot sequence documentation
-- Prompt library entry points: build, resume, handoff, audit
-- Initial documentation set under `adf-docs/`
-- Package stubs with purpose documentation for core, studio, examples, templates, testing, tools, and release
-
-### Changed
-- Marked BUILD-001 as **Completed** in `.adf` state, task, session, and quick context files
-- Standardized root `VERSION` format (project, version, current build, branch) and aligned changelog section tags to `0.1.0-alpha`
-- Added Build Roadmap status table in `README.md`
+- Locked top-level architecture and root governance files
+- Initial `.adf` operating context, bootstrap docs, prompts, and `adf-docs` foundations
 
 ### Notes
-- Runtime implementation of `adf-core` is deferred to BUILD-005
-- GUI implementation of `adf-studio` starts at BUILD-013
 - Bump version by editing `VERSION` first, then mirror the same version string in this changelog heading

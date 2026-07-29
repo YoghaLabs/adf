@@ -14,6 +14,7 @@ Immutable repository rules for ADF. **Why:** without immutables, every agent “
 8. **One BUILD at a time** — do not silently start the next BUILD.
 9. **Root `VERSION` leads version identity** — changelog and state must follow it.
 10. **New top-level folders are forbidden** unless an explicit architecture-change BUILD authorizes them (rare, deliberate).
+11. **No architecture change without an ADR** (from BUILD-003 through BUILD-020) — record under `.adf/adr/` and index in `ADR_INDEX.md`.
 
 ## Allowed Changes
 

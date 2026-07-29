@@ -43,21 +43,33 @@ Important markdown files, their purpose, dependencies, and likely future updates
 | `KNOWLEDGE_INDEX.md` | Knowledge map | file index | When knowledge sources added |
 | `TOKEN_BUDGET.md` | Context budget | quick/full context | Context engine era |
 | `DEPENDENCY_INDEX.md` | Dependency posture | modules | When deps appear |
-| `DECISION_LOG.md` | Decisions | DNA | Each significant decision |
+| `DECISION_LOG.md` | Decisions | DNA / ADRs | Each significant decision |
+| `ADR_INDEX.md` | ADR catalog | `adr/` | Each new ADR |
+| `GLOSSARY.md` | Shared vocabulary | knowledge layer | New terms |
+| `KNOWLEDGE_GRAPH.md` | Knowledge relationships | SSOT nodes | When major nodes added |
+| `CONTEXT_GRAPH.md` | Context restore order | boot/runtime | Context Engine era |
+| `DEPENDENCY_GRAPH.md` | Module dependencies | module index | When modules gain code |
+| `PROJECT_TIMELINE.md` | BUILD evolution arc | build history | Each completed BUILD |
+| `MILESTONES.md` | Outcome checkpoints | timeline/state | Milestone transitions |
+| `RISK_REGISTER.md` | Named risks | architecture rules | As risks emerge |
+| `TECH_STACK.md` | Operator/tech posture | dependency index | Stack changes |
+| `adr/ADR-*.md` | Architecture Decision Records | ADR_INDEX | New decisions |
 
 ## `bootstrap/`
 
 | File / path | Purpose | Future |
 |-------------|---------|--------|
-| `README.md`, `BOOT_SEQUENCE.md`, `BUILD_CONTRACT.md` | Shared boot/process | BUILD-003 automation |
-| `BUILD-002/*` | BUILD-002 spec pack | Pattern for later `BUILD-00N/` packs |
+| `README.md`, `BOOT_SEQUENCE.md`, `BUILD_CONTRACT.md` | Shared boot/process | Later automation helpers |
+| `BUILD-002/*` | BUILD-002 spec pack | Historical pack |
+| `BUILD-003/*` | BUILD-003 knowledge/ADR pack | Pattern continues |
 
 ## `prompts/`
 
 | File | Purpose | Future |
 |------|---------|--------|
-| `build.md`, `resume.md`, `handoff.md`, `audit.md` | Core operator prompts | BUILD-004 schemas |
-| `architecture.md`, `planning.md`, `review.md`, `release.md`, `generator.md` | Expanded operator modes | BUILD-004+ |
+| `build.md`, `resume.md`, `handoff.md`, `audit.md` | Core operator prompts | Later schemas |
+| `architecture.md`, `planning.md`, `review.md`, `release.md`, `generator.md` | Expanded operator modes | Ongoing |
+| `knowledge.md`, `adr.md`, `documentation.md`, `context.md`, `bootstrap.md` | Knowledge-layer prompts | Context Engine alignment |
 
 ## `adf-docs/`
 
@@ -65,6 +77,7 @@ Important markdown files, their purpose, dependencies, and likely future updates
 |------|---------|--------|
 | `WHAT_IS_ADF.md`, `GETTING_STARTED.md`, `ARCHITECTURE.md` | Foundations | BUILD-016 expansion |
 | `AI_RUNTIME.md`, `BUILD_SYSTEM.md`, `WORKFLOW.md`, `BEST_PRACTICES.md` | Human guides mirroring SSOT themes | Keep aligned with `.adf` |
+| `KNOWLEDGE_ARCHITECTURE.md`, `ADR_GUIDE.md`, `CONTEXT_ENGINE.md`, `MEMORY_SYSTEM.md`, `PROJECT_LIFECYCLE.md` | Knowledge layer guides | Keep aligned with `.adf` graphs/ADRs |
 
 ## Maintenance Rule
 

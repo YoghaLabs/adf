@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-29 — Mandatory ADRs for architecture changes (BUILD-003)
+
+- **Decision:** From BUILD-003 through BUILD-020, every architecture change requires a new ADR under `.adf/adr/` and an `ADR_INDEX.md` entry.
+- **Why:** Without durable rationale, multi-agent development re-litigates design and drifts from locks.
+- **Consequences:** “Improvements” that alter structure/runtime model without ADR are process defects.
+- **Status:** Accepted
+
 ## 2026-07-29 — `.adf` is AI Runtime SSOT (BUILD-002)
 
 - **Decision:** Declare `.adf/` the Single Source of Truth for AI operators across tools; expand runtime, workflow, maps, standards, and build tracking there.

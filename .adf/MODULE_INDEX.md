@@ -20,7 +20,7 @@ Describes every module package. **Why:** prevents agents from implementing featu
 
 - **Purpose:** Human-readable product, architecture, runtime, and practice guides.
 - **Why separate:** teaching humans without overloading AI SSOT files.
-- **Status:** Active since BUILD-001; expanded in BUILD-002.
+- **Status:** Active since BUILD-001; expanded in BUILD-002 and BUILD-003 (knowledge guides).
 - **Depends on:** `.adf` for truth; must not contradict SSOT.
 
 ## adf-examples
@@ -45,7 +45,7 @@ Describes every module package. **Why:** prevents agents from implementing featu
 
 - **Purpose:** Maintainer utilities (validators, helpers) that are not core public runtime.
 - **Why separate:** keeps `adf-core` lean.
-- **Status:** README only until BUILD-003/008.
+- **Status:** README only until BUILD-008 (automation helpers); not the home of ADR/knowledge docs.
 
 ## release
 
@@ -55,4 +55,8 @@ Describes every module package. **Why:** prevents agents from implementing featu
 
 ## Cross-cutting: `.adf`, `bootstrap`, `prompts`
 
-These are not “feature modules” but **operating subsystems**. See `REPOSITORY_MAP.md` and `FILE_INDEX.md`.
+These are not “feature modules” but **operating subsystems**. See `REPOSITORY_MAP.md`, `FILE_INDEX.md`, and `DEPENDENCY_GRAPH.md`.
+
+### `.adf` Knowledge Layer (BUILD-003)
+
+Includes ADR store (`.adf/adr/`), graphs, glossary, timeline, milestones, risk register, and tech stack. Consumed by future Context Engine and Studio.

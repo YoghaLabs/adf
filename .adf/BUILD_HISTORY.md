@@ -35,6 +35,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Build history/status tracking files
 - Architecture / naming / documentation standards
 
+## BUILD-003 — Knowledge Architecture & ADR System
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.3.0-alpha` |
+| Branch | `develop` |
+| Purpose | Add ADR system and knowledge architecture (graphs, glossary, timeline, risks, tech stack) so design rationale is recoverable without chat |
+| Result | **Completed.** ADR-001…003 accepted. Knowledge layer ready as foundation for Context Engine (BUILD-004). Pending Architecture Review gate. |
+
+### Outcomes That Must Not Be Undone
+
+- `.adf/adr/` + `ADR_INDEX.md` as mandatory architecture change log
+- Knowledge / Context / Dependency graphs
+- Rule: no architecture change without ADR (through BUILD-020)
+
 ## Template for Future Entries
 
 ```markdown

@@ -8,7 +8,7 @@ Live status board for BUILD-001 → BUILD-020.
 |-------|--------|
 | BUILD-001 | Completed |
 | BUILD-002 | Completed |
-| BUILD-003 | Pending |
+| BUILD-003 | Completed |
 | BUILD-004 | Pending |
 | BUILD-005 | Pending |
 | BUILD-006 | Pending |
@@ -38,8 +38,8 @@ Live status board for BUILD-001 → BUILD-020.
 
 ## Current Focus
 
-- Last completed: **BUILD-002** (`0.2.0-alpha`)
-- Next: **BUILD-003** (Pending — requires Architecture Review approval + explicit master prompt)
+- Last completed: **BUILD-003** (`0.3.0-alpha`) — Knowledge Architecture & ADR System
+- Next: **BUILD-004** (Pending — Context Engine; requires Architecture Review approval + explicit master prompt)
 
 ## Sync Rules
 
@@ -51,3 +51,4 @@ When a BUILD changes status, update:
 4. Root `VERSION` (when version bumps with the BUILD)
 5. `CHANGELOG.md`
 6. README Build Roadmap table
+7. `PROJECT_TIMELINE.md` / `MILESTONES.md` when milestones move

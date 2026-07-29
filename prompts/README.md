@@ -15,6 +15,11 @@ Prompt library for operating ADF across sessions.
 | `review.md` | Architecture / pre-merge review |
 | `release.md` | Version identity and release-note discipline |
 | `generator.md` | Generating docs/scaffolds inside locked paths |
+| `knowledge.md` | Updating knowledge graphs/indexes/glossary |
+| `adr.md` | Creating or updating ADRs |
+| `documentation.md` | Expanding docs to standard |
+| `context.md` | Restoring/assembling context tiers |
+| `bootstrap.md` | Working with `bootstrap/BUILD-00N/` packs |
 
 ## How to Use
 
@@ -25,14 +30,13 @@ Prompt library for operating ADF across sessions.
 
 ## Design Rules
 
-- Prompts must reinforce `AI_CONTRACT.md` and `ARCHITECTURE_RULES.md`
-- Prompts must not authorize architecture redesign
+- Prompts must reinforce `AI_CONTRACT.md`, `ARCHITECTURE_RULES.md`, and ADR discipline
+- Prompts must not authorize architecture redesign without an ADR + approval
 - Prompts must not authorize placeholder files
-- Formal schemas and stricter validation arrive in BUILD-004
 
 ## Related
 
 - `bootstrap/BOOT_SEQUENCE.md`
 - `.adf/AI_RUNTIME.md`
-- `.adf/TOKEN_BUDGET.md`
+- `.adf/CONTEXT_GRAPH.md`
 - `ROADMAP.md`

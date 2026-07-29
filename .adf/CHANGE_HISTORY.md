@@ -2,6 +2,12 @@
 
 Narrative history of meaningful repository changes. Complements `CHANGELOG.md` with context for AI resume.
 
+## 2026-07-29 — BUILD-003 completed
+
+- Added ADR system (ADR-001…003) and Knowledge Layer graphs/glossary/timeline/risks
+- Version advanced to `0.3.0-alpha`
+- **Next gate:** Architecture Review before BUILD-004 (Context Engine)
+
 ## 2026-07-29 — BUILD-002 completed
 
 - Elevated `.adf/` to explicit AI Runtime SSOT

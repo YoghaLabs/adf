@@ -5,12 +5,13 @@
 | Repository | `adf` |
 | Full name | AI Development Framework |
 | Organization | YoghaLabs |
-| Version | `0.2.0-alpha` |
-| Current build | `BUILD-002` |
+| Version | `0.3.0-alpha` |
+| Current build | `BUILD-003` |
 | Primary branch | `develop` |
 | License | MIT |
-| Status | AI Runtime & Repository Intelligence |
+| Status | Knowledge Architecture & ADR System |
 | SSOT root | `.adf/` |
+| ADR root | `.adf/adr/` |
 
 ## Product Summary
 
@@ -31,6 +32,8 @@ ADF is an AI-first development framework that stores architecture, build state, 
 | How to resume | `AI_BOOT.md` |
 | Why the project exists | `PROJECT_DNA.md` |
 | Where things live | `REPOSITORY_MAP.md` + `MODULE_INDEX.md` + `FILE_INDEX.md` |
+| Why decisions were made | `ADR_INDEX.md` + `.adf/adr/` |
+| How knowledge relates | `KNOWLEDGE_GRAPH.md` + `CONTEXT_GRAPH.md` + `DEPENDENCY_GRAPH.md` |
 | Immutable rules | `ARCHITECTURE_RULES.md` |
 
 Human docs in `adf-docs/` explain the product; `.adf/` operates the project.
@@ -57,17 +60,17 @@ Do not add or rename top-level folders.
 
 | Path | Role | First implementation BUILD |
 |------|------|----------------------------|
-| `.adf/` | Operating context / SSOT | BUILD-001 (expanded BUILD-002) |
-| `bootstrap/` | Boot contracts & per-BUILD packs | BUILD-001 / BUILD-002 packs |
-| `prompts/` | Prompt library | BUILD-001 (expanded BUILD-002) |
-| `adf-docs/` | Human documentation | BUILD-001 (expanded BUILD-002) |
+| `.adf/` | Operating context / SSOT + Knowledge/ADR layer | BUILD-001…003 |
+| `bootstrap/` | Boot contracts & per-BUILD packs | BUILD-001+ packs |
+| `prompts/` | Prompt library | BUILD-001…003 |
+| `adf-docs/` | Human documentation | BUILD-001…003 (later BUILD-016) |
 | `adf-core/` | Runtime core | BUILD-005 |
 | `adf-templates/` | Templates | BUILD-009 |
 | `adf-examples/` | Examples | BUILD-010 |
 | `testing/` | Test harness | BUILD-011 |
 | `release/` | Release pipeline | BUILD-012 |
 | `adf-studio/` | GUI | BUILD-013 |
-| `tools/` | Utilities | BUILD-003 / BUILD-008 |
+| `tools/` | Utilities | BUILD-008 (+ later automation) |
 
 ## Canonical Documents
 
@@ -80,4 +83,5 @@ Do not add or rename top-level folders.
 - Workflow: `WORKFLOW.md`
 - Short snapshot: `QUICK_CONTEXT.md`
 - Maps & indexes: `REPOSITORY_MAP.md`, `MODULE_INDEX.md`, `FILE_INDEX.md`
+- Knowledge layer: `ADR_INDEX.md`, `KNOWLEDGE_GRAPH.md`, `CONTEXT_GRAPH.md`, `DEPENDENCY_GRAPH.md`, `GLOSSARY.md`, `PROJECT_TIMELINE.md`, `MILESTONES.md`, `RISK_REGISTER.md`, `TECH_STACK.md`
 - Standards: `ARCHITECTURE_RULES.md`, `NAMING_CONVENTION.md`, `DOCUMENTATION_STANDARD.md`

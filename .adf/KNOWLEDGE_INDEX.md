@@ -31,6 +31,16 @@ Map of where knowledge lives in this repository.
 | `TODOS.md` | Open work tracking |
 | `MEMORY.md` | Durable cross-session notes |
 | `SESSION.md` | Latest session handoff notes |
+| `ADR_INDEX.md` | ADR catalog |
+| `GLOSSARY.md` | Shared vocabulary |
+| `KNOWLEDGE_GRAPH.md` | Relationships among knowledge nodes |
+| `CONTEXT_GRAPH.md` | How AI restores context |
+| `DEPENDENCY_GRAPH.md` | Module dependency relationships |
+| `PROJECT_TIMELINE.md` | Evolution BUILD-001→020 |
+| `MILESTONES.md` | Outcome checkpoints |
+| `RISK_REGISTER.md` | Named risks and mitigations |
+| `TECH_STACK.md` | Operator/tech posture |
+| `adr/` | Architecture Decision Records |
 
 ## Human Docs (`adf-docs/`)
 
@@ -43,6 +53,11 @@ Map of where knowledge lives in this repository.
 | `BUILD_SYSTEM.md` | How BUILD increments work |
 | `WORKFLOW.md` | Human guide to lifecycle |
 | `BEST_PRACTICES.md` | Operating practices |
+| `KNOWLEDGE_ARCHITECTURE.md` | Knowledge layer overview |
+| `ADR_GUIDE.md` | How to write/use ADRs |
+| `CONTEXT_ENGINE.md` | Context restore / future engine |
+| `MEMORY_SYSTEM.md` | Memory/session model |
+| `PROJECT_LIFECYCLE.md` | Lifecycle across builds |
 
 ## Process Docs
 

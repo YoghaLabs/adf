@@ -1,8 +1,8 @@
 # ADF — AI Development Framework
 
-**Version:** `0.2.0-alpha` (see root `VERSION`)  
+**Version:** `0.3.0-alpha` (see root `VERSION`)  
 **Branch:** `develop`  
-**Current Build:** `BUILD-002` — AI Runtime & Repository Intelligence
+**Current Build:** `BUILD-003` — Knowledge Architecture & ADR System
 
 ADF is an AI-first development framework that keeps project knowledge, architecture decisions, build state, and AI operating contracts inside the repository. Humans and AI agents share the same source of truth so work can pause, hand off, and resume without losing context.
 
@@ -54,7 +54,7 @@ ADF advances through **BUILD-001 to BUILD-020**. Each BUILD has a fixed mission.
 |-------|--------|
 | BUILD-001 | ✅ |
 | BUILD-002 | ✅ |
-| BUILD-003 | ⏳ |
+| BUILD-003 | ✅ |
 | BUILD-004 | ⏳ |
 | BUILD-005 | ⏳ |
 | BUILD-006 | ⏳ |
@@ -76,6 +76,24 @@ ADF advances through **BUILD-001 to BUILD-020**. Each BUILD has a fixed mission.
 Legend: ✅ completed · ⏳ pending
 
 Mission detail for each BUILD lives in `ROADMAP.md`.
+
+## Architecture Evolution
+
+ADF grows by **additive layers**, not redesign:
+
+```text
+BUILD-001  Repository Foundation (locked structure)
+    ↓
+BUILD-002  AI Runtime SSOT (`.adf` operate loop)
+    ↓
+BUILD-003  Knowledge Architecture & ADR (why-traceable decisions)
+    ↓
+BUILD-004  Context Engine (planned)
+    ↓
+… cumulative builds through BUILD-020
+```
+
+**Permanent rule (from BUILD-003):** every architecture change requires an ADR under `.adf/adr/` (see `.adf/ADR_INDEX.md`).
 
 ## How to Start
 
