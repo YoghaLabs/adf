@@ -12,7 +12,7 @@ Every supported AI must resume identically. This protocol is mandatory — not a
 | Snapshot | `QUICK_CONTEXT.md` |
 | Truth | `PROJECT_STATE.md`, `BUILD_STATUS.md` |
 | Mission | `CURRENT_TASK.md`, `TODOS.md` |
-| Continuity | `SESSION.md`, `MEMORY.md` |
+| Continuity | `SESSION.md`, `MEMORY.md`, `HANDOFF.md`, `ACTIVITY_LOG.md` |
 | Law | `AI_CONTRACT.md`, `ARCHITECTURE_RULES.md` |
 | Engine | `CONTEXT_ENGINE.md`, `RESTORE_SEQUENCE.md` |
 | Optional depth | ADRs, graphs, `FULL_CONTEXT.md` |

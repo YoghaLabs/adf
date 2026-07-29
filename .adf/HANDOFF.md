@@ -1,0 +1,118 @@
+# Handoff — AI Continuity Pack
+
+**Purpose:** Next AI/operator can resume without re-explaining the project from scratch.  
+**Last handoff:** 2026-07-30  
+**Author of handoff:** Quadran + Cursor agent (session ending before BUILD-009)
+
+---
+
+## 30-second identity
+
+| Field | Value |
+|-------|-------|
+| Repo | `adf` (YoghaLabs) — https://github.com/YoghaLabs/adf |
+| Branch | `develop` (synced with `origin/develop`) |
+| Version | `0.8.0-alpha` (root `VERSION`) |
+| Current build | **BUILD-008** — Bootstrap Generator (completed) |
+| HEAD | `b95c89c` — `BUILD-008: finalize bootstrap generator` |
+| Next build | **BUILD-009** — **NOT STARTED** (await explicit master prompt) |
+| Main | Previously merged through BUILD-006 era; develop is integration branch |
+
+---
+
+## What the next AI must read first (in order)
+
+1. `.adf/QUICK_CONTEXT.md`
+2. `.adf/HANDOFF.md` ← this file
+3. `.adf/ACTIVITY_LOG.md`
+4. `.adf/PROJECT_STATE.md`
+5. `.adf/CURRENT_TASK.md`
+6. `.adf/SESSION.md` + `.adf/TODOS.md` + `.adf/MEMORY.md`
+7. Root `VERSION`, `ROADMAP.md`, `CHANGELOG.md`
+8. Accept `.adf/AI_CONTRACT.md` + `.adf/ARCHITECTURE_RULES.md`
+
+Then optionally deepen: `BUILD_HISTORY.md`, `bootstrap/BUILD-008/`, ADR-006, `adf-docs/PROJECT_GENERATOR.md`.
+
+**Do not** ask the user to re-explain BUILD-001…008 unless SSOT is missing/corrupt.
+
+---
+
+## Completed (do not redo)
+
+| Build | Version | Theme | Status |
+|-------|---------|-------|--------|
+| BUILD-001 | 0.1.0-alpha | Repository Foundation | ✅ |
+| BUILD-002 | 0.2.0-alpha | AI Runtime SSOT | ✅ |
+| BUILD-003 | 0.3.0-alpha | Knowledge + ADR | ✅ |
+| BUILD-004 | 0.4.0-alpha | Context Engine (spec) | ✅ |
+| BUILD-005 | 0.5.0-alpha | Runtime Engine foundation | ✅ |
+| BUILD-006 | 0.6.0-alpha | Plugin & Extension Engine | ✅ |
+| BUILD-007 | 0.7.0-alpha | Template Engine + Manifest | ✅ |
+| BUILD-008 | 0.8.0-alpha | Bootstrap Generator (manifest-driven) | ✅ |
+
+### BUILD-008 capabilities now live
+
+- `GeneratorManager`: `generate` / `validate` / `dry_run` / `build` / `write` / `rollback`
+- CLI: `adf init`, `adf new`, `adf generate`, `adf dry-run`, `adf validate`, `adf doctor`
+- Templates under `adf-templates/`: `foundation`, `generic`, `python`, `fastapi`, `laravel`, `nextjs`
+- ADR-006: generation must be manifest-driven (no hardcoded project trees in Python)
+- Tests: **22 passed** (last known green on finalize)
+
+---
+
+## Hard rules (locked)
+
+- Top-level folders are **LOCKED** (ADR-001) — never rename/add/delete top-level dirs
+- Documentation is SSOT; **no placeholders**
+- Cumulative builds only; **do not combine** two builds into one commit series
+- Master prompts may **supersede** older ROADMAP labels (see each `bootstrap/BUILD-00N/MIGRATION.md`)
+- Architecture changes need ADRs
+- **STOP at build boundary** unless user explicitly launches the next BUILD
+
+---
+
+## Remaining / next
+
+1. Optional: Architecture Review of BUILD-008 (`bootstrap/BUILD-008/REVIEW.md`)
+2. Wait for user master prompt for **BUILD-009**
+3. ROADMAP currently labels BUILD-009 as **Task & State Machine** (confirm against master prompt when it arrives)
+
+---
+
+## How the human continues after switching AI
+
+Paste this to the new AI:
+
+```text
+Resume ADF from repo SSOT. Do not ask me to re-explain prior builds.
+
+1. Read .adf/QUICK_CONTEXT.md
+2. Read .adf/HANDOFF.md
+3. Read .adf/ACTIVITY_LOG.md
+4. Follow .adf/RESUME_PROTOCOL.md
+5. Summarize status in ≤5 lines
+6. Wait for my BUILD-009 master prompt (do not start BUILD-009 yourself)
+```
+
+Or use `prompts/resume.md`.
+
+---
+
+## Risks / notes for next agent
+
+- An early BUILD-008 slice used a Python scaffolder; later refinement moved structure into templates (ADR-006). Prefer TemplateManager/GeneratorManager paths.
+- `main` was merged earlier for BUILD-001…006 era; active work continues on `develop`. Confirm with user before merging again.
+- Windows PowerShell: use `;` not `&&`; heredoc bash style does not work — write scripts to files when needed.
+- Push to `origin/develop` may need user approval in Cursor smart mode.
+
+---
+
+## Verification commands
+
+```bash
+cd adf-core
+python -m pytest -q
+python adf.py version
+python adf.py doctor --root ..
+python adf.py dry-run demo --template generic --destination %TEMP% --root ..
+```
