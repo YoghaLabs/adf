@@ -2,26 +2,34 @@
 
 **Build:** BUILD-008  
 **Package:** `adf-core/generator`  
-**Facade:** `GeneratorManager`
+**Facade:** `GeneratorManager` (`manager.py`)
 
 ## Purpose
 
-Generate new ADF projects by combining locked-folder scaffolding with the
-Template Engine (`TemplateManager`).
+Create complete ADF projects from **template manifests**. Generation never hardcodes
+project trees — structures come from `adf-templates/*/template.yaml` and `files/`.
 
-## Flow
+## Manager API
 
-1. Validate `ProjectManifest`
-2. Guard destination (overwrite protection)
-3. Scaffold locked folders + `.adf` + prompts + bootstrap + root docs
-4. Render selected template (`foundation` by default)
-5. Report progress via `GenerationOutput`
+| Method | Role |
+|--------|------|
+| `generate()` | Resolve + write (or dry-run) |
+| `validate()` | Template/manifest/variables/deps checks |
+| `dry_run()` | Preview folders/files/overwrites/variables |
+| `build()` | Prepare a validated builder |
+| `write()` | Persist a project |
+| `rollback()` | Undo last write journal |
+
+## Built-in project types
+
+`generic` · `python` · `fastapi` · `laravel` · `nextjs` (plus base `foundation`)
 
 ## CLI
 
 ```bash
-python adf.py init my-app --destination ../ --root ..
-python adf.py new my-app --dry-run --root ..
-python adf.py generate my-app --validate-only --root ..
-python adf.py doctor --root ..
+python adf.py init my-app --template generic --root ..
+python adf.py new my-app --template python --root ..
+python adf.py generate my-app --template fastapi --root ..
+python adf.py dry-run my-app --template nextjs --root ..
+python adf.py validate my-app --template laravel --root ..
 ```

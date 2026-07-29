@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-29 — Manifest-driven project generation (BUILD-008 / ADR-006)
+
+- **Decision:** GeneratorManager creates projects only from template manifests/`files/`; no hardcoded project trees in Python.
+- **Why:** Keeps stack variants (generic/python/fastapi/laravel/nextjs) declarative and aligned with Template Engine SSOT.
+- **Consequences:** New project types are templates; dry-run/validate/rollback are first-class; ADR-006 accepted.
+- **Status:** Accepted
+
 ## 2026-07-29 — Plugin-based RuntimeEngine (BUILD-006)
 
 - **Decision:** Future capabilities are plugins behind contracts; RuntimeEngine uses PluginManager and must not instantiate concrete plugin classes directly.

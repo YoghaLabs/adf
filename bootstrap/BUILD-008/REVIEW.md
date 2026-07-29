@@ -2,14 +2,16 @@
 
 ## Checklist
 
-- [ ] Generator depends on TemplateManager (not ad-hoc copy)
-- [ ] Dry-run never writes project trees
-- [ ] Overwrite protection default-safe
-- [ ] CLI commands documented
+- [ ] Generator never hardcodes project trees (ADR-006)
+- [ ] Templates declare `.adf` / prompts / bootstrap outputs
+- [ ] Dry-run writes nothing
+- [ ] Rollback removes journaled files
+- [ ] CLI init/new/generate/dry-run/validate documented
 - [ ] Tests green
 
 ```bash
 cd adf-core
 python -m pytest -q
-python adf.py init demo --destination %TEMP% --dry-run --root ..
+python adf.py dry-run demo --template generic --destination %TEMP% --root ..
+python adf.py validate demo --template python --destination %TEMP% --root ..
 ```

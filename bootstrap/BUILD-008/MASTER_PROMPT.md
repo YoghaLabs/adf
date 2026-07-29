@@ -4,13 +4,14 @@
 |-------|-------|
 | Build | BUILD-008 |
 | Version | 0.8.0-alpha |
-| Theme | Bootstrap Generator |
+| Theme | Bootstrap Generator & Project Generation Engine |
 | Branch | develop |
 
 ## Mission
 
-Implement project generation via `GeneratorManager`, scaffolder, writers, and
-CLI (`init` / `new` / `generate` / `doctor`), consuming BUILD-007 templates.
+Implement the Bootstrap Generator. Create complete ADF projects from templates.
+Generation must be driven entirely by Template Manifests — no hardcoded project
+structures.
 
 ## Stop
 

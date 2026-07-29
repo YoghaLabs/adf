@@ -4,28 +4,23 @@ Reusable templates for ADF projects and artifacts.
 
 ## Purpose
 
-`adf-templates` stores generation templates consumed by `TemplateManager`
-(`adf-core/templates`).
+`adf-templates` stores generation templates consumed by `TemplateManager` /
+`GeneratorManager`. **Project structure is declared here** — not hardcoded in
+`adf-core/generator`.
 
-## Status
-
-**Active from BUILD-007.** Packages use `template.yaml` (schema 1.0).
-
-## Built-in packages
+## Built-in packages (BUILD-008)
 
 | Package | Description |
 |---------|-------------|
-| `foundation/` | Minimal README + VERSION seed |
-
-## Design Constraints
-
-- Templates must emit the locked architecture only
-- Generated files must contain useful starter content, not empty stubs
-- Manifests declare metadata, variables, capabilities, outputs, permissions
-- Outputs must remain compatible with `.adf/AI_CONTRACT.md`
+| `foundation/` | Base ADF layout + `.adf` operating set |
+| `generic/` | Generic project (inherits foundation) |
+| `python/` | Python package seed |
+| `fastapi/` | FastAPI app seed |
+| `laravel/` | Laravel/composer seed |
+| `nextjs/` | Next.js app seed |
 
 ## Related Docs
 
 - `adf-docs/TEMPLATE_ENGINE.md`
-- `adf-docs/TEMPLATE_MANIFEST.md`
-- `bootstrap/BUILD-007/`
+- `adf-docs/PROJECT_GENERATOR.md`
+- `.adf/adr/ADR-006-Project-Generation-Model.md`

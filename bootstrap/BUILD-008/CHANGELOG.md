@@ -1,7 +1,9 @@
 # BUILD-008 Pack Changelog
 
-## Added
+## Added / Refined
 
-- GeneratorManager / BootstrapGenerator / Scaffolder
-- CLI init/new/generate
-- Generator docs and prompts
+- Manifest-driven GeneratorManager (generate/validate/dry_run/build/write/rollback)
+- Filesystem abstraction + dry-run planner + generation validator
+- Built-in templates: generic, python, fastapi, laravel, nextjs (+ expanded foundation)
+- CLI `dry-run` / `validate`
+- ADR-006 Project Generation Model

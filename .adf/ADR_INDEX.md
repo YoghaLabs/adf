@@ -15,6 +15,7 @@ No architecture change without a new ADR. Accepted ADRs are part of ADF v1.0 phi
 | ADR-001 | Repository Structure | Accepted | `adr/ADR-001-Repository-Structure.md` |
 | ADR-002 | Build Lifecycle | Accepted | `adr/ADR-002-Build-Lifecycle.md` |
 | ADR-003 | AI Runtime | Accepted | `adr/ADR-003-AI-Runtime.md` |
+| ADR-006 | Project Generation Model | Accepted | `adr/ADR-006-Project-Generation-Model.md` |
 
 ## How to Add an ADR
 

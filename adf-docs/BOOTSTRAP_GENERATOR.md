@@ -3,6 +3,6 @@
 **Class:** `BootstrapGenerator`  
 **Module:** `adf-core/generator/bootstrap_generator.py`
 
-Generates bootstrap docs, `.adf` operating seeds, prompts, and runtime config
-notes as part of project initialization. Prefer `GeneratorManager.init_project`
-from CLI and plugins.
+Thin wrapper that builds a `ProjectManifest` and delegates to `ProjectBuilder`.
+All `.adf`, prompts, bootstrap, and runtime seeds must be declared by templates
+(see `adf-templates/foundation`).

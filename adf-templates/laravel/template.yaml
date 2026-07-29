@@ -1,0 +1,17 @@
+schema_version: "1.0"
+metadata:
+  name: laravel
+  version: 0.8.0
+  description: Laravel-oriented ADF project seed
+  author: YoghaLabs
+  tags: [php, laravel, builtin]
+  build: BUILD-008
+variables:
+  project_name: laravel-project
+  author: YoghaLabs
+  version: 0.1.0-alpha
+capabilities: [scaffold, laravel]
+outputs: [composer.json, README.md]
+permissions: [write-files]
+inherits: generic
+plugin_compatibility: [template, generator]

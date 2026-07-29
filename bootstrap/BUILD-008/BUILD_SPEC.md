@@ -2,14 +2,14 @@
 
 ## Create
 
-- `adf-core/generator/` modules
-- Docs: PROJECT_GENERATOR, BOOTSTRAP_GENERATOR, CLI_GENERATOR, SCAFFOLDER
-- Prompts: generator, scaffold, project, filesystem, bootstrap-generator
-- `bootstrap/BUILD-008/`
+- `adf-core/generator/` modules: manager, resolvers, dry_run, validator, filesystem writers
+- Built-in templates: foundation, generic, python, fastapi, laravel, nextjs
+- Docs + ADR-006 + prompts including `dry-run.md`
+- CLI: init, new, generate, dry-run, validate
 
 ## Implement
 
-- GeneratorManager + ProjectBuilder + Scaffolder + Writer + FileSystem
-- Dry-run, overwrite protection, validation, progress reporting
-- CLI: init, new, generate, doctor wiring
-- pytest: generator, filesystem, writer, manifest, dry-run
+- GeneratorManager: generate/validate/dry_run/build/write/rollback
+- Manifest-driven ProjectBuilder (no hardcoded trees)
+- Filesystem abstraction + atomic writes + rollback journal
+- pytest: generator, filesystem, manifest, variables, dry-run, rollback, validation

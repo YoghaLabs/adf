@@ -1,6 +1,6 @@
 # BUILD-008 Bootstrap Pack
 
-Bootstrap Generator.
+Bootstrap Generator & Project Generation Engine (manifest-driven).
 
 | File | Purpose |
 |------|---------|
@@ -10,4 +10,4 @@ Bootstrap Generator.
 | `ACCEPTANCE.md` | Acceptance checklist |
 | `REVIEW.md` | Architecture Review |
 | `CHANGELOG.md` | Pack-local summary |
-| `MIGRATION.md` | Relation to BUILD-007 |
+| `MIGRATION.md` | Relation to BUILD-007 / refinement notes |

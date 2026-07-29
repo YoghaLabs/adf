@@ -40,6 +40,9 @@ Human-facing documentation for the AI Development Framework.
 | `BOOTSTRAP_GENERATOR.md` | Bootstrap generation |
 | `CLI_GENERATOR.md` | init/new/generate CLI |
 | `SCAFFOLDER.md` | Locked-folder scaffolder |
+| `GENERATION_PIPELINE.md` | Manifest-driven generation steps |
+| `FILESYSTEM_ABSTRACTION.md` | Safe filesystem writers |
+| `DRY_RUN.md` | Dry-run preview model |
 | `README.md` | This index |
 
 ## Reading Order

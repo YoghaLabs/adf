@@ -1,0 +1,17 @@
+schema_version: "1.0"
+metadata:
+  name: fastapi
+  version: 0.8.0
+  description: FastAPI ADF project
+  author: YoghaLabs
+  tags: [python, fastapi, builtin]
+  build: BUILD-008
+variables:
+  project_name: fastapi-project
+  author: YoghaLabs
+  version: 0.1.0-alpha
+capabilities: [scaffold, python, fastapi]
+outputs: [app/main.py, requirements.txt]
+permissions: [write-files]
+inherits: python
+plugin_compatibility: [template, generator]
