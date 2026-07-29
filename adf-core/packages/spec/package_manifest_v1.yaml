@@ -1,0 +1,19 @@
+# package.yaml specification v1.0 (BUILD-009)
+
+schema_version: "1.0"
+name: example-package
+id: example-package
+version: 1.0.0
+author: YoghaLabs
+description: Example ADF package manifest
+type: extension
+engine: adf-core>=0.8.0
+license: MIT
+homepage: ""
+repository: ""
+dependencies: {}
+capabilities:
+  - example
+entrypoint: ""
+checksum: ""
+signature: ""
