@@ -5,7 +5,10 @@
 ## [Unreleased]
 
 ### Planned
-- BUILD-010 after Architecture Review of BUILD-009
+- BUILD-010 SDK & Public API (Phase 2 — after Architecture Review of BUILD-009)
+
+### Changed
+- Roadmap locked to Phases 1–4 (Engine → Platform → UX → Production)
 
 ## [0.9.0-alpha] — 2026-07-30
 

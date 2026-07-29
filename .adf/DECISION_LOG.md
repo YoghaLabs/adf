@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-30 — Locked roadmap Phases 1–4
+
+- **Decision:** Adopt and lock the phased BUILD-001…020 roadmap (Engine Foundation → Platform & Distribution → User Experience → Production).
+- **Why:** Prevent theme drift across AI sessions; Phase 2 next is SDK & Public API (BUILD-010), not older alternate labels.
+- **Consequences:** `ROADMAP.md` is canonical; changing themes requires ADR + operator approval.
+- **Status:** Accepted
+
 ## 2026-07-30 — ADF Package Manager / APM (BUILD-009 / ADR-007)
 
 - **Decision:** All installable ADF artifacts are packages with `package.yaml`; PackageManager is the API; local registry first.

@@ -5,6 +5,15 @@ Chronological operator/AI activity log for continuity across sessions and model 
 
 ---
 
+## 2026-07-30 — Locked roadmap adopted (Phases 1–4)
+
+- Operator locked roadmap themes:
+  - Phase 1 Engine Foundation: BUILD-001…008 ✅
+  - Phase 2 Platform & Distribution: BUILD-009 APM ✅ · BUILD-010 SDK & Public API · BUILD-011 Marketplace & Registry · BUILD-012 Installer & Distribution
+  - Phase 3 UX: BUILD-013…016 Studio/workspace/graph/monitor
+  - Phase 4 Production: BUILD-017…020 testing/audit/RC/v1.0
+- Updated `ROADMAP.md` + continuity SSOT; **do not start BUILD-010** until master prompt
+
 ## 2026-07-30 — BUILD-009 ADF Package Manager (APM)
 
 - Implemented `adf-core/packages` PackageManager + resolver/registry/cache/lockfile

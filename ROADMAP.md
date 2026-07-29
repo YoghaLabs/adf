@@ -1,39 +1,67 @@
 # ADF Roadmap
 
-**Current version:** `0.9.0-alpha`  
-**Current build:** `BUILD-009` (completed; stop — do not start BUILD-010)
+**Locked roadmap** (operator-approved). Do not rename phases or BUILD themes without an ADR + explicit approval.
 
-## Build Path
+**Current version:** `0.9.0-alpha`  
+**Current build:** `BUILD-009` — ADF Package Manager (**completed**)  
+**Next:** `BUILD-010` — SDK & Public API (**not started**)
+
+---
+
+## Phase 1 — Engine Foundation ✅
 
 | Build | Focus | Status |
 |-------|--------|--------|
 | BUILD-001 | Repository Foundation | ✅ |
-| BUILD-002 | AI Runtime SSOT | ✅ |
-| BUILD-003 | Knowledge Architecture & ADR | ✅ |
-| BUILD-004 | Context Engine (spec) | ✅ |
-| BUILD-005 | Runtime Engine Foundation | ✅ |
-| BUILD-006 | Plugin & Extension Engine | ✅ |
-| BUILD-007 | Template Engine + Manifest System | ✅ |
-| BUILD-008 | Bootstrap Generator | ✅ |
-| **BUILD-009** | **ADF Package Manager (APM)** | ✅ |
-| BUILD-010 | Examples Pack | ⏳ Next |
-| BUILD-011 | Testing Framework | ⏳ |
-| BUILD-012 | Release Pipeline Prep | ⏳ |
-| BUILD-013 | ADF Studio Shell | ⏳ |
-| BUILD-014 | Studio Context Views | ⏳ |
-| BUILD-015 | Studio Build Runner | ⏳ |
-| BUILD-016 | Documentation Completeness | ⏳ |
-| BUILD-017 | Integration Hardening | ⏳ |
-| BUILD-018 | Performance & Token Efficiency | ⏳ |
+| BUILD-002 | AI Runtime | ✅ |
+| BUILD-003 | Knowledge Architecture | ✅ |
+| BUILD-004 | Context Engine | ✅ |
+| BUILD-005 | Runtime Engine | ✅ |
+| BUILD-006 | Plugin Engine | ✅ |
+| BUILD-007 | Template Engine | ✅ |
+| BUILD-008 | Generator Engine | ✅ |
+
+---
+
+## Phase 2 — Platform & Distribution
+
+| Build | Focus | Status |
+|-------|--------|--------|
+| BUILD-009 | ADF Package Manager | ✅ |
+| BUILD-010 | SDK & Public API | ⏳ Next |
+| BUILD-011 | Marketplace & Registry | ⏳ |
+| BUILD-012 | Installer & Distribution | ⏳ |
+
+---
+
+## Phase 3 — User Experience
+
+| Build | Focus | Status |
+|-------|--------|--------|
+| BUILD-013 | ADF Studio Core | ⏳ |
+| BUILD-014 | Workspace & Dashboard | ⏳ |
+| BUILD-015 | Knowledge Graph | ⏳ |
+| BUILD-016 | Runtime Monitor | ⏳ |
+
+---
+
+## Phase 4 — Production
+
+| Build | Focus | Status |
+|-------|--------|--------|
+| BUILD-017 | Testing Framework | ⏳ |
+| BUILD-018 | Audit Framework | ⏳ |
 | BUILD-019 | Release Candidate | ⏳ |
-| BUILD-020 | v1.0 Stabilization Gate | ⏳ |
+| BUILD-020 | Production v1.0 | ⏳ |
+
+---
 
 ## Status Legend
 
-- **Done:** BUILD-001 … BUILD-009
-- **Next:** BUILD-010 (after Architecture Review — not started)
+- **Phase 1:** complete (BUILD-001 … BUILD-008)
+- **Phase 2:** BUILD-009 complete; BUILD-010 next after Architecture Review / explicit master prompt
+- **Phases 3–4:** pending
 
-## Note
+## Continuity
 
-Master prompts may supersede earlier roadmap labels; see each
-`bootstrap/BUILD-00N/MIGRATION.md`.
+When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-010 until an explicit master prompt.

@@ -13,9 +13,10 @@
 | Repo | `adf` (YoghaLabs) — https://github.com/YoghaLabs/adf |
 | Branch | `develop` (synced with `origin/develop`) |
 | Version | `0.9.0-alpha` (root `VERSION`) |
+| Current phase | Phase 2 — Platform & Distribution |
 | Current build | **BUILD-009** — ADF Package Manager (completed) |
-| HEAD | see `git log -1` on `develop` |
-| Next build | **BUILD-010** — **NOT STARTED** (await explicit master prompt) |
+| Next build | **BUILD-010** — SDK & Public API (**NOT STARTED**) |
+| Roadmap | **LOCKED** — `ROADMAP.md` phases 1–4 |
 | Main | Previously merged through BUILD-006 era; develop is integration branch |
 
 ---
@@ -39,16 +40,27 @@ Then optionally deepen: `BUILD_HISTORY.md`, `bootstrap/BUILD-008/`, ADR-006, `ad
 
 ## Completed (do not redo)
 
-| Build | Version | Theme | Status |
-|-------|---------|-------|--------|
-| BUILD-001 | 0.1.0-alpha | Repository Foundation | ✅ |
-| BUILD-002 | 0.2.0-alpha | AI Runtime SSOT | ✅ |
-| BUILD-003 | 0.3.0-alpha | Knowledge + ADR | ✅ |
-| BUILD-004 | 0.4.0-alpha | Context Engine (spec) | ✅ |
-| BUILD-005 | 0.5.0-alpha | Runtime Engine foundation | ✅ |
-| BUILD-006 | 0.6.0-alpha | Plugin & Extension Engine | ✅ |
-| BUILD-007 | 0.7.0-alpha | Template Engine + Manifest | ✅ |
-| BUILD-008 | 0.8.0-alpha | Bootstrap Generator (manifest-driven) | ✅ |
+### Phase 1 — Engine Foundation ✅
+
+| Build | Theme | Status |
+|-------|-------|--------|
+| BUILD-001 | Repository Foundation | ✅ |
+| BUILD-002 | AI Runtime | ✅ |
+| BUILD-003 | Knowledge Architecture | ✅ |
+| BUILD-004 | Context Engine | ✅ |
+| BUILD-005 | Runtime Engine | ✅ |
+| BUILD-006 | Plugin Engine | ✅ |
+| BUILD-007 | Template Engine | ✅ |
+| BUILD-008 | Generator Engine | ✅ |
+
+### Phase 2 — Platform & Distribution (in progress)
+
+| Build | Theme | Status |
+|-------|-------|--------|
+| BUILD-009 | ADF Package Manager | ✅ |
+| BUILD-010 | SDK & Public API | ⏳ |
+| BUILD-011 | Marketplace & Registry | ⏳ |
+| BUILD-012 | Installer & Distribution | ⏳ |
 
 ### BUILD-008 capabilities now live
 
@@ -73,9 +85,9 @@ Then optionally deepen: `BUILD_HISTORY.md`, `bootstrap/BUILD-008/`, ADR-006, `ad
 
 ## Remaining / next
 
-1. Optional: Architecture Review of BUILD-008 (`bootstrap/BUILD-008/REVIEW.md`)
-2. Wait for user master prompt for **BUILD-009**
-3. ROADMAP currently labels BUILD-009 as **Task & State Machine** (confirm against master prompt when it arrives)
+1. Optional: Architecture Review of BUILD-009 (`bootstrap/BUILD-009/REVIEW.md`)
+2. Wait for user master prompt for **BUILD-010 — SDK & Public API**
+3. Respect locked roadmap in `ROADMAP.md` (do not invent alternate BUILD themes)
 
 ---
 

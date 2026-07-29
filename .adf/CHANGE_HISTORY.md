@@ -2,6 +2,11 @@
 
 Narrative history of meaningful repository changes. Complements `CHANGELOG.md` with context for AI resume.
 
+## 2026-07-30 — Locked roadmap Phases 1–4
+
+- Canonical BUILD themes locked in `ROADMAP.md`
+- Phase 2 next: BUILD-010 SDK & Public API (not Examples Pack / prior alternate labels)
+
 ## 2026-07-30 — AI continuity handoff pack
 
 - Added `.adf/HANDOFF.md` and `.adf/ACTIVITY_LOG.md` for token-limit / model-switch resume
