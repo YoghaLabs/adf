@@ -11,9 +11,12 @@ from services.contracts import (
 from services.context_service import ContextService
 from services.generator_service import GeneratorService
 from services.knowledge_service import KnowledgeService
+from services.marketplace_service import MarketplaceService
 from services.package_service import PackageService
 from services.plugin_service import PluginService
 from services.project_service import ProjectService
+from services.publisher_service import PublisherService
+from services.registry_service import RegistryService
 from services.runtime_service import RuntimeService
 from services.service_manager import ServiceManager
 from services.template_service import TemplateService
@@ -24,9 +27,12 @@ __all__ = [
     "ContextService",
     "GeneratorService",
     "KnowledgeService",
+    "MarketplaceService",
     "PackageService",
     "PluginService",
     "ProjectService",
+    "PublisherService",
+    "RegistryService",
     "RuntimeService",
     "ServiceContext",
     "ServiceException",

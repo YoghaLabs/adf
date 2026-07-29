@@ -106,12 +106,17 @@ class ServiceManager:
         """Wire default services to existing engines/managers (no duplicated logic)."""
         from engine.knowledge_engine import KnowledgeEngine
         from engine.runtime_engine import RuntimeEngine
+        from registry.marketplace import MarketplaceManager
+        from registry.registry_manager import RegistryManager
         from services.context_service import ContextService
         from services.generator_service import GeneratorService
         from services.knowledge_service import KnowledgeService
+        from services.marketplace_service import MarketplaceService
         from services.package_service import PackageService
         from services.plugin_service import PluginService
         from services.project_service import ProjectService
+        from services.publisher_service import PublisherService
+        from services.registry_service import RegistryService
         from services.runtime_service import RuntimeService
         from services.template_service import TemplateService
         from services.workspace_service import WorkspaceService
@@ -119,6 +124,11 @@ class ServiceManager:
         engine = RuntimeEngine(self.repo_root)
         knowledge = KnowledgeEngine(self.repo_root)
         self.runtime_engine = engine
+
+        registry_manager = RegistryManager(self.repo_root, package_manager=engine.packages)
+        marketplace_manager = MarketplaceManager(registry_manager)
+        self.registry_manager = registry_manager
+        self.marketplace_manager = marketplace_manager
 
         # Clear and re-register defaults if empty / first configure.
         defaults = [
@@ -131,6 +141,9 @@ class ServiceManager:
             KnowledgeService(knowledge),
             ProjectService(self.repo_root, engine.state),
             WorkspaceService(self.repo_root, engine),
+            RegistryService(registry_manager),
+            MarketplaceService(marketplace_manager),
+            PublisherService(registry_manager),
         ]
         for service in defaults:
             if service.name not in self._services:
@@ -139,6 +152,10 @@ class ServiceManager:
         # Publish ServiceManager to plugins via ExtensionAPI.
         engine.extensions.publish_service("services", self)
         engine.registry.register("services", self)
+        engine.extensions.publish_service("registry_manager", registry_manager)
+        engine.extensions.publish_service("marketplace", marketplace_manager)
+        engine.registry.register("registry_manager", registry_manager)
+        engine.registry.register("marketplace", marketplace_manager)
 
     def runtime(self) -> Any:
         """Typed accessor for RuntimeService."""
@@ -219,4 +236,31 @@ class ServiceManager:
         service = self.get("workspace")
         if not isinstance(service, WorkspaceService):
             raise ServiceException("workspace service missing")
+        return service
+
+    def registry(self) -> Any:
+        """Typed accessor for RegistryService."""
+        from services.registry_service import RegistryService
+
+        service = self.get("registry")
+        if not isinstance(service, RegistryService):
+            raise ServiceException("registry service missing")
+        return service
+
+    def marketplace(self) -> Any:
+        """Typed accessor for MarketplaceService."""
+        from services.marketplace_service import MarketplaceService
+
+        service = self.get("marketplace")
+        if not isinstance(service, MarketplaceService):
+            raise ServiceException("marketplace service missing")
+        return service
+
+    def publisher(self) -> Any:
+        """Typed accessor for PublisherService."""
+        from services.publisher_service import PublisherService
+
+        service = self.get("publisher")
+        if not isinstance(service, PublisherService):
+            raise ServiceException("publisher service missing")
         return service

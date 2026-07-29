@@ -8,9 +8,12 @@ from typing import Any
 from loader.project_loader import ProjectLoader
 from runtime.exceptions import AdfError
 from sdk.generator import GeneratorAPI
+from sdk.marketplace import MarketplaceClient
 from sdk.package import PackageAPI
 from sdk.plugin import PluginAPI
 from sdk.project import ProjectAPI
+from sdk.publisher import PublisherClient
+from sdk.registry import RegistryClient
 from sdk.runtime import RuntimeAPI
 from sdk.template import TemplateAPI
 from sdk.workspace import WorkspaceAPI
@@ -91,6 +94,18 @@ class SDKClient:
     def workspace(self) -> WorkspaceAPI:
         """Access WorkspaceService via typed SDK facade."""
         return WorkspaceAPI(self._ensure().workspace())
+
+    def marketplace(self) -> MarketplaceClient:
+        """Access MarketplaceService via typed SDK facade."""
+        return MarketplaceClient(self._ensure().marketplace())
+
+    def registry(self) -> RegistryClient:
+        """Access RegistryService via typed SDK facade."""
+        return RegistryClient(self._ensure().registry())
+
+    def publisher(self) -> PublisherClient:
+        """Access PublisherService via typed SDK facade."""
+        return PublisherClient(self._ensure().publisher())
 
     def result(self, service_result: ServiceResult) -> dict[str, Any]:
         """Normalize a ServiceResult for callers."""

@@ -117,7 +117,7 @@ def _gen_flags(args: argparse.Namespace) -> dict[str, Any]:
 def cmd_pkg_install(args: argparse.Namespace) -> int:
     """Install a package from the registry."""
     return _emit(
-        _manager(args).package().install(args.package_id, overwrite=bool(args.overwrite))
+        _manager(args).registry().install(args.package_id, overwrite=bool(args.overwrite))
     )
 
 
@@ -128,24 +128,66 @@ def cmd_pkg_remove(args: argparse.Namespace) -> int:
 
 def cmd_pkg_update(args: argparse.Namespace) -> int:
     """Update/reinstall a package from the registry."""
-    return _emit(_manager(args).package().update(args.package_id))
+    return _emit(_manager(args).marketplace().update(args.package_id))
 
 
 def cmd_pkg_search(args: argparse.Namespace) -> int:
-    """Search the package registry."""
-    return _emit(
-        _manager(args).package().search(args.query or "", package_type=args.type)
-    )
+    """Search the marketplace / registry."""
+    kwargs: dict[str, Any] = {}
+    if args.type:
+        kwargs["category"] = args.type
+    if getattr(args, "verified", False):
+        kwargs["verified_only"] = True
+    if getattr(args, "publisher", None):
+        kwargs["publisher"] = args.publisher
+    mode = getattr(args, "mode", None)
+    market = _manager(args).marketplace()
+    if mode == "featured":
+        return _emit(market.featured())
+    if mode == "popular":
+        return _emit(market.popular())
+    if mode == "newest":
+        return _emit(market.newest())
+    return _emit(market.search(args.query or "", **kwargs))
 
 
 def cmd_pkg_list(args: argparse.Namespace) -> int:
     """List registry or installed packages."""
-    return _emit(_manager(args).package().list(installed=bool(args.installed)))
+    if bool(args.installed):
+        return _emit(_manager(args).package().list(installed=True))
+    return _emit(_manager(args).registry().list())
 
 
 def cmd_pkg_verify(args: argparse.Namespace) -> int:
-    """Verify installed package integrity against the lockfile."""
-    return _emit(_manager(args).package().verify(args.package_id))
+    """Verify installed package integrity / security against the registry."""
+    return _emit(_manager(args).registry().verify(args.package_id))
+
+
+def cmd_publish(args: argparse.Namespace) -> int:
+    """Publish a package directory into the local registry."""
+    return _emit(
+        _manager(args).publisher().publish(
+            args.source,
+            publisher_id=args.publisher_id,
+            overwrite=bool(args.overwrite),
+        )
+    )
+
+
+def cmd_registry(args: argparse.Namespace) -> int:
+    """Registry status / providers."""
+    registry = _manager(args).registry()
+    action = getattr(args, "registry_command", "status")
+    if action == "providers":
+        return _emit(registry.providers())
+    return _emit(registry.status())
+
+
+def cmd_sync(args: argparse.Namespace) -> int:
+    """Synchronize local registry mirror."""
+    return _emit(
+        _manager(args).registry().sync(incremental=not bool(args.full))
+    )
 
 
 def cmd_pkg_cache(args: argparse.Namespace) -> int:
@@ -348,10 +390,18 @@ def build_parser() -> argparse.ArgumentParser:
     update_parser.add_argument("package_id", help="Package id")
     update_parser.set_defaults(func=cmd_pkg_update)
 
-    search_parser = sub.add_parser("search", help="Search the ADF package registry")
+    search_parser = sub.add_parser("search", help="Search the ADF marketplace/registry")
     _add_root(search_parser)
     search_parser.add_argument("query", nargs="?", default="", help="Search query")
     search_parser.add_argument("--type", dest="type", default=None, help="Filter by package type")
+    search_parser.add_argument("--verified", action="store_true", help="Verified packages only")
+    search_parser.add_argument("--publisher", default=None, help="Filter by publisher")
+    search_parser.add_argument(
+        "--mode",
+        choices=["featured", "popular", "newest"],
+        default=None,
+        help="Marketplace shelf mode",
+    )
     search_parser.set_defaults(func=cmd_pkg_search)
 
     list_pkg_parser = sub.add_parser("list", help="List registry or installed packages")
@@ -359,10 +409,33 @@ def build_parser() -> argparse.ArgumentParser:
     list_pkg_parser.add_argument("--installed", action="store_true", help="List installed packages")
     list_pkg_parser.set_defaults(func=cmd_pkg_list)
 
-    verify_parser = sub.add_parser("verify", help="Verify installed packages / lockfile")
+    verify_parser = sub.add_parser("verify", help="Verify installed packages / lockfile / security")
     _add_root(verify_parser)
     verify_parser.add_argument("package_id", nargs="?", default=None, help="Optional package id")
     verify_parser.set_defaults(func=cmd_pkg_verify)
+
+    publish_parser = sub.add_parser("publish", help="Publish a package into the local registry")
+    _add_root(publish_parser)
+    publish_parser.add_argument("source", help="Path to package directory")
+    publish_parser.add_argument("--publisher-id", default="YoghaLabs")
+    publish_parser.add_argument("--overwrite", action="store_true")
+    publish_parser.set_defaults(func=cmd_publish)
+
+    registry_parser = sub.add_parser("registry", help="Registry status and providers")
+    registry_sub = registry_parser.add_subparsers(dest="registry_command")
+    reg_status = registry_sub.add_parser("status", help="Registry status")
+    _add_root(reg_status)
+    reg_status.set_defaults(func=cmd_registry, registry_command="status")
+    reg_providers = registry_sub.add_parser("providers", help="List registry providers")
+    _add_root(reg_providers)
+    reg_providers.set_defaults(func=cmd_registry, registry_command="providers")
+    _add_root(registry_parser)
+    registry_parser.set_defaults(func=cmd_registry, registry_command="status")
+
+    sync_parser = sub.add_parser("sync", help="Sync local registry mirror")
+    _add_root(sync_parser)
+    sync_parser.add_argument("--full", action="store_true", help="Full sync (not incremental)")
+    sync_parser.set_defaults(func=cmd_sync)
 
     cache_parser = sub.add_parser("cache", help="APM cache stats/clear")
     cache_sub = cache_parser.add_subparsers(dest="cache_command")
