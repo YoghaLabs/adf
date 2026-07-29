@@ -11,6 +11,7 @@ from packages.repository import (
     GitHubPackageRepository,
     GitLabPackageRepository,
     LocalPackageRepository,
+    MockCloudPackageRepository,
     PackageRepository,
     PrivatePackageRepository,
 )
@@ -26,6 +27,8 @@ class RegistryClient:
         enable_github: bool = False,
         enable_gitlab: bool = False,
         enable_private: bool = False,
+        enable_enterprise: bool = False,
+        enable_cloud: bool = False,
         private_url: str = "",
     ) -> None:
         """Create a registry client.
@@ -38,12 +41,15 @@ class RegistryClient:
         self._github = GitHubPackageRepository()
         self._gitlab = GitLabPackageRepository()
         self._private = PrivatePackageRepository(private_url)
+        self._cloud = MockCloudPackageRepository()
         if enable_github:
             self.repos.append(self._github)
         if enable_gitlab:
             self.repos.append(self._gitlab)
-        if enable_private:
+        if enable_private or enable_enterprise:
             self.repos.append(self._private)
+        if enable_cloud:
+            self.repos.append(self._cloud)
 
     def list(self) -> list[dict[str, Any]]:
         """List packages across enabled repositories."""

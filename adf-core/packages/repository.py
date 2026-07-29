@@ -99,7 +99,7 @@ class LocalPackageRepository(PackageRepository):
 
 
 class GitHubPackageRepository(PackageRepository):
-    """Placeholder remote adapter (not networked in BUILD-009)."""
+    """Remote adapter (architected; not networked until distribution builds)."""
 
     name = "github"
 
@@ -108,12 +108,12 @@ class GitHubPackageRepository(PackageRepository):
 
     def search(self, query: str = "", *, package_type: str | None = None) -> list[dict[str, Any]]:
         raise AdfPackageError(
-            "GitHub registry is architected but not enabled in BUILD-009 (local only)"
+            "GitHub registry is architected but not networked yet (use local registry)"
         )
 
     def get(self, package_id: str) -> Package:
         raise AdfPackageError(
-            "GitHub registry is architected but not enabled in BUILD-009 (local only)"
+            "GitHub registry is architected but not networked yet (use local registry)"
         )
 
     def list(self) -> list[dict[str, Any]]:
@@ -121,18 +121,18 @@ class GitHubPackageRepository(PackageRepository):
 
 
 class GitLabPackageRepository(PackageRepository):
-    """Placeholder remote adapter (not networked in BUILD-009)."""
+    """Remote adapter (architected; not networked until distribution builds)."""
 
     name = "gitlab"
 
     def search(self, query: str = "", *, package_type: str | None = None) -> list[dict[str, Any]]:
         raise AdfPackageError(
-            "GitLab registry is architected but not enabled in BUILD-009 (local only)"
+            "GitLab registry is architected but not networked yet (use local registry)"
         )
 
     def get(self, package_id: str) -> Package:
         raise AdfPackageError(
-            "GitLab registry is architected but not enabled in BUILD-009 (local only)"
+            "GitLab registry is architected but not networked yet (use local registry)"
         )
 
     def list(self) -> list[dict[str, Any]]:
@@ -140,22 +140,37 @@ class GitLabPackageRepository(PackageRepository):
 
 
 class PrivatePackageRepository(PackageRepository):
-    """Placeholder private registry adapter."""
+    """Enterprise / private registry adapter (architected)."""
 
-    name = "private"
+    name = "enterprise"
 
     def __init__(self, base_url: str = "") -> None:
         self.base_url = base_url
 
     def search(self, query: str = "", *, package_type: str | None = None) -> list[dict[str, Any]]:
         raise AdfPackageError(
-            "Private registry is architected but not enabled in BUILD-009 (local only)"
+            "Enterprise registry is architected but not networked yet (use local registry)"
         )
 
     def get(self, package_id: str) -> Package:
         raise AdfPackageError(
-            "Private registry is architected but not enabled in BUILD-009 (local only)"
+            "Enterprise registry is architected but not networked yet (use local registry)"
         )
+
+    def list(self) -> list[dict[str, Any]]:
+        return []
+
+
+class MockCloudPackageRepository(PackageRepository):
+    """Future cloud registry stand-in — returns empty catalog without network I/O."""
+
+    name = "cloud"
+
+    def search(self, query: str = "", *, package_type: str | None = None) -> list[dict[str, Any]]:
+        return self.list()
+
+    def get(self, package_id: str) -> Package:
+        raise AdfPackageError(f"cloud registry has no package: {package_id}")
 
     def list(self) -> list[dict[str, Any]]:
         return []
