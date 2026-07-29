@@ -81,7 +81,9 @@ Then optionally deepen: `BUILD_HISTORY.md`, `bootstrap/BUILD-008/`, ADR-006, `ad
 
 ## How the human continues after switching AI
 
-Paste this to the new AI:
+Open **`.adf/RESUME_ME.md`** and paste the copy-block into the new AI chat.
+
+Short form (same content lives in `RESUME_ME.md`):
 
 ```text
 Resume ADF from repo SSOT. Do not ask me to re-explain prior builds.
@@ -91,10 +93,8 @@ Resume ADF from repo SSOT. Do not ask me to re-explain prior builds.
 3. Read .adf/ACTIVITY_LOG.md
 4. Follow .adf/RESUME_PROTOCOL.md
 5. Summarize status in ≤5 lines
-6. Wait for my BUILD-009 master prompt (do not start BUILD-009 yourself)
+6. Wait for my next BUILD master prompt (do not start the next BUILD yourself)
 ```
-
-Or use `prompts/resume.md`.
 
 ---
 
