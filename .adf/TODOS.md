@@ -2,8 +2,8 @@
 
 ## Now
 
-- [ ] Architecture Review of BUILD-009
-- [ ] Await explicit BUILD-010 master prompt (**SDK & Public API**)
+- [ ] Architecture Review of BUILD-010
+- [ ] Await explicit BUILD-011 master prompt (**Marketplace & Registry**)
 
 ## Later (locked roadmap)
 
@@ -16,4 +16,5 @@
 
 - [x] Phase 1 Engine Foundation (BUILD-001…008)
 - [x] BUILD-009 ADF Package Manager
+- [x] BUILD-010 Service Layer & Public SDK
 - [x] Lock roadmap phases 1–4 in `ROADMAP.md`

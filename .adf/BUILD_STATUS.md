@@ -11,7 +11,7 @@
 | BUILD-007 | Completed |
 | BUILD-008 | Completed |
 | BUILD-009 | Completed |
-| BUILD-010 | Pending |
+| BUILD-010 | Completed |
 | BUILD-011 | Pending |
 | BUILD-012 | Pending |
 | BUILD-013 | Pending |
@@ -25,5 +25,5 @@
 
 ## Current Focus
 
-- Last completed: **BUILD-009** (`0.9.0-alpha`) — ADF Package Manager
-- Next: **BUILD-010** (Pending — do not start until explicit prompt)
+- Last completed: **BUILD-010** (`0.10.0-alpha`) — Service Layer & Public SDK
+- Next: **BUILD-011** (Pending — do not start until explicit prompt)

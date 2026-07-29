@@ -48,6 +48,11 @@ Human-facing documentation for the AI Development Framework.
 | `PACKAGE_REGISTRY.md` | Registry backends |
 | `DEPENDENCY_RESOLUTION.md` | Dep graph + cycles |
 | `SEMVER_GUIDE.md` | Semver constraints |
+| `SERVICE_LAYER.md` | Service Layer overview |
+| `SERVICE_MANAGER.md` | ServiceManager API |
+| `SDK_GUIDE.md` | Public SDK guide |
+| `SDK_CLIENT.md` | SDKClient reference |
+| `PUBLIC_API.md` | `from adf import …` contract |
 | `README.md` | This index |
 
 ## Reading Order

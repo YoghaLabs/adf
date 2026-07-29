@@ -16,18 +16,18 @@ Resume ADF from repo SSOT. Do not ask me to re-explain prior builds.
 
 ## Current snapshot (update when builds finish)
 
-- Version: `0.9.0-alpha`
+- Version: `0.10.0-alpha`
 - Phase: **2 — Platform & Distribution**
-- Last completed: **BUILD-009** (ADF Package Manager)
-- Next: **BUILD-010** (SDK & Public API) — not started
-- Do not start BUILD-010 until explicit master prompt
+- Last completed: **BUILD-010** (Service Layer & Public SDK)
+- Next: **BUILD-011** (Marketplace & Registry) — not started
+- Do not start BUILD-011 until explicit master prompt
 
 ## After the AI summarizes
 
 Then send your next instruction, for example:
 
-- Architecture review of BUILD-009
-- `# ADF v1.0 — MASTER PROMPT BUILD-010` (SDK & Public API)
+- Architecture review of BUILD-010
+- `# ADF v1.0 — MASTER PROMPT BUILD-011` (Marketplace & Registry)
 - Or any scoped fix/question
 
 ## Related files

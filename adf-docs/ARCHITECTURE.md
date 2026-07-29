@@ -35,11 +35,14 @@ Human-readable product and contribution docs, roadmap, changelog, license, versi
 
 ### 4. Runtime Layer (`adf-core/`, `tools/`, `testing/`)
 
-Executable behavior and verification. Mostly deferred after BUILD-001.
+Executable behavior: Core Engines remain independent; **Service Layer**
+(`adf-core/services/`) is the only orchestration boundary for CLI, SDK,
+Studio, and plugins. Public SDK lives in `adf-core/sdk/`.
 
 ### 5. Experience Layer (`adf-studio/`)
 
-GUI over state, context, and build runners. Deferred to BUILD-013+.
+GUI over state, context, and build runners. Deferred to BUILD-013+. Uses
+`SDKClient` / `WorkspaceService` / `ProjectService` (prepared in BUILD-010).
 
 ### 6. Distribution Layer (`release/`, `adf-templates/`, `adf-examples/`)
 

@@ -4,13 +4,16 @@
 
 ```bash
 cd adf-core
-python adf.py version
-python adf.py doctor --root ..
-python adf.py search demo --root ..
-python adf.py install demo-template --root ..
-python adf.py list --installed --root ..
-python adf.py verify --root ..
+python -m adf version
+python -m adf doctor --root ..
+python -m adf search demo --root ..
+python -m adf install demo-template --root ..
+python -m adf list --installed --root ..
+python -m adf verify --root ..
 ```
+
+CLI talks to the **Service Layer only** (never engines directly). Responses use
+`ServiceResult` envelopes: `{ "ok": true, "data": { ... } }`.
 
 ## Commands
 
@@ -19,7 +22,7 @@ python adf.py verify --root ..
 | `version` | Package version |
 | `doctor` | Layout + SSOT + plugin/template/package checks |
 | `boot` / `status` / `context` / `resume` | Runtime helpers |
-| `plugins …` | Plugin management skeleton |
+| `plugins …` | Plugin management |
 | `init` / `new` / `generate` / `dry-run` / `validate` | Project generator |
 | `install` / `remove` / `update` | APM package lifecycle |
 | `search` / `list` | Registry discovery (`list --installed`) |
@@ -28,3 +31,8 @@ python adf.py verify --root ..
 
 Default generator template: `generic`  
 Local package registry: `release/apm-registry/`
+
+## Related
+
+- `SERVICE_LAYER.md`
+- `PUBLIC_API.md`

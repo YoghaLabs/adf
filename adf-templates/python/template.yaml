@@ -12,7 +12,7 @@ variables:
   version: 0.1.0-alpha
   python_requires: ">=3.10"
 capabilities: [scaffold, python]
-outputs: [pyproject.toml, src/{{project_name}}/__init__.py]
+outputs: [pyproject.toml, "src/{{project_name}}/__init__.py"]
 permissions: [write-files]
 inherits: generic
 plugin_compatibility: [template, generator]

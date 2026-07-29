@@ -17,6 +17,7 @@ No architecture change without a new ADR. Accepted ADRs are part of ADF v1.0 phi
 | ADR-003 | AI Runtime | Accepted | `adr/ADR-003-AI-Runtime.md` |
 | ADR-006 | Project Generation Model | Accepted | `adr/ADR-006-Project-Generation-Model.md` |
 | ADR-007 | Package Management Architecture | Accepted | `adr/ADR-007-Package-Management-Architecture.md` |
+| ADR-008 | Service Layer Architecture | Accepted | `adr/ADR-008-Service-Layer-Architecture.md` |
 
 ## How to Add an ADR
 

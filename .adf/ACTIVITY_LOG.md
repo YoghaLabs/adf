@@ -5,6 +5,12 @@ Chronological operator/AI activity log for continuity across sessions and model 
 
 ---
 
+## 2026-07-30 — BUILD-010 Service Layer & Public SDK
+
+- Added `adf-core/services/` + `adf-core/sdk/` + public package `adf`
+- CLI refactored to ServiceManager only; ADR-008 accepted
+- Version `0.10.0-alpha`; **STOP before BUILD-011**
+
 ## 2026-07-30 — Locked roadmap adopted (Phases 1–4)
 
 - Operator locked roadmap themes:

@@ -2,25 +2,30 @@
 
 ```text
 adf-core/
-├── adf.py
+├── adf/           # Public package + CLI (adf.cli)
+├── services/      # Service Layer (BUILD-010)
+├── sdk/           # Public SDK facades (BUILD-010)
 ├── pyproject.toml
-├── requirements.txt
-├── runtime/     # config, constants, exceptions
-├── core/        # state/session/checkpoint managers
-├── engine/      # Runtime/Context/Memory/Bootstrap engines
-├── registry/    # component registry
-├── loader/      # prompt + project loaders
-├── parser/      # markdown helpers
-├── context/ memory/ bootstrap/  # namespaces reserved for growth
-├── shared/ utils/
+├── runtime/       # config, constants, exceptions
+├── core/          # state/session/checkpoint managers
+├── engine/        # Runtime/Context/Memory/Bootstrap/Knowledge engines
+├── packages/      # APM (BUILD-009)
+├── generator/     # Bootstrap generator (BUILD-008)
+├── templates/     # Template engine (BUILD-007)
+├── plugins/ events/ hooks/ extensions/
+├── registry/ loader/ parser/
+├── context/ memory/ bootstrap/
+├── shared/ utils/ contracts/ interfaces/
 └── tests/
 ```
 
 ## Why this layout
 
-Matches the BUILD-005 locked implementation map inside `adf-core/` without creating new repository top-level folders.
+Engines stay independent under their packages. `services/` orchestrates them.
+`sdk/` and `adf/` are the public surfaces for Studio and integrations.
 
 ## Related
 
 - `adf-core/README.md`
+- `SERVICE_LAYER.md`
 - `RUNTIME_ENGINE.md`
