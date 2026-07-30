@@ -62,6 +62,7 @@ Root files:
 | Business BUSINESS-004 Market Analysis | ✅ Complete |
 | Business BUSINESS-005 … 011 | ⏳ Next: Business Model (not started) |
 | Product Validation-001 Quick Start | ✅ Complete |
+| Product Validation-002 In-Studio Onboarding | ✅ Complete |
 | GA `1.0.0` (signing / coverage / Quick Start wizard gate) | ⏳ Release gate (not a new BUILD) |
 
 **Workflow:** finish work on `develop` → update this progress → merge `develop` into `main`.

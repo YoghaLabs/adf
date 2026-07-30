@@ -38,7 +38,8 @@ walkthroughs, and sales. Quick Start is a product differentiator, not optional p
 | Quick Start docs | ✅ | ✅ |
 | `./install` + `adf studio` helper | ✅ | ✅ |
 | Examples | ✅ | ✅ |
-| Welcome / Demo Project wizard | Documented only | **Required** |
+| Welcome / Demo Project wizard | Documented only | **Required** → started in VALIDATION-002 (Studio) |
+
 
 ## Related
 

@@ -39,7 +39,8 @@ Demo Project) is the **GA-target experience** — see validation report.
 6. `USER_JOURNEY.md` — screen-by-screen journey  
 7. `TROUBLESHOOTING.md` + `FAQ.md`  
 8. `PRODUCT_VALIDATION_CHECKLIST.md` + `PRODUCT_VALIDATION_REPORT.md`  
-9. `GA_QUICKSTART_GATE.md` — proposed mandatory GA criterion
+9. `GA_QUICKSTART_GATE.md` — proposed mandatory GA criterion  
+10. `VALIDATION_002_ONBOARDING.md` — In-Studio Welcome / Demo tour
 
 ## Related
 
