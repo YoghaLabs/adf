@@ -1,11 +1,27 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.13.0-alpha** / **BUILD-013** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.14.0-alpha** / **BUILD-014** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-014 Workspace & Dashboard (Phase 3 — after Architecture Review of BUILD-013)
+- BUILD-015 Knowledge Graph (Phase 3 — after Architecture Review of BUILD-014)
+
+## [0.14.0-alpha] — 2026-07-30
+
+### Added
+- Workspace Experience Platform under `adf-studio/src/features/workspace/`
+- Workspace Manager, Project Explorer, Session Manager, Activity Feed, Search
+- SDK clients: SessionClient, SearchClient, ActivityClient (+ extended Workspace/Project)
+- Zustand stores: Session, Activity, Search; expanded Workspace/Project explorer
+- Command Palette quick actions; Dashboard workspace overview widgets
+- Docs: WORKSPACE_SYSTEM, PROJECT_EXPLORER, SESSION_MANAGER, ACTIVITY_FEED, SEARCH_SYSTEM
+- ADR-012 Workspace Experience Architecture
+- Prompts + `bootstrap/BUILD-014/`
+- Vitest workspace experience suite
+
+### Changed
+- Version identity advanced to `0.14.0-alpha` / BUILD-014
 
 ## [0.13.0-alpha] — 2026-07-30
 

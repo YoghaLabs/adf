@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-30 — Workspace Experience Architecture (BUILD-014 / ADR-012)
+
+- **Decision:** Workspace is top-level; projects belong to workspaces; sessions belong to projects; Studio remains presentation-only over SDK.
+- **Why:** Multi-workspace UX without forking Core policy into React.
+- **Consequences:** Dashboard/nav/search scoped by active workspace; ADR-012 accepted.
+- **Status:** Accepted
+
 ## 2026-07-30 — ADF Studio Architecture (BUILD-013 / ADR-011)
 
 - **Decision:** Studio is a Desktop Control Center with no business logic; UI → SDK adapters → Service Layer → Core; services remain backend-only.

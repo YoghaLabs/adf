@@ -1,10 +1,10 @@
 # Current Task
 
-BUILD-013 complete. Phase 3 Studio Core delivered. Await next master prompt.
+BUILD-014 complete. Workspace Experience Platform delivered. Await next master prompt.
 
-**STOP** — do not start BUILD-014 (Workspace & Dashboard) until an explicit master prompt.
+**STOP** — do not start BUILD-015 (Knowledge Graph) until an explicit master prompt.
 
 ## Forbidden
 
-- Start BUILD-014…020 unprompted
+- Start BUILD-015…020 unprompted
 - Business logic inside `adf-studio/`

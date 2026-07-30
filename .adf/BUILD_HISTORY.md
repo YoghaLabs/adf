@@ -194,6 +194,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - SDK adapters mandatory for Studio → Core traffic
 - Services remain backend-only
 
+## BUILD-014 — Workspace Experience Platform
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.14.0-alpha` |
+| Branch | `develop` |
+| Purpose | Workspace → Projects → Sessions experience in Studio |
+| Result | **Completed.** Feature module, SDK clients, stores, search/activity, ADR-012. Stop before BUILD-015. |
+
+### Outcomes That Must Not Be Undone
+
+- Workspace is the top-level user object
+- Projects belong to workspaces; sessions belong to projects
+- No business logic in Studio UI
+
 ## Template for Future Entries
 
 ```markdown

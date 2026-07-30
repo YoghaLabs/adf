@@ -12,6 +12,7 @@ Prompt library for operating ADF across sessions.
 | `package.md`, `registry.md`, `dependency.md`, `install.md`, `update.md` | Package Manager prompts |
 | `service.md`, `sdk.md`, `api.md`, `workspace.md`, `project.md` | Service Layer / SDK / Studio prompts |
 | `studio.md`, `dashboard.md`, `layout.md`, `ui.md` | ADF Studio Control Center prompts |
+| `workspace-manager.md`, `project-explorer.md`, `session-manager.md`, `activity-feed.md`, `search.md` | Workspace Experience prompts |
 | `marketplace.md`, `publisher.md`, `security.md`, `verification.md` | Marketplace / registry security prompts |
 | `distribution.md`, `installer.md`, `updater.md`, `release.md`, `rollback.md` | Distribution / release prompts |
 | `runtime.md`, `engine.md`, `cli.md`, `loader.md` | Runtime Engine implementation prompts |

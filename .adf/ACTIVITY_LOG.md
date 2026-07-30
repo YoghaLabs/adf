@@ -5,6 +5,12 @@ Chronological operator/AI activity log for continuity across sessions and model 
 
 ---
 
+## 2026-07-30 — BUILD-014 Workspace Experience Platform
+
+- `features/workspace/` manager, project explorer, sessions, activity, search
+- SDK clients + stores; ADR-012; docs; Vitest; `bootstrap/BUILD-014/`
+- Version `0.14.0-alpha`; **STOP before BUILD-015**
+
 ## 2026-07-30 — BUILD-013 ADF Studio Core
 
 - Desktop Control Center under `adf-studio/` (UI → SDK → Services → Core)

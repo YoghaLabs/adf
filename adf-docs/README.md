@@ -69,6 +69,11 @@ Human-facing documentation for the AI Development Framework.
 | `STATE_MANAGEMENT.md` | Zustand + Query rules |
 | `THEME_SYSTEM.md` | Dark / Light / System |
 | `DESKTOP_PACKAGING.md` | Tauri packaging notes |
+| `WORKSPACE_SYSTEM.md` | Workspace hierarchy & manager |
+| `PROJECT_EXPLORER.md` | Project Explorer |
+| `SESSION_MANAGER.md` | Session Manager |
+| `ACTIVITY_FEED.md` | Activity feed |
+| `SEARCH_SYSTEM.md` | Search + command search |
 | `README.md` | This index |
 
 ## Reading Order

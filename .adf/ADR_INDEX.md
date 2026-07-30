@@ -21,6 +21,7 @@ No architecture change without a new ADR. Accepted ADRs are part of ADF v1.0 phi
 | ADR-009 | Registry & Marketplace Architecture | Accepted | `adr/ADR-009-Registry-Marketplace-Architecture.md` |
 | ADR-010 | Distribution & Release Architecture | Accepted | `adr/ADR-010-Distribution-Release-Architecture.md` |
 | ADR-011 | ADF Studio Architecture | Accepted | `adr/ADR-011-ADF-Studio-Architecture.md` |
+| ADR-012 | Workspace Experience Architecture | Accepted | `adr/ADR-012-Workspace-Experience-Architecture.md` |
 
 ## How to Add an ADR
 

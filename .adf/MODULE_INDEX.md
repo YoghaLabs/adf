@@ -13,9 +13,9 @@ Describes every module package. **Why:** prevents agents from implementing featu
 
 - **Purpose:** Desktop Control Center (not an IDE) for status, workspace, marketplace, runtime, release, settings.
 - **Why separate:** UX evolves independently; must not embed Core business logic.
-- **Status:** BUILD-013 Core shipped (`0.13.0-alpha`); deeper UX in BUILD-014+.
+- **Status:** BUILD-014 Workspace Experience shipped (`0.14.0-alpha`); Knowledge Graph next (BUILD-015).
 - **Depends on:** ADF Service Layer / SDK (via TS adapters); `prompts/`; `.adf` files.
-- **Owns:** Application shell, pages, Zustand stores, TS SDK adapters, Tauri scaffold.
+- **Owns:** Application shell, `features/workspace/`, pages, Zustand stores, TS SDK adapters, Tauri scaffold.
 
 ## adf-docs
 

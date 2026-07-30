@@ -2,9 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Version | `0.13.0-alpha` |
+| Version | `0.14.0-alpha` |
 | Branch | `develop` |
-| Build | `BUILD-013` ADF Studio Core — **complete** |
+| Build | `BUILD-014` Workspace Experience — **complete** |
 | Phase | 3 User Experience (in progress) |
-| Next | `BUILD-014` Workspace & Dashboard — **not started** |
-| Rule | UI → SDK → Services → Core; Studio has no business logic |
+| Next | `BUILD-015` Knowledge Graph — **not started** |
+| Rule | Workspace → Projects → Sessions; UI → SDK → Services → Core |

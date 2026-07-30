@@ -2,6 +2,12 @@
 
 Narrative history of meaningful repository changes. Complements `CHANGELOG.md` with context for AI resume.
 
+## 2026-07-30 — BUILD-014 Workspace Experience Platform
+
+- Workspace → Projects → Sessions hierarchy in Studio
+- ADR-012; docs; Vitest; version `0.14.0-alpha`
+- **STOP** before BUILD-015
+
 ## 2026-07-30 — BUILD-013 ADF Studio Core
 
 - `adf-studio/` Desktop Control Center (shell, pages, stores, SDK adapters, themes)
