@@ -5,6 +5,19 @@ import { WorkspacePage } from "@/pages/WorkspacePage";
 import { ProjectsPage } from "@/pages/ProjectsPage";
 import { MarketplacePage } from "@/pages/MarketplacePage";
 import { SearchPlatformPage } from "@/features/workspace/pages/SearchPlatformPage";
+import { VisualIntelligencePage } from "@/features/visual/pages/VisualIntelligencePage";
+import {
+  ContextGraphPage,
+  DependencyGraphPage,
+  KnowledgeGraphPage,
+  PackageGraphPage,
+  PluginGraphPage,
+  ProjectGraphPage,
+  ReleaseGraphPage,
+  RuntimeGraphPage,
+  SessionGraphPage,
+  WorkspaceGraphPage,
+} from "@/features/visual/pages/GraphPages";
 import {
   HelpPage,
   KnowledgePage,
@@ -26,6 +39,17 @@ export const studioRouter = createBrowserRouter([
       { path: "projects", element: <ProjectsPage /> },
       { path: "sessions", element: <SessionsPage /> },
       { path: "search", element: <SearchPlatformPage /> },
+      { path: "visual", element: <VisualIntelligencePage /> },
+      { path: "visual/knowledge", element: <KnowledgeGraphPage /> },
+      { path: "visual/dependency", element: <DependencyGraphPage /> },
+      { path: "visual/project", element: <ProjectGraphPage /> },
+      { path: "visual/workspace", element: <WorkspaceGraphPage /> },
+      { path: "visual/context", element: <ContextGraphPage /> },
+      { path: "visual/session", element: <SessionGraphPage /> },
+      { path: "visual/runtime", element: <RuntimeGraphPage /> },
+      { path: "visual/package", element: <PackageGraphPage /> },
+      { path: "visual/plugin", element: <PluginGraphPage /> },
+      { path: "visual/release", element: <ReleaseGraphPage /> },
       { path: "marketplace", element: <MarketplacePage /> },
       { path: "templates", element: <TemplatesPage /> },
       { path: "packages", element: <PackagesPage /> },

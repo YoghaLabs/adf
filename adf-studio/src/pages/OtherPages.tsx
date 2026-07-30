@@ -51,13 +51,17 @@ export function KnowledgePage() {
     <PageFrame
       testId="page-knowledge"
       title="Knowledge"
-      subtitle="Knowledge packs, context, memory, graphs — SDK surface only."
+      subtitle="Knowledge packs, context, memory, graphs — open Visual Intelligence for graphs."
     >
       <div className="grid gap-3 md:grid-cols-2">
         {["Knowledge Packs", "Context", "Memory", "Graphs"].map((label) => (
           <Card key={label}>
             <div className="font-medium">{label}</div>
-            <p className="studio-muted mt-1">Bound via Knowledge/Context services in later builds.</p>
+            <p className="studio-muted mt-1">
+              {label === "Graphs"
+                ? "See /visual/knowledge for the read-only Knowledge Graph."
+                : "Bound via Knowledge/Context services; visualization is UI-only."}
+            </p>
           </Card>
         ))}
       </div>
