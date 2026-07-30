@@ -17,5 +17,6 @@ Studio remains presentation-only.
 ## Immediate next steps
 
 1. Boot via this file
-2. Confirm six BUILD-020 commits on HEAD
+2. Review draft Full Operation path: `adf-docs/OPERABILITY_ROADMAP.md` (does not open BUILD-021)
 3. Demo / package / present using `adf-docs/RELEASE_NOTES.md` + `release/`
+4. GA gates remain the release track until FO charter is approved

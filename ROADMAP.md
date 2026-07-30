@@ -60,3 +60,7 @@
 ## Continuity
 
 Use `.adf/RESUME_ME.md`. Do **not** invent BUILD-021 without a new program charter.
+
+**Post-RC1 draft (review):** path to Full Operation (live control center → ecosystem → cloud)
+is drafted in `adf-docs/OPERABILITY_ROADMAP.md`. That document does **not** open BUILD-021
+until explicitly approved.
