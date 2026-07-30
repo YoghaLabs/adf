@@ -1,5 +1,13 @@
 import type { ServiceEnvelope } from "@/types/studio";
 import { studioConfig } from "@/config/studio";
+import {
+  buildSearchHits,
+  filterProjects,
+  sessionTimeline,
+  workspaceFixtureData,
+  workspaceSettings,
+  workspaceStats,
+} from "@/features/workspace/services/workspaceFixtures";
 
 /** Deterministic fixture envelopes mirroring ServiceResult shapes from adf-core. */
 export async function localFixtureProvider(
@@ -7,6 +15,8 @@ export async function localFixtureProvider(
   payload?: Record<string, unknown>,
 ): Promise<ServiceEnvelope> {
   const now = new Date().toISOString();
+  const { WORKSPACES, PROJECTS, SESSIONS, ACTIVITY, COMMANDS } = workspaceFixtureData();
+  const activeId = String(payload?.workspaceId ?? WORKSPACES[0]?.id ?? "ws-adf");
 
   switch (method) {
     case "runtime.status":
@@ -150,11 +160,12 @@ export async function localFixtureProvider(
       };
     case "release.list":
       return { ok: true, data: { releases: [], count: 0 } };
-    case "workspace.describe":
+    case "workspace.describe": {
+      const ws = WORKSPACES.find((w) => w.id === activeId) ?? WORKSPACES[0];
       return {
         ok: true,
         data: {
-          repoRoot: "/projects/adf",
+          repoRoot: ws?.path ?? "/projects/adf",
           version: studioConfig.version,
           build: studioConfig.build,
           branch: "develop",
@@ -166,24 +177,47 @@ export async function localFixtureProvider(
           },
         },
       };
+    }
     case "workspace.readiness":
       return { ok: true, data: { ready: true, checkedAt: now } };
-    case "projects.list":
-      return {
-        ok: true,
-        data: {
-          count: 1,
-          projects: [
-            {
-              id: "adf",
-              name: "ADF",
-              status: "active",
-              version: studioConfig.version,
-              updatedAt: now,
-            },
-          ],
-        },
-      };
+    case "workspace.list":
+      return { ok: true, data: { workspaces: WORKSPACES, count: WORKSPACES.length } };
+    case "workspace.switch": {
+      const profile = WORKSPACES.find((w) => w.id === payload?.workspaceId) ?? WORKSPACES[0];
+      return { ok: true, data: { activeId: profile.id, profile } };
+    }
+    case "workspace.profile": {
+      const profile = WORKSPACES.find((w) => w.id === activeId) ?? WORKSPACES[0];
+      return { ok: true, data: profile };
+    }
+    case "workspace.settings":
+      return { ok: true, data: workspaceSettings(activeId) };
+    case "workspace.stats":
+      return { ok: true, data: workspaceStats(activeId) };
+    case "workspace.activity": {
+      const items = ACTIVITY.filter((a) => !payload?.workspaceId || a.workspaceId === payload.workspaceId);
+      return { ok: true, data: { items, count: items.length } };
+    }
+    case "workspace.favorites": {
+      const projects = filterProjects(activeId, { favorite: true });
+      return { ok: true, data: { projects, count: projects.length } };
+    }
+    case "workspace.search": {
+      const hits = buildSearchHits(String(payload?.query ?? ""), "global").filter(
+        (h) => h.kind === "project" || h.kind === "workspace" || h.kind === "session",
+      );
+      return { ok: true, data: { hits, count: hits.length } };
+    }
+    case "projects.list": {
+      const projects = filterProjects(undefined, { archived: false }).map((p) => ({
+        id: p.id,
+        name: p.name,
+        status: p.status,
+        version: p.version,
+        updatedAt: p.updatedAt,
+      }));
+      return { ok: true, data: { projects, count: projects.length } };
+    }
     case "projects.info":
       return {
         ok: true,
@@ -192,6 +226,105 @@ export async function localFixtureProvider(
           version_file: studioConfig.version,
         },
       };
+    case "projects.explorer":
+    case "projects.tree": {
+      const projects = filterProjects(payload?.workspaceId ? String(payload.workspaceId) : undefined);
+      return { ok: true, data: { projects, tree: projects, count: projects.length } };
+    }
+    case "projects.favorites": {
+      const projects = filterProjects(
+        payload?.workspaceId ? String(payload.workspaceId) : undefined,
+        { favorite: true },
+      );
+      return { ok: true, data: { projects, count: projects.length } };
+    }
+    case "projects.pinned": {
+      const projects = filterProjects(
+        payload?.workspaceId ? String(payload.workspaceId) : undefined,
+        { pinned: true },
+      );
+      return { ok: true, data: { projects, count: projects.length } };
+    }
+    case "projects.archived": {
+      const projects = filterProjects(
+        payload?.workspaceId ? String(payload.workspaceId) : undefined,
+        { archived: true },
+      );
+      return { ok: true, data: { projects, count: projects.length } };
+    }
+    case "projects.recent": {
+      const projects = [...filterProjects(payload?.workspaceId ? String(payload.workspaceId) : undefined)]
+        .filter((p) => !p.archived)
+        .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+        .slice(0, 5);
+      return { ok: true, data: { projects, count: projects.length } };
+    }
+    case "sessions.list":
+    case "sessions.history": {
+      const sessions = SESSIONS.filter(
+        (s) => !payload?.workspaceId || s.workspaceId === payload.workspaceId,
+      );
+      return { ok: true, data: { sessions, count: sessions.length } };
+    }
+    case "sessions.current": {
+      const session = SESSIONS.find((s) => s.status === "active") ?? null;
+      return { ok: true, data: { session } };
+    }
+    case "sessions.recent": {
+      const sessions = [...SESSIONS]
+        .filter((s) => !payload?.workspaceId || s.workspaceId === payload.workspaceId)
+        .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+        .slice(0, 5);
+      return { ok: true, data: { sessions, count: sessions.length } };
+    }
+    case "sessions.resume": {
+      const session = SESSIONS.find((s) => s.id === payload?.sessionId);
+      if (!session) return { ok: false, data: {}, error: "session not found" };
+      return { ok: true, data: { session: { ...session, status: "active", updatedAt: now } } };
+    }
+    case "sessions.close": {
+      const session = SESSIONS.find((s) => s.id === payload?.sessionId);
+      if (!session) return { ok: false, data: {}, error: "session not found" };
+      return { ok: true, data: { session: { ...session, status: "closed", updatedAt: now } } };
+    }
+    case "sessions.timeline": {
+      const events = sessionTimeline(String(payload?.sessionId ?? "sess-001"));
+      return { ok: true, data: { events, count: events.length } };
+    }
+    case "search.global": {
+      const hits = buildSearchHits(String(payload?.query ?? ""), "global");
+      return { ok: true, data: { hits, count: hits.length } };
+    }
+    case "search.projects": {
+      const hits = buildSearchHits(String(payload?.query ?? ""), "project");
+      return { ok: true, data: { hits, count: hits.length } };
+    }
+    case "search.workspace": {
+      const hits = buildSearchHits(String(payload?.query ?? ""), "workspace");
+      return { ok: true, data: { hits, count: hits.length } };
+    }
+    case "search.commands": {
+      const q = String(payload?.query ?? "").toLowerCase();
+      const actions = COMMANDS.filter(
+        (c) => !q || c.label.toLowerCase().includes(q) || c.id.includes(q),
+      );
+      const hits = buildSearchHits(String(payload?.query ?? ""), "command");
+      return { ok: true, data: { hits, count: hits.length, actions } };
+    }
+    case "search.packages": {
+      const hits = buildSearchHits(String(payload?.query ?? ""), "package");
+      return { ok: true, data: { hits, count: hits.length } };
+    }
+    case "activity.feed": {
+      const items = ACTIVITY.filter(
+        (a) => !payload?.workspaceId || a.workspaceId === payload.workspaceId,
+      );
+      return { ok: true, data: { items, count: items.length } };
+    }
+    case "activity.recent": {
+      const items = ACTIVITY.filter((a) => !payload?.kind || a.kind === payload.kind).slice(0, 10);
+      return { ok: true, data: { items, count: items.length } };
+    }
     default:
       return { ok: false, data: {}, error: `unknown SDK method: ${method}` };
   }

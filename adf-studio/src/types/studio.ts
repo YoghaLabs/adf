@@ -56,3 +56,15 @@ export type NotificationItem = {
   tone: "info" | "success" | "danger";
   createdAt: string;
 };
+
+export type {
+  ActivityItem,
+  CommandAction,
+  ProjectExplorerItem,
+  SearchHit,
+  SessionSummary,
+  SessionTimelineEvent,
+  WorkspaceProfile,
+  WorkspaceSettingsView,
+  WorkspaceStats,
+} from "@/features/workspace/types";

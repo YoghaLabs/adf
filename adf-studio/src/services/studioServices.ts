@@ -9,4 +9,7 @@ export const studioServices = {
   release: () => studioSdk.release,
   workspace: () => studioSdk.workspace,
   projects: () => studioSdk.projects,
+  sessions: () => studioSdk.sessions,
+  search: () => studioSdk.search,
+  activity: () => studioSdk.activity,
 };

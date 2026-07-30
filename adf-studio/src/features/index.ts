@@ -1,6 +1,10 @@
-/** Feature modules — compose pages/widgets without business logic. */
-export const features = {
+export const featureIds = {
   dashboard: "dashboard",
   marketplace: "marketplace",
   workspace: "workspace",
+  projects: "projects",
+  sessions: "sessions",
+  search: "search",
 } as const;
+
+export * from "@/features/workspace";
