@@ -8,3 +8,5 @@
 | Phase | 4 Production — RC1 shipped |
 | Next | GA `1.0.0` gates (signing/coverage) — not a new platform BUILD |
 | Rule | Architecture frozen; docs authoritative; no BUILD-021 without charter |
+| Legal | Package initialized at `/legal` (post-RC1) |
+| Business | BUSINESS-001 foundation at `business/ADF-v1.0/` (LOCKED) |

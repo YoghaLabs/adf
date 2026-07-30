@@ -4,7 +4,14 @@
 
 ## [Unreleased]
 
+### Added
+- Business Strategy package initialized under `business/ADF-v1.0/` (BUSINESS-001 — not BUILD-021)
+- Legal Package initialized under `legal/` (post-RC1 enhancement — not BUILD-021)
+  - Copyright, ADF Community License, Notice, Authors, Trademark (™), EULA
+  - Third-party notices, Contributing, Code of Conduct
+
 ### Planned
+- BUSINESS-002 Executive Package (business layer)
 - GA `1.0.0` — signing, notarization, optional coverage thresholds (no new platforms)
 
 ## [1.0.0-rc1] — 2026-07-30

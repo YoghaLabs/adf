@@ -32,7 +32,9 @@ adf/
 ├── prompts/           # Prompt library (build, resume, handoff, audit)
 ├── testing/           # Test harness and contract tests
 ├── tools/             # Developer and automation tools
-└── release/           # Release packaging and checklists
+├── release/           # Release packaging and checklists
+├── legal/             # Copyright, license, EULA, trademarks, conduct
+└── business/          # Business Strategy SSOT (ADF-v1.0 package)
 ```
 
 Root files:
@@ -40,11 +42,11 @@ Root files:
 | File | Role |
 |------|------|
 | `README.md` | Project entry point |
-| `LICENSE` | MIT license |
+| `LICENSE` | Legacy root license file (see Legal Package) |
 | `CHANGELOG.md` | Versioned change history |
 | `VERSION` | Project version, current build, and branch |
 | `ROADMAP.md` | BUILD-001 → BUILD-020 plan |
-| `CONTRIBUTING.md` | Contribution rules |
+| `CONTRIBUTING.md` | Contribution rules (see also `legal/CONTRIBUTING.md`) |
 | `.gitignore` | Ignored artifacts and secrets |
 
 ## Build Roadmap
@@ -124,6 +126,41 @@ From `.adf/AI_CONTRACT.md`:
 - Never create placeholders
 - Always update `PROJECT_STATE`, `CHANGELOG`, and `TODOS` when status changes
 
-## License
+## Business Strategy
 
-MIT — see `LICENSE`.
+Business strategy for ADF v1.0 lives in **`business/ADF-v1.0/`**.
+
+This package is the **Business SSOT** for investors, enterprise customers, partners,
+internal management, sales, marketing, and future team members.
+
+| Item | Path |
+|------|------|
+| Package README | [`business/ADF-v1.0/README.md`](business/ADF-v1.0/README.md) |
+| Business roadmap | [`business/ADF-v1.0/BUSINESS_ROADMAP.md`](business/ADF-v1.0/BUSINESS_ROADMAP.md) |
+| Business rules | [`business/ADF-v1.0/BUSINESS_RULES.md`](business/ADF-v1.0/BUSINESS_RULES.md) |
+| Document template | [`business/ADF-v1.0/DOCUMENT_TEMPLATE.md`](business/ADF-v1.0/DOCUMENT_TEMPLATE.md) |
+
+**Current business phase:** BUSINESS-001 Foundation (complete)  
+**Next:** BUSINESS-002 Executive Package — not started  
+**Structure:** LOCKED (`00-Executive` … `10-Launch` + `assets`)
+
+Business follows Product. Business must not contradict Engineering. Engineering must not contradict Business.
+
+## Legal
+
+ADF legal documentation for Community Edition lives in **`/legal`**:
+
+| Document | Path |
+|----------|------|
+| Copyright | [`legal/COPYRIGHT.md`](legal/COPYRIGHT.md) |
+| License (ADF Community License) | [`legal/LICENSE.md`](legal/LICENSE.md) |
+| Notice | [`legal/NOTICE.md`](legal/NOTICE.md) |
+| Authors | [`legal/AUTHORS.md`](legal/AUTHORS.md) |
+| Trademark (™) | [`legal/TRADEMARK.md`](legal/TRADEMARK.md) |
+| EULA | [`legal/EULA.md`](legal/EULA.md) |
+| Third-party notices | [`legal/THIRD_PARTY.md`](legal/THIRD_PARTY.md) |
+| Contributing | [`legal/CONTRIBUTING.md`](legal/CONTRIBUTING.md) |
+| Code of Conduct | [`legal/CODE_OF_CONDUCT.md`](legal/CODE_OF_CONDUCT.md) |
+
+Copyright (c) 2026 Yogha Prayoto. All Rights Reserved.  
+Commercial use requires permission from the copyright holder.
