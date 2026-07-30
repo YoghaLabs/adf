@@ -23,6 +23,16 @@ const WORKSPACES: WorkspaceProfile[] = [
     updatedAt: "2026-07-30T08:00:00.000Z",
   },
   {
+    id: "ws-oms",
+    name: "OMS / Portal Jabar",
+    path: "C:/projects/plnup2djabar/2026/oms",
+    description: "OMS product repo adopted as ADF-linked project (sibling of adf)",
+    favorite: true,
+    projectCount: 1,
+    sessionCount: 1,
+    updatedAt: "2026-07-31T00:00:00.000Z",
+  },
+  {
     id: "ws-labs",
     name: "YoghaLabs Sandbox",
     path: "/projects/yoghalabs",
@@ -69,6 +79,18 @@ const PROJECTS: ProjectExplorerItem[] = [
     path: "/projects/adf/adf-examples",
     favorite: false,
     pinned: false,
+    archived: false,
+  },
+  {
+    id: "oms",
+    name: "OMS",
+    status: "active",
+    version: "prod",
+    updatedAt: "2026-07-31T00:00:00.000Z",
+    workspaceId: "ws-oms",
+    path: "C:/projects/plnup2djabar/2026/oms",
+    favorite: true,
+    pinned: true,
     archived: false,
   },
   {
@@ -124,6 +146,15 @@ const SESSIONS: SessionSummary[] = [
     status: "closed",
     startedAt: "2026-07-20T10:00:00.000Z",
     updatedAt: "2026-07-20T15:00:00.000Z",
+  },
+  {
+    id: "sess-oms-001",
+    title: "OMS × ADF adoption",
+    projectId: "oms",
+    workspaceId: "ws-oms",
+    status: "active",
+    startedAt: "2026-07-31T00:00:00.000Z",
+    updatedAt: "2026-07-31T00:30:00.000Z",
   },
 ];
 
