@@ -3,7 +3,7 @@
 **Version:** `1.0.0-rc1` (see root `VERSION`)  
 **Branch:** `develop` (merge to `main` after each completed phase)  
 **Engineering:** BUILD-001 … BUILD-020 ✅ — Production Release Candidate  
-**Legal:** `/legal` ✅ · **Business:** BUSINESS-001–002 ✅ · Next BUSINESS-003
+**Legal:** `/legal` ✅ · **Business:** BUSINESS-001–003 ✅ · Next BUSINESS-004
 
 
 ADF is an AI-first development framework that keeps project knowledge, architecture decisions, build state, and AI operating contracts inside the repository. Humans and AI agents share the same source of truth so work can pause, hand off, and resume without losing context.
@@ -58,7 +58,8 @@ Root files:
 | Legal Package (`/legal`) | ✅ Initialized |
 | Business BUSINESS-001 Foundation | ✅ Complete |
 | Business BUSINESS-002 Executive | ✅ Complete |
-| Business BUSINESS-003 … 011 | ⏳ Next: Product Strategy |
+| Business BUSINESS-003 Product Strategy | ✅ Complete |
+| Business BUSINESS-004 … 011 | ⏳ Next: Market Analysis |
 | GA `1.0.0` (signing / coverage) | ⏳ Release gate (not a new BUILD) |
 
 **Workflow:** finish work on `develop` → update this progress → merge `develop` into `main`.
@@ -154,16 +155,17 @@ internal management, sales, marketing, and future team members.
 | Business rules | [`business/ADF-v1.0/BUSINESS_RULES.md`](business/ADF-v1.0/BUSINESS_RULES.md) |
 | Document template | [`business/ADF-v1.0/DOCUMENT_TEMPLATE.md`](business/ADF-v1.0/DOCUMENT_TEMPLATE.md) |
 
-**Current business phase:** BUSINESS-002 Executive ✅ (`B1.1.0`)  
-**Next:** BUSINESS-003 Product Strategy — not started  
+**Current business phase:** BUSINESS-003 Product Strategy ✅ (`B1.2.0`)  
+**Next:** BUSINESS-004 Market Analysis — not started  
 **Structure:** LOCKED (`00-Executive` … `10-Launch` + `assets`)  
-**Executive Package:** [`business/ADF-v1.0/00-Executive/`](business/ADF-v1.0/00-Executive/)
+**Executive Package:** [`business/ADF-v1.0/00-Executive/`](business/ADF-v1.0/00-Executive/)  
+**Product Strategy:** [`business/ADF-v1.0/01-Product/`](business/ADF-v1.0/01-Product/)
 
 | Business phase | Status |
 |----------------|--------|
 | BUSINESS-001 Foundation | ✅ |
 | BUSINESS-002 Executive | ✅ |
-| BUSINESS-003 Product | ⏳ |
+| BUSINESS-003 Product | ✅ |
 | BUSINESS-004 Market | ⏳ |
 | BUSINESS-005 Business Model | ⏳ |
 | BUSINESS-006 Sales | ⏳ |

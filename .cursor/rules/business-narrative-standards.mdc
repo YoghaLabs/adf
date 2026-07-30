@@ -1,0 +1,29 @@
+---
+description: ADF business narrative standards (BUSINESS-002 → 011)
+globs: business/**/*
+alwaysApply: false
+---
+
+# Business Narrative Standards (LOCKED)
+
+Applies to all work under `business/ADF-v1.0/` from BUSINESS-002 through BUSINESS-011.
+Authoritative detail: `business/ADF-v1.0/BUSINESS_RULES.md` (BD-007, BD-008).
+
+## Required
+
+- Professional, diligence-ready prose — not promotional copy
+- Capability claims must match BUILD-001 … BUILD-020 (`1.0.0-rc1`) or be labeled roadmap
+- Narratives must be suitable for investors, enterprise customers, and government
+- Keep positioning consistent with the Executive Package unless a new BD entry supersedes it
+- Product editions follow BD-008: useful Community; Pro for software houses/consultants/teams; Enterprise = governance/audit/deployment/support; Cloud = future only
+
+## Forbidden without evidence
+
+- “Best in the world,” “revolutionary,” “number one,” “industry-leading,” and similar hype
+- Exaggerated market or technology claims
+- Inventing features that are not shipped in RC1
+- Presenting Cloud Edition as currently available
+
+## Stop rule
+
+Do not start the next BUSINESS phase unless explicitly instructed.

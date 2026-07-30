@@ -39,12 +39,31 @@ Index of authoritative business documents for ADF v1.0.
 | `BRAND_POSITIONING.md` | Brand position |
 | `LONG_TERM_VISION.md` | 3 / 5 / 10 year horizon |
 
+## Product Strategy (`01-Product/` — BUSINESS-003 ✅)
+
+| Document | Description |
+|----------|-------------|
+| `README.md` | Purpose, scope, reading order |
+| `PRODUCT_STRATEGY.md` | Commercial product strategy SSOT |
+| `PRODUCT_POSITIONING.md` | Framework / platform positioning |
+| `VALUE_PROPOSITION.md` | Value by audience |
+| `PRODUCT_EDITIONS.md` | Community / Professional / Enterprise / Cloud |
+| `FEATURE_MATRIX.md` | Edition comparison with ship labels |
+| `PRODUCT_ROADMAP.md` | 1.x / 2.x / 3.x themes |
+| `PRODUCT_LIFECYCLE.md` | Alpha → EOS |
+| `PACKAGING_STRATEGY.md` | Packages and bundles |
+| `LICENSING_STRATEGY.md` | Licensing philosophy (not legal text) |
+| `PRICING_PRINCIPLES.md` | Pricing philosophy (no numbers) |
+| `UPGRADE_PATH.md` | Edition upgrade ladder |
+| `PRODUCT_DIFFERENTIATORS.md` | Structural strengths |
+| `COMPETITIVE_POSITION.md` | Category positioning |
+
 ## Locked content folders
 
 | Folder | Phase focus |
 |--------|-------------|
 | `00-Executive/` | BUSINESS-002 ✅ |
-| `01-Product/` | BUSINESS-003 |
+| `01-Product/` | BUSINESS-003 ✅ |
 | `02-Market/` | BUSINESS-004 |
 | `03-Business/` | BUSINESS-005 |
 | `04-Sales/` | BUSINESS-006 |

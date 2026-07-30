@@ -1,5 +1,26 @@
 # Business Changelog
 
+## [B1.2.0] — 2026-07-30 — BUSINESS-003
+
+### Added
+
+- Complete Product Strategy package in `01-Product/` (14 documents)
+- Edition definitions, feature matrix, upgrade path
+- Product roadmap themes and lifecycle stages
+- Packaging, licensing strategy, pricing principles (no numbers)
+- BD-008 Product Edition Principles
+
+### Changed
+
+- Business package version `B1.1.0` → `B1.2.0`
+- BUSINESS-003 marked complete; next is BUSINESS-004 (not started)
+
+### Notes
+
+- Not BUILD-021
+- Engineering architecture unchanged
+- Stop before BUSINESS-004
+
 ## [B1.1.0] — 2026-07-30 — BUSINESS-002
 
 ### Added

@@ -4,6 +4,11 @@
 
 Copy this structure. Keep section headings stable so packages remain comparable across phases.
 
+**Writing (LOCKED):** No promotional excess. No unfounded superlatives. Capability
+claims must match BUILD-001…020 (`1.0.0-rc1`) or be labeled roadmap. Tone must suit
+investors, enterprise customers, and government. See `BUSINESS_RULES.md` → Narrative
+Standards (BD-007).
+
 ---
 
 # Title

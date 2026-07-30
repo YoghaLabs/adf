@@ -10,6 +10,8 @@ Decision log for the ADF business package. Record durable choices here.
 | BD-004 | 2026-07-30 | Business must not contradict Engineering; Engineering must not contradict Business | Mutual non-contradiction preserves trust | Accepted |
 | BD-005 | 2026-07-30 | Business follows Product | Strategy describes what is shipped or clearly roadmap-labeled | Accepted |
 | BD-006 | 2026-07-30 | BUSINESS phases 001–011 execute in order | Predictable delivery for external stakeholders | Accepted |
+| BD-007 | 2026-07-30 | Lock Narrative Standards for BUSINESS-002 → 011 | Enterprise-grade, no hype; claims must match BUILD-001…020; audience = investor / enterprise / government | Accepted |
+| BD-008 | 2026-07-30 | Lock Product Edition Principles for BUSINESS-003 → 011 | Useful Community; Pro for software houses/consultants/teams; Enterprise = governance/audit/deployment/support; Cloud = future only; no false feature promises | Accepted |
 
 ## Decision Rules
 

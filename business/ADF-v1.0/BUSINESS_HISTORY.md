@@ -46,6 +46,32 @@
 - Human remains decision maker; AI is participant
 - Stop before BUSINESS-003 unless explicitly instructed
 
+## BUSINESS-003 — Product Strategy
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Product version | `1.0.0-rc1` |
+| Business package | `B1.2.0` |
+| Result | **Completed** |
+
+### Delivered
+
+- Full Product Strategy package under `01-Product/`
+- Editions: Community, Professional, Enterprise, Cloud (future)
+- Feature matrix with ship vs packaging vs roadmap labels
+- Roadmap themes for 1.x / 2.x / 3.x; lifecycle vocabulary
+- Packaging, licensing philosophy, pricing principles (no numbers)
+- BD-008 Product Edition Principles locked
+
+### Outcomes That Must Not Be Undone
+
+- Product Strategy is SSOT for commercial product decisions
+- Community Edition remains useful (not crippleware)
+- Cloud Edition is future vision only
+- Capability claims labeled shipped vs roadmap
+- Stop before BUSINESS-004 unless explicitly instructed
+
 ## Template for Future Entries
 
 ```markdown
