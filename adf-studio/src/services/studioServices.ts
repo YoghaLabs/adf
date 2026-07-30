@@ -32,4 +32,12 @@ export const studioServices = {
   artifacts: () => studioSdk.artifacts,
   execution: () => studioSdk.execution,
   approvals: () => studioSdk.approvals,
+  organizations: () => studioSdk.organizations,
+  identity: () => studioSdk.identity,
+  roles: () => studioSdk.roles,
+  permissions: () => studioSdk.permissions,
+  audit: () => studioSdk.audit,
+  compliance: () => studioSdk.compliance,
+  licenses: () => studioSdk.licenses,
+  analytics: () => studioSdk.analytics,
 };

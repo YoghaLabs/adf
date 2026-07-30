@@ -58,6 +58,28 @@ import {
   WORKFLOW_INSTANCES,
   WORKFLOW_TEMPLATES,
 } from "@/features/orchestration/services/orchestrationFixtures";
+import {
+  ANALYTICS,
+  AUDIT_EVENTS,
+  COMPLIANCE_CONTROLS,
+  COMPLIANCE_EVIDENCE,
+  ENTERPRISE_INTEGRATIONS,
+  ENVIRONMENTS,
+  getEnterpriseOverview,
+  GROUPS,
+  IDENTITY_PROVIDERS,
+  IDENTITY_SESSIONS,
+  LICENSES,
+  ORGANIZATIONS,
+  ORG_UNITS,
+  PERMISSION_MATRIX,
+  PERMISSIONS,
+  POLICIES,
+  ROLES,
+  searchAudit,
+  TEAMS,
+  USERS,
+} from "@/features/enterprise/services/enterpriseFixtures";
 
 /** Deterministic fixture envelopes mirroring ServiceResult shapes from adf-core. */
 export async function localFixtureProvider(
@@ -496,6 +518,56 @@ export async function localFixtureProvider(
       return { ok: true, data: { integrations: INTEGRATIONS, count: INTEGRATIONS.length } };
     case "approvals.list":
       return { ok: true, data: { gates: APPROVAL_GATES, count: APPROVAL_GATES.length } };
+    case "organizations.overview":
+      return { ok: true, data: getEnterpriseOverview() };
+    case "organizations.list":
+      return { ok: true, data: { organizations: ORGANIZATIONS, count: ORGANIZATIONS.length } };
+    case "organizations.units":
+      return { ok: true, data: { units: ORG_UNITS, count: ORG_UNITS.length } };
+    case "organizations.teams":
+      return { ok: true, data: { teams: TEAMS, count: TEAMS.length } };
+    case "organizations.integrations":
+      return {
+        ok: true,
+        data: { integrations: ENTERPRISE_INTEGRATIONS, count: ENTERPRISE_INTEGRATIONS.length },
+      };
+    case "organizations.environments":
+      return { ok: true, data: { environments: ENVIRONMENTS, count: ENVIRONMENTS.length } };
+    case "organizations.policies":
+      return { ok: true, data: { policies: POLICIES, count: POLICIES.length } };
+    case "identity.users":
+      return { ok: true, data: { users: USERS, count: USERS.length } };
+    case "identity.groups":
+      return { ok: true, data: { groups: GROUPS, count: GROUPS.length } };
+    case "identity.providers":
+      return { ok: true, data: { providers: IDENTITY_PROVIDERS, count: IDENTITY_PROVIDERS.length } };
+    case "identity.sessions":
+      return { ok: true, data: { sessions: IDENTITY_SESSIONS, count: IDENTITY_SESSIONS.length } };
+    case "roles.list":
+      return { ok: true, data: { roles: ROLES, count: ROLES.length } };
+    case "permissions.list":
+      return { ok: true, data: { permissions: PERMISSIONS, count: PERMISSIONS.length } };
+    case "permissions.matrix":
+      return { ok: true, data: { matrix: PERMISSION_MATRIX, count: PERMISSION_MATRIX.length } };
+    case "audit.list":
+      return { ok: true, data: { events: AUDIT_EVENTS, count: AUDIT_EVENTS.length } };
+    case "audit.search": {
+      const events = searchAudit(String(payload?.query ?? ""));
+      return { ok: true, data: { events, count: events.length } };
+    }
+    case "audit.export":
+      return {
+        ok: true,
+        data: { immutable: true as const, count: AUDIT_EVENTS.length, events: AUDIT_EVENTS },
+      };
+    case "compliance.controls":
+      return { ok: true, data: { controls: COMPLIANCE_CONTROLS, count: COMPLIANCE_CONTROLS.length } };
+    case "compliance.evidence":
+      return { ok: true, data: { evidence: COMPLIANCE_EVIDENCE, count: COMPLIANCE_EVIDENCE.length } };
+    case "licenses.list":
+      return { ok: true, data: { licenses: LICENSES, count: LICENSES.length } };
+    case "analytics.snapshot":
+      return { ok: true, data: ANALYTICS };
     default:
       return { ok: false, data: {}, error: `unknown SDK method: ${method}` };
   }

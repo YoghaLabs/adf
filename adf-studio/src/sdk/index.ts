@@ -63,6 +63,25 @@ import type {
   WorkflowExecutionPlan,
   WorkflowInstance,
   WorkflowTemplate,
+  AnalyticsSnapshot,
+  AuditEvent,
+  ComplianceControl,
+  ComplianceEvidence,
+  EnterpriseGroup,
+  EnterpriseIntegration,
+  EnterpriseOverview,
+  EnterpriseRole,
+  EnterpriseTeam,
+  EnterpriseUser,
+  EnvironmentConfig,
+  GovernancePolicy,
+  IdentityProvider,
+  IdentitySession,
+  LicenseInfo,
+  Organization,
+  OrgUnit,
+  Permission,
+  PermissionMatrixCell,
 } from "@/types/studio";
 import { studioBridge } from "@/sdk/bridge";
 
@@ -494,6 +513,106 @@ export class ApprovalClient {
   }
 }
 
+export class OrganizationClient {
+  overview(): Promise<ServiceEnvelope<EnterpriseOverview>> {
+    return studioBridge.invoke("organizations.overview");
+  }
+
+  list(): Promise<ServiceEnvelope<{ organizations: Organization[]; count: number }>> {
+    return studioBridge.invoke("organizations.list");
+  }
+
+  units(): Promise<ServiceEnvelope<{ units: OrgUnit[]; count: number }>> {
+    return studioBridge.invoke("organizations.units");
+  }
+
+  teams(): Promise<ServiceEnvelope<{ teams: EnterpriseTeam[]; count: number }>> {
+    return studioBridge.invoke("organizations.teams");
+  }
+
+  integrations(): Promise<ServiceEnvelope<{ integrations: EnterpriseIntegration[]; count: number }>> {
+    return studioBridge.invoke("organizations.integrations");
+  }
+
+  environments(): Promise<ServiceEnvelope<{ environments: EnvironmentConfig[]; count: number }>> {
+    return studioBridge.invoke("organizations.environments");
+  }
+
+  policies(): Promise<ServiceEnvelope<{ policies: GovernancePolicy[]; count: number }>> {
+    return studioBridge.invoke("organizations.policies");
+  }
+}
+
+export class IdentityClient {
+  users(): Promise<ServiceEnvelope<{ users: EnterpriseUser[]; count: number }>> {
+    return studioBridge.invoke("identity.users");
+  }
+
+  groups(): Promise<ServiceEnvelope<{ groups: EnterpriseGroup[]; count: number }>> {
+    return studioBridge.invoke("identity.groups");
+  }
+
+  providers(): Promise<ServiceEnvelope<{ providers: IdentityProvider[]; count: number }>> {
+    return studioBridge.invoke("identity.providers");
+  }
+
+  sessions(): Promise<ServiceEnvelope<{ sessions: IdentitySession[]; count: number }>> {
+    return studioBridge.invoke("identity.sessions");
+  }
+}
+
+export class RoleClient {
+  list(): Promise<ServiceEnvelope<{ roles: EnterpriseRole[]; count: number }>> {
+    return studioBridge.invoke("roles.list");
+  }
+}
+
+export class PermissionClient {
+  list(): Promise<ServiceEnvelope<{ permissions: Permission[]; count: number }>> {
+    return studioBridge.invoke("permissions.list");
+  }
+
+  matrix(): Promise<ServiceEnvelope<{ matrix: PermissionMatrixCell[]; count: number }>> {
+    return studioBridge.invoke("permissions.matrix");
+  }
+}
+
+export class AuditClient {
+  list(): Promise<ServiceEnvelope<{ events: AuditEvent[]; count: number }>> {
+    return studioBridge.invoke("audit.list");
+  }
+
+  search(query: string): Promise<ServiceEnvelope<{ events: AuditEvent[]; count: number }>> {
+    return studioBridge.invoke("audit.search", { query });
+  }
+
+  export(): Promise<ServiceEnvelope<{ immutable: true; count: number; events: AuditEvent[] }>> {
+    return studioBridge.invoke("audit.export");
+  }
+}
+
+export class ComplianceClient {
+  controls(): Promise<ServiceEnvelope<{ controls: ComplianceControl[]; count: number }>> {
+    return studioBridge.invoke("compliance.controls");
+  }
+
+  evidence(): Promise<ServiceEnvelope<{ evidence: ComplianceEvidence[]; count: number }>> {
+    return studioBridge.invoke("compliance.evidence");
+  }
+}
+
+export class LicenseClient {
+  list(): Promise<ServiceEnvelope<{ licenses: LicenseInfo[]; count: number }>> {
+    return studioBridge.invoke("licenses.list");
+  }
+}
+
+export class AnalyticsClient {
+  snapshot(): Promise<ServiceEnvelope<AnalyticsSnapshot>> {
+    return studioBridge.invoke("analytics.snapshot");
+  }
+}
+
 export class StudioSdk {
   readonly runtime = new RuntimeClient();
   readonly generator = new GeneratorClient();
@@ -526,6 +645,14 @@ export class StudioSdk {
   readonly artifacts = new ArtifactClient();
   readonly execution = new ExecutionClient();
   readonly approvals = new ApprovalClient();
+  readonly organizations = new OrganizationClient();
+  readonly identity = new IdentityClient();
+  readonly roles = new RoleClient();
+  readonly permissions = new PermissionClient();
+  readonly audit = new AuditClient();
+  readonly compliance = new ComplianceClient();
+  readonly licenses = new LicenseClient();
+  readonly analytics = new AnalyticsClient();
 }
 
 export const studioSdk = new StudioSdk();

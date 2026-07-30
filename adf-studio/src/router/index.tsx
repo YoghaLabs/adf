@@ -30,6 +30,7 @@ import {
 } from "@/pages/OtherPages";
 import { CollaborationPlatformPage } from "@/features/collaboration/pages/CollaborationPlatformPage";
 import { OrchestrationPlatformPage } from "@/features/orchestration/pages/OrchestrationPlatformPage";
+import { EnterpriseGovernancePage } from "@/features/enterprise/pages/EnterpriseGovernancePage";
 
 export const studioRouter = createBrowserRouter([
   {
@@ -42,6 +43,7 @@ export const studioRouter = createBrowserRouter([
       { path: "sessions", element: <SessionsPage /> },
       { path: "collaboration", element: <CollaborationPlatformPage /> },
       { path: "orchestration", element: <OrchestrationPlatformPage /> },
+      { path: "enterprise", element: <EnterpriseGovernancePage /> },
       { path: "search", element: <SearchPlatformPage /> },
       { path: "visual", element: <VisualIntelligencePage /> },
       { path: "visual/knowledge", element: <KnowledgeGraphPage /> },

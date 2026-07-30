@@ -17,6 +17,7 @@ import {
   Network,
   Users,
   Workflow,
+  Building2,
 } from "lucide-react";
 import { studioConfig } from "@/config/studio";
 import { useSettingsStore } from "@/stores/settingsStore";
@@ -29,6 +30,7 @@ const icons: Record<string, ComponentType<{ className?: string }>> = {
   sessions: Timer,
   collaboration: Users,
   orchestration: Workflow,
+  enterprise: Building2,
   visual: Network,
   marketplace: Boxes,
   knowledge: Library,

@@ -1,7 +1,7 @@
 export const studioConfig = {
   name: "ADF Studio",
-  version: "0.18.0-alpha",
-  build: "BUILD-018",
+  version: "0.19.0-alpha",
+  build: "BUILD-019",
   defaultWorkspace: "ws-adf",
   navigation: [
     { id: "dashboard", label: "Dashboard", path: "/" },
@@ -10,6 +10,7 @@ export const studioConfig = {
     { id: "sessions", label: "Sessions", path: "/sessions" },
     { id: "collaboration", label: "Collaboration", path: "/collaboration" },
     { id: "orchestration", label: "Orchestration", path: "/orchestration" },
+    { id: "enterprise", label: "Enterprise", path: "/enterprise" },
     { id: "visual", label: "Visual", path: "/visual" },
     { id: "runtime", label: "Runtime", path: "/runtime" },
     { id: "marketplace", label: "Marketplace", path: "/marketplace" },
