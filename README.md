@@ -60,8 +60,9 @@ Root files:
 | Business BUSINESS-002 Executive | ✅ Complete |
 | Business BUSINESS-003 Product Strategy | ✅ Complete |
 | Business BUSINESS-004 Market Analysis | ✅ Complete |
-| Business BUSINESS-005 … 011 | ⏳ Next: Business Model |
-| GA `1.0.0` (signing / coverage) | ⏳ Release gate (not a new BUILD) |
+| Business BUSINESS-005 … 011 | ⏳ Next: Business Model (not started) |
+| Product Validation-001 Quick Start | ✅ Complete |
+| GA `1.0.0` (signing / coverage / Quick Start wizard gate) | ⏳ Release gate (not a new BUILD) |
 
 **Workflow:** finish work on `develop` → update this progress → merge `develop` into `main`.
 
@@ -111,8 +112,18 @@ Legal Package + BUSINESS-001 … 011  (post-RC1 business layer)
 
 ## How to Start
 
+**Fast path (humans):** [`adf-docs/quickstart/README.md`](adf-docs/quickstart/README.md)
+
+```bash
+git clone https://github.com/YoghaLabs/adf.git
+cd adf
+./install          # Windows: .\install.ps1
+python -m adf doctor --root .
+python -m adf studio
+```
+
 1. Clone the repository and check out `develop` (or `main` for the latest merged release line).
-2. Read `adf-docs/GETTING_STARTED.md` and `adf-docs/RELEASE_NOTES.md`.
+2. Follow **Quick Start** (`adf-docs/quickstart/`), then `adf-docs/GETTING_STARTED.md` / `RELEASE_NOTES.md` as needed.
 3. Read `.adf/QUICK_CONTEXT.md` for the shortest current snapshot.
 4. If you are an AI agent, follow `.adf/AI_BOOT.md` before making changes.
 5. Confirm active work in `.adf/CURRENT_TASK.md`, `.adf/PROJECT_STATE.md`, and `business/ADF-v1.0/BUSINESS_STATE.md`.

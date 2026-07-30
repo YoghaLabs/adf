@@ -1,56 +1,59 @@
 # Getting Started
 
+**Product:** ADF `1.0.0-rc1`  
+**Fast path:** [`quickstart/README.md`](quickstart/README.md)
+
 ## Prerequisites
 
 - Git
-- Access to this repository (`develop` branch recommended)
-- Willingness to follow the locked architecture and AI contract
+- Python 3.11+ (CLI / `adf-core`)
+- Node.js 20+ and npm (Studio)
+- Access to this repository (`develop` recommended)
 
-No runtime install is required for BUILD-001.
-
-## Clone & Enter
+## Clone & Install
 
 ```bash
 git clone https://github.com/YoghaLabs/adf.git
 cd adf
-git checkout develop
-git pull origin develop
+./install          # Windows: .\install.ps1
+python -m adf doctor --root .
+python -m adf studio
 ```
 
-## Orient Yourself (Humans)
+## First-time humans
 
-1. Read root `README.md`
-2. Read `WHAT_IS_ADF.md`
-3. Skim `ARCHITECTURE.md`
-4. Check `VERSION`, `ROADMAP.md`, and `.adf/QUICK_CONTEXT.md`
+1. Start with **`adf-docs/quickstart/`** (installation → first run → Studio)
+2. Skim root `README.md` and `WHAT_IS_ADF.md` if you want product context
+3. Examples: `adf-examples/hello-adf/`, `minimal-project/`, `enterprise-demo/`
 
-## Orient Yourself (AI Agents)
+## AI agents
 
-Follow `.adf/AI_BOOT.md` exactly before editing. Do not skip the contract.
+Follow `.adf/AI_BOOT.md` before editing. Do not skip the contract.
 
-## Typical First Actions
+## Typical next actions
 
 | Goal | Start here |
 |------|------------|
+| Quick Start | `adf-docs/quickstart/README.md` |
 | Understand product | `WHAT_IS_ADF.md` |
-| See structure | `ARCHITECTURE.md` |
-| See plan | `ROADMAP.md` |
-| Continue active BUILD | `prompts/build.md` |
-| Resume interrupted work | `prompts/resume.md` |
-| Verify integrity | `prompts/audit.md` |
+| Structure | `ARCHITECTURE.md` |
+| Plan | `ROADMAP.md` |
+| Resume work | `.adf/RESUME_ME.md` / `prompts/resume.md` |
 
-## What You Can Do Today (BUILD-001)
+## What you can do on RC1
 
-- Read and improve foundation documentation (within BUILD scope)
-- Use `.adf` files as the source of truth for status
-- Prepare handoffs via `prompts/handoff.md`
+- Run CLI (`doctor`, `boot`, `init`, `studio`, packages, …)
+- Launch ADF Studio Control Center
+- Explore collaboration, orchestration (planning), enterprise foundations in Studio
+- Use examples under `adf-examples/`
 
-## What You Cannot Do Yet
+## What not to expect yet
 
-- Run `adf-core` runtime APIs (starts BUILD-005)
-- Use ADF Studio Control Center (`adf-studio/`, from BUILD-013): `cd adf-studio && npm install && npm run dev`
-- Expect automated bootstrap tooling (BUILD-003)
+- Welcome / Demo Project wizard (GA target — see Quick Start validation report)
+- Cloud Edition
+- Unsupervised multi-agent execution
+- Live production IdP SSO wiring
 
-## Contribution Entry
+## Contribution
 
-See root `CONTRIBUTING.md`. Keep changes aligned with `.adf/AI_CONTRACT.md`.
+See root `CONTRIBUTING.md` and `.adf/AI_CONTRACT.md`.
