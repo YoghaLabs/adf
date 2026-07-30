@@ -273,6 +273,23 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - AI Participants are orchestrated (not demoted to tools)
 - Workflow owns lifecycle; no AI automation in this build
 
+## BUILD-019 — Enterprise Governance Platform
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.19.0-alpha` |
+| Branch | `develop` |
+| Purpose | Modular enterprise governance (org/identity/RBAC/audit/compliance) |
+| Result | **Completed.** ADR-017; theme override from Release Candidate. Stop before BUILD-020. |
+
+### Outcomes That Must Not Be Undone
+
+- Governance is service-driven; Studio presentation-only
+- RBAC is hierarchical
+- Audit is immutable
+- Enterprise features remain modular (no redesign / no new platform)
+
 ## Template for Future Entries
 
 ```markdown

@@ -2,9 +2,9 @@
 
 **Locked roadmap** (operator-approved). Theme overrides require ADR + explicit master prompt.
 
-**Current version:** `0.18.0-alpha`  
-**Current build:** `BUILD-018` — AI Orchestration Platform (**completed**)  
-**Next:** `BUILD-019` — Release Candidate (**not started**)
+**Current version:** `0.19.0-alpha`  
+**Current build:** `BUILD-019` — Enterprise Governance Platform (**completed**)  
+**Next:** `BUILD-020` — Production v1.0 / Release Candidate (**not started**)
 
 ---
 
@@ -52,19 +52,15 @@
 |-------|--------|--------|
 | BUILD-017 | AI Collaboration Platform | ✅ |
 | BUILD-018 | AI Orchestration Platform | ✅ |
-| BUILD-019 | Release Candidate | ⏳ |
-| BUILD-020 | Production v1.0 | ⏳ |
+| BUILD-019 | Enterprise Governance Platform | ✅ |
+| BUILD-020 | Production v1.0 / Release Candidate | ⏳ |
 
-> **Notes:** BUILD-017 originally “Testing Framework” → Collaboration (ADR-015).  
-> BUILD-018 originally “Audit Framework” → Orchestration (ADR-016). Deferred themes remain on the backlog.
+> **Notes:** Theme overrides via master prompt + ADR:  
+> BUILD-017 Testing → Collaboration (ADR-015); BUILD-018 Audit → Orchestration (ADR-016);  
+> BUILD-019 RC → Enterprise Governance (ADR-017). Deferred themes remain on the backlog.
 
 ---
 
-## Status Legend
-
-- **Phase 2–3:** complete
-- **Phase 4:** BUILD-017–018 complete; BUILD-019 next after explicit master prompt
-
 ## Continuity
 
-When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-019 until an explicit master prompt.
+When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-020 until an explicit master prompt.

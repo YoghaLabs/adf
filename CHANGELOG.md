@@ -1,12 +1,31 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.18.0-alpha** / **BUILD-018** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.19.0-alpha** / **BUILD-019** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-019 Release Candidate (Phase 4 — after Architecture Review of BUILD-018)
-- Audit Framework deferred from original BUILD-018 slot (see ADR-016)
+- BUILD-020 Production v1.0 / Release Candidate packaging (Phase 4 — after Architecture Review of BUILD-019)
+
+## [0.19.0-alpha] — 2026-07-30
+
+### Added
+- Enterprise Governance Platform under `adf-studio/src/features/enterprise/`
+- Organization hierarchy, identity/SSO catalog, hierarchical RBAC, permission matrix
+- Immutable audit trail, compliance dashboard, licenses, environments, analytics
+- SDK: OrganizationClient, IdentityClient, RoleClient, PermissionClient, AuditClient, ComplianceClient, LicenseClient, AnalyticsClient
+- Docs: ENTERPRISE_PLATFORM, RBAC_MODEL, PERMISSION_SYSTEM, AUDIT_SYSTEM, COMPLIANCE, IDENTITY
+- ADR-017 Enterprise Governance Architecture
+- Prompts + `bootstrap/BUILD-019/`
+- Vitest enterprise suite
+
+### Changed
+- Version identity advanced to `0.19.0-alpha` / BUILD-019
+- ROADMAP BUILD-019 theme: Release Candidate → Enterprise Governance (operator master prompt)
+
+### Locked
+- No redesign / no new platform
+- Governance service-driven; audit immutable; RBAC hierarchical
 
 ## [0.18.0-alpha] — 2026-07-30
 

@@ -1,12 +1,12 @@
 # Current Task
 
-BUILD-018 complete. AI Orchestration Platform shipped (model/workflow/pipeline/gates/plans only).
+BUILD-019 complete. Enterprise Governance Platform shipped (modular governance only).
 
-**STOP** — do not start BUILD-019 (Release Candidate) until an explicit master prompt.
+**STOP** — do not start BUILD-020 until an explicit master prompt.
 
 ## Forbidden
 
-- Start BUILD-019…020 unprompted
-- AI automation / autonomous execution
-- Business logic in Studio
-- Demoting AI Participants to tools/plugins
+- Start BUILD-020 unprompted
+- Redesign / new platform product
+- Mutable audit history in Studio
+- Business logic / enforcement in Studio
