@@ -204,7 +204,7 @@ export const DECISIONS: SessionDecision[] = [
   },
 ];
 
-export const ARTIFACTS: SessionArtifact[] = [
+export const SESSION_ARTIFACTS: SessionArtifact[] = [
   {
     id: "sa-1",
     sessionId: "csess-001",

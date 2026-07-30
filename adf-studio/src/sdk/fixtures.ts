@@ -43,7 +43,7 @@ import {
 } from "@/features/collaboration/services/collaborationFixtures";
 import {
   APPROVAL_GATES,
-  ARTIFACTS,
+  ORCHESTRATION_ARTIFACTS,
   DEPENDENCIES,
   EXECUTION_PLANS,
   getExecutionView,
@@ -87,7 +87,7 @@ export async function localFixtureProvider(
   payload?: Record<string, unknown>,
 ): Promise<ServiceEnvelope> {
   const now = new Date().toISOString();
-  const { WORKSPACES, PROJECTS, SESSIONS, ACTIVITY, COMMANDS } = workspaceFixtureData();
+  const { WORKSPACES, SESSIONS, ACTIVITY, COMMANDS } = workspaceFixtureData();
   const activeId = String(payload?.workspaceId ?? WORKSPACES[0]?.id ?? "ws-adf");
 
   switch (method) {
@@ -511,7 +511,10 @@ export async function localFixtureProvider(
     case "pipelines.assignments":
       return { ok: true, data: { assignments: STAGE_ASSIGNMENTS, count: STAGE_ASSIGNMENTS.length } };
     case "artifacts.list":
-      return { ok: true, data: { artifacts: ARTIFACTS, count: ARTIFACTS.length } };
+      return {
+        ok: true,
+        data: { artifacts: ORCHESTRATION_ARTIFACTS, count: ORCHESTRATION_ARTIFACTS.length },
+      };
     case "execution.view":
       return { ok: true, data: getExecutionView() };
     case "execution.integrations":

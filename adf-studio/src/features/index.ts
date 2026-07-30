@@ -7,11 +7,14 @@ export const featureIds = {
   search: "search",
   visual: "visual",
   runtime: "runtime",
+  collaboration: "collaboration",
+  orchestration: "orchestration",
+  enterprise: "enterprise",
 } as const;
 
-export * from "@/features/workspace";
-export * from "@/features/visual";
-export * from "@/features/runtime";
-export * from "@/features/collaboration";
-export * from "@/features/orchestration";
-export * from "@/features/enterprise";
+/** Named surface exports — avoid barrel-exporting fixture constants (name collisions). */
+export { CollaborationPlatformPage } from "@/features/collaboration/pages/CollaborationPlatformPage";
+export { OrchestrationPlatformPage } from "@/features/orchestration/pages/OrchestrationPlatformPage";
+export { EnterpriseGovernancePage } from "@/features/enterprise/pages/EnterpriseGovernancePage";
+export { VisualIntelligencePage } from "@/features/visual/pages/VisualIntelligencePage";
+export { RuntimeDashboardPage } from "@/features/runtime/dashboard/RuntimeDashboardPage";

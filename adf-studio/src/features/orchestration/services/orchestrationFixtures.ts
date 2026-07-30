@@ -232,7 +232,7 @@ export const PIPELINE_HISTORY: PipelineHistoryEntry[] = [
   },
 ];
 
-export const ARTIFACTS: OrchestrationArtifact[] = [
+export const ORCHESTRATION_ARTIFACTS: OrchestrationArtifact[] = [
   {
     id: "art-req",
     kind: "requirements",
@@ -525,7 +525,7 @@ export function getOrchestrationOverview(): OrchestrationOverview {
     activePipelines: PIPELINES.filter((p) => p.status !== "complete").length,
     openApprovals: APPROVAL_GATES.filter((a) => !a.decision || a.decision === "request_changes")
       .length,
-    artifactCount: ARTIFACTS.length,
+    artifactCount: ORCHESTRATION_ARTIFACTS.length,
     blockedStages: STAGES.filter((s) => s.state === "blocked").length,
     plannedOnly: true,
   };
