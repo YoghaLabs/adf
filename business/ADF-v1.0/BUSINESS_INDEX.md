@@ -20,11 +20,30 @@ Index of authoritative business documents for ADF v1.0.
 | `DOCUMENT_TEMPLATE.md` | Required template |
 | `BUSINESS_WORKFLOW.md` | Execution workflow |
 
+## Executive Package (`00-Executive/` — BUSINESS-002 ✅)
+
+| Document | Description |
+|----------|-------------|
+| `README.md` | Package purpose and reading order |
+| `ONE_PAGE_EXECUTIVE.md` | Investor-ready one-pager |
+| `EXECUTIVE_SUMMARY.md` | Full executive overview |
+| `VISION.md` | Long-term product vision |
+| `MISSION.md` | Mission across key pillars |
+| `WHY_ADF.md` | Adoption rationale |
+| `PRODUCT_STORY.md` | Product origin story |
+| `FOUNDER_STORY.md` | Founder motivation |
+| `PROBLEM_STATEMENT.md` | Industry problems |
+| `MARKET_OPPORTUNITY.md` | High-level market trends |
+| `PRODUCT_PHILOSOPHY.md` | Operating principles |
+| `CORE_VALUES.md` | Core values |
+| `BRAND_POSITIONING.md` | Brand position |
+| `LONG_TERM_VISION.md` | 3 / 5 / 10 year horizon |
+
 ## Locked content folders
 
 | Folder | Phase focus |
 |--------|-------------|
-| `00-Executive/` | BUSINESS-002 |
+| `00-Executive/` | BUSINESS-002 ✅ |
 | `01-Product/` | BUSINESS-003 |
 | `02-Market/` | BUSINESS-004 |
 | `03-Business/` | BUSINESS-005 |

@@ -3,7 +3,7 @@
 **Version:** `1.0.0-rc1` (see root `VERSION`)  
 **Branch:** `develop` (merge to `main` after each completed phase)  
 **Engineering:** BUILD-001 … BUILD-020 ✅ — Production Release Candidate  
-**Legal:** `/legal` ✅ · **Business:** BUSINESS-001 ✅ · Next BUSINESS-002
+**Legal:** `/legal` ✅ · **Business:** BUSINESS-001–002 ✅ · Next BUSINESS-003
 
 
 ADF is an AI-first development framework that keeps project knowledge, architecture decisions, build state, and AI operating contracts inside the repository. Humans and AI agents share the same source of truth so work can pause, hand off, and resume without losing context.
@@ -57,7 +57,8 @@ Root files:
 | Engineering BUILD-001 … 020 | ✅ Complete (`1.0.0-rc1`) |
 | Legal Package (`/legal`) | ✅ Initialized |
 | Business BUSINESS-001 Foundation | ✅ Complete |
-| Business BUSINESS-002 … 011 | ⏳ Next: Executive Package |
+| Business BUSINESS-002 Executive | ✅ Complete |
+| Business BUSINESS-003 … 011 | ⏳ Next: Product Strategy |
 | GA `1.0.0` (signing / coverage) | ⏳ Release gate (not a new BUILD) |
 
 **Workflow:** finish work on `develop` → update this progress → merge `develop` into `main`.
@@ -153,14 +154,15 @@ internal management, sales, marketing, and future team members.
 | Business rules | [`business/ADF-v1.0/BUSINESS_RULES.md`](business/ADF-v1.0/BUSINESS_RULES.md) |
 | Document template | [`business/ADF-v1.0/DOCUMENT_TEMPLATE.md`](business/ADF-v1.0/DOCUMENT_TEMPLATE.md) |
 
-**Current business phase:** BUSINESS-001 Foundation ✅  
-**Next:** BUSINESS-002 Executive Package — not started  
-**Structure:** LOCKED (`00-Executive` … `10-Launch` + `assets`)
+**Current business phase:** BUSINESS-002 Executive ✅ (`B1.1.0`)  
+**Next:** BUSINESS-003 Product Strategy — not started  
+**Structure:** LOCKED (`00-Executive` … `10-Launch` + `assets`)  
+**Executive Package:** [`business/ADF-v1.0/00-Executive/`](business/ADF-v1.0/00-Executive/)
 
 | Business phase | Status |
 |----------------|--------|
 | BUSINESS-001 Foundation | ✅ |
-| BUSINESS-002 Executive | ⏳ |
+| BUSINESS-002 Executive | ✅ |
 | BUSINESS-003 Product | ⏳ |
 | BUSINESS-004 Market | ⏳ |
 | BUSINESS-005 Business Model | ⏳ |

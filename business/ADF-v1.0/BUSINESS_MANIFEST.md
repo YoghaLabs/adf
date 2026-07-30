@@ -6,11 +6,12 @@
 | Path | `business/ADF-v1.0/` |
 | Product | ADF — AI Development Framework |
 | Product version | `1.0.0-rc1` |
-| Business package version | `B1.0.0` |
-| Active phase | BUSINESS-001 — Business Foundation |
+| Business package version | `B1.1.0` |
+| Active phase | BUSINESS-002 — Executive Package (complete) |
+| Next phase | BUSINESS-003 — Product Strategy (not started) |
 | Branch | `develop` |
 | Founder | Yogha Prayoto |
-| Status | Foundation initialized |
+| Status | Executive Package complete |
 | Structure | **LOCKED** |
 
 ## Purpose
