@@ -1,14 +1,18 @@
 """ADF CLI entry point — Service Layer only (never engines directly).
 
-Commands: boot, doctor, status, version, context, resume, plugins,
+Commands: boot, doctor, status, version, context, resume, studio, plugins,
 init, new, generate, dry-run, validate, install, remove, update,
-search, list, verify, cache.
+search, list, verify, cache, …
+
+Quick Start: adf-docs/quickstart/README.md
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -87,6 +91,48 @@ def cmd_context(args: argparse.Namespace) -> int:
 def cmd_resume(args: argparse.Namespace) -> int:
     """Resume protocol skeleton."""
     return _emit(_manager(args).runtime().resume())
+
+
+def cmd_studio(args: argparse.Namespace) -> int:
+    """Open ADF Studio (Control Center) or print launch instructions.
+
+    Usability helper only — does not redesign Studio or CLI architecture.
+    """
+    root = _resolve_root(getattr(args, "root", None))
+    studio_dir = root / "adf-studio"
+    package_json = studio_dir / "package.json"
+    guidance = {
+        "ok": True,
+        "data": {
+            "studio_dir": str(studio_dir),
+            "quick_start": "adf-docs/quickstart/README.md",
+            "manual": "cd adf-studio && npm install && npm run dev",
+            "note": "Studio is a control center, not an IDE.",
+        },
+    }
+    if not package_json.is_file():
+        guidance["ok"] = False
+        guidance["error"] = f"adf-studio not found under {root}"
+        _print_json(guidance)
+        return 1
+    if getattr(args, "print_only", False):
+        _print_json(guidance)
+        return 0
+    npm = "npm.cmd" if os.name == "nt" else "npm"
+    try:
+        print(f"Starting ADF Studio from {studio_dir} …", file=sys.stderr)
+        print("Quick Start: adf-docs/quickstart/README.md", file=sys.stderr)
+        completed = subprocess.run(
+            [npm, "run", "dev"],
+            cwd=str(studio_dir),
+            check=False,
+        )
+        return int(completed.returncode)
+    except FileNotFoundError:
+        guidance["ok"] = False
+        guidance["error"] = "npm not found — install Node.js 20+ or run manually"
+        _print_json(guidance)
+        return 1
 
 
 def cmd_plugins(args: argparse.Namespace) -> int:
@@ -374,8 +420,18 @@ def _add_generator_args(parser: argparse.ArgumentParser) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     """Create the CLI argument parser."""
-    parser = argparse.ArgumentParser(prog="adf", description="ADF Service Layer CLI")
-    sub = parser.add_subparsers(dest="command", required=True)
+    parser = argparse.ArgumentParser(
+        prog="adf",
+        description="ADF Service Layer CLI — AI Development Framework",
+        epilog=(
+            "Quick Start: adf-docs/quickstart/README.md\n"
+            "First run:  python -m adf doctor --root . && "
+            "python -m adf init my-first-project && python -m adf studio\n"
+            "Install:    ./install   (Windows: .\\install.ps1)"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub = parser.add_subparsers(dest="command", required=False)
 
     version_parser = sub.add_parser("version", help="Show adf-core version")
     _add_root(version_parser)
@@ -406,6 +462,18 @@ def build_parser() -> argparse.ArgumentParser:
     resume_parser = sub.add_parser("resume", help="Resume skeleton")
     _add_root(resume_parser)
     resume_parser.set_defaults(func=cmd_resume)
+
+    studio_parser = sub.add_parser(
+        "studio",
+        help="Open ADF Studio Control Center (or print launch instructions)",
+    )
+    _add_root(studio_parser)
+    studio_parser.add_argument(
+        "--print-only",
+        action="store_true",
+        help="Print launch instructions as JSON without starting Vite",
+    )
+    studio_parser.set_defaults(func=cmd_studio)
 
     plugins_parser = sub.add_parser("plugins", help="Plugin management")
     plugins_sub = plugins_parser.add_subparsers(dest="plugins_command", required=True)
@@ -615,6 +683,14 @@ def main(argv: list[str] | None = None) -> int:
     """CLI main entry."""
     parser = build_parser()
     args = parser.parse_args(argv)
+    if not getattr(args, "command", None):
+        parser.print_help()
+        print(
+            "\nTip: python -m adf doctor --root .\n"
+            "Quick Start: adf-docs/quickstart/README.md",
+            file=sys.stderr,
+        )
+        return 0
     try:
         return int(args.func(args))
     except (

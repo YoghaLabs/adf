@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# ADF install helper — PRODUCT VALIDATION-001
+# Usability only: does not change architecture.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT"
+
+echo "ADF install helper"
+echo "Repository: $ROOT"
+echo
+
+if ! command -v python3 >/dev/null 2>&1 && ! command -v python >/dev/null 2>&1; then
+  echo "ERROR: Python not found. Install Python 3.11+ and retry."
+  exit 1
+fi
+
+PYTHON_BIN="python3"
+command -v python3 >/dev/null 2>&1 || PYTHON_BIN="python"
+
+if ! command -v npm >/dev/null 2>&1; then
+  echo "ERROR: npm not found. Install Node.js 20+ and retry."
+  exit 1
+fi
+
+echo "[1/3] Installing adf-core (editable)..."
+"$PYTHON_BIN" -m pip install -e "$ROOT/adf-core"
+
+echo "[2/3] Installing adf-studio dependencies..."
+(cd "$ROOT/adf-studio" && npm install)
+
+echo "[3/3] Quick checks..."
+"$PYTHON_BIN" -m adf version --root "$ROOT" || true
+"$PYTHON_BIN" -m adf doctor --root "$ROOT" || true
+
+echo
+echo "Next steps:"
+echo "  $PYTHON_BIN -m adf doctor --root ."
+echo "  $PYTHON_BIN -m adf init my-first-project"
+echo "  $PYTHON_BIN -m adf studio"
+echo
+echo "Quick Start: adf-docs/quickstart/README.md"
