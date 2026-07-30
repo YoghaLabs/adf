@@ -307,6 +307,23 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - v1.0 marks API stability intent
 - No new platforms invented in release candidate
 
+## Post-RC1 — Legal Package Initialization
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `1.0.0-rc1` |
+| Branch | `develop` |
+| Purpose | Professional legal documentation package under `legal/` |
+| Result | **Completed.** Not BUILD-021. No runtime/SDK/Studio changes. |
+
+### Outcomes
+
+- Copyright holder documented as Yogha Prayoto
+- ADF Community License (All Rights Reserved; commercial use requires permission)
+- Trademark (™) assertions for ADF product names
+- EULA, third-party, contributing, and code of conduct published
+
 ## Template for Future Entries
 
 ```markdown
