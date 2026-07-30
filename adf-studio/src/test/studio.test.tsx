@@ -20,6 +20,7 @@ afterEach(() => {
 });
 
 function renderShell(path = "/") {
+  localStorage.setItem("adf.studio.onboarding.v1", "done");
   const client = new QueryClient({
     defaultOptions: { queries: { retry: false } },
   });

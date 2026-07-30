@@ -1,8 +1,9 @@
-import { Bell, Command, PanelLeft, Search } from "lucide-react";
+import { Bell, Command, PanelLeft, Search, Compass } from "lucide-react";
 import { Button, Input } from "@/components/ui";
 import { useSettingsStore } from "@/stores/settingsStore";
 import { useUiStore } from "@/stores";
 import { WorkspaceSelector } from "@/shell/WorkspaceSelector";
+import { useOnboardingStore } from "@/stores/onboardingStore";
 
 export function TopBar() {
   const toggleSidebar = useSettingsStore((s) => s.toggleSidebar);
@@ -10,6 +11,7 @@ export function TopBar() {
   const globalSearch = useUiStore((s) => s.globalSearch);
   const setGlobalSearch = useUiStore((s) => s.setGlobalSearch);
   const notifications = useSettingsStore((s) => s.notifications);
+  const openWelcome = useOnboardingStore((s) => s.openWelcome);
 
   return (
     <header
@@ -30,6 +32,15 @@ export function TopBar() {
           onChange={(e) => setGlobalSearch(e.target.value)}
         />
       </div>
+      <Button
+        variant="outline"
+        data-testid="topbar-welcome"
+        onClick={() => openWelcome()}
+        title="Welcome / Demo"
+      >
+        <Compass className="h-4 w-4" />
+        <span className="hidden sm:inline">Welcome</span>
+      </Button>
       <Button variant="outline" onClick={() => setCommandOpen(true)}>
         <Command className="h-4 w-4" />
         <span className="hidden sm:inline">Command</span>

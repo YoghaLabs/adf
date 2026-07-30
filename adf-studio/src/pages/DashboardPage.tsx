@@ -15,6 +15,7 @@ import { useActivityStore } from "@/stores/activityStore";
 import { studioConfig } from "@/config/studio";
 import { studioSdk } from "@/sdk";
 import type { MarketplaceItem } from "@/types/studio";
+import { GettingStartedBanner } from "@/features/onboarding";
 
 export function DashboardPage() {
   const loadWorkspace = useWorkspaceStore((s) => s.loadAll);
@@ -55,6 +56,8 @@ export function DashboardPage() {
           Workspace Experience overview — UI only; all actions go through the SDK.
         </p>
       </div>
+
+      <GettingStartedBanner />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <WorkspaceOverviewWidget

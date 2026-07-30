@@ -1,7 +1,9 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { Card, Badge } from "@/components/ui";
+import { useNavigate } from "react-router-dom";
+import { Button, Card, Badge } from "@/components/ui";
 import { studioSdk } from "@/sdk";
 import { useSettingsStore } from "@/stores/settingsStore";
+import { useOnboardingStore } from "@/stores/onboardingStore";
 import type { ThemeMode } from "@/types/studio";
 
 export function TemplatesPage() {
@@ -107,12 +109,49 @@ export function SettingsPage() {
 }
 
 export function HelpPage() {
+  const openWelcome = useOnboardingStore((s) => s.openWelcome);
+  const startDemo = useOnboardingStore((s) => s.startDemo);
+  const navigate = useNavigate();
+
   return (
     <PageFrame testId="page-help" title="Help" subtitle="ADF Studio is a control center, not an IDE.">
-      <Card>
+      <Card className="space-y-3">
         <p className="text-sm leading-relaxed text-ink-muted">
           Studio communicates only through UI → SDK → Service Layer → ADF Core. Business logic
-          stays in engines and services.
+          stays in engines and services. Many RC1 panels use fixture data so navigation can be
+          explored before live backends are fully wired for every screen.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="accent" onClick={() => openWelcome()}>
+            Open Welcome Wizard
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => {
+              startDemo();
+              navigate("/");
+            }}
+          >
+            Start Demo Project tour
+          </Button>
+        </div>
+      </Card>
+
+      <Card className="space-y-2">
+        <h2 className="text-sm font-semibold">First-time operating path</h2>
+        <ol className="list-decimal space-y-1 pl-5 text-sm text-ink-muted">
+          <li>Run Welcome → choose Demo Project (guided tour).</li>
+          <li>
+            CLI health: <code className="rounded bg-canvas px-1">python -m adf doctor --root .</code>
+          </li>
+          <li>
+            Create a real project:{" "}
+            <code className="rounded bg-canvas px-1">python -m adf init my-app</code>
+          </li>
+          <li>Return to Studio → Projects / Runtime / Visual / Marketplace.</li>
+        </ol>
+        <p className="text-xs text-ink-muted">
+          Docs: <code className="rounded bg-canvas px-1">adf-docs/quickstart/README.md</code>
         </p>
       </Card>
     </PageFrame>
