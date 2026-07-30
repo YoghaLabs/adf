@@ -2,9 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Version | `0.14.0-alpha` |
+| Version | `0.15.0-alpha` |
 | Branch | `develop` |
-| Build | `BUILD-014` Workspace Experience — **complete** |
+| Build | `BUILD-015` Visual Intelligence — **complete** |
 | Phase | 3 User Experience (in progress) |
-| Next | `BUILD-015` Knowledge Graph — **not started** |
-| Rule | Workspace → Projects → Sessions; UI → SDK → Services → Core |
+| Next | `BUILD-016` Runtime Monitor — **not started** |
+| Rule | Graphs read-only; UI → SDK → Services → Core |

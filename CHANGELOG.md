@@ -1,11 +1,27 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.14.0-alpha** / **BUILD-014** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.15.0-alpha** / **BUILD-015** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-015 Knowledge Graph (Phase 3 — after Architecture Review of BUILD-014)
+- BUILD-016 Runtime Monitor (Phase 3 — after Architecture Review of BUILD-015)
+
+## [0.15.0-alpha] — 2026-07-30
+
+### Added
+- Visual Intelligence Platform under `adf-studio/src/features/visual/`
+- Graph engine + React Flow canvas; 10 graph modules
+- SDK: KnowledgeClient, DependencyClient, GraphClient, VisualizationClient
+- Stores: GraphStore, SelectionStore, LayoutStore, FilterStore
+- Visual dashboards + graph search
+- Docs: VISUAL_PLATFORM, GRAPH_ENGINE, KNOWLEDGE_GRAPH, DEPENDENCY_GRAPH, VISUAL_GUIDE
+- ADR-013 Visual Intelligence Architecture
+- Prompts + `bootstrap/BUILD-015/`
+- Vitest visual suite
+
+### Changed
+- Version identity advanced to `0.15.0-alpha` / BUILD-015
 
 ## [0.14.0-alpha] — 2026-07-30
 

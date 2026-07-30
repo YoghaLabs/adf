@@ -13,3 +13,29 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: () => false,
   }),
 });
+
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+Object.defineProperty(window, "ResizeObserver", {
+  writable: true,
+  value: ResizeObserverMock,
+});
+
+Object.defineProperty(HTMLElement.prototype, "getBoundingClientRect", {
+  writable: true,
+  value: () => ({
+    x: 0,
+    y: 0,
+    width: 800,
+    height: 520,
+    top: 0,
+    left: 0,
+    right: 800,
+    bottom: 520,
+    toJSON: () => ({}),
+  }),
+});

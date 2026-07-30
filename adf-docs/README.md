@@ -74,6 +74,11 @@ Human-facing documentation for the AI Development Framework.
 | `SESSION_MANAGER.md` | Session Manager |
 | `ACTIVITY_FEED.md` | Activity feed |
 | `SEARCH_SYSTEM.md` | Search + command search |
+| `VISUAL_PLATFORM.md` | Visual Intelligence overview |
+| `GRAPH_ENGINE.md` | Graph engine |
+| `KNOWLEDGE_GRAPH.md` | Knowledge Graph view |
+| `DEPENDENCY_GRAPH.md` | Dependency Graph view |
+| `VISUAL_GUIDE.md` | Operator visual guide |
 | `README.md` | This index |
 
 ## Reading Order

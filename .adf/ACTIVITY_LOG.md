@@ -5,6 +5,12 @@ Chronological operator/AI activity log for continuity across sessions and model 
 
 ---
 
+## 2026-07-30 — BUILD-015 Visual Intelligence Platform
+
+- `features/visual/` graph engine + React Flow; 10 graph modules
+- Knowledge/Dependency/Graph/Visualization SDK clients; ADR-013
+- Version `0.15.0-alpha`; **STOP before BUILD-016**
+
 ## 2026-07-30 — BUILD-014 Workspace Experience Platform
 
 - `features/workspace/` manager, project explorer, sessions, activity, search

@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-30 — Visual Intelligence Architecture (BUILD-015 / ADR-013)
+
+- **Decision:** Graphs are read-only; visualization separated from SDK; rendering is UI-only (React Flow).
+- **Why:** Users need relationship visibility without moving business logic into Studio.
+- **Consequences:** Fixtures until Core graph APIs; reusable engine for BUILD-016+.
+- **Status:** Accepted
+
 ## 2026-07-30 — Workspace Experience Architecture (BUILD-014 / ADR-012)
 
 - **Decision:** Workspace is top-level; projects belong to workspaces; sessions belong to projects; Studio remains presentation-only over SDK.

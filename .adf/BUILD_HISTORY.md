@@ -210,6 +210,21 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Projects belong to workspaces; sessions belong to projects
 - No business logic in Studio UI
 
+## BUILD-015 — Visual Intelligence Platform
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.15.0-alpha` |
+| Branch | `develop` |
+| Purpose | Read-only visual intelligence graphs in Studio |
+| Result | **Completed.** React Flow + graph engine + ADR-013. Stop before BUILD-016. |
+
+### Outcomes That Must Not Be Undone
+
+- Graphs are read-only presentation
+- Visualization separated from SDK; rendering UI-only
+
 ## Template for Future Entries
 
 ```markdown
