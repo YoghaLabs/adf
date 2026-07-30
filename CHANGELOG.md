@@ -1,11 +1,32 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.16.0-alpha** / **BUILD-016** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.17.0-alpha** / **BUILD-017** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-017 Testing Framework (Phase 4 — after Architecture Review of BUILD-016)
+- BUILD-018 Audit Framework (Phase 4 — after Architecture Review of BUILD-017)
+- Testing Framework deferred from original BUILD-017 slot (see ADR-015)
+
+## [0.17.0-alpha] — 2026-07-30
+
+### Added
+- AI Collaboration Platform under `adf-studio/src/features/collaboration/`
+- Participants (human + AI) as first-class identities; multi-agent model (architecture only)
+- Reviews, approvals, comments, presence, notifications, assignments, activity timeline
+- SDK: CollaborationClient, ParticipantClient, PresenceClient, ReviewClient, NotificationClient, AssignmentClient
+- Docs: COLLABORATION_PLATFORM, AI_PARTICIPANTS, MULTI_AGENT_MODEL, REVIEW_WORKFLOW, NOTIFICATION_SYSTEM
+- ADR-015 AI Collaboration Architecture
+- Prompts + `bootstrap/BUILD-017/`
+- Vitest collaboration suite
+
+### Changed
+- Version identity advanced to `0.17.0-alpha` / BUILD-017
+- ROADMAP BUILD-017 theme: Testing Framework → AI Collaboration (operator master prompt)
+
+### Locked
+- AI is a Participant (not plugin/extension/tool/widget)
+- No agent automation in BUILD-017
 
 ## [0.16.0-alpha] — 2026-07-30
 

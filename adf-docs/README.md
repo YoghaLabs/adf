@@ -81,6 +81,11 @@ Human-facing documentation for the AI Development Framework.
 | `VISUAL_GUIDE.md` | Operator visual guide |
 | `RUNTIME_DASHBOARD.md` | AI Runtime Dashboard |
 | `OBSERVABILITY.md` | Timelines & event stream |
+| `COLLABORATION_PLATFORM.md` | AI Collaboration Platform |
+| `AI_PARTICIPANTS.md` | AI as first-class Participant |
+| `MULTI_AGENT_MODEL.md` | Multi-agent architecture (no automation) |
+| `REVIEW_WORKFLOW.md` | Review & approval workflow |
+| `NOTIFICATION_SYSTEM.md` | Collaboration notifications |
 | `METRICS_SYSTEM.md` | Metrics presentation |
 | `LOGGING_SYSTEM.md` | Log viewer |
 | `DIAGNOSTICS.md` | Diagnostics panels |

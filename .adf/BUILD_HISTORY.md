@@ -241,6 +241,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Logs/metrics from Service Layer envelopes
 - Studio does not own runtime state
 
+## BUILD-017 — AI Collaboration & Multi-Agent Platform
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.17.0-alpha` |
+| Branch | `develop` |
+| Purpose | Humans + AI as first-class Participants; collaboration model/UI/SDK/workflow |
+| Result | **Completed.** ADR-015; no agent automation. Theme override from Testing Framework. Stop before BUILD-018. |
+
+### Outcomes That Must Not Be Undone
+
+- AI is a Participant (not plugin/extension/tool/widget)
+- Collaboration is service-driven; Studio presentation-only
+- Multi-agent graph is architecture-only until explicitly unlocked
+
 ## Template for Future Entries
 
 ```markdown

@@ -1,6 +1,6 @@
 {
   "name": "adf-studio",
-  "version": "0.16.0-alpha",
+  "version": "0.17.0-alpha",
   "private": true,
   "description": "ADF Studio — Desktop Control Center for the ADF Platform",
   "type": "module",

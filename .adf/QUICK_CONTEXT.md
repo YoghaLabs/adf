@@ -2,9 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Version | `0.16.0-alpha` |
+| Version | `0.17.0-alpha` |
 | Branch | `develop` |
-| Build | `BUILD-016` AI Runtime Dashboard — **complete** |
-| Phase | 3 User Experience — **complete** |
-| Next | `BUILD-017` Testing Framework — **not started** |
-| Rule | Runtime dashboard read-only; UI → SDK → Services → Core |
+| Build | `BUILD-017` AI Collaboration — **complete** |
+| Phase | 4 Production — BUILD-017 done |
+| Next | `BUILD-018` Audit Framework — **not started** |
+| Rule | AI is a Participant; UI → SDK → Services → Core; no agent automation yet |
