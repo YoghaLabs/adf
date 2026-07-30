@@ -1,8 +1,9 @@
 # ADF — AI Development Framework
 
 **Version:** `1.0.0-rc1` (see root `VERSION`)  
-**Branch:** `develop`  
-**Current Build:** `BUILD-020` — Production Release Candidate
+**Branch:** `develop` (merge to `main` after each completed phase)  
+**Engineering:** BUILD-001 … BUILD-020 ✅ — Production Release Candidate  
+**Legal:** `/legal` ✅ · **Business:** BUSINESS-001 ✅ · Next BUSINESS-002
 
 
 ADF is an AI-first development framework that keeps project knowledge, architecture decisions, build state, and AI operating contracts inside the repository. Humans and AI agents share the same source of truth so work can pause, hand off, and resume without losing context.
@@ -49,59 +50,71 @@ Root files:
 | `CONTRIBUTING.md` | Contribution rules (see also `legal/CONTRIBUTING.md`) |
 | `.gitignore` | Ignored artifacts and secrets |
 
+## Progress
+
+| Track | Status |
+|-------|--------|
+| Engineering BUILD-001 … 020 | ✅ Complete (`1.0.0-rc1`) |
+| Legal Package (`/legal`) | ✅ Initialized |
+| Business BUSINESS-001 Foundation | ✅ Complete |
+| Business BUSINESS-002 … 011 | ⏳ Next: Executive Package |
+| GA `1.0.0` (signing / coverage) | ⏳ Release gate (not a new BUILD) |
+
+**Workflow:** finish work on `develop` → update this progress → merge `develop` into `main`.
+
 ## Build Roadmap
 
-ADF advances through **BUILD-001 to BUILD-020** in four locked phases (see `ROADMAP.md`).
+ADF engineering advanced through **BUILD-001 to BUILD-020** in four locked phases (see `ROADMAP.md`).
 
 | Phase | Scope | Status |
 |-------|--------|--------|
 | 1 Engine Foundation | BUILD-001 … 008 | ✅ |
-| 2 Platform & Distribution | BUILD-009 … 012 | 009 ✅ · 010 next |
-| 3 User Experience | BUILD-013 … 016 | ⏳ |
-| 4 Production | BUILD-017 … 020 | ⏳ |
+| 2 Platform & Distribution | BUILD-009 … 012 | ✅ |
+| 3 User Experience | BUILD-013 … 016 | ✅ |
+| 4 Production | BUILD-017 … 020 | ✅ RC1 |
 
 | Build | Status |
 |-------|--------|
-| BUILD-001 … BUILD-009 | ✅ |
-| BUILD-010 | ⏳ Next — SDK & Public API |
-| BUILD-011 … BUILD-020 | ⏳ |
+| BUILD-001 … BUILD-020 | ✅ |
+| BUILD-021+ | Not opened — use Business / GA gates instead |
 
 Legend: ✅ completed · ⏳ pending
 
 ## Architecture Evolution
 
-ADF grows by **additive layers**, not redesign:
+ADF grew by **additive layers**, not redesign:
 
 ```text
 BUILD-001  Repository Foundation (locked structure)
     ↓
-BUILD-002  AI Runtime SSOT (`.adf` operate loop)
+BUILD-002 … 008  Engines (AI Runtime → Generator)
     ↓
-BUILD-003  Knowledge Architecture & ADR (why-traceable decisions)
+BUILD-009 … 012  Distribution (APM, SDK, Marketplace, Installer)
     ↓
-BUILD-004  Context Engine (shared restore — first engine, spec)
+BUILD-013 … 016  Studio UX (Core, Workspace, Visual, Runtime)
     ↓
-BUILD-005  Runtime Engine Foundation (executable `adf-core`)
+BUILD-017  Collaboration (AI as Participant)
     ↓
-BUILD-006  Plugin & Extension Engine ← current
+BUILD-018  Orchestration (planning only)
     ↓
-BUILD-007  Task & State Machine — next
+BUILD-019  Enterprise Governance
     ↓
-… through BUILD-020 (Studio + v1.0 gate)
+BUILD-020  Production RC1 (`1.0.0-rc1`) ← engineering complete
+    ↓
+Legal Package + BUSINESS-001 … 011  (post-RC1 business layer)
 ```
 
-**Permanent rules:** architecture changes require ADRs; all AIs share Context Engine restore; new capabilities prefer plugins.
+**Permanent rules:** architecture changes require ADRs; all AIs share Context Engine restore; new capabilities prefer plugins; do not invent BUILD-021 without a new program charter.
 
 ## How to Start
 
-1. Clone the repository and check out `develop`.
-2. Read `adf-docs/GETTING_STARTED.md`.
+1. Clone the repository and check out `develop` (or `main` for the latest merged release line).
+2. Read `adf-docs/GETTING_STARTED.md` and `adf-docs/RELEASE_NOTES.md`.
 3. Read `.adf/QUICK_CONTEXT.md` for the shortest current snapshot.
 4. If you are an AI agent, follow `.adf/AI_BOOT.md` before making changes.
-5. Confirm active work in `.adf/CURRENT_TASK.md` and `.adf/PROJECT_STATE.md`.
-6. Do not start the next BUILD until the current BUILD is finished and handed off.
-
-Runtime commands and Studio UI are not part of BUILD-001. This build establishes the foundation only.
+5. Confirm active work in `.adf/CURRENT_TASK.md`, `.adf/PROJECT_STATE.md`, and `business/ADF-v1.0/BUSINESS_STATE.md`.
+6. Do not start the next BUILD or BUSINESS phase until explicitly instructed.
+7. After a phase completes on `develop`, update README progress and merge into `main`.
 
 ## How BUILD Works
 
@@ -140,9 +153,23 @@ internal management, sales, marketing, and future team members.
 | Business rules | [`business/ADF-v1.0/BUSINESS_RULES.md`](business/ADF-v1.0/BUSINESS_RULES.md) |
 | Document template | [`business/ADF-v1.0/DOCUMENT_TEMPLATE.md`](business/ADF-v1.0/DOCUMENT_TEMPLATE.md) |
 
-**Current business phase:** BUSINESS-001 Foundation (complete)  
+**Current business phase:** BUSINESS-001 Foundation ✅  
 **Next:** BUSINESS-002 Executive Package — not started  
 **Structure:** LOCKED (`00-Executive` … `10-Launch` + `assets`)
+
+| Business phase | Status |
+|----------------|--------|
+| BUSINESS-001 Foundation | ✅ |
+| BUSINESS-002 Executive | ⏳ |
+| BUSINESS-003 Product | ⏳ |
+| BUSINESS-004 Market | ⏳ |
+| BUSINESS-005 Business Model | ⏳ |
+| BUSINESS-006 Sales | ⏳ |
+| BUSINESS-007 Marketing | ⏳ |
+| BUSINESS-008 Investor | ⏳ |
+| BUSINESS-009 Enterprise | ⏳ |
+| BUSINESS-010 Operations + Legal | ⏳ |
+| BUSINESS-011 Launch | ⏳ |
 
 Business follows Product. Business must not contradict Engineering. Engineering must not contradict Business.
 
