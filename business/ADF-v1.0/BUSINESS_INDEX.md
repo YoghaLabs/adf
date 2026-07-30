@@ -58,13 +58,32 @@ Index of authoritative business documents for ADF v1.0.
 | `PRODUCT_DIFFERENTIATORS.md` | Structural strengths |
 | `COMPETITIVE_POSITION.md` | Category positioning |
 
+## Market Analysis (`02-Market/` — BUSINESS-004 ✅)
+
+| Document | Description |
+|----------|-------------|
+| `README.md` | Purpose, scope, reading order |
+| `MARKET_ANALYSIS.md` | Overall market SSOT overview |
+| `TARGET_MARKETS.md` | Priority market arenas |
+| `INDUSTRY_OVERVIEW.md` | Industry context |
+| `CUSTOMER_SEGMENTS.md` | Segment definitions |
+| `IDEAL_CUSTOMER_PROFILE.md` | ICP |
+| `BUYER_PERSONAS.md` | Six buyer personas |
+| `MARKET_TRENDS.md` | Qualitative trends |
+| `PAIN_POINTS.md` | Pain map |
+| `ADOPTION_BARRIERS.md` | Adoption friction |
+| `SWOT_ANALYSIS.md` | RC1-based SWOT |
+| `COMPETITIVE_LANDSCAPE.md` | Category landscape |
+| `GO_TO_MARKET_ASSUMPTIONS.md` | GTM hypotheses |
+| `MARKET_RISKS.md` | Market risk register |
+
 ## Locked content folders
 
 | Folder | Phase focus |
 |--------|-------------|
 | `00-Executive/` | BUSINESS-002 ✅ |
 | `01-Product/` | BUSINESS-003 ✅ |
-| `02-Market/` | BUSINESS-004 |
+| `02-Market/` | BUSINESS-004 ✅ |
 | `03-Business/` | BUSINESS-005 |
 | `04-Sales/` | BUSINESS-006 |
 | `05-Marketing/` | BUSINESS-007 |

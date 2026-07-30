@@ -2,15 +2,22 @@
 
 ## Active
 
-- [ ] Await explicit prompt for **BUSINESS-004 — Market Analysis**
+- [ ] Await explicit prompt for **BUSINESS-005 — Business Model**
 - [ ] Keep engineering claims aligned with shipped RC1 capabilities
 - [ ] Keep `/legal` as product-legal SSOT; use `09-Legal/` only for business-legal strategy
 - [ ] Enforce BD-007 narrative standards and BD-008 edition principles
+- [ ] Do not invent TAM/SAM/SOM or competitor names in business docs
 
-## Backlog (after BUSINESS-004 opens)
+## Backlog (after BUSINESS-005 opens)
 
-- [ ] Market analysis documents in `02-Market/`
-- [ ] Consume Product Strategy SSOT without rewriting editions
+- [ ] Business model documents in `03-Business/`
+- [ ] Consume Product + Market SSOT without rewriting editions or segments
+
+## Done (BUSINESS-004)
+
+- [x] Create `02-Market/` Market Analysis package
+- [x] Update Business SSOT to `B1.3.0`
+- [x] Stop before BUSINESS-005
 
 ## Done (BUSINESS-003)
 
@@ -21,7 +28,7 @@
 
 ## Done (BUSINESS-002)
 
-- [x] Create `00-Executive/` Executive Package (14 documents)
+- [x] Create `00-Executive/` Executive Package
 - [x] Update Business SSOT to `B1.1.0`
 - [x] Stop before BUSINESS-003
 

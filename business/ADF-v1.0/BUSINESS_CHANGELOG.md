@@ -1,5 +1,24 @@
 # Business Changelog
 
+## [B1.3.0] — 2026-07-30 — BUSINESS-004
+
+### Added
+
+- Complete Market Analysis package in `02-Market/` (14 documents)
+- Customer segments, ICP, buyer personas
+- RC1 SWOT, category competitive landscape, GTM assumptions, market risks
+
+### Changed
+
+- Business package version `B1.2.0` → `B1.3.0`
+- BUSINESS-004 marked complete; next is BUSINESS-005 (not started)
+
+### Notes
+
+- Not BUILD-021
+- No TAM/SAM/SOM; no competitor names
+- Stop before BUSINESS-005
+
 ## [B1.2.0] — 2026-07-30 — BUSINESS-003
 
 ### Added

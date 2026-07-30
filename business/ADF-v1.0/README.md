@@ -2,9 +2,9 @@
 
 **Product:** ADF (AI Development Framework)  
 **Product version:** `1.0.0-rc1`  
-**Business phase:** BUSINESS-003 — Product Strategy ✅  
-**Business package:** `B1.2.0`  
-**Status:** Foundation locked; Executive + Product Strategy complete; next BUSINESS-004 (not started)
+**Business phase:** BUSINESS-004 — Market Analysis ✅  
+**Business package:** `B1.3.0`  
+**Status:** Executive + Product + Market complete; next BUSINESS-005 (not started)
 
 ## Purpose
 
@@ -60,8 +60,8 @@ Business work advances through numbered phases:
 | BUSINESS-001 | Business Foundation ✅ |
 | BUSINESS-002 | Executive Package ✅ |
 | BUSINESS-003 | Product Strategy ✅ |
-| BUSINESS-004 | Market Analysis (next) |
-| BUSINESS-005 | Business Model |
+| BUSINESS-004 | Market Analysis ✅ |
+| BUSINESS-005 | Business Model (next) |
 | BUSINESS-006 | Sales Strategy |
 | BUSINESS-007 | Marketing Strategy |
 | BUSINESS-008 | Investor Package |
