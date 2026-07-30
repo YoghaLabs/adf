@@ -69,36 +69,7 @@ export function KnowledgePage() {
   );
 }
 
-export function RuntimePage() {
-  const [status, setStatus] = useState<string>("…");
-  useEffect(() => {
-    void studioSdk.runtime.status().then((r) => {
-      setStatus(r.ok && (r.data as { ok?: boolean }).ok ? "Healthy" : "Degraded");
-    });
-  }, []);
-  return (
-    <PageFrame
-      testId="page-runtime"
-      title="Runtime"
-      subtitle="Engine / plugin / package status via RuntimeClient."
-    >
-      <div className="grid gap-3 md:grid-cols-3">
-        <Card>
-          <div className="studio-muted">Runtime Status</div>
-          <div className="mt-2 text-xl font-semibold">{status}</div>
-        </Card>
-        <Card>
-          <div className="studio-muted">Engine Status</div>
-          <div className="mt-2 text-xl font-semibold">Service Layer</div>
-        </Card>
-        <Card>
-          <div className="studio-muted">Plugin Status</div>
-          <div className="mt-2 text-xl font-semibold">SDK</div>
-        </Card>
-      </div>
-    </PageFrame>
-  );
-}
+export { RuntimeDashboardPage as RuntimePage } from "@/features/runtime/dashboard/RuntimeDashboardPage";
 
 export { SessionManagerPage as SessionsPage } from "@/features/workspace/pages/SessionManagerPage";
 

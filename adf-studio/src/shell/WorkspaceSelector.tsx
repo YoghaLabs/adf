@@ -24,7 +24,7 @@ export function WorkspaceSelector() {
       <div className="min-w-0">
         <div className="truncate font-medium">{profile?.name ?? current?.repoRoot ?? "Select workspace"}</div>
         <div className="truncate text-[11px] text-ink-muted">
-          {current?.build ?? "BUILD-015"} · {current?.version ?? "0.15.0-alpha"}
+          {current?.build ?? "BUILD-016"} · {current?.version ?? "0.16.0-alpha"}
         </div>
       </div>
     </button>
