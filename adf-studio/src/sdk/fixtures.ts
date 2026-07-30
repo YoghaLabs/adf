@@ -41,6 +41,23 @@ import {
   PARTICIPANTS,
   REVIEWS,
 } from "@/features/collaboration/services/collaborationFixtures";
+import {
+  APPROVAL_GATES,
+  ARTIFACTS,
+  DEPENDENCIES,
+  EXECUTION_PLANS,
+  getExecutionView,
+  getOrchestrationOverview,
+  getPipelineMetrics,
+  INTEGRATIONS,
+  PIPELINE_HISTORY,
+  REVIEW_GATES,
+  STAGE_ASSIGNMENTS,
+  STAGES,
+  TRANSITIONS,
+  WORKFLOW_INSTANCES,
+  WORKFLOW_TEMPLATES,
+} from "@/features/orchestration/services/orchestrationFixtures";
 
 /** Deterministic fixture envelopes mirroring ServiceResult shapes from adf-core. */
 export async function localFixtureProvider(
@@ -449,6 +466,36 @@ export async function localFixtureProvider(
       return { ok: true, data: { notifications: NOTIFICATIONS, count: NOTIFICATIONS.length } };
     case "assignments.list":
       return { ok: true, data: { assignments: ASSIGNMENTS, count: ASSIGNMENTS.length } };
+    case "workflows.overview":
+      return { ok: true, data: getOrchestrationOverview() };
+    case "workflows.instances":
+      return { ok: true, data: { instances: WORKFLOW_INSTANCES, count: WORKFLOW_INSTANCES.length } };
+    case "workflows.templates":
+      return { ok: true, data: { templates: WORKFLOW_TEMPLATES, count: WORKFLOW_TEMPLATES.length } };
+    case "workflows.plans":
+      return { ok: true, data: { plans: EXECUTION_PLANS, count: EXECUTION_PLANS.length } };
+    case "pipelines.stages":
+      return { ok: true, data: { stages: STAGES, count: STAGES.length } };
+    case "pipelines.metrics":
+      return { ok: true, data: getPipelineMetrics() };
+    case "pipelines.history":
+      return { ok: true, data: { entries: PIPELINE_HISTORY, count: PIPELINE_HISTORY.length } };
+    case "pipelines.dependencies":
+      return { ok: true, data: { dependencies: DEPENDENCIES, count: DEPENDENCIES.length } };
+    case "pipelines.transitions":
+      return { ok: true, data: { transitions: TRANSITIONS, count: TRANSITIONS.length } };
+    case "pipelines.reviewGates":
+      return { ok: true, data: { gates: REVIEW_GATES, count: REVIEW_GATES.length } };
+    case "pipelines.assignments":
+      return { ok: true, data: { assignments: STAGE_ASSIGNMENTS, count: STAGE_ASSIGNMENTS.length } };
+    case "artifacts.list":
+      return { ok: true, data: { artifacts: ARTIFACTS, count: ARTIFACTS.length } };
+    case "execution.view":
+      return { ok: true, data: getExecutionView() };
+    case "execution.integrations":
+      return { ok: true, data: { integrations: INTEGRATIONS, count: INTEGRATIONS.length } };
+    case "approvals.list":
+      return { ok: true, data: { gates: APPROVAL_GATES, count: APPROVAL_GATES.length } };
     default:
       return { ok: false, data: {}, error: `unknown SDK method: ${method}` };
   }

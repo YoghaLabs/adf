@@ -13,3 +13,4 @@ export * from "@/features/workspace";
 export * from "@/features/visual";
 export * from "@/features/runtime";
 export * from "@/features/collaboration";
+export * from "@/features/orchestration";

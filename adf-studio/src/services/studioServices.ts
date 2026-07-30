@@ -27,4 +27,9 @@ export const studioServices = {
   reviews: () => studioSdk.reviews,
   notifications: () => studioSdk.notifications,
   assignments: () => studioSdk.assignments,
+  workflows: () => studioSdk.workflows,
+  pipelines: () => studioSdk.pipelines,
+  artifacts: () => studioSdk.artifacts,
+  execution: () => studioSdk.execution,
+  approvals: () => studioSdk.approvals,
 };

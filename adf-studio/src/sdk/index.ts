@@ -48,6 +48,21 @@ import type {
   ReviewItem,
   WorkspaceInvitation,
   WorkspaceMember,
+  ApprovalGate,
+  ExecutionView,
+  IntegrationLink,
+  OrchestrationArtifact,
+  OrchestrationDependency,
+  OrchestrationOverview,
+  PipelineHistoryEntry,
+  PipelineMetrics,
+  PipelineStage,
+  ReviewGate,
+  StageAssignment,
+  TransitionRecord,
+  WorkflowExecutionPlan,
+  WorkflowInstance,
+  WorkflowTemplate,
 } from "@/types/studio";
 import { studioBridge } from "@/sdk/bridge";
 
@@ -409,6 +424,76 @@ export class AssignmentClient {
   }
 }
 
+export class WorkflowClient {
+  overview(): Promise<ServiceEnvelope<OrchestrationOverview>> {
+    return studioBridge.invoke("workflows.overview");
+  }
+
+  instances(): Promise<ServiceEnvelope<{ instances: WorkflowInstance[]; count: number }>> {
+    return studioBridge.invoke("workflows.instances");
+  }
+
+  templates(): Promise<ServiceEnvelope<{ templates: WorkflowTemplate[]; count: number }>> {
+    return studioBridge.invoke("workflows.templates");
+  }
+
+  plans(): Promise<ServiceEnvelope<{ plans: WorkflowExecutionPlan[]; count: number }>> {
+    return studioBridge.invoke("workflows.plans");
+  }
+}
+
+export class PipelineClient {
+  stages(): Promise<ServiceEnvelope<{ stages: PipelineStage[]; count: number }>> {
+    return studioBridge.invoke("pipelines.stages");
+  }
+
+  metrics(): Promise<ServiceEnvelope<PipelineMetrics>> {
+    return studioBridge.invoke("pipelines.metrics");
+  }
+
+  history(): Promise<ServiceEnvelope<{ entries: PipelineHistoryEntry[]; count: number }>> {
+    return studioBridge.invoke("pipelines.history");
+  }
+
+  dependencies(): Promise<ServiceEnvelope<{ dependencies: OrchestrationDependency[]; count: number }>> {
+    return studioBridge.invoke("pipelines.dependencies");
+  }
+
+  transitions(): Promise<ServiceEnvelope<{ transitions: TransitionRecord[]; count: number }>> {
+    return studioBridge.invoke("pipelines.transitions");
+  }
+
+  reviewGates(): Promise<ServiceEnvelope<{ gates: ReviewGate[]; count: number }>> {
+    return studioBridge.invoke("pipelines.reviewGates");
+  }
+
+  assignments(): Promise<ServiceEnvelope<{ assignments: StageAssignment[]; count: number }>> {
+    return studioBridge.invoke("pipelines.assignments");
+  }
+}
+
+export class ArtifactClient {
+  list(): Promise<ServiceEnvelope<{ artifacts: OrchestrationArtifact[]; count: number }>> {
+    return studioBridge.invoke("artifacts.list");
+  }
+}
+
+export class ExecutionClient {
+  view(): Promise<ServiceEnvelope<ExecutionView>> {
+    return studioBridge.invoke("execution.view");
+  }
+
+  integrations(): Promise<ServiceEnvelope<{ integrations: IntegrationLink[]; count: number }>> {
+    return studioBridge.invoke("execution.integrations");
+  }
+}
+
+export class ApprovalClient {
+  list(): Promise<ServiceEnvelope<{ gates: ApprovalGate[]; count: number }>> {
+    return studioBridge.invoke("approvals.list");
+  }
+}
+
 export class StudioSdk {
   readonly runtime = new RuntimeClient();
   readonly generator = new GeneratorClient();
@@ -436,6 +521,11 @@ export class StudioSdk {
   readonly reviews = new ReviewClient();
   readonly notifications = new NotificationClient();
   readonly assignments = new AssignmentClient();
+  readonly workflows = new WorkflowClient();
+  readonly pipelines = new PipelineClient();
+  readonly artifacts = new ArtifactClient();
+  readonly execution = new ExecutionClient();
+  readonly approvals = new ApprovalClient();
 }
 
 export const studioSdk = new StudioSdk();
