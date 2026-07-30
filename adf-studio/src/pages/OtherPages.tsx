@@ -4,6 +4,7 @@ import { Button, Card, Badge } from "@/components/ui";
 import { studioSdk } from "@/sdk";
 import { useSettingsStore } from "@/stores/settingsStore";
 import { useOnboardingStore } from "@/stores/onboardingStore";
+import { useT } from "@/i18n";
 import type { ThemeMode } from "@/types/studio";
 
 export function TemplatesPage() {
@@ -97,11 +98,12 @@ export function ReleasePage() {
 }
 
 export function SettingsPage() {
+  const t = useT();
   return (
     <PageFrame
       testId="page-settings"
-      title="Settings"
-      subtitle="Theme, language, channels, registry, SDK, updates."
+      title={t("settings.title")}
+      subtitle={t("settings.subtitle")}
     >
       <SettingsForm />
     </PageFrame>
@@ -109,21 +111,18 @@ export function SettingsPage() {
 }
 
 export function HelpPage() {
+  const t = useT();
   const openWelcome = useOnboardingStore((s) => s.openWelcome);
   const startDemo = useOnboardingStore((s) => s.startDemo);
   const navigate = useNavigate();
 
   return (
-    <PageFrame testId="page-help" title="Help" subtitle="ADF Studio is a control center, not an IDE.">
+    <PageFrame testId="page-help" title={t("help.title")} subtitle={t("help.subtitle")}>
       <Card className="space-y-3">
-        <p className="text-sm leading-relaxed text-ink-muted">
-          Studio communicates only through UI → SDK → Service Layer → ADF Core. Business logic
-          stays in engines and services. Many RC1 panels use fixture data so navigation can be
-          explored before live backends are fully wired for every screen.
-        </p>
+        <p className="text-sm leading-relaxed text-ink-muted">{t("help.intro")}</p>
         <div className="flex flex-wrap gap-2">
           <Button variant="accent" onClick={() => openWelcome()}>
-            Open Welcome Wizard
+            {t("help.openWelcome")}
           </Button>
           <Button
             variant="outline"
@@ -132,26 +131,28 @@ export function HelpPage() {
               navigate("/");
             }}
           >
-            Start Demo Project tour
+            {t("help.startDemo")}
           </Button>
         </div>
       </Card>
 
       <Card className="space-y-2">
-        <h2 className="text-sm font-semibold">First-time operating path</h2>
+        <h2 className="text-sm font-semibold">{t("help.pathTitle")}</h2>
         <ol className="list-decimal space-y-1 pl-5 text-sm text-ink-muted">
-          <li>Run Welcome → choose Demo Project (guided tour).</li>
+          <li>{t("help.path.1")}</li>
           <li>
-            CLI health: <code className="rounded bg-canvas px-1">python -m adf doctor --root .</code>
+            {t("help.path.2")}{" "}
+            <code className="rounded bg-canvas px-1">python -m adf doctor --root .</code>
           </li>
           <li>
-            Create a real project:{" "}
+            {t("help.path.3")}{" "}
             <code className="rounded bg-canvas px-1">python -m adf init my-app</code>
           </li>
-          <li>Return to Studio → Projects / Runtime / Visual / Marketplace.</li>
+          <li>{t("help.path.4")}</li>
         </ol>
         <p className="text-xs text-ink-muted">
-          Docs: <code className="rounded bg-canvas px-1">adf-docs/quickstart/README.md</code>
+          {t("help.docs")}{" "}
+          <code className="rounded bg-canvas px-1">adf-docs/quickstart/README.md</code>
         </p>
       </Card>
     </PageFrame>
@@ -181,6 +182,7 @@ function PageFrame({
 }
 
 function SettingsForm() {
+  const t = useT();
   const theme = useSettingsStore((s) => s.theme);
   const setTheme = useSettingsStore((s) => s.setTheme);
   const language = useSettingsStore((s) => s.language);
@@ -193,30 +195,31 @@ function SettingsForm() {
   return (
     <Card className="grid max-w-xl gap-4">
       <label className="grid gap-1 text-sm">
-        Theme
+        {t("settings.theme")}
         <select
           className="h-9 rounded-lg border border-line bg-canvas-elevated px-3"
           value={theme}
           onChange={(e) => setTheme(e.target.value as ThemeMode)}
         >
-          <option value="dark">Dark</option>
-          <option value="light">Light</option>
-          <option value="system">System</option>
+          <option value="dark">{t("settings.theme.dark")}</option>
+          <option value="light">{t("settings.theme.light")}</option>
+          <option value="system">{t("settings.theme.system")}</option>
         </select>
       </label>
       <label className="grid gap-1 text-sm">
-        Language
+        {t("settings.language")}
         <select
           className="h-9 rounded-lg border border-line bg-canvas-elevated px-3"
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
+          data-testid="settings-language"
         >
           <option value="en">English</option>
           <option value="id">Bahasa Indonesia</option>
         </select>
       </label>
       <label className="grid gap-1 text-sm">
-        Channels
+        {t("settings.channels")}
         <select
           className="h-9 rounded-lg border border-line bg-canvas-elevated px-3"
           value={channel}
@@ -230,7 +233,7 @@ function SettingsForm() {
         </select>
       </label>
       <label className="grid gap-1 text-sm">
-        Registry
+        {t("settings.registry")}
         <select
           className="h-9 rounded-lg border border-line bg-canvas-elevated px-3"
           value={registry}

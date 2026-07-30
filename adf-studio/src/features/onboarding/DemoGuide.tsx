@@ -1,35 +1,38 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Card } from "@/components/ui";
 import { useOnboardingStore, type DemoStepId } from "@/stores/onboardingStore";
+import { useT } from "@/i18n";
+import type { MessageKey } from "@/i18n";
 
-const steps: { id: DemoStepId; path: string; title: string; body: string }[] = [
+const steps: { id: DemoStepId; path: string; titleKey: MessageKey; bodyKey: MessageKey }[] = [
   {
     id: "dashboard",
     path: "/",
-    title: "1 · Dashboard",
-    body: "Home overview of workspace health. RC1 may show fixture/demo numbers — that is expected.",
+    titleKey: "demo.dashboard.title",
+    bodyKey: "demo.dashboard.body",
   },
   {
     id: "runtime",
     path: "/runtime",
-    title: "2 · Runtime",
-    body: "Runtime monitor panels. For live CLI health use: python -m adf doctor / boot.",
+    titleKey: "demo.runtime.title",
+    bodyKey: "demo.runtime.body",
   },
   {
     id: "visual",
     path: "/visual",
-    title: "3 · Visual",
-    body: "Graphs and visual intelligence views. Explore knowledge/dependency graphs from the sidebar.",
+    titleKey: "demo.visual.title",
+    bodyKey: "demo.visual.body",
   },
   {
     id: "marketplace",
     path: "/marketplace",
-    title: "4 · Marketplace",
-    body: "Package/registry browsing UI. Install real packages via CLI when needed.",
+    titleKey: "demo.marketplace.title",
+    bodyKey: "demo.marketplace.body",
   },
 ];
 
 export function DemoGuide() {
+  const t = useT();
   const demoStep = useOnboardingStore((s) => s.demoStep);
   const demoProjectName = useOnboardingStore((s) => s.demoProjectName);
   const setDemoStep = useOnboardingStore((s) => s.setDemoStep);
@@ -68,25 +71,25 @@ export function DemoGuide() {
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-xs font-medium uppercase tracking-wide text-accent">
-              Demo Project · {demoProjectName}
+              {t("demo.badge", { name: demoProjectName ?? "demo" })}
             </p>
-            <h3 className="mt-1 text-sm font-semibold">{current.title}</h3>
-            <p className="mt-1 text-xs leading-relaxed text-ink-muted">{current.body}</p>
+            <h3 className="mt-1 text-sm font-semibold">{t(current.titleKey)}</h3>
+            <p className="mt-1 text-xs leading-relaxed text-ink-muted">{t(current.bodyKey)}</p>
           </div>
           <Button variant="ghost" className="shrink-0" onClick={() => finishDemo()}>
-            End
+            {t("demo.end")}
           </Button>
         </div>
         <div className="mt-3 flex items-center justify-between gap-2">
           <p className="text-[11px] text-ink-muted">
-            Step {index + 1} of {steps.length}
+            {t("demo.stepOf", { n: index + 1, total: steps.length })}
           </p>
           <div className="flex gap-2">
             <Button variant="outline" disabled={index <= 0} onClick={back}>
-              Back
+              {t("demo.back")}
             </Button>
             <Button variant="accent" data-testid="demo-guide-next" onClick={next}>
-              {index >= steps.length - 1 ? "Finish" : "Next"}
+              {index >= steps.length - 1 ? t("demo.finish") : t("demo.next")}
             </Button>
           </div>
         </div>

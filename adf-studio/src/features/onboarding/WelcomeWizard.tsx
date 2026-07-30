@@ -9,37 +9,18 @@ import { Button, Card } from "@/components/ui";
 import { useOnboardingStore } from "@/stores/onboardingStore";
 import { useWorkspaceStore } from "@/stores/workspaceStore";
 import { useSettingsStore } from "@/stores/settingsStore";
+import { useT } from "@/i18n";
 import { cn } from "@/utils/cn";
 
-const options = [
-  {
-    id: "create-workspace" as const,
-    title: "Create Workspace",
-    body: "Start with the default ADF workspace and learn the control-center layout.",
-    icon: FolderPlus,
-  },
-  {
-    id: "open-workspace" as const,
-    title: "Open Existing Workspace",
-    body: "Switch to a workspace already listed in Studio (SDK-backed list).",
-    icon: FolderOpen,
-  },
-  {
-    id: "learn" as const,
-    title: "Learn ADF",
-    body: "Read how Studio relates to CLI, Core, and Quick Start — without hype.",
-    icon: BookOpen,
-  },
-  {
-    id: "demo" as const,
-    title: "Demo Project",
-    body: "Guided 4-step tour: Dashboard → Runtime → Visual → Marketplace (~5 minutes).",
-    icon: Sparkles,
-    accent: true,
-  },
+const optionMeta = [
+  { id: "create-workspace" as const, icon: FolderPlus },
+  { id: "open-workspace" as const, icon: FolderOpen },
+  { id: "learn" as const, icon: BookOpen },
+  { id: "demo" as const, icon: Sparkles, accent: true },
 ];
 
 export function WelcomeWizard() {
+  const t = useT();
   const open = useOnboardingStore((s) => s.welcomeOpen);
   const hydrated = useOnboardingStore((s) => s.hydrated);
   const dismissWelcome = useOnboardingStore((s) => s.dismissWelcome);
@@ -52,13 +33,36 @@ export function WelcomeWizard() {
 
   if (!hydrated || !open) return null;
 
-  async function onPick(id: (typeof options)[number]["id"]) {
+  const options = [
+    {
+      ...optionMeta[0],
+      title: t("welcome.opt.create.title"),
+      body: t("welcome.opt.create.body"),
+    },
+    {
+      ...optionMeta[1],
+      title: t("welcome.opt.open.title"),
+      body: t("welcome.opt.open.body"),
+    },
+    {
+      ...optionMeta[2],
+      title: t("welcome.opt.learn.title"),
+      body: t("welcome.opt.learn.body"),
+    },
+    {
+      ...optionMeta[3],
+      title: t("welcome.opt.demo.title"),
+      body: t("welcome.opt.demo.body"),
+    },
+  ];
+
+  async function onPick(id: (typeof optionMeta)[number]["id"]) {
     selectChoice(id);
     if (id === "demo") {
       startDemo();
       pushNotification({
-        title: "Demo Project ready",
-        body: "Follow the guided tour. RC1 screens may still use fixture data.",
+        title: t("welcome.notify.demo.title"),
+        body: t("welcome.notify.demo.body"),
         tone: "info",
       });
       navigate("/");
@@ -75,8 +79,8 @@ export function WelcomeWizard() {
       if (first) await switchWorkspace(first.id);
       dismissWelcome(true);
       pushNotification({
-        title: "Workspace ready",
-        body: "Using the default Studio workspace. Create real projects with: python -m adf init <name>",
+        title: t("welcome.notify.workspaceReady.title"),
+        body: t("welcome.notify.workspaceReady.body"),
         tone: "success",
       });
       navigate("/workspace");
@@ -88,10 +92,12 @@ export function WelcomeWizard() {
       if (list[0]) await switchWorkspace(list[0].id);
       dismissWelcome(true);
       pushNotification({
-        title: "Workspace opened",
+        title: t("welcome.notify.workspaceOpened.title"),
         body: list.length
-          ? `Active: ${list[0]?.name ?? list[0]?.id}. Use the top-bar selector to switch.`
-          : "No workspaces returned yet — check SDK fixtures / doctor.",
+          ? t("welcome.notify.workspaceOpened.body", {
+              name: list[0]?.name ?? list[0]?.id ?? "",
+            })
+          : t("welcome.notify.workspaceEmpty.body"),
         tone: "info",
       });
       navigate("/workspace");
@@ -111,12 +117,9 @@ export function WelcomeWizard() {
           ADF Studio · {`1.0.0-rc1`}
         </p>
         <h2 id="welcome-wizard-title" className="mt-2 font-display text-2xl font-semibold tracking-tight">
-          Welcome to ADF
+          {t("welcome.title")}
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-          Studio is a <strong className="font-medium text-ink">control center</strong>, not an IDE
-          or chatbot. Pick a starting path. You can reopen this anytime from Help.
-        </p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-muted">{t("welcome.lead")}</p>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {options.map((opt) => {
@@ -150,7 +153,7 @@ export function WelcomeWizard() {
             <code className="rounded bg-canvas px-1">adf init</code>
           </p>
           <Button variant="ghost" data-testid="welcome-skip" onClick={() => dismissWelcome(true)}>
-            Skip for now
+            {t("welcome.skip")}
           </Button>
         </div>
       </Card>

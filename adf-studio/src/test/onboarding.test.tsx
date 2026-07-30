@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ApplicationShell } from "@/shell/ApplicationShell";
 import { DashboardPage } from "@/pages/DashboardPage";
 import { useOnboardingStore } from "@/stores/onboardingStore";
+import { useSettingsStore } from "@/stores/settingsStore";
 
 afterEach(() => {
   cleanup();
@@ -18,6 +19,7 @@ afterEach(() => {
     demoStep: null,
     demoProjectName: null,
   });
+  useSettingsStore.setState({ language: "en" });
 });
 
 function renderApp(path = "/") {
@@ -67,5 +69,14 @@ describe("VALIDATION-002 onboarding", () => {
     renderApp("/");
     expect(await screen.findByTestId("getting-started-banner")).toBeInTheDocument();
     expect(screen.queryByTestId("welcome-wizard")).not.toBeInTheDocument();
+  });
+
+  it("renders welcome wizard in Bahasa Indonesia", async () => {
+    useSettingsStore.setState({ language: "id" });
+    renderApp("/");
+    expect(await screen.findByTestId("welcome-wizard")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Selamat datang di ADF" })).toBeInTheDocument();
+    expect(screen.getByTestId("welcome-option-demo")).toHaveTextContent("Proyek Demo");
+    expect(screen.getByTestId("welcome-skip")).toHaveTextContent("Lewati dulu");
   });
 });

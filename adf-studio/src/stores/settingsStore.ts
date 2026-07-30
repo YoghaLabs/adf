@@ -1,6 +1,18 @@
 import { create } from "zustand";
 import type { NotificationItem, ThemeMode } from "@/types/studio";
 
+const LANGUAGE_KEY = "adf.studio.language.v1";
+
+function readStoredLanguage(): string {
+  try {
+    const value = localStorage.getItem(LANGUAGE_KEY);
+    if (value === "id" || value === "en") return value;
+  } catch {
+    /* ignore */
+  }
+  return "en";
+}
+
 type SettingsState = {
   theme: ThemeMode;
   language: string;
@@ -21,7 +33,7 @@ type SettingsState = {
 
 export const useSettingsStore = create<SettingsState>((set) => ({
   theme: "system",
-  language: "en",
+  language: readStoredLanguage(),
   channel: "alpha",
   registry: "local",
   sidebarCollapsed: false,
@@ -31,6 +43,11 @@ export const useSettingsStore = create<SettingsState>((set) => ({
     set({ theme });
   },
   setLanguage(language) {
+    try {
+      localStorage.setItem(LANGUAGE_KEY, language);
+    } catch {
+      /* ignore */
+    }
     set({ language });
   },
   setChannel(channel) {
