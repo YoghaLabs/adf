@@ -15,6 +15,18 @@ import {
   searchGraphDocs,
 } from "@/features/visual/services/graphFixtures";
 import type { GraphKind } from "@/features/visual/types";
+import {
+  filterLogs,
+  getDiagnostics,
+  getEvents,
+  getInspectors,
+  getJobs,
+  getLogs,
+  getMetricSeries,
+  getRuntimeMetrics,
+  getRuntimeOverview,
+  getTimeline,
+} from "@/features/runtime/services/runtimeFixtures";
 
 /** Deterministic fixture envelopes mirroring ServiceResult shapes from adf-core. */
 export async function localFixtureProvider(
@@ -352,6 +364,43 @@ export async function localFixtureProvider(
         (payload?.scope as "node" | "edge" | "relationship" | "all") ?? "all",
       );
       return { ok: true, data: { hits, count: hits.length } };
+    }
+    case "runtimeDashboard.overview":
+      return { ok: true, data: getRuntimeOverview() };
+    case "runtimeDashboard.jobs": {
+      const jobs = getJobs();
+      return { ok: true, data: { jobs, count: jobs.length } };
+    }
+    case "runtimeDashboard.events": {
+      const events = getEvents();
+      return { ok: true, data: { events, count: events.length } };
+    }
+    case "runtimeDashboard.inspectors":
+      return { ok: true, data: getInspectors() };
+    case "metrics.snapshot":
+      return { ok: true, data: getRuntimeMetrics() };
+    case "metrics.series":
+      return { ok: true, data: { points: getMetricSeries() } };
+    case "logs.list": {
+      const logs = getLogs();
+      return { ok: true, data: { logs, count: logs.length } };
+    }
+    case "logs.filter": {
+      const logs = filterLogs(getLogs(), {
+        query: String(payload?.query ?? ""),
+        severity: String(payload?.severity ?? "all"),
+      });
+      return { ok: true, data: { logs, count: logs.length } };
+    }
+    case "diagnostics.snapshot":
+      return { ok: true, data: getDiagnostics() };
+    case "timeline.list": {
+      const events = getTimeline();
+      return { ok: true, data: { events, count: events.length } };
+    }
+    case "timeline.byKind": {
+      const events = getTimeline(String(payload?.kind ?? ""));
+      return { ok: true, data: { events, count: events.length } };
     }
     default:
       return { ok: false, data: {}, error: `unknown SDK method: ${method}` };

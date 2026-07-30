@@ -7,19 +7,30 @@
 
 import type {
   ActivityItem,
+  BackgroundJob,
   CommandAction,
   GraphDocument,
   GraphKind,
   GraphSearchHit,
+  InspectorItem,
+  LogEntry,
+  LogSeverity,
   MarketplaceItem,
+  MetricSeriesPoint,
   ProjectExplorerItem,
   ProjectSummary,
   ReleaseChannelInfo,
+  RuntimeDiagnostics,
+  RuntimeEvent,
+  RuntimeMetrics,
+  RuntimeOverview,
   RuntimeStatus,
   SearchHit,
   ServiceEnvelope,
   SessionSummary,
   SessionTimelineEvent,
+  TimelineEvent,
+  TimelineKind,
   VisualOverview,
   WorkspaceProfile,
   WorkspaceSettingsView,
@@ -261,6 +272,63 @@ export class VisualizationClient {
   }
 }
 
+export class RuntimeDashboardClient {
+  overview(): Promise<ServiceEnvelope<RuntimeOverview>> {
+    return studioBridge.invoke("runtimeDashboard.overview");
+  }
+
+  jobs(): Promise<ServiceEnvelope<{ jobs: BackgroundJob[]; count: number }>> {
+    return studioBridge.invoke("runtimeDashboard.jobs");
+  }
+
+  events(): Promise<ServiceEnvelope<{ events: RuntimeEvent[]; count: number }>> {
+    return studioBridge.invoke("runtimeDashboard.events");
+  }
+
+  inspectors(): Promise<ServiceEnvelope<Record<string, InspectorItem[]>>> {
+    return studioBridge.invoke("runtimeDashboard.inspectors");
+  }
+}
+
+export class MetricsClient {
+  snapshot(): Promise<ServiceEnvelope<RuntimeMetrics>> {
+    return studioBridge.invoke("metrics.snapshot");
+  }
+
+  series(): Promise<ServiceEnvelope<{ points: MetricSeriesPoint[] }>> {
+    return studioBridge.invoke("metrics.series");
+  }
+}
+
+export class LogsClient {
+  list(): Promise<ServiceEnvelope<{ logs: LogEntry[]; count: number }>> {
+    return studioBridge.invoke("logs.list");
+  }
+
+  filter(opts: {
+    query?: string;
+    severity?: LogSeverity | "all";
+  }): Promise<ServiceEnvelope<{ logs: LogEntry[]; count: number }>> {
+    return studioBridge.invoke("logs.filter", opts as Record<string, unknown>);
+  }
+}
+
+export class DiagnosticsClient {
+  snapshot(): Promise<ServiceEnvelope<RuntimeDiagnostics>> {
+    return studioBridge.invoke("diagnostics.snapshot");
+  }
+}
+
+export class TimelineClient {
+  list(): Promise<ServiceEnvelope<{ events: TimelineEvent[]; count: number }>> {
+    return studioBridge.invoke("timeline.list");
+  }
+
+  byKind(kind: TimelineKind): Promise<ServiceEnvelope<{ events: TimelineEvent[]; count: number }>> {
+    return studioBridge.invoke("timeline.byKind", { kind });
+  }
+}
+
 export class StudioSdk {
   readonly runtime = new RuntimeClient();
   readonly generator = new GeneratorClient();
@@ -277,6 +345,11 @@ export class StudioSdk {
   readonly dependency = new DependencyClient();
   readonly graph = new GraphClient();
   readonly visualization = new VisualizationClient();
+  readonly runtimeDashboard = new RuntimeDashboardClient();
+  readonly metrics = new MetricsClient();
+  readonly logs = new LogsClient();
+  readonly diagnostics = new DiagnosticsClient();
+  readonly timeline = new TimelineClient();
 }
 
 export const studioSdk = new StudioSdk();

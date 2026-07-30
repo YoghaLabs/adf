@@ -16,4 +16,9 @@ export const studioServices = {
   dependency: () => studioSdk.dependency,
   graph: () => studioSdk.graph,
   visualization: () => studioSdk.visualization,
+  runtimeDashboard: () => studioSdk.runtimeDashboard,
+  metrics: () => studioSdk.metrics,
+  logs: () => studioSdk.logs,
+  diagnostics: () => studioSdk.diagnostics,
+  timeline: () => studioSdk.timeline,
 };
