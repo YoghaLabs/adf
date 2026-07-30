@@ -1,7 +1,6 @@
 # TODOs
 
-- [ ] Architecture Review of BUILD-015
-- [ ] Await explicit BUILD-016 master prompt (**Runtime Monitor**)
-- [ ] Wire Core graph services (replace fixtures)
-- [ ] Phase 3 remainder (BUILD-016)
+- [ ] Architecture Review of BUILD-016
+- [ ] Await explicit BUILD-017 master prompt (**Testing Framework**)
+- [ ] Wire Core observability services (replace fixtures)
 - [ ] Phase 4 Production (BUILD-017…020)

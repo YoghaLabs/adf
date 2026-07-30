@@ -2,6 +2,11 @@
 
 Narrative history of meaningful repository changes. Complements `CHANGELOG.md` with context for AI resume.
 
+## 2026-07-30 — BUILD-016 AI Runtime Dashboard
+
+- Read-only observability platform; ADR-014; Phase 3 complete; `0.16.0-alpha`
+- **STOP** before BUILD-017
+
 ## 2026-07-30 — BUILD-015 Visual Intelligence Platform
 
 - Read-only React Flow graphs; ADR-013; version `0.15.0-alpha`

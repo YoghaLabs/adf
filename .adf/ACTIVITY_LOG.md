@@ -5,6 +5,12 @@ Chronological operator/AI activity log for continuity across sessions and model 
 
 ---
 
+## 2026-07-30 — BUILD-016 AI Runtime Dashboard
+
+- `features/runtime/` observability dashboard, metrics, logs, diagnostics, jobs
+- SDK clients + ADR-014; Phase 3 complete
+- Version `0.16.0-alpha`; **STOP before BUILD-017**
+
 ## 2026-07-30 — BUILD-015 Visual Intelligence Platform
 
 - `features/visual/` graph engine + React Flow; 10 graph modules

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { RuntimeOverviewCards } from "@/features/runtime/dashboard/RuntimeOverviewCards";
 import { MetricsPanel } from "@/features/runtime/metrics/MetricsPanel";
-import { LogViewer } from "@/features/runtime/logs/LogViewer";
+import { LogViewer } from "@/features/runtime/log-viewer/LogViewer";
 import { TimelinePanel } from "@/features/runtime/timeline/TimelinePanel";
 import {
   DiagnosticsPanel,

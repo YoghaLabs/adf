@@ -1,11 +1,28 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.15.0-alpha** / **BUILD-015** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.16.0-alpha** / **BUILD-016** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-016 Runtime Monitor (Phase 3 — after Architecture Review of BUILD-015)
+- BUILD-017 Testing Framework (Phase 4 — after Architecture Review of BUILD-016)
+
+## [0.16.0-alpha] — 2026-07-30
+
+### Added
+- AI Runtime Dashboard under `adf-studio/src/features/runtime/`
+- Observability timelines, metrics, logs, diagnostics, jobs, inspectors, event stream
+- SDK: RuntimeDashboardClient, MetricsClient, LogsClient, DiagnosticsClient, TimelineClient
+- Stores: RuntimeDashboard, Metrics, Log, Timeline, Diagnostic
+- Docs: RUNTIME_DASHBOARD, OBSERVABILITY, METRICS_SYSTEM, LOGGING_SYSTEM, DIAGNOSTICS
+- ADR-014 AI Observability Architecture
+- Prompts + `bootstrap/BUILD-016/`
+- Vitest runtime suite
+- Phase 3 User Experience complete
+
+### Changed
+- Version identity advanced to `0.16.0-alpha` / BUILD-016
+- `/runtime` hosts full observability dashboard
 
 ## [0.15.0-alpha] — 2026-07-30
 

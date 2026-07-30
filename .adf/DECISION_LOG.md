@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-30 — AI Observability Architecture (BUILD-016 / ADR-014)
+
+- **Decision:** Runtime Dashboard is read-only; logs from services; metrics aggregated; Studio does not own runtime state.
+- **Why:** Observability without forking RuntimeEngine into the GUI.
+- **Consequences:** Presentation caches only; fixtures until Core telemetry APIs harden.
+- **Status:** Accepted
+
 ## 2026-07-30 — Visual Intelligence Architecture (BUILD-015 / ADR-013)
 
 - **Decision:** Graphs are read-only; visualization separated from SDK; rendering is UI-only (React Flow).

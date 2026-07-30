@@ -1,10 +1,10 @@
 # Current Task
 
-BUILD-015 complete. Visual Intelligence Platform delivered. Await next master prompt.
+BUILD-016 complete. Phase 3 UX complete. Await next master prompt.
 
-**STOP** — do not start BUILD-016 (Runtime Monitor) until an explicit master prompt.
+**STOP** — do not start BUILD-017 (Testing Framework) until an explicit master prompt.
 
 ## Forbidden
 
-- Start BUILD-016…020 unprompted
-- Business logic or mutable graphs inside `adf-studio/`
+- Start BUILD-017…020 unprompted
+- Mutable runtime controls / business logic in Studio

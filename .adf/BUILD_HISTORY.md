@@ -225,6 +225,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Graphs are read-only presentation
 - Visualization separated from SDK; rendering UI-only
 
+## BUILD-016 — AI Runtime Dashboard & Observability
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.16.0-alpha` |
+| Branch | `develop` |
+| Purpose | Read-only AI runtime observability in Studio |
+| Result | **Completed.** Dashboard/metrics/logs/diagnostics; ADR-014; Phase 3 complete. Stop before BUILD-017. |
+
+### Outcomes That Must Not Be Undone
+
+- Runtime Dashboard is read-only
+- Logs/metrics from Service Layer envelopes
+- Studio does not own runtime state
+
 ## Template for Future Entries
 
 ```markdown

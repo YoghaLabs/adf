@@ -79,6 +79,11 @@ Human-facing documentation for the AI Development Framework.
 | `KNOWLEDGE_GRAPH.md` | Knowledge Graph view |
 | `DEPENDENCY_GRAPH.md` | Dependency Graph view |
 | `VISUAL_GUIDE.md` | Operator visual guide |
+| `RUNTIME_DASHBOARD.md` | AI Runtime Dashboard |
+| `OBSERVABILITY.md` | Timelines & event stream |
+| `METRICS_SYSTEM.md` | Metrics presentation |
+| `LOGGING_SYSTEM.md` | Log viewer |
+| `DIAGNOSTICS.md` | Diagnostics panels |
 | `README.md` | This index |
 
 ## Reading Order

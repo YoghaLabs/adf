@@ -2,9 +2,9 @@
 
 **Locked roadmap** (operator-approved). Do not rename phases or BUILD themes without an ADR + explicit approval.
 
-**Current version:** `0.15.0-alpha`  
-**Current build:** `BUILD-015` — Knowledge Graph (**completed** as Visual Intelligence Platform)  
-**Next:** `BUILD-016` — Runtime Monitor (**not started**)
+**Current version:** `0.16.0-alpha`  
+**Current build:** `BUILD-016` — Runtime Monitor (**completed** as AI Runtime Dashboard)  
+**Next:** `BUILD-017` — Testing Framework (**not started**)
 
 ---
 
@@ -35,14 +35,14 @@
 
 ---
 
-## Phase 3 — User Experience
+## Phase 3 — User Experience ✅
 
 | Build | Focus | Status |
 |-------|--------|--------|
 | BUILD-013 | ADF Studio Core | ✅ |
 | BUILD-014 | Workspace & Dashboard | ✅ |
 | BUILD-015 | Knowledge Graph | ✅ |
-| BUILD-016 | Runtime Monitor | ⏳ |
+| BUILD-016 | Runtime Monitor | ✅ |
 
 ---
 
@@ -60,9 +60,9 @@
 ## Status Legend
 
 - **Phase 2:** BUILD-009–012 complete
-- **Phase 3:** BUILD-013–015 complete; BUILD-016 pending after explicit master prompt
+- **Phase 3:** BUILD-013–016 complete; Phase 4 next after explicit master prompt
 - **Phase 4:** pending
 
 ## Continuity
 
-When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-016 until an explicit master prompt.
+When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-017 until an explicit master prompt.
