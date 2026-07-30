@@ -1,0 +1,27 @@
+---
+description: After each finished task — commit, push, merge main, VPS pull for review
+alwaysApply: true
+---
+
+# Finish → Ship → VPS Review
+
+When a task or phase of work is **done** (feature, fix, docs, validation), do not stop at local changes. Complete this ship loop unless the user explicitly says to hold:
+
+1. **Commit** on `develop` (concise message; follow repo git safety rules).
+2. **Push** `develop` to `origin`.
+3. **Merge into `main`** (fast-forward preferred) and **push** `origin/main`.
+4. **VPS pull** at `/home/aplikasi/adf` on `develop` (or the branch in use), reinstall Studio deps if needed, **restart** `adf-studio.service`.
+5. Report SHAs + VPS URL for Quadran review: `http://100.64.209.99:1420/` (Tailscale).
+
+## Defaults
+
+- Working branch: `develop` → always keep `main` in sync after finish
+- VPS: `72.61.213.249` SSH port `2276`, path `/home/aplikasi/adf`, service `adf-studio.service`
+- Credentials: use env / existing access; never commit passwords; clear env after use
+- Do not skip merge-to-main or VPS pull “for later” when the task is finished
+
+## Exceptions
+
+- User says hold / no push / no VPS
+- Empty tree (nothing to commit) — still sync VPS only if remote already has the intended SHA
+- Secrets / credentials files — never commit
