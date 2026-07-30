@@ -95,3 +95,27 @@ export type {
   TimelineEvent,
   TimelineKind,
 } from "@/features/runtime/types";
+
+export type {
+  AiAgentKind,
+  ApprovalAction,
+  Assignment,
+  CollaborationActivity,
+  CollaborationNotification,
+  CollaborationOverview,
+  CollaborationSession,
+  CommentMessage,
+  CommentThread,
+  MultiAgentNode,
+  Participant,
+  ParticipantKind,
+  ParticipantRole,
+  ParticipantStatus,
+  PresenceState,
+  ReviewItem,
+  SessionArtifact,
+  SessionDecision,
+  SessionPrompt,
+  WorkspaceInvitation,
+  WorkspaceMember,
+} from "@/features/collaboration/types";

@@ -28,6 +28,7 @@ import {
   SettingsPage,
   TemplatesPage,
 } from "@/pages/OtherPages";
+import { CollaborationPlatformPage } from "@/features/collaboration/pages/CollaborationPlatformPage";
 
 export const studioRouter = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ export const studioRouter = createBrowserRouter([
       { path: "workspace", element: <WorkspacePage /> },
       { path: "projects", element: <ProjectsPage /> },
       { path: "sessions", element: <SessionsPage /> },
+      { path: "collaboration", element: <CollaborationPlatformPage /> },
       { path: "search", element: <SearchPlatformPage /> },
       { path: "visual", element: <VisualIntelligencePage /> },
       { path: "visual/knowledge", element: <KnowledgeGraphPage /> },

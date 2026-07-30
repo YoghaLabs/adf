@@ -15,6 +15,7 @@ import {
   FolderKanban,
   Timer,
   Network,
+  Users,
 } from "lucide-react";
 import { studioConfig } from "@/config/studio";
 import { useSettingsStore } from "@/stores/settingsStore";
@@ -25,6 +26,7 @@ const icons: Record<string, ComponentType<{ className?: string }>> = {
   workspace: Compass,
   projects: FolderKanban,
   sessions: Timer,
+  collaboration: Users,
   visual: Network,
   marketplace: Boxes,
   knowledge: Library,

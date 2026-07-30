@@ -27,6 +27,20 @@ import {
   getRuntimeOverview,
   getTimeline,
 } from "@/features/runtime/services/runtimeFixtures";
+import {
+  ACTIVITIES,
+  APPROVALS,
+  ASSIGNMENTS,
+  COLLAB_SESSIONS,
+  COMMENT_THREADS,
+  getCollaborationOverview,
+  INVITATIONS,
+  MEMBERS,
+  MULTI_AGENT_MODEL,
+  NOTIFICATIONS,
+  PARTICIPANTS,
+  REVIEWS,
+} from "@/features/collaboration/services/collaborationFixtures";
 
 /** Deterministic fixture envelopes mirroring ServiceResult shapes from adf-core. */
 export async function localFixtureProvider(
@@ -402,6 +416,39 @@ export async function localFixtureProvider(
       const events = getTimeline(String(payload?.kind ?? ""));
       return { ok: true, data: { events, count: events.length } };
     }
+    case "participants.list":
+      return { ok: true, data: { participants: PARTICIPANTS, count: PARTICIPANTS.length } };
+    case "participants.get": {
+      const participant =
+        PARTICIPANTS.find((p) => p.id === payload?.participantId) ?? null;
+      return { ok: true, data: { participant } };
+    }
+    case "collaboration.overview":
+      return { ok: true, data: getCollaborationOverview() };
+    case "collaboration.members":
+      return { ok: true, data: { members: MEMBERS, count: MEMBERS.length } };
+    case "collaboration.invitations":
+      return { ok: true, data: { invitations: INVITATIONS, count: INVITATIONS.length } };
+    case "collaboration.sessions":
+      return { ok: true, data: { sessions: COLLAB_SESSIONS, count: COLLAB_SESSIONS.length } };
+    case "collaboration.comments":
+      return { ok: true, data: { threads: COMMENT_THREADS, count: COMMENT_THREADS.length } };
+    case "collaboration.activity":
+      return { ok: true, data: { items: ACTIVITIES, count: ACTIVITIES.length } };
+    case "collaboration.multiAgentModel":
+      return { ok: true, data: { nodes: MULTI_AGENT_MODEL, count: MULTI_AGENT_MODEL.length } };
+    case "presence.list": {
+      const participants = PARTICIPANTS.filter((p) => p.presence !== "offline");
+      return { ok: true, data: { participants, count: participants.length } };
+    }
+    case "reviews.list":
+      return { ok: true, data: { reviews: REVIEWS, count: REVIEWS.length } };
+    case "reviews.approvals":
+      return { ok: true, data: { approvals: APPROVALS, count: APPROVALS.length } };
+    case "notifications.list":
+      return { ok: true, data: { notifications: NOTIFICATIONS, count: NOTIFICATIONS.length } };
+    case "assignments.list":
+      return { ok: true, data: { assignments: ASSIGNMENTS, count: ASSIGNMENTS.length } };
     default:
       return { ok: false, data: {}, error: `unknown SDK method: ${method}` };
   }

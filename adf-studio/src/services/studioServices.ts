@@ -21,4 +21,10 @@ export const studioServices = {
   logs: () => studioSdk.logs,
   diagnostics: () => studioSdk.diagnostics,
   timeline: () => studioSdk.timeline,
+  participants: () => studioSdk.participants,
+  collaboration: () => studioSdk.collaboration,
+  presence: () => studioSdk.presence,
+  reviews: () => studioSdk.reviews,
+  notifications: () => studioSdk.notifications,
+  assignments: () => studioSdk.assignments,
 };

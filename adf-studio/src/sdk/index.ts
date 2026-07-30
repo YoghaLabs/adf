@@ -36,6 +36,18 @@ import type {
   WorkspaceSettingsView,
   WorkspaceStats,
   WorkspaceSummary,
+  ApprovalAction,
+  Assignment,
+  CollaborationActivity,
+  CollaborationNotification,
+  CollaborationOverview,
+  CollaborationSession,
+  CommentThread,
+  MultiAgentNode,
+  Participant,
+  ReviewItem,
+  WorkspaceInvitation,
+  WorkspaceMember,
 } from "@/types/studio";
 import { studioBridge } from "@/sdk/bridge";
 
@@ -329,6 +341,74 @@ export class TimelineClient {
   }
 }
 
+export class ParticipantClient {
+  list(): Promise<ServiceEnvelope<{ participants: Participant[]; count: number }>> {
+    return studioBridge.invoke("participants.list");
+  }
+
+  get(participantId: string): Promise<ServiceEnvelope<{ participant: Participant | null }>> {
+    return studioBridge.invoke("participants.get", { participantId });
+  }
+}
+
+export class CollaborationClient {
+  overview(): Promise<ServiceEnvelope<CollaborationOverview>> {
+    return studioBridge.invoke("collaboration.overview");
+  }
+
+  members(): Promise<ServiceEnvelope<{ members: WorkspaceMember[]; count: number }>> {
+    return studioBridge.invoke("collaboration.members");
+  }
+
+  invitations(): Promise<ServiceEnvelope<{ invitations: WorkspaceInvitation[]; count: number }>> {
+    return studioBridge.invoke("collaboration.invitations");
+  }
+
+  sessions(): Promise<ServiceEnvelope<{ sessions: CollaborationSession[]; count: number }>> {
+    return studioBridge.invoke("collaboration.sessions");
+  }
+
+  comments(): Promise<ServiceEnvelope<{ threads: CommentThread[]; count: number }>> {
+    return studioBridge.invoke("collaboration.comments");
+  }
+
+  activity(): Promise<ServiceEnvelope<{ items: CollaborationActivity[]; count: number }>> {
+    return studioBridge.invoke("collaboration.activity");
+  }
+
+  multiAgentModel(): Promise<ServiceEnvelope<{ nodes: MultiAgentNode[]; count: number }>> {
+    return studioBridge.invoke("collaboration.multiAgentModel");
+  }
+}
+
+export class PresenceClient {
+  list(): Promise<ServiceEnvelope<{ participants: Participant[]; count: number }>> {
+    return studioBridge.invoke("presence.list");
+  }
+}
+
+export class ReviewClient {
+  list(): Promise<ServiceEnvelope<{ reviews: ReviewItem[]; count: number }>> {
+    return studioBridge.invoke("reviews.list");
+  }
+
+  approvals(): Promise<ServiceEnvelope<{ approvals: ApprovalAction[]; count: number }>> {
+    return studioBridge.invoke("reviews.approvals");
+  }
+}
+
+export class NotificationClient {
+  list(): Promise<ServiceEnvelope<{ notifications: CollaborationNotification[]; count: number }>> {
+    return studioBridge.invoke("notifications.list");
+  }
+}
+
+export class AssignmentClient {
+  list(): Promise<ServiceEnvelope<{ assignments: Assignment[]; count: number }>> {
+    return studioBridge.invoke("assignments.list");
+  }
+}
+
 export class StudioSdk {
   readonly runtime = new RuntimeClient();
   readonly generator = new GeneratorClient();
@@ -350,6 +430,12 @@ export class StudioSdk {
   readonly logs = new LogsClient();
   readonly diagnostics = new DiagnosticsClient();
   readonly timeline = new TimelineClient();
+  readonly participants = new ParticipantClient();
+  readonly collaboration = new CollaborationClient();
+  readonly presence = new PresenceClient();
+  readonly reviews = new ReviewClient();
+  readonly notifications = new NotificationClient();
+  readonly assignments = new AssignmentClient();
 }
 
 export const studioSdk = new StudioSdk();
