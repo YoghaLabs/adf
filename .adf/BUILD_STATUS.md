@@ -8,9 +8,9 @@
 | BUILD-004 | Completed |
 | BUILD-005 | Completed |
 | BUILD-006 | Completed |
-| BUILD-007 | Pending |
-| BUILD-008 | Pending |
-| BUILD-009 | Pending |
+| BUILD-007 | Completed |
+| BUILD-008 | Completed |
+| BUILD-009 | Completed |
 | BUILD-010 | Pending |
 | BUILD-011 | Pending |
 | BUILD-012 | Pending |
@@ -25,5 +25,5 @@
 
 ## Current Focus
 
-- Last completed: **BUILD-006** (`0.6.0-alpha`) — Plugin & Extension Engine
-- Next: **BUILD-007** (Pending — Architecture Review gate)
+- Last completed: **BUILD-009** (`0.9.0-alpha`) — ADF Package Manager
+- Next: **BUILD-010** (Pending — do not start until explicit prompt)

@@ -59,6 +59,8 @@ pnpm-lock.yaml
 # Local ADF runtime artifacts (generated later)
 .adf/local/
 .adf/cache/
+.adf/apm/cache/
+.adf/apm/installed/
 .adf/sessions/*.local.md
 
 # Release artifacts

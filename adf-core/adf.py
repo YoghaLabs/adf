@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """ADF CLI entry point.
 
-Commands: boot, doctor, status, version, context, resume, plugins.
+Commands: boot, doctor, status, version, context, resume, plugins,
+init, new, generate.
 """
 
 from __future__ import annotations
@@ -13,10 +14,15 @@ from pathlib import Path
 from typing import Any
 
 from engine.runtime_engine import RuntimeEngine
+from generator.filesystem import AdfGeneratorError
+from generator.manager import GeneratorManager
 from loader.project_loader import ProjectLoader
+from packages.manager import PackageManager
+from packages.manifest import AdfPackageError
 from plugins.manager import AdfPluginError
 from runtime.constants import PACKAGE_NAME, PACKAGE_VERSION
 from runtime.exceptions import AdfError
+from templates.variables import AdfTemplateError
 
 
 def _print_json(payload: dict[str, Any]) -> None:
@@ -26,7 +32,10 @@ def _print_json(payload: dict[str, Any]) -> None:
 def _resolve_root(explicit: str | None) -> Path:
     if explicit:
         return Path(explicit).resolve()
-    return ProjectLoader.find_root().repo_root
+    try:
+        return ProjectLoader.find_root().repo_root
+    except AdfError:
+        return Path.cwd().resolve()
 
 
 def _add_root(subparser: argparse.ArgumentParser) -> None:
@@ -34,6 +43,12 @@ def _add_root(subparser: argparse.ArgumentParser) -> None:
         "--root",
         help="ADF repository root (auto-detected when omitted)",
     )
+
+
+def _generator(args: argparse.Namespace) -> GeneratorManager:
+    root = _resolve_root(getattr(args, "root", None))
+    engine = RuntimeEngine(root)
+    return engine.generator
 
 
 def cmd_version(_: argparse.Namespace) -> int:
@@ -122,6 +137,172 @@ def cmd_plugins(args: argparse.Namespace) -> int:
     return 2
 
 
+def _gen_flags(args: argparse.Namespace) -> dict[str, Any]:
+    return {
+        "template": args.template,
+        "dry_run": bool(args.dry_run),
+        "overwrite": bool(args.overwrite),
+        "author": args.author,
+        "version": args.project_version,
+    }
+
+
+def _packages(args: argparse.Namespace) -> PackageManager:
+    return PackageManager(_resolve_root(getattr(args, "root", None)))
+
+
+def cmd_pkg_install(args: argparse.Namespace) -> int:
+    """Install a package from the registry."""
+    result = _packages(args).install(args.package_id, overwrite=bool(args.overwrite))
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_pkg_remove(args: argparse.Namespace) -> int:
+    """Remove an installed package."""
+    _print_json(_packages(args).remove(args.package_id))
+    return 0
+
+
+def cmd_pkg_update(args: argparse.Namespace) -> int:
+    """Update/reinstall a package from the registry."""
+    result = _packages(args).update(args.package_id)
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_pkg_search(args: argparse.Namespace) -> int:
+    """Search the package registry."""
+    rows = _packages(args).search(args.query or "", package_type=args.type)
+    _print_json({"packages": rows, "count": len(rows)})
+    return 0
+
+
+def cmd_pkg_list(args: argparse.Namespace) -> int:
+    """List registry or installed packages."""
+    rows = _packages(args).list(installed=bool(args.installed))
+    _print_json({"packages": rows, "count": len(rows), "installed": bool(args.installed)})
+    return 0
+
+
+def cmd_pkg_verify(args: argparse.Namespace) -> int:
+    """Verify installed package integrity against the lockfile."""
+    result = _packages(args).verify(args.package_id)
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_pkg_cache(args: argparse.Namespace) -> int:
+    """Inspect or clear the APM cache."""
+    manager = _packages(args)
+    if args.cache_command == "clear":
+        _print_json(manager.cache_clear())
+        return 0
+    _print_json(manager.cache_stats())
+    return 0
+
+
+def cmd_init(args: argparse.Namespace) -> int:
+    """Initialize a new ADF project (``adf init``)."""
+    manager = _generator(args)
+    result = manager.init_project(args.name, args.destination, **_gen_flags(args))
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_new(args: argparse.Namespace) -> int:
+    """Create a new ADF project (``adf new``)."""
+    return cmd_init(args)
+
+
+def cmd_generate(args: argparse.Namespace) -> int:
+    """Generate from an explicit manifest (``adf generate``)."""
+    manager = _generator(args)
+    manifest = {
+        "name": args.name,
+        "template": args.template,
+        "author": args.author,
+        "version": args.project_version,
+        "destination": args.destination,
+    }
+    if getattr(args, "validate_only", False):
+        result = manager.validate(manifest)
+        _print_json(result)
+        return 0 if result.get("ok") else 1
+    result = manager.generate(
+        manifest,
+        dry_run=bool(args.dry_run),
+        overwrite=bool(args.overwrite),
+    )
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_dry_run(args: argparse.Namespace) -> int:
+    """Preview generation without writing (``adf dry-run``)."""
+    manager = _generator(args)
+    manifest = {
+        "name": args.name,
+        "template": args.template,
+        "author": args.author,
+        "version": args.project_version,
+        "destination": args.destination,
+    }
+    result = manager.dry_run(manifest)
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def cmd_validate(args: argparse.Namespace) -> int:
+    """Validate generation inputs (``adf validate``)."""
+    manager = _generator(args)
+    manifest = {
+        "name": args.name,
+        "template": args.template,
+        "author": args.author,
+        "version": args.project_version,
+        "destination": args.destination,
+    }
+    result = manager.validate(manifest)
+    _print_json(result)
+    return 0 if result.get("ok") else 1
+
+
+def _add_generator_args(parser: argparse.ArgumentParser) -> None:
+    _add_root(parser)
+    parser.add_argument("name", help="New project name")
+    parser.add_argument(
+        "--destination",
+        default=".",
+        help="Parent directory for the new project",
+    )
+    parser.add_argument(
+        "--template",
+        default="generic",
+        help="Template/project type (default: generic)",
+    )
+    parser.add_argument(
+        "--author",
+        default="YoghaLabs",
+        help="Author variable for templates",
+    )
+    parser.add_argument(
+        "--project-version",
+        default="0.1.0-alpha",
+        help="Initial project VERSION value",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Plan generation without writing files",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Allow writing into a non-empty destination",
+    )
+
+
 def build_parser() -> argparse.ArgumentParser:
     """Create the CLI argument parser."""
     parser = argparse.ArgumentParser(prog="adf", description="ADF Runtime Engine CLI")
@@ -178,6 +359,75 @@ def build_parser() -> argparse.ArgumentParser:
     disable_parser.add_argument("name", help="Plugin name")
     disable_parser.set_defaults(func=cmd_plugins)
 
+    init_parser = sub.add_parser("init", help="Initialize a new ADF project")
+    _add_generator_args(init_parser)
+    init_parser.set_defaults(func=cmd_init)
+
+    new_parser = sub.add_parser("new", help="Create a new ADF project")
+    _add_generator_args(new_parser)
+    new_parser.set_defaults(func=cmd_new)
+
+    generate_parser = sub.add_parser("generate", help="Generate project from manifest options")
+    _add_generator_args(generate_parser)
+    generate_parser.add_argument(
+        "--validate-only",
+        action="store_true",
+        help="Validate manifest without generating",
+    )
+    generate_parser.set_defaults(func=cmd_generate)
+
+    dry_run_parser = sub.add_parser("dry-run", help="Preview project generation without writing")
+    _add_generator_args(dry_run_parser)
+    dry_run_parser.set_defaults(func=cmd_dry_run)
+
+    validate_parser = sub.add_parser("validate", help="Validate generation inputs")
+    _add_generator_args(validate_parser)
+    validate_parser.set_defaults(func=cmd_validate)
+
+    install_parser = sub.add_parser("install", help="Install an ADF package")
+    _add_root(install_parser)
+    install_parser.add_argument("package_id", help="Package id")
+    install_parser.add_argument("--overwrite", action="store_true")
+    install_parser.set_defaults(func=cmd_pkg_install)
+
+    remove_parser = sub.add_parser("remove", help="Remove an installed ADF package")
+    _add_root(remove_parser)
+    remove_parser.add_argument("package_id", help="Package id")
+    remove_parser.set_defaults(func=cmd_pkg_remove)
+
+    update_parser = sub.add_parser("update", help="Update an ADF package from the registry")
+    _add_root(update_parser)
+    update_parser.add_argument("package_id", help="Package id")
+    update_parser.set_defaults(func=cmd_pkg_update)
+
+    search_parser = sub.add_parser("search", help="Search the ADF package registry")
+    _add_root(search_parser)
+    search_parser.add_argument("query", nargs="?", default="", help="Search query")
+    search_parser.add_argument("--type", dest="type", default=None, help="Filter by package type")
+    search_parser.set_defaults(func=cmd_pkg_search)
+
+    list_parser = sub.add_parser("list", help="List registry or installed packages")
+    _add_root(list_parser)
+    list_parser.add_argument("--installed", action="store_true", help="List installed packages")
+    list_parser.set_defaults(func=cmd_pkg_list)
+
+    verify_parser = sub.add_parser("verify", help="Verify installed packages / lockfile")
+    _add_root(verify_parser)
+    verify_parser.add_argument("package_id", nargs="?", default=None, help="Optional package id")
+    verify_parser.set_defaults(func=cmd_pkg_verify)
+
+    cache_parser = sub.add_parser("cache", help="APM cache stats/clear")
+    cache_sub = cache_parser.add_subparsers(dest="cache_command")
+    cache_stats = cache_sub.add_parser("stats", help="Show cache stats")
+    _add_root(cache_stats)
+    cache_stats.set_defaults(func=cmd_pkg_cache, cache_command="stats")
+    cache_clear = cache_sub.add_parser("clear", help="Clear cache")
+    _add_root(cache_clear)
+    cache_clear.set_defaults(func=cmd_pkg_cache, cache_command="clear")
+    # Default: stats when bare `adf cache`
+    _add_root(cache_parser)
+    cache_parser.set_defaults(func=cmd_pkg_cache, cache_command="stats")
+
     return parser
 
 
@@ -187,7 +437,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         return int(args.func(args))
-    except (AdfError, AdfPluginError) as exc:
+    except (AdfError, AdfPluginError, AdfGeneratorError, AdfTemplateError, AdfPackageError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 

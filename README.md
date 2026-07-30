@@ -1,8 +1,8 @@
 # ADF — AI Development Framework
 
-**Version:** `0.6.0-alpha` (see root `VERSION`)  
+**Version:** `0.9.0-alpha` (see root `VERSION`)  
 **Branch:** `develop`  
-**Current Build:** `BUILD-006` — Plugin & Extension Engine
+**Current Build:** `BUILD-009` — ADF Package Manager (APM)
 
 ADF is an AI-first development framework that keeps project knowledge, architecture decisions, build state, and AI operating contracts inside the repository. Humans and AI agents share the same source of truth so work can pause, hand off, and resume without losing context.
 
@@ -48,37 +48,22 @@ Root files:
 
 ## Build Roadmap
 
-ADF advances through **BUILD-001 to BUILD-020**. Each BUILD has a fixed mission.
+ADF advances through **BUILD-001 to BUILD-020** in four locked phases (see `ROADMAP.md`).
+
+| Phase | Scope | Status |
+|-------|--------|--------|
+| 1 Engine Foundation | BUILD-001 … 008 | ✅ |
+| 2 Platform & Distribution | BUILD-009 … 012 | 009 ✅ · 010 next |
+| 3 User Experience | BUILD-013 … 016 | ⏳ |
+| 4 Production | BUILD-017 … 020 | ⏳ |
 
 | Build | Status |
 |-------|--------|
-| BUILD-001 | ✅ |
-| BUILD-002 | ✅ |
-| BUILD-003 | ✅ |
-| BUILD-004 | ✅ |
-| BUILD-005 | ✅ |
-| BUILD-006 | ✅ |
-| BUILD-007 | ⏳ |
-| BUILD-005 | ⏳ |
-| BUILD-006 | ⏳ |
-| BUILD-007 | ⏳ |
-| BUILD-008 | ⏳ |
-| BUILD-009 | ⏳ |
-| BUILD-010 | ⏳ |
-| BUILD-011 | ⏳ |
-| BUILD-012 | ⏳ |
-| BUILD-013 | ⏳ |
-| BUILD-014 | ⏳ |
-| BUILD-015 | ⏳ |
-| BUILD-016 | ⏳ |
-| BUILD-017 | ⏳ |
-| BUILD-018 | ⏳ |
-| BUILD-019 | ⏳ |
-| BUILD-020 | ⏳ |
+| BUILD-001 … BUILD-009 | ✅ |
+| BUILD-010 | ⏳ Next — SDK & Public API |
+| BUILD-011 … BUILD-020 | ⏳ |
 
 Legend: ✅ completed · ⏳ pending
-
-Mission detail for each BUILD lives in `ROADMAP.md`.
 
 ## Architecture Evolution
 

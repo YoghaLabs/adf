@@ -6,10 +6,10 @@
 cd adf-core
 python adf.py version
 python adf.py doctor --root ..
-python adf.py boot --root ..
-python adf.py status --root ..
-python adf.py context --root .. --pack quick
-python adf.py resume --root ..
+python adf.py search demo --root ..
+python adf.py install demo-template --root ..
+python adf.py list --installed --root ..
+python adf.py verify --root ..
 ```
 
 ## Commands
@@ -17,16 +17,14 @@ python adf.py resume --root ..
 | Command | Purpose |
 |---------|---------|
 | `version` | Package version |
-| `doctor` | Layout + SSOT + plugin validation |
-| `boot` | Boot + load enabled plugins |
-| `status` | State snapshot + plugin list |
-| `context` | Assemble context pack |
-| `resume` | Resume skeleton |
-| `plugins list\|info\|enable\|disable` | Plugin management skeleton |
+| `doctor` | Layout + SSOT + plugin/template/package checks |
+| `boot` / `status` / `context` / `resume` | Runtime helpers |
+| `plugins …` | Plugin management skeleton |
+| `init` / `new` / `generate` / `dry-run` / `validate` | Project generator |
+| `install` / `remove` / `update` | APM package lifecycle |
+| `search` / `list` | Registry discovery (`list --installed`) |
+| `verify` | Lockfile / install verification |
+| `cache stats\|clear` | APM cache |
 
-BUILD-005 provides a skeleton — not every future CLI feature.
-
-## Related
-
-- `RUNTIME_ENGINE.md`
-- `prompts/cli.md`
+Default generator template: `generic`  
+Local package registry: `release/apm-registry/`

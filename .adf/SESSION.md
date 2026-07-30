@@ -1,14 +1,15 @@
 # Session
 
-## Latest Session — 2026-07-29 (BUILD-006)
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Branch | `develop` |
+| Build | BUILD-009 complete (`0.9.0-alpha`) |
+| Focus | Locked roadmap SSOT aligned; idle before BUILD-010 |
 
-### Done
+## Next-agent instructions
 
-- Plugin architecture in `adf-core` (contracts, manager, builtins, events, hooks, extensions)
-- RuntimeEngine discovers/loads plugins via PluginManager
-- CLI `plugins` skeleton; pytest 9 passed (foundation + plugin suite)
-- Version `0.6.0-alpha`; BUILD-007 not started
-
-### Remaining
-
-- Human Architecture Review of BUILD-006
+1. Read `.adf/RESUME_ME.md` (includes locked roadmap step)
+2. Read `ROADMAP.md` phases
+3. Confirm next is **BUILD-010 SDK & Public API**
+4. Do not start until explicit master prompt

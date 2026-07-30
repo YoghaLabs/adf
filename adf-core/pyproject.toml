@@ -4,13 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "adf-core"
-version = "0.6.0a0"
+version = "0.9.0a0"
 description = "ADF Runtime Engine with plugin-based extension architecture"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "YoghaLabs" }]
-dependencies = []
+dependencies = [
+  "PyYAML>=6.0",
+]
 
 [project.optional-dependencies]
 dev = ["pytest>=7.4"]
@@ -38,6 +40,9 @@ packages = [
   "events",
   "hooks",
   "extensions",
+  "templates",
+  "generator",
+  "packages",
 ]
 
 [tool.pytest.ini_options]

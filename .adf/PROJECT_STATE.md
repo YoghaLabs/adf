@@ -4,29 +4,35 @@
 
 | Field | Value |
 |-------|-------|
-| Current Version | `0.6.0-alpha` |
-| Current Build | `BUILD-006` |
-| Build Name | Plugin & Extension Engine |
+| Current Version | `0.9.0-alpha` |
+| Current Phase | Phase 2 — Platform & Distribution |
+| Current Build | `BUILD-009` |
+| Build Name | ADF Package Manager (APM) |
 | Status | `Completed` |
-| Completed Builds | `BUILD-001` … `BUILD-006` |
-| Pending Builds | `BUILD-007` … `BUILD-020` |
-| Current Sprint | Alpha — plugin-based runtime |
-| Current Milestone | Plugin architecture live; await Architecture Review before BUILD-007 |
+| Completed Builds | `BUILD-001` … `BUILD-009` |
+| Pending Builds | `BUILD-010` … `BUILD-020` |
 | Current Branch | `develop` |
-| Current Objective | Keep plugin contracts stable; do not start BUILD-007 until review |
-| Next Build | `BUILD-007` |
-| Last updated | 2026-07-29 |
+| Current Objective | Keep locked roadmap SSOT; await BUILD-010 master prompt |
+| Next Build | `BUILD-010` — SDK & Public API |
+| Last updated | 2026-07-30 |
 
-## BUILD-006 Checklist
+## Locked Roadmap (summary)
 
-- [x] Plugin contracts/interfaces + PluginManager
-- [x] Built-in plugins + EventBus + HookRegistry + ExtensionAPI
-- [x] RuntimeEngine loads plugins via PluginManager (no direct concrete instantiation)
-- [x] Registry plugin registration + CLI plugins skeleton
-- [x] pytest coverage for plugins/events/hooks
-- [x] Docs/bootstrap/prompts + SSOT updated
-- [x] Stop without starting BUILD-007
+1. **Phase 1 Engine Foundation** — BUILD-001…008 ✅  
+2. **Phase 2 Platform & Distribution** — BUILD-009 ✅ · BUILD-010…012 ⏳  
+3. **Phase 3 User Experience** — BUILD-013…016 ⏳  
+4. **Phase 4 Production** — BUILD-017…020 ⏳  
+
+Canonical detail: root `ROADMAP.md`.
+
+## BUILD-009 Checklist
+
+- [x] PackageManager + package.yaml + types
+- [x] Dependency resolver + cache + lockfile
+- [x] RegistryClient local + remote-ready
+- [x] CLI + tests + ADR-007 + docs
+- [x] Stop without BUILD-010
 
 ## Blockers
 
-None. **Gate:** Architecture Review of BUILD-006 before BUILD-007.
+None. **Gate:** Architecture Review of BUILD-009; then explicit BUILD-010 master prompt.

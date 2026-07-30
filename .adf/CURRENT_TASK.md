@@ -1,23 +1,12 @@
 # Current Task
 
-## Active Build
+## Active
 
-**BUILD-006 — Plugin & Extension Engine**
+Roadmap **locked** to phased plan (see `ROADMAP.md`). BUILD-009 complete.
 
-## Status
+**STOP** — do not start BUILD-010 (SDK & Public API) until an explicit master prompt.
 
-**Completed.** Awaiting Architecture Review before BUILD-007.
+## Do not
 
-## Objectives (All Met)
-
-1. Introduce plugin contracts and PluginManager lifecycle APIs.
-2. Add EventBus + HookRegistry + public ExtensionAPI.
-3. Ship built-in plugins inheriting BasePlugin.
-4. Wire RuntimeEngine through PluginManager only.
-5. Extend Registry and CLI (`plugins list|info|enable|disable`).
-6. Add pytest coverage; update VERSION to `0.6.0-alpha`.
-7. Stop after BUILD-006.
-
-## Next Operator Action
-
-Architecture Review via `bootstrap/BUILD-006/REVIEW.md`.
+- Reorder or rename locked BUILD themes without ADR + approval
+- Start BUILD-010…020 unprompted

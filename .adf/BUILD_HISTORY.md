@@ -100,6 +100,54 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Third-party plugins depend on contracts/ExtensionAPI only
 - Built-in plugins inherit BasePlugin
 
+## BUILD-007 — Template Engine + Manifest System
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.7.0-alpha` |
+| Branch | `develop` |
+| Purpose | Deliver TemplateManager + YAML manifests so all future generators share one engine |
+| Result | **Completed.** Foundation template, schema 1.0, pytest coverage. Independently releasable before BUILD-008. |
+
+### Outcomes That Must Not Be Undone
+
+- Generators must use TemplateManager / template.yaml contracts
+- Manifest schema versioning must remain explicit
+- `adf-templates/` remains the template package root
+
+## BUILD-008 — Bootstrap Generator
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-29 |
+| Version | `0.8.0-alpha` |
+| Branch | `develop` |
+| Purpose | Implement project generation via GeneratorManager + CLI |
+| Result | **Completed.** init/new/generate/doctor wired; tests green. Stop before BUILD-009. |
+
+### Outcomes That Must Not Be Undone
+
+- Generation must go through GeneratorManager + TemplateManager
+- Default overwrite protection and dry-run must remain available
+- Locked folder scaffolding must match ADR-001
+
+## BUILD-009 — ADF Package Manager (APM)
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.9.0-alpha` |
+| Branch | `develop` |
+| Purpose | Package-based install of templates/plugins/packs via PackageManager |
+| Result | **Completed.** Local registry + lockfile/cache/CLI/tests. Stop before BUILD-010. |
+
+### Outcomes That Must Not Be Undone
+
+- Installable artifacts must be packages with `package.yaml`
+- CLI must wrap PackageManager only
+- No hardcoded package catalogs in RuntimeEngine
+
 ## Template for Future Entries
 
 ```markdown

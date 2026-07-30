@@ -32,6 +32,22 @@ Human-facing documentation for the AI Development Framework.
 | `EVENT_SYSTEM.md` | EventBus lifecycle events |
 | `HOOK_SYSTEM.md` | before/after hooks |
 | `EXTENSION_API.md` | Public extension surface |
+| `TEMPLATE_ENGINE.md` | Template Engine overview |
+| `TEMPLATE_MANIFEST.md` | `template.yaml` contract |
+| `VARIABLE_SYSTEM.md` | `{{variable}}` resolution |
+| `TEMPLATE_REGISTRY.md` | Template discovery/registry |
+| `PROJECT_GENERATOR.md` | Project generation overview |
+| `BOOTSTRAP_GENERATOR.md` | Bootstrap generation |
+| `CLI_GENERATOR.md` | init/new/generate CLI |
+| `SCAFFOLDER.md` | Locked-folder scaffolder |
+| `GENERATION_PIPELINE.md` | Manifest-driven generation steps |
+| `FILESYSTEM_ABSTRACTION.md` | Safe filesystem writers |
+| `DRY_RUN.md` | Dry-run preview model |
+| `PACKAGE_MANAGER.md` | APM overview |
+| `PACKAGE_SPEC.md` | `package.yaml` contract |
+| `PACKAGE_REGISTRY.md` | Registry backends |
+| `DEPENDENCY_RESOLUTION.md` | Dep graph + cycles |
+| `SEMVER_GUIDE.md` | Semver constraints |
 | `README.md` | This index |
 
 ## Reading Order

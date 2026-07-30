@@ -39,25 +39,63 @@ class PromptPlugin(AbstractPlugin):
 
 
 class TemplatePlugin(AbstractPlugin):
-    """Template generation extension point."""
+    """Template generation extension point backed by TemplateManager."""
 
     metadata = PluginMetadata(
         name="template",
-        version="0.6.0",
-        description="Template system plugin (adf-templates)",
+        version="0.7.0",
+        description="Template Engine plugin (adf-templates via TemplateManager)",
         plugin_type="template",
     )
 
+    def execute(self, action: str, **kwargs: Any) -> dict[str, Any]:
+        templates = None
+        if self._context is not None and "templates" in self._context.services:
+            templates = self._context.service("templates")
+        if action == "list" and templates is not None:
+            return {"plugin": self.name, "action": action, "templates": templates.list()}
+        if action == "validate" and templates is not None and "path" in kwargs:
+            errors = templates.validate(kwargs["path"])
+            return {"plugin": self.name, "action": action, "ok": not errors, "errors": errors}
+        return {
+            "plugin": self.name,
+            "action": action,
+            "ok": True,
+            "supports": ["list", "validate", "render"],
+            "kwargs": kwargs,
+        }
+
 
 class GeneratorPlugin(AbstractPlugin):
-    """Artifact generator extension point."""
+    """Artifact generator extension point backed by GeneratorManager."""
 
     metadata = PluginMetadata(
         name="generator",
-        version="0.6.0",
-        description="Generator plugin for scaffolds and docs",
+        version="0.8.0",
+        description="Bootstrap/project generator plugin",
         plugin_type="generator",
     )
+
+    def execute(self, action: str, **kwargs: Any) -> dict[str, Any]:
+        generator = None
+        if self._context is not None and "generator" in self._context.services:
+            generator = self._context.service("generator")
+        if action == "init" and generator is not None and "name" in kwargs:
+            result = generator.init_project(
+                str(kwargs["name"]),
+                kwargs.get("destination", "."),
+                template=str(kwargs.get("template", "foundation")),
+                dry_run=bool(kwargs.get("dry_run", False)),
+                overwrite=bool(kwargs.get("overwrite", False)),
+            )
+            return {"plugin": self.name, "action": action, "result": result}
+        return {
+            "plugin": self.name,
+            "action": action,
+            "ok": True,
+            "supports": ["init", "generate"],
+            "kwargs": kwargs,
+        }
 
 
 class AuditPlugin(AbstractPlugin):

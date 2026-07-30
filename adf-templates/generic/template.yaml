@@ -1,0 +1,17 @@
+schema_version: "1.0"
+metadata:
+  name: generic
+  version: 0.8.0
+  description: Generic ADF project (inherits foundation)
+  author: YoghaLabs
+  tags: [generic, builtin]
+  build: BUILD-008
+variables:
+  project_name: generic-project
+  author: YoghaLabs
+  version: 0.1.0-alpha
+capabilities: [scaffold, documentation, adf-operating-set]
+outputs: [README.md, VERSION, .adf/PROJECT_STATE.md]
+permissions: [write-files]
+inherits: foundation
+plugin_compatibility: [template, generator, bootstrap]

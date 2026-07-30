@@ -1,0 +1,45 @@
+schema_version: "1.0"
+metadata:
+  name: foundation
+  version: 0.8.0
+  description: Base ADF project layout driven by template metadata
+  author: YoghaLabs
+  tags: [foundation, builtin]
+  build: BUILD-008
+variables:
+  project_name: adf-project
+  author: YoghaLabs
+  version: 0.1.0-alpha
+dependencies: []
+capabilities:
+  - scaffold
+  - documentation
+  - adf-operating-set
+  - bootstrap
+outputs:
+  - README.md
+  - VERSION
+  - CHANGELOG.md
+  - ROADMAP.md
+  - .adf/PROJECT_STATE.md
+  - .adf/PROJECT_MANIFEST.md
+  - .adf/CURRENT_TASK.md
+  - .adf/MEMORY.md
+  - .adf/SESSION.md
+  - .adf/TODOS.md
+  - .adf/HANDOFF.md
+  - .adf/BOOTSTRAP.md
+  - .adf/AI_CONTRACT.md
+  - .adf/QUICK_CONTEXT.md
+  - prompts/README.md
+  - bootstrap/README.md
+  - bootstrap/BOOT_SEQUENCE.md
+  - bootstrap/BUILD_CONTRACT.md
+  - adf-core/README.md
+permissions:
+  - write-files
+inherits: null
+plugin_compatibility:
+  - template
+  - generator
+  - bootstrap

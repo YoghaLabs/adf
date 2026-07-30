@@ -2,6 +2,27 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-30 — Locked roadmap Phases 1–4
+
+- **Decision:** Adopt and lock the phased BUILD-001…020 roadmap (Engine Foundation → Platform & Distribution → User Experience → Production).
+- **Why:** Prevent theme drift across AI sessions; Phase 2 next is SDK & Public API (BUILD-010), not older alternate labels.
+- **Consequences:** `ROADMAP.md` is canonical; changing themes requires ADR + operator approval.
+- **Status:** Accepted
+
+## 2026-07-30 — ADF Package Manager / APM (BUILD-009 / ADR-007)
+
+- **Decision:** All installable ADF artifacts are packages with `package.yaml`; PackageManager is the API; local registry first.
+- **Why:** Extensible distribution without hardcoding templates/plugins/packs into core.
+- **Consequences:** `adf.lock` + `.adf/apm/` cache/install; remote registries later.
+- **Status:** Accepted
+
+## 2026-07-29 — Manifest-driven project generation (BUILD-008 / ADR-006)
+
+- **Decision:** GeneratorManager creates projects only from template manifests/`files/`; no hardcoded project trees in Python.
+- **Why:** Keeps stack variants (generic/python/fastapi/laravel/nextjs) declarative and aligned with Template Engine SSOT.
+- **Consequences:** New project types are templates; dry-run/validate/rollback are first-class; ADR-006 accepted.
+- **Status:** Accepted
+
 ## 2026-07-29 — Plugin-based RuntimeEngine (BUILD-006)
 
 - **Decision:** Future capabilities are plugins behind contracts; RuntimeEngine uses PluginManager and must not instantiate concrete plugin classes directly.

@@ -1,0 +1,18 @@
+# Seed APM local registry package — demo-core
+schema_version: "1.0"
+name: demo-core
+id: demo-core
+version: 1.0.0
+author: YoghaLabs
+description: Demo core plugin package for APM tests
+type: plugin
+engine: adf-core>=0.8.0
+license: MIT
+homepage: ""
+repository: ""
+dependencies: {}
+capabilities:
+  - demo
+entrypoint: plugin.py
+checksum: ""
+signature: ""

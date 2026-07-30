@@ -1,0 +1,6 @@
+[project]
+name = "{{project_name}}"
+version = "{{version}}"
+description = "ADF-generated Python project"
+requires-python = "{{python_requires}}"
+authors = [{ name = "{{author}}" }]

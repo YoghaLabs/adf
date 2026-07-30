@@ -1,31 +1,50 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.6.0-alpha** / **BUILD-006** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.9.0-alpha** / **BUILD-009** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-007 after Architecture Review of BUILD-006
+- BUILD-010 SDK & Public API (Phase 2 — after Architecture Review of BUILD-009)
+
+### Changed
+- Roadmap locked to Phases 1–4 (Engine → Platform → UX → Production)
+
+## [0.9.0-alpha] — 2026-07-30
+
+### Added
+- ADF Package Manager (APM) in `adf-core/packages`
+- `package.yaml` spec + local registry (`release/apm-registry`)
+- DependencyResolver (cycles + semver), cache, `adf.lock`
+- RegistryClient (local + remote-ready adapters)
+- CLI: `install` / `remove` / `update` / `search` / `list` / `verify` / `cache`
+- ADR-007 Package Management Architecture
+- Docs + prompts + `bootstrap/BUILD-009/`
+- pytest coverage for install/deps/manifest/version/lock/cache
+
+### Changed
+- RuntimeEngine publishes `packages` service
+- Version identity advanced to `0.9.0-alpha` / BUILD-009
+
+## [0.8.0-alpha] — 2026-07-29
+
+### Added
+- Bootstrap/project generator (manifest-driven)
+
+## [0.7.0-alpha] — 2026-07-29
+
+### Added
+- Template Engine
 
 ## [0.6.0-alpha] — 2026-07-29
 
 ### Added
-- Plugin architecture in `adf-core`: contracts, interfaces, PluginManager, built-in plugins
-- EventBus lifecycle events + HookRegistry before/after hooks
-- ExtensionAPI public surface for third-party plugins
-- CLI `plugins list|info|enable|disable` skeleton
-- pytest coverage for plugin/event/hook flows
-- `bootstrap/BUILD-006/` + prompts + docs (`PLUGIN_ENGINE`, guides)
-
-### Changed
-- RuntimeEngine discovers/loads plugins via PluginManager (no direct concrete plugin instantiation)
-- Registry supports plugin registration
-- Version identity advanced to `0.6.0-alpha` / BUILD-006
+- Plugin architecture
 
 ## [0.5.0-alpha] — 2026-07-29
 
 ### Added
-- Executable `adf-core` Runtime Engine foundation
+- Runtime Engine foundation
 
 ## [0.4.0-alpha] — 2026-07-29
 

@@ -19,6 +19,9 @@ from plugins.manager import PluginManager
 from registry.registry import Registry
 from runtime.config import RuntimeConfig
 from runtime.constants import ENGINE_BUILD, PACKAGE_VERSION
+from templates.engine import TemplateManager
+from generator.manager import GeneratorManager
+from packages.manager import PackageManager
 
 
 class RuntimeEngine:
@@ -37,6 +40,17 @@ class RuntimeEngine:
         self.context = ContextEngine(self.config.repo_root)
         self.memory = MemoryEngine(self.config.repo_root)
         self.bootstrap = BootstrapEngine(self.config.repo_root)
+        templates_root = self.config.repo_root / "adf-templates"
+        self.templates = TemplateManager(
+            search_paths=[templates_root] if templates_root.is_dir() else []
+        )
+        if templates_root.is_dir():
+            self.templates.discover(templates_root)
+        self.generator = GeneratorManager(
+            repo_root=self.config.repo_root,
+            templates=self.templates,
+        )
+        self.packages = PackageManager(self.config.repo_root)
 
         self.registry = Registry()
         self.events = EventBus()
@@ -54,6 +68,12 @@ class RuntimeEngine:
         self.extensions.publish_service("memory", self.memory)
         self.extensions.publish_service("bootstrap", self.bootstrap)
         self.extensions.publish_service("registry", self.registry)
+        self.extensions.publish_service("templates", self.templates)
+        self.extensions.publish_service("generator", self.generator)
+        self.extensions.publish_service("packages", self.packages)
+        self.registry.register("templates", self.templates)
+        self.registry.register("generator", self.generator)
+        self.registry.register("packages", self.packages)
 
         state = self.state.load()
         plugin_context = self.extensions.build_context(
@@ -108,15 +128,26 @@ class RuntimeEngine:
         }
 
     def doctor(self) -> dict[str, Any]:
-        """Run health checks for locked layout, SSOT, and plugins."""
+        """Run health checks for locked layout, SSOT, plugins, and templates."""
         layout = self.bootstrap.verify_layout()
         state = self.state.load()
         errors = self.state.validate(state)
         plugin_errors = self.plugins.validate()
         plugin_ok = all(not errs for errs in plugin_errors.values())
+        templates = self.templates.list()
         return {
             "ok": layout["ok"] and not errors and plugin_ok,
             "layout": layout,
             "validation_errors": errors,
             "plugin_validation": plugin_errors,
+            "templates": templates,
+            "generator": {
+                "ready": True,
+                "default_template": "generic",
+                "project_types": self.generator.list_project_types(),
+            },
+            "packages": {
+                "registry_count": len(self.packages.list()),
+                "installed_count": len(self.packages.list(installed=True)),
+            },
         }
