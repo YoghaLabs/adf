@@ -6,6 +6,14 @@ Human-facing documentation for the AI Development Framework.
 
 | Doc | Description |
 |-----|-------------|
+| `ARCHITECTURE_GUIDE.md` | v1 RC architecture entry guide |
+| `DEVELOPER_GUIDE.md` | Developer onboarding |
+| `USER_GUIDE.md` | End-user Studio guide |
+| `ADMINISTRATOR_GUIDE.md` | Enterprise admin guide |
+| `DEPLOYMENT_GUIDE.md` | Deployment & bundles |
+| `STUDIO_GUIDE.md` | Studio control center guide |
+| `MIGRATION_GUIDE.md` | Migrate to 1.0.0-rc1 |
+| `RELEASE_NOTES.md` | RC1 release notes |
 | `WHAT_IS_ADF.md` | Product definition and value proposition |
 | `GETTING_STARTED.md` | First steps for humans and AI operators |
 | `ARCHITECTURE.md` | Locked structure and package boundaries |
