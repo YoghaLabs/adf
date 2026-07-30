@@ -68,3 +68,15 @@ export type {
   WorkspaceSettingsView,
   WorkspaceStats,
 } from "@/features/workspace/types";
+
+export type {
+  GraphDocument,
+  GraphEdgeModel,
+  GraphEdgeType,
+  GraphKind,
+  GraphNodeModel,
+  GraphNodeType,
+  GraphSearchHit,
+  LayoutMode,
+  VisualOverview,
+} from "@/features/visual/types";

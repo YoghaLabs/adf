@@ -8,6 +8,13 @@ import {
   workspaceSettings,
   workspaceStats,
 } from "@/features/workspace/services/workspaceFixtures";
+import {
+  getGraphDocument,
+  getVisualOverview,
+  listGraphKinds,
+  searchGraphDocs,
+} from "@/features/visual/services/graphFixtures";
+import type { GraphKind } from "@/features/visual/types";
 
 /** Deterministic fixture envelopes mirroring ServiceResult shapes from adf-core. */
 export async function localFixtureProvider(
@@ -324,6 +331,27 @@ export async function localFixtureProvider(
     case "activity.recent": {
       const items = ACTIVITY.filter((a) => !payload?.kind || a.kind === payload.kind).slice(0, 10);
       return { ok: true, data: { items, count: items.length } };
+    }
+    case "knowledge.graph":
+      return { ok: true, data: getGraphDocument("knowledge") };
+    case "dependency.graph":
+      return { ok: true, data: getGraphDocument("dependency") };
+    case "graph.get": {
+      const kind = String(payload?.kind ?? "knowledge") as GraphKind;
+      return { ok: true, data: getGraphDocument(kind) };
+    }
+    case "graph.list": {
+      const graphs = listGraphKinds();
+      return { ok: true, data: { graphs, count: graphs.length } };
+    }
+    case "visualization.overview":
+      return { ok: true, data: getVisualOverview() };
+    case "visualization.search": {
+      const hits = searchGraphDocs(
+        String(payload?.query ?? ""),
+        (payload?.scope as "node" | "edge" | "relationship" | "all") ?? "all",
+      );
+      return { ok: true, data: { hits, count: hits.length } };
     }
     default:
       return { ok: false, data: {}, error: `unknown SDK method: ${method}` };

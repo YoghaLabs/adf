@@ -8,6 +8,9 @@
 import type {
   ActivityItem,
   CommandAction,
+  GraphDocument,
+  GraphKind,
+  GraphSearchHit,
   MarketplaceItem,
   ProjectExplorerItem,
   ProjectSummary,
@@ -17,6 +20,7 @@ import type {
   ServiceEnvelope,
   SessionSummary,
   SessionTimelineEvent,
+  VisualOverview,
   WorkspaceProfile,
   WorkspaceSettingsView,
   WorkspaceStats,
@@ -222,6 +226,41 @@ export class ActivityClient {
   }
 }
 
+export class KnowledgeClient {
+  graph(): Promise<ServiceEnvelope<GraphDocument>> {
+    return studioBridge.invoke("knowledge.graph");
+  }
+}
+
+export class DependencyClient {
+  graph(): Promise<ServiceEnvelope<GraphDocument>> {
+    return studioBridge.invoke("dependency.graph");
+  }
+}
+
+export class GraphClient {
+  get(kind: GraphKind): Promise<ServiceEnvelope<GraphDocument>> {
+    return studioBridge.invoke("graph.get", { kind });
+  }
+
+  list(): Promise<ServiceEnvelope<{ graphs: GraphKind[]; count: number }>> {
+    return studioBridge.invoke("graph.list");
+  }
+}
+
+export class VisualizationClient {
+  overview(): Promise<ServiceEnvelope<VisualOverview>> {
+    return studioBridge.invoke("visualization.overview");
+  }
+
+  search(
+    query: string,
+    scope: "node" | "edge" | "relationship" | "all" = "all",
+  ): Promise<ServiceEnvelope<{ hits: GraphSearchHit[]; count: number }>> {
+    return studioBridge.invoke("visualization.search", { query, scope });
+  }
+}
+
 export class StudioSdk {
   readonly runtime = new RuntimeClient();
   readonly generator = new GeneratorClient();
@@ -234,6 +273,10 @@ export class StudioSdk {
   readonly sessions = new SessionClient();
   readonly search = new SearchClient();
   readonly activity = new ActivityClient();
+  readonly knowledge = new KnowledgeClient();
+  readonly dependency = new DependencyClient();
+  readonly graph = new GraphClient();
+  readonly visualization = new VisualizationClient();
 }
 
 export const studioSdk = new StudioSdk();

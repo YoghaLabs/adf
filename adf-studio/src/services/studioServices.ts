@@ -12,4 +12,8 @@ export const studioServices = {
   sessions: () => studioSdk.sessions,
   search: () => studioSdk.search,
   activity: () => studioSdk.activity,
+  knowledge: () => studioSdk.knowledge,
+  dependency: () => studioSdk.dependency,
+  graph: () => studioSdk.graph,
+  visualization: () => studioSdk.visualization,
 };
