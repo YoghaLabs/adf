@@ -1,39 +1,35 @@
 # adf-examples
 
-Curated examples that demonstrate how to use ADF correctly.
+Curated examples for learning and demonstrating ADF.
+
+## Quick Start examples (VALIDATION-001)
+
+| Example | Purpose |
+|---------|---------|
+| `hello-adf/` | Tiny first-contact sample |
+| `minimal-project/` | Smallest readable project card |
+| `enterprise-demo/` | Enterprise demo script + talking points |
+
+Start here: `adf-docs/quickstart/README.md`
 
 ## Purpose
 
 Examples teach operators and AI agents how to:
 
-- Bootstrap a new ADF-shaped project
+- Bootstrap ADF-oriented projects
 - Maintain `.adf` state across sessions
-- Run build / resume / handoff / audit workflows
+- Run doctor / boot / Studio first-run flows
 - Apply templates and interpret architecture contracts
 
-## Status
-
-**Scaffold only in BUILD-001.**  
-Concrete example projects land in **BUILD-010**.
-
-Until then, this folder reserves the locked path and documents what examples must eventually cover.
-
-## Example Themes (Planned)
-
-1. Minimal ADF repository with complete `.adf` set
-2. Multi-session handoff between two AI agents
-3. Build progression sample (foundation → core load)
-4. Token-budget-aware context packing
-
-## Rules for Future Examples
+## Rules
 
 - Must match locked top-level architecture
 - Must include useful README and expected outcomes
 - Must not rely on placeholder docs
-- Must be runnable or auditable against `testing/` once the harness exists
+- Prefer generating fuller trees with `adf init` when needed
 
 ## Related Docs
 
+- `adf-docs/quickstart/`
 - `adf-docs/GETTING_STARTED.md`
 - `adf-templates/README.md`
-- `ROADMAP.md` (BUILD-010)
