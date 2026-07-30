@@ -80,3 +80,18 @@ export type {
   LayoutMode,
   VisualOverview,
 } from "@/features/visual/types";
+
+export type {
+  BackgroundJob,
+  HealthLevel,
+  InspectorItem,
+  LogEntry,
+  LogSeverity,
+  MetricSeriesPoint,
+  RuntimeDiagnostics,
+  RuntimeEvent,
+  RuntimeMetrics,
+  RuntimeOverview,
+  TimelineEvent,
+  TimelineKind,
+} from "@/features/runtime/types";

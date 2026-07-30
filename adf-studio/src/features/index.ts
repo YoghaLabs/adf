@@ -6,7 +6,9 @@ export const featureIds = {
   sessions: "sessions",
   search: "search",
   visual: "visual",
+  runtime: "runtime",
 } as const;
 
 export * from "@/features/workspace";
 export * from "@/features/visual";
+export * from "@/features/runtime";

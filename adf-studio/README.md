@@ -32,4 +32,4 @@ npm test
 
 ## Version
 
-`0.15.0-alpha` / BUILD-015
+`0.16.0-alpha` / BUILD-016
