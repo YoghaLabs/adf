@@ -148,6 +148,52 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - CLI must wrap PackageManager only
 - No hardcoded package catalogs in RuntimeEngine
 
+## BUILD-010 — Service Layer & Public SDK
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.10.0-alpha` |
+| Branch | `develop` |
+| Purpose | Service Layer + public SDK boundary |
+| Result | **Completed.** Stop before BUILD-011. |
+
+## BUILD-011 — Registry & Marketplace
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.11.0-alpha` |
+| Branch | `develop` |
+| Purpose | Registry SSOT + Marketplace presentation |
+| Result | **Completed.** Stop before BUILD-012. |
+
+## BUILD-012 — Distribution Platform
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.12.0-alpha` |
+| Branch | `develop` |
+| Purpose | Installer / updater / release / packaging |
+| Result | **Completed.** Phase 2 complete. Stop before BUILD-013. |
+
+## BUILD-013 — ADF Studio Core
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.13.0-alpha` |
+| Branch | `develop` |
+| Purpose | Desktop Control Center (UI → SDK → Services → Core) |
+| Result | **Completed.** Shell, pages, stores, SDK adapters, themes, tests, ADR-011. Stop before BUILD-014. |
+
+### Outcomes That Must Not Be Undone
+
+- Studio must not contain business logic
+- SDK adapters mandatory for Studio → Core traffic
+- Services remain backend-only
+
 ## Template for Future Entries
 
 ```markdown

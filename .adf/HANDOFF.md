@@ -1,23 +1,16 @@
-# Handoff — AI Continuity Pack
+# Handoff
 
-**Purpose:** Next AI/operator can resume without re-explaining the project from scratch.  
-**Last handoff:** 2026-07-30  
-**Author of handoff:** Quadran + Cursor agent (BUILD-012 complete)
-
----
-
-## 30-second identity
+**Author of handoff:** Quadran + Cursor agent (BUILD-013 complete)
 
 | Field | Value |
 |-------|-------|
-| Repo | `adf` (YoghaLabs) |
+| Version | `0.13.0-alpha` |
+| Current build | **BUILD-013** — ADF Studio Core (completed) |
+| Next build | **BUILD-014** — Workspace & Dashboard (**NOT STARTED**) |
 | Branch | `develop` |
-| Version | `0.12.0-alpha` |
-| Current build | **BUILD-012** — Distribution Platform (completed) |
-| Next build | **BUILD-013** — ADF Studio Core (**NOT STARTED**) |
-| Phase 2 | **Complete** (BUILD-009…012) |
 
-## Hard stops
+## Notes
 
-- Do **not** start BUILD-013 until an explicit master prompt.
-- Distribution must stay separate from APM/Marketplace; package installs still delegate to PackageManager.
+- Studio: `adf-studio/` — Vite React + Tauri scaffold; SDK adapters use fixtures
+- ADR-011 accepted
+- Do **not** start BUILD-014 until an explicit master prompt

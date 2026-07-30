@@ -5,6 +5,13 @@ Chronological operator/AI activity log for continuity across sessions and model 
 
 ---
 
+## 2026-07-30 — BUILD-013 ADF Studio Core
+
+- Desktop Control Center under `adf-studio/` (UI → SDK → Services → Core)
+- Shell, dashboard, navigation pages, Zustand stores, SDK adapters, themes
+- ADR-011; docs; prompts; Vitest; `bootstrap/BUILD-013/`
+- Version `0.13.0-alpha`; **STOP before BUILD-014**
+
 ## 2026-07-30 — BUILD-012 Distribution Platform
 
 - Added `adf-core/distribution/` installer/updater/release/packaging/offline/enterprise

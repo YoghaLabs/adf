@@ -2,6 +2,12 @@
 
 Narrative history of meaningful repository changes. Complements `CHANGELOG.md` with context for AI resume.
 
+## 2026-07-30 — BUILD-013 ADF Studio Core
+
+- `adf-studio/` Desktop Control Center (shell, pages, stores, SDK adapters, themes)
+- ADR-011; docs; Vitest; version `0.13.0-alpha`
+- **STOP** before BUILD-014
+
 ## 2026-07-30 — Locked roadmap Phases 1–4
 
 - Canonical BUILD themes locked in `ROADMAP.md`

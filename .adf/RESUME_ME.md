@@ -1,23 +1,27 @@
-# RESUME ME
+# Resume Me
 
-Copy-paste this block into a **new AI chat** when continuing ADF work after a pause, token limit, or model switch.
+## Identity
 
-```text
-Resume ADF from repo SSOT. Do not ask me to re-explain prior builds.
+- Product: ADF
+- Version: `0.13.0-alpha`
+- Branch: `develop`
+- Last completed: **BUILD-013** (ADF Studio Core)
+- Next: **BUILD-014** (Workspace & Dashboard) — not started
+- Do not start BUILD-014 until explicit master prompt
 
-1. Read .adf/QUICK_CONTEXT.md
-2. Read .adf/HANDOFF.md
-3. Read .adf/ACTIVITY_LOG.md
-4. Read ROADMAP.md (LOCKED phases 1–4)
-5. Follow .adf/RESUME_PROTOCOL.md
-6. Summarize status in ≤5 lines
-7. Wait for my next BUILD master prompt (do not start the next BUILD yourself)
-```
+## Where we are
 
-## Current snapshot (update when builds finish)
+Phase 3 UX started. Studio is a Desktop Control Center under `adf-studio/` with
+UI → SDK adapters → Service Layer → Core. Fixtures stand in for Tauri bridge.
 
-- Version: `0.12.0-alpha`
-- Phase: **2 complete** — next is **3 User Experience**
-- Last completed: **BUILD-012** (Distribution Platform)
-- Next: **BUILD-013** (ADF Studio Core) — not started
-- Do not start BUILD-013 until explicit master prompt
+## Immediate next steps (for next agent)
+
+1. Boot via `.adf/BOOT_SEQUENCE_V2.md` / this file
+2. Confirm HEAD has six BUILD-013 commits
+3. Await **BUILD-014** master prompt only
+
+## Do not
+
+- Start BUILD-014 unprompted
+- Put business logic in Studio
+- Add new top-level folders

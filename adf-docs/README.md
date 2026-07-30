@@ -64,6 +64,11 @@ Human-facing documentation for the AI Development Framework.
 | `RELEASE_MANAGEMENT.md` | Channels + ReleaseManager |
 | `OFFLINE_MODE.md` | Offline bundles/snapshots |
 | `ENTERPRISE_DEPLOYMENT.md` | Enterprise profiles/bundles |
+| `STUDIO_ARCHITECTURE.md` | ADF Studio Control Center architecture |
+| `STUDIO_UI.md` | Shell, navigation, pages |
+| `STATE_MANAGEMENT.md` | Zustand + Query rules |
+| `THEME_SYSTEM.md` | Dark / Light / System |
+| `DESKTOP_PACKAGING.md` | Tauri packaging notes |
 | `README.md` | This index |
 
 ## Reading Order

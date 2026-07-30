@@ -2,6 +2,13 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-30 — ADF Studio Architecture (BUILD-013 / ADR-011)
+
+- **Decision:** Studio is a Desktop Control Center with no business logic; UI → SDK adapters → Service Layer → Core; services remain backend-only.
+- **Why:** Preserve single policy surface for CLI/SDK/Studio; avoid forking APM/distribution rules into React.
+- **Consequences:** Fixtures/Tauri bridge only ferry envelopes; Vite+React host preferred over Next.js for Tauri.
+- **Status:** Accepted
+
 ## 2026-07-30 — Locked roadmap Phases 1–4
 
 - **Decision:** Adopt and lock the phased BUILD-001…020 roadmap (Engine Foundation → Platform & Distribution → User Experience → Production).

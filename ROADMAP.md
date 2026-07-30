@@ -2,9 +2,9 @@
 
 **Locked roadmap** (operator-approved). Do not rename phases or BUILD themes without an ADR + explicit approval.
 
-**Current version:** `0.12.0-alpha`  
-**Current build:** `BUILD-012` — Installer & Distribution (**completed**)  
-**Next:** `BUILD-013` — ADF Studio Core (**not started**)
+**Current version:** `0.13.0-alpha`  
+**Current build:** `BUILD-013` — ADF Studio Core (**completed**)  
+**Next:** `BUILD-014` — Workspace & Dashboard (**not started**)
 
 ---
 
@@ -39,7 +39,7 @@
 
 | Build | Focus | Status |
 |-------|--------|--------|
-| BUILD-013 | ADF Studio Core | ⏳ |
+| BUILD-013 | ADF Studio Core | ✅ |
 | BUILD-014 | Workspace & Dashboard | ⏳ |
 | BUILD-015 | Knowledge Graph | ⏳ |
 | BUILD-016 | Runtime Monitor | ⏳ |
@@ -59,10 +59,10 @@
 
 ## Status Legend
 
-- **Phase 1:** complete (BUILD-001 … BUILD-008)
-- **Phase 2:** BUILD-009–012 complete; Phase 3 next after Architecture Review / explicit master prompt
-- **Phases 3–4:** pending
+- **Phase 2:** BUILD-009–012 complete
+- **Phase 3:** BUILD-013 complete; BUILD-014–016 pending after explicit master prompt
+- **Phase 4:** pending
 
 ## Continuity
 
-When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-013 until an explicit master prompt.
+When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-014 until an explicit master prompt.

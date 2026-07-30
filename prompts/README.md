@@ -11,6 +11,7 @@ Prompt library for operating ADF across sessions.
 | `generator.md`, `scaffold.md`, `project.md`, `filesystem.md`, `bootstrap-generator.md`, `dry-run.md` | Bootstrap Generator prompts |
 | `package.md`, `registry.md`, `dependency.md`, `install.md`, `update.md` | Package Manager prompts |
 | `service.md`, `sdk.md`, `api.md`, `workspace.md`, `project.md` | Service Layer / SDK / Studio prompts |
+| `studio.md`, `dashboard.md`, `layout.md`, `ui.md` | ADF Studio Control Center prompts |
 | `marketplace.md`, `publisher.md`, `security.md`, `verification.md` | Marketplace / registry security prompts |
 | `distribution.md`, `installer.md`, `updater.md`, `release.md`, `rollback.md` | Distribution / release prompts |
 | `runtime.md`, `engine.md`, `cli.md`, `loader.md` | Runtime Engine implementation prompts |

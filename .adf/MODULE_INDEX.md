@@ -11,10 +11,11 @@ Describes every module package. **Why:** prevents agents from implementing featu
 
 ## adf-studio
 
-- **Purpose:** Human GUI for status, context, and build/prompt runners.
-- **Why separate:** UX concerns evolve independently from core runtime.
-- **Status:** README only until BUILD-013.
-- **Depends on:** `adf-core` (future), `prompts/`, `.adf` files.
+- **Purpose:** Desktop Control Center (not an IDE) for status, workspace, marketplace, runtime, release, settings.
+- **Why separate:** UX evolves independently; must not embed Core business logic.
+- **Status:** BUILD-013 Core shipped (`0.13.0-alpha`); deeper UX in BUILD-014+.
+- **Depends on:** ADF Service Layer / SDK (via TS adapters); `prompts/`; `.adf` files.
+- **Owns:** Application shell, pages, Zustand stores, TS SDK adapters, Tauri scaffold.
 
 ## adf-docs
 

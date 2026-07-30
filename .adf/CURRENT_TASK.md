@@ -1,12 +1,10 @@
 # Current Task
 
-## Active
+BUILD-013 complete. Phase 3 Studio Core delivered. Await next master prompt.
 
-BUILD-012 complete. Phase 2 backend platform complete. Await next master prompt.
+**STOP** — do not start BUILD-014 (Workspace & Dashboard) until an explicit master prompt.
 
-**STOP** — do not start BUILD-013 (ADF Studio Core) until an explicit master prompt.
+## Forbidden
 
-## Do not
-
-- Reorder or rename locked BUILD themes without ADR + approval
-- Start BUILD-013…020 unprompted
+- Start BUILD-014…020 unprompted
+- Business logic inside `adf-studio/`

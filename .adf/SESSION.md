@@ -2,13 +2,11 @@
 
 | Field | Value |
 |-------|-------|
-| Branch | develop |
-| Build | BUILD-012 complete (`0.12.0-alpha`) |
-| Focus | Idle before BUILD-013; Phase 2 complete |
+| Build | BUILD-013 complete (`0.13.0-alpha`) |
+| Focus | Idle before BUILD-014; Studio Core shipped |
 
-## Operator checklist
+## Next operator steps
 
-1. Boot via `.adf/RESUME_ME.md`
-2. Read `ROADMAP.md` phases
-3. Confirm next is **BUILD-013 ADF Studio Core**
-4. Wait for explicit master prompt
+1. Resume via `RESUME_ME.md`
+2. Architecture Review of BUILD-013 if required
+3. Confirm next is **BUILD-014 Workspace & Dashboard**

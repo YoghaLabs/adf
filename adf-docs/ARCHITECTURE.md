@@ -41,8 +41,8 @@ Studio, and plugins. Public SDK lives in `adf-core/sdk/`.
 
 ### 5. Experience Layer (`adf-studio/`)
 
-GUI over state, context, and build runners. Deferred to BUILD-013+. Uses
-`SDKClient` / `WorkspaceService` / `ProjectService` (prepared in BUILD-010).
+Desktop Control Center (BUILD-013+). UI talks only through Studio SDK adapters →
+Service Layer → Core. Not an IDE. See `STUDIO_ARCHITECTURE.md` and ADR-011.
 
 ### 6. Distribution Layer (`release/`, `adf-templates/`, `adf-examples/`)
 

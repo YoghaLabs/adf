@@ -2,10 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Version | `0.12.0-alpha` |
-| Phase | **2 — Platform & Distribution** (complete) |
-| Build | `BUILD-012` Distribution Platform — **complete** |
+| Version | `0.13.0-alpha` |
 | Branch | `develop` |
-| Next | `BUILD-013` ADF Studio Core — **not started** |
-| Resume | `.adf/RESUME_ME.md` |
-| Distribution | `adf-core/distribution/` |
+| Build | `BUILD-013` ADF Studio Core — **complete** |
+| Phase | 3 User Experience (in progress) |
+| Next | `BUILD-014` Workspace & Dashboard — **not started** |
+| Rule | UI → SDK → Services → Core; Studio has no business logic |
