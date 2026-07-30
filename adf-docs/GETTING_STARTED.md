@@ -48,7 +48,7 @@ Follow `.adf/AI_BOOT.md` exactly before editing. Do not skip the contract.
 ## What You Cannot Do Yet
 
 - Run `adf-core` runtime APIs (starts BUILD-005)
-- Use ADF Studio GUI (starts BUILD-013)
+- Use ADF Studio Control Center (`adf-studio/`, from BUILD-013): `cd adf-studio && npm install && npm run dev`
 - Expect automated bootstrap tooling (BUILD-003)
 
 ## Contribution Entry

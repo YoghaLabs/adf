@@ -35,3 +35,16 @@ If remediating:
 
 - Run audit before declaring BUILD completion.
 - Run audit after messy sessions or partial merges.
+
+---
+
+## Enterprise audit trail (BUILD-019)
+
+Use when extending governance audit surfaces in Studio.
+
+### Rules
+
+- Audit events are **immutable** (`immutable: true`)
+- Path: UI → `AuditClient` → Service Layer → Core
+- Studio displays/search/export envelopes only — Core owns real retention/export
+- Do not mutate historical audit records from presentation stores

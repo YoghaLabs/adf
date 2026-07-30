@@ -2,6 +2,43 @@
 
 Narrative history of meaningful repository changes. Complements `CHANGELOG.md` with context for AI resume.
 
+## 2026-07-30 — BUILD-016 AI Runtime Dashboard
+
+- Read-only observability platform; ADR-014; Phase 3 complete; `0.16.0-alpha`
+- **STOP** before BUILD-017
+
+## 2026-07-30 — BUILD-015 Visual Intelligence Platform
+
+- Read-only React Flow graphs; ADR-013; version `0.15.0-alpha`
+- **STOP** before BUILD-016
+
+## 2026-07-30 — BUILD-014 Workspace Experience Platform
+
+- Workspace → Projects → Sessions hierarchy in Studio
+- ADR-012; docs; Vitest; version `0.14.0-alpha`
+- **STOP** before BUILD-015
+
+## 2026-07-30 — BUILD-013 ADF Studio Core
+
+- `adf-studio/` Desktop Control Center (shell, pages, stores, SDK adapters, themes)
+- ADR-011; docs; Vitest; version `0.13.0-alpha`
+- **STOP** before BUILD-014
+
+## 2026-07-30 — Locked roadmap Phases 1–4
+
+- Canonical BUILD themes locked in `ROADMAP.md`
+- Phase 2 next: BUILD-010 SDK & Public API (not Examples Pack / prior alternate labels)
+
+## 2026-07-30 — AI continuity handoff pack
+
+- Added `.adf/HANDOFF.md` and `.adf/ACTIVITY_LOG.md` for token-limit / model-switch resume
+- BUILD-008 remains complete; BUILD-009 not started
+
+## 2026-07-30 — BUILD-008 refined (manifest-driven)
+
+- Generator aligned to ADR-006; dry-run/validate/rollback; built-in project templates
+- Pushed to `origin/develop` (`b95c89c`)
+
 ## 2026-07-29 — BUILD-006 completed
 
 - Plugin & Extension Engine shipped (`0.6.0-alpha`)

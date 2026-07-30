@@ -22,3 +22,21 @@ Do not implement unrelated features during review unless asked to remediate.
 ## Why
 
 Reviews catch SSOT drift before the next BUILD compounds it.
+
+---
+
+## Collaboration review workflow (BUILD-017)
+
+Use when extending review/approval surfaces in Studio.
+
+### Surface
+
+Review queue: code · document · AI
+
+Approvals: approve · reject · request_changes + decision log
+
+### Rules
+
+- Mutations via Service Layer (SDK), not ad-hoc UI state as SSOT
+- Studio panels display envelopes from `ReviewClient`
+- AI reviewers are Participants, not plugins

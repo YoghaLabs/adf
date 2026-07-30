@@ -1,0 +1,57 @@
+/* ADF Studio theme tokens — dark default, light + system supported */
+:root {
+  --canvas: 210 20% 98%;
+  --canvas-elevated: 0 0% 100%;
+  --ink: 215 28% 12%;
+  --ink-muted: 215 12% 42%;
+  --accent: 168 55% 32%;
+  --accent-foreground: 0 0% 100%;
+  --line: 214 18% 86%;
+  --danger: 0 72% 48%;
+  --success: 152 55% 34%;
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: 220 22% 8%;
+  --canvas-elevated: 220 18% 12%;
+  --ink: 210 30% 96%;
+  --ink-muted: 215 12% 64%;
+  --accent: 168 60% 42%;
+  --accent-foreground: 210 30% 98%;
+  --line: 220 14% 22%;
+  --danger: 0 70% 58%;
+  --success: 152 50% 48%;
+  color-scheme: dark;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  body {
+    @apply min-h-screen bg-canvas font-sans text-ink;
+    background-image:
+      radial-gradient(1200px 500px at 10% -10%, hsl(var(--accent) / 0.12), transparent 55%),
+      linear-gradient(180deg, hsl(var(--canvas-elevated) / 0.4), transparent 28%);
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  .studio-panel {
+    @apply rounded-xl border border-line bg-canvas-elevated/90 shadow-panel backdrop-blur;
+  }
+
+  .studio-muted {
+    @apply text-sm text-ink-muted;
+  }
+}

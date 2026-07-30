@@ -1,17 +1,6 @@
 # TODOs
 
-## BUILD-001 … BUILD-005
-
-- [x] Complete
-
-## BUILD-006 — Plugin & Extension Engine
-
-- [x] Contracts + PluginManager + builtins
-- [x] Events + hooks + ExtensionAPI
-- [x] RuntimeEngine/Registry/CLI wiring
-- [x] Tests + docs/bootstrap/prompts
-- [x] Stop (no BUILD-007)
-
-## BUILD-007 (Queued — Do Not Start Yet)
-
-- [ ] Await Architecture Review + explicit master prompt
+- [ ] Architecture Review of BUILD-016
+- [ ] Await explicit BUILD-017 master prompt (**Testing Framework**)
+- [ ] Wire Core observability services (replace fixtures)
+- [ ] Phase 4 Production (BUILD-017…020)

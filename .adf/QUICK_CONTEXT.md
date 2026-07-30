@@ -2,18 +2,11 @@
 
 | Field | Value |
 |-------|-------|
-| Repository | `adf` |
-| Current Version | `0.6.0-alpha` |
-| Current Build | `BUILD-006` — Plugin & Extension Engine |
-| Current Goal | BUILD-006 completed; Architecture Review before BUILD-007 |
+| Version | `1.0.0-rc1` |
 | Branch | `develop` |
-| Status | Completed |
-| Completed Builds | BUILD-001 … BUILD-006 |
-| Next Build | `BUILD-007` |
-| Runtime | `adf-core` plugin-based |
-
-## Immediate Pointers
-
-- Plugins: `python adf-core/adf.py plugins list --root .`
-- Docs: `adf-docs/PLUGIN_ENGINE.md`
-- Contracts: `adf-core/contracts/`
+| Build | `BUILD-020` Production RC — **complete** |
+| Phase | 4 Production — RC1 shipped |
+| Next | GA `1.0.0` gates (signing/coverage) — not a new platform BUILD |
+| Rule | Architecture frozen; docs authoritative; no BUILD-021 without charter |
+| Legal | Package initialized at `/legal` (post-RC1) |
+| Business | BUSINESS-001 foundation at `business/ADF-v1.0/` (LOCKED) |

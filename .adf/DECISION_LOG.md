@@ -2,6 +2,55 @@
 
 Chronological record of significant decisions. Newest entries first.
 
+## 2026-07-30 — AI Observability Architecture (BUILD-016 / ADR-014)
+
+- **Decision:** Runtime Dashboard is read-only; logs from services; metrics aggregated; Studio does not own runtime state.
+- **Why:** Observability without forking RuntimeEngine into the GUI.
+- **Consequences:** Presentation caches only; fixtures until Core telemetry APIs harden.
+- **Status:** Accepted
+
+## 2026-07-30 — Visual Intelligence Architecture (BUILD-015 / ADR-013)
+
+- **Decision:** Graphs are read-only; visualization separated from SDK; rendering is UI-only (React Flow).
+- **Why:** Users need relationship visibility without moving business logic into Studio.
+- **Consequences:** Fixtures until Core graph APIs; reusable engine for BUILD-016+.
+- **Status:** Accepted
+
+## 2026-07-30 — Workspace Experience Architecture (BUILD-014 / ADR-012)
+
+- **Decision:** Workspace is top-level; projects belong to workspaces; sessions belong to projects; Studio remains presentation-only over SDK.
+- **Why:** Multi-workspace UX without forking Core policy into React.
+- **Consequences:** Dashboard/nav/search scoped by active workspace; ADR-012 accepted.
+- **Status:** Accepted
+
+## 2026-07-30 — ADF Studio Architecture (BUILD-013 / ADR-011)
+
+- **Decision:** Studio is a Desktop Control Center with no business logic; UI → SDK adapters → Service Layer → Core; services remain backend-only.
+- **Why:** Preserve single policy surface for CLI/SDK/Studio; avoid forking APM/distribution rules into React.
+- **Consequences:** Fixtures/Tauri bridge only ferry envelopes; Vite+React host preferred over Next.js for Tauri.
+- **Status:** Accepted
+
+## 2026-07-30 — Locked roadmap Phases 1–4
+
+- **Decision:** Adopt and lock the phased BUILD-001…020 roadmap (Engine Foundation → Platform & Distribution → User Experience → Production).
+- **Why:** Prevent theme drift across AI sessions; Phase 2 next is SDK & Public API (BUILD-010), not older alternate labels.
+- **Consequences:** `ROADMAP.md` is canonical; changing themes requires ADR + operator approval.
+- **Status:** Accepted
+
+## 2026-07-30 — ADF Package Manager / APM (BUILD-009 / ADR-007)
+
+- **Decision:** All installable ADF artifacts are packages with `package.yaml`; PackageManager is the API; local registry first.
+- **Why:** Extensible distribution without hardcoding templates/plugins/packs into core.
+- **Consequences:** `adf.lock` + `.adf/apm/` cache/install; remote registries later.
+- **Status:** Accepted
+
+## 2026-07-29 — Manifest-driven project generation (BUILD-008 / ADR-006)
+
+- **Decision:** GeneratorManager creates projects only from template manifests/`files/`; no hardcoded project trees in Python.
+- **Why:** Keeps stack variants (generic/python/fastapi/laravel/nextjs) declarative and aligned with Template Engine SSOT.
+- **Consequences:** New project types are templates; dry-run/validate/rollback are first-class; ADR-006 accepted.
+- **Status:** Accepted
+
 ## 2026-07-29 — Plugin-based RuntimeEngine (BUILD-006)
 
 - **Decision:** Future capabilities are plugins behind contracts; RuntimeEngine uses PluginManager and must not instantiate concrete plugin classes directly.

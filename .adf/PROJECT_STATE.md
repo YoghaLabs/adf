@@ -1,32 +1,33 @@
 # Project State
 
-## Snapshot
-
 | Field | Value |
 |-------|-------|
-| Current Version | `0.6.0-alpha` |
-| Current Build | `BUILD-006` |
-| Build Name | Plugin & Extension Engine |
-| Status | `Completed` |
-| Completed Builds | `BUILD-001` … `BUILD-006` |
-| Pending Builds | `BUILD-007` … `BUILD-020` |
-| Current Sprint | Alpha — plugin-based runtime |
-| Current Milestone | Plugin architecture live; await Architecture Review before BUILD-007 |
-| Current Branch | `develop` |
-| Current Objective | Keep plugin contracts stable; do not start BUILD-007 until review |
-| Next Build | `BUILD-007` |
-| Last updated | 2026-07-29 |
+| Product | ADF |
+| Current Version | `1.0.0-rc1` |
+| Current Phase | Phase 4 — Release Candidate complete |
+| Current Build | `BUILD-020` |
+| Branch | `develop` |
+| Completed Builds | `BUILD-001` … `BUILD-020` |
+| Pending | GA `1.0.0` release gates (not a numbered BUILD platform) |
+| Legal Package | Initialized under `legal/` (post-RC1 enhancement — not BUILD-021) |
+| Business Package | Initialized under `business/ADF-v1.0/` (BUSINESS-001 — not BUILD-021) |
 
-## BUILD-006 Checklist
+## Business Strategy (BUSINESS-001)
 
-- [x] Plugin contracts/interfaces + PluginManager
-- [x] Built-in plugins + EventBus + HookRegistry + ExtensionAPI
-- [x] RuntimeEngine loads plugins via PluginManager (no direct concrete instantiation)
-- [x] Registry plugin registration + CLI plugins skeleton
-- [x] pytest coverage for plugins/events/hooks
-- [x] Docs/bootstrap/prompts + SSOT updated
-- [x] Stop without starting BUILD-007
+- [x] Locked `business/ADF-v1.0/` structure
+- [x] Business SSOT + rules + workflow + template
+- [x] Stop before BUSINESS-002
 
-## Blockers
+## Legal Package
 
-None. **Gate:** Architecture Review of BUILD-006 before BUILD-007.
+- [x] `legal/` package created (copyright, license, EULA, trademark, conduct)
+- [x] README Legal section references `/legal`
+- [x] No runtime / SDK / Studio modifications
+
+## BUILD-020 Checklist
+
+- [x] Production / security / performance review
+- [x] Packaging + installers + website/marketplace/business assets
+- [x] Final documentation + ADR-018
+- [x] Version `1.0.0-rc1`
+- [x] Stop — no BUILD-021

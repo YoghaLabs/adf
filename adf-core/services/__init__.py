@@ -1,0 +1,45 @@
+"""ADF Service Layer — orchestration over independent engines."""
+
+from services.contracts import (
+    BaseService,
+    ServiceContext,
+    ServiceException,
+    ServiceMetadata,
+    ServiceProtocol,
+    ServiceResult,
+)
+from services.context_service import ContextService
+from services.generator_service import GeneratorService
+from services.knowledge_service import KnowledgeService
+from services.marketplace_service import MarketplaceService
+from services.package_service import PackageService
+from services.plugin_service import PluginService
+from services.project_service import ProjectService
+from services.publisher_service import PublisherService
+from services.registry_service import RegistryService
+from services.runtime_service import RuntimeService
+from services.service_manager import ServiceManager
+from services.template_service import TemplateService
+from services.workspace_service import WorkspaceService
+
+__all__ = [
+    "BaseService",
+    "ContextService",
+    "GeneratorService",
+    "KnowledgeService",
+    "MarketplaceService",
+    "PackageService",
+    "PluginService",
+    "ProjectService",
+    "PublisherService",
+    "RegistryService",
+    "RuntimeService",
+    "ServiceContext",
+    "ServiceException",
+    "ServiceManager",
+    "ServiceMetadata",
+    "ServiceProtocol",
+    "ServiceResult",
+    "TemplateService",
+    "WorkspaceService",
+]

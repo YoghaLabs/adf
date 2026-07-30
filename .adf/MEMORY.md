@@ -2,12 +2,24 @@
 
 ## Stable Facts
 
-- Locked architecture + ADR rules still apply.
-- Context Engine specs (BUILD-004) + Runtime foundation (BUILD-005) remain.
-- **BUILD-006:** future capabilities ship as plugins; RuntimeEngine depends on contracts/PluginManager, not concrete plugin classes.
-- Third-party plugins must use `extensions.ExtensionAPI` / `contracts` only.
-- CLI: `adf.py plugins list|info|enable|disable`.
+- Locked top-level architecture (ADR-001)
+- **Locked roadmap** in `ROADMAP.md` (Phases 1–4 / BUILD-001…020)
+- Docs are SSOT; no placeholders; cumulative builds
+- Plugin architecture (BUILD-006)
+- Template Engine (BUILD-007) + Generator Engine (BUILD-008, ADR-006)
+- Package Manager (BUILD-009, ADR-007)
+- Continuity: `.adf/RESUME_ME.md`, `HANDOFF.md`, `ACTIVITY_LOG.md`
 
-## Watch Items
+## Roadmap reminder
 
-- Do not start BUILD-007 before Architecture Review of BUILD-006.
+| Phase | Builds | Status |
+|-------|--------|--------|
+| 1 Engine Foundation | 001–008 | ✅ |
+| 2 Platform & Distribution | 009–012 | 009 ✅ · 010 next |
+| 3 User Experience | 013–016 | ⏳ |
+| 4 Production | 017–020 | ⏳ |
+
+## Recent
+
+- Operator locked the phased roadmap (2026-07-30)
+- BUILD-009 APM shipped; await BUILD-010 SDK & Public API prompt

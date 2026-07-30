@@ -1,0 +1,27 @@
+# ADF Template Manifest Specification v1.0
+# Built-in reference for template.yaml packages (BUILD-007).
+schema_version: "1.0"
+metadata:
+  name: example-template
+  version: 0.1.0
+  description: Example template illustrating the ADF manifest contract
+  author: YoghaLabs
+  tags:
+    - foundation
+    - example
+  build: BUILD-007
+variables:
+  project_name: my-project
+  author: YoghaLabs
+dependencies: []
+capabilities:
+  - scaffold
+outputs:
+  - README.md
+  - VERSION
+permissions:
+  - write-files
+inherits: null
+plugin_compatibility:
+  - template
+  - generator

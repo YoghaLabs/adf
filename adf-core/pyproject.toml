@@ -4,23 +4,25 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "adf-core"
-version = "0.6.0a0"
-description = "ADF Runtime Engine with plugin-based extension architecture"
+version = "1.0.0rc1"
+description = "ADF Runtime Engine with Distribution Platform"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "YoghaLabs" }]
-dependencies = []
+dependencies = [
+  "PyYAML>=6.0",
+]
 
 [project.optional-dependencies]
 dev = ["pytest>=7.4"]
 
 [project.scripts]
-adf = "adf:main"
+adf = "adf.cli:main"
 
 [tool.setuptools]
-py-modules = ["adf"]
 packages = [
+  "adf",
   "runtime",
   "core",
   "engine",
@@ -38,6 +40,12 @@ packages = [
   "events",
   "hooks",
   "extensions",
+  "templates",
+  "generator",
+  "packages",
+  "services",
+  "sdk",
+  "distribution",
 ]
 
 [tool.pytest.ini_options]

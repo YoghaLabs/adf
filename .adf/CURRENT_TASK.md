@@ -1,23 +1,17 @@
 # Current Task
 
-## Active Build
+BUILD-020 complete. ADF **1.0.0-rc1** Production Release Candidate shipped.
 
-**BUILD-006 — Plugin & Extension Engine**
+**STOP** — do not invent BUILD-021 or new platforms.
 
-## Status
+## Allowed follow-ups (not new builds)
 
-**Completed.** Awaiting Architecture Review before BUILD-007.
+- Sign/notarize installers for GA `1.0.0`
+- Run/record coverage thresholds in CI
+- Capture marketplace screenshots
 
-## Objectives (All Met)
+## Forbidden
 
-1. Introduce plugin contracts and PluginManager lifecycle APIs.
-2. Add EventBus + HookRegistry + public ExtensionAPI.
-3. Ship built-in plugins inheriting BasePlugin.
-4. Wire RuntimeEngine through PluginManager only.
-5. Extend Registry and CLI (`plugins list|info|enable|disable`).
-6. Add pytest coverage; update VERSION to `0.6.0-alpha`.
-7. Stop after BUILD-006.
-
-## Next Operator Action
-
-Architecture Review via `bootstrap/BUILD-006/REVIEW.md`.
+- New top-level folders / platforms
+- Architectural redesign
+- Autonomous agent execution as a silent add-on

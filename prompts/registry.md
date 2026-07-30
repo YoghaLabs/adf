@@ -1,9 +1,9 @@
 # Prompt — Registry
 
 ```text
-You are working on the ADF component Registry (adf-core/registry).
+You are extending the ADF package Registry (adf-core/registry/* BUILD-011).
 
-API must remain: register, find, remove, list.
-Fail clearly on duplicates/missing keys.
-Keep registry in-memory unless a later BUILD specifies persistence.
+Registry is the source of truth. Providers wrap packages.repository.
+Do not overwrite the BUILD-005 component Registry class in registry/registry.py.
+Package installs must still go through PackageManager.
 ```

@@ -1,34 +1,62 @@
 # ADF Roadmap
 
-**Current version:** `0.6.0-alpha`  
-**Current build:** `BUILD-006` (completed; next BUILD-007)
+**Locked roadmap** (operator-approved). Theme overrides require ADR + explicit master prompt.
 
-## Build Path
+**Current version:** `1.0.0-rc1`  
+**Current build:** `BUILD-020` — Production Release Candidate (**completed**)  
+**Next:** GA `1.0.0` signing/coverage gates — **not a new BUILD platform**
+
+---
+
+## Phase 1 — Engine Foundation ✅
 
 | Build | Focus | Status |
 |-------|--------|--------|
 | BUILD-001 | Repository Foundation | ✅ |
-| BUILD-002 | AI Runtime SSOT | ✅ |
-| BUILD-003 | Knowledge Architecture & ADR | ✅ |
-| BUILD-004 | Context Engine (spec) | ✅ |
-| BUILD-005 | Runtime Engine Foundation | ✅ |
-| **BUILD-006** | **Plugin & Extension Engine** | ✅ (review gate) |
-| BUILD-007 | Task & State Machine | ⏳ Next |
-| BUILD-008 | Dependency & Tooling | ⏳ |
-| BUILD-009 | Template System | ⏳ |
-| BUILD-010 | Examples Pack | ⏳ |
-| BUILD-011 | Testing Framework | ⏳ |
-| BUILD-012 | Release Pipeline Prep | ⏳ |
-| BUILD-013 | ADF Studio Shell | ⏳ |
-| BUILD-014 | Studio Context Views | ⏳ |
-| BUILD-015 | Studio Build Runner | ⏳ |
-| BUILD-016 | Documentation Completeness | ⏳ |
-| BUILD-017 | Integration Hardening | ⏳ |
-| BUILD-018 | Performance & Token Efficiency | ⏳ |
-| BUILD-019 | Release Candidate | ⏳ |
-| BUILD-020 | v1.0 Stabilization Gate | ⏳ |
+| BUILD-002 | AI Runtime | ✅ |
+| BUILD-003 | Knowledge Architecture | ✅ |
+| BUILD-004 | Context Engine | ✅ |
+| BUILD-005 | Runtime Engine | ✅ |
+| BUILD-006 | Plugin Engine | ✅ |
+| BUILD-007 | Template Engine | ✅ |
+| BUILD-008 | Generator Engine | ✅ |
 
-## Status Legend
+---
 
-- **Done:** BUILD-001 … BUILD-006
-- **Next:** BUILD-007 (after Architecture Review of BUILD-006)
+## Phase 2 — Platform & Distribution ✅
+
+| Build | Focus | Status |
+|-------|--------|--------|
+| BUILD-009 | ADF Package Manager | ✅ |
+| BUILD-010 | SDK & Public API | ✅ |
+| BUILD-011 | Marketplace & Registry | ✅ |
+| BUILD-012 | Installer & Distribution | ✅ |
+
+
+---
+
+## Phase 3 — User Experience ✅
+
+| Build | Focus | Status |
+|-------|--------|--------|
+| BUILD-013 | ADF Studio Core | ✅ |
+| BUILD-014 | Workspace & Dashboard | ✅ |
+| BUILD-015 | Knowledge Graph | ✅ |
+| BUILD-016 | Runtime Monitor | ✅ |
+
+---
+
+## Phase 4 — Production ✅ (RC1)
+
+| Build | Focus | Status |
+|-------|--------|--------|
+| BUILD-017 | AI Collaboration Platform | ✅ |
+| BUILD-018 | AI Orchestration Platform | ✅ |
+| BUILD-019 | Enterprise Governance Platform | ✅ |
+| BUILD-020 | Production Release Candidate | ✅ |
+
+> Phase 4 complete at **RC1**. GA (`1.0.0`) is a release gate (signing/coverage), not BUILD-021.
+
+## Continuity
+
+Use `.adf/RESUME_ME.md`. Do **not** invent BUILD-021 without a new program charter.

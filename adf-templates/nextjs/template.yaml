@@ -1,0 +1,17 @@
+schema_version: "1.0"
+metadata:
+  name: nextjs
+  version: 0.8.0
+  description: Next.js ADF project seed
+  author: YoghaLabs
+  tags: [javascript, nextjs, builtin]
+  build: BUILD-008
+variables:
+  project_name: nextjs-project
+  author: YoghaLabs
+  version: 0.1.0-alpha
+capabilities: [scaffold, nextjs]
+outputs: [package.json, app/page.tsx]
+permissions: [write-files]
+inherits: generic
+plugin_compatibility: [template, generator]

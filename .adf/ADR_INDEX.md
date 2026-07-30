@@ -15,6 +15,15 @@ No architecture change without a new ADR. Accepted ADRs are part of ADF v1.0 phi
 | ADR-001 | Repository Structure | Accepted | `adr/ADR-001-Repository-Structure.md` |
 | ADR-002 | Build Lifecycle | Accepted | `adr/ADR-002-Build-Lifecycle.md` |
 | ADR-003 | AI Runtime | Accepted | `adr/ADR-003-AI-Runtime.md` |
+| ADR-006 | Project Generation Model | Accepted | `adr/ADR-006-Project-Generation-Model.md` |
+| ADR-007 | Package Management Architecture | Accepted | `adr/ADR-007-Package-Management-Architecture.md` |
+| ADR-008 | Service Layer Architecture | Accepted | `adr/ADR-008-Service-Layer-Architecture.md` |
+| ADR-009 | Registry & Marketplace Architecture | Accepted | `adr/ADR-009-Registry-Marketplace-Architecture.md` |
+| ADR-010 | Distribution & Release Architecture | Accepted | `adr/ADR-010-Distribution-Release-Architecture.md` |
+| ADR-011 | ADF Studio Architecture | Accepted | `adr/ADR-011-ADF-Studio-Architecture.md` |
+| ADR-012 | Workspace Experience Architecture | Accepted | `adr/ADR-012-Workspace-Experience-Architecture.md` |
+| ADR-013 | Visual Intelligence Architecture | Accepted | `adr/ADR-013-Visual-Intelligence-Architecture.md` |
+| ADR-014 | AI Observability Architecture | Accepted | `adr/ADR-014-AI-Observability-Architecture.md` |
 
 ## How to Add an ADR
 

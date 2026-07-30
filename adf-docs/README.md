@@ -6,6 +6,14 @@ Human-facing documentation for the AI Development Framework.
 
 | Doc | Description |
 |-----|-------------|
+| `ARCHITECTURE_GUIDE.md` | v1 RC architecture entry guide |
+| `DEVELOPER_GUIDE.md` | Developer onboarding |
+| `USER_GUIDE.md` | End-user Studio guide |
+| `ADMINISTRATOR_GUIDE.md` | Enterprise admin guide |
+| `DEPLOYMENT_GUIDE.md` | Deployment & bundles |
+| `STUDIO_GUIDE.md` | Studio control center guide |
+| `MIGRATION_GUIDE.md` | Migrate to 1.0.0-rc1 |
+| `RELEASE_NOTES.md` | RC1 release notes |
 | `WHAT_IS_ADF.md` | Product definition and value proposition |
 | `GETTING_STARTED.md` | First steps for humans and AI operators |
 | `ARCHITECTURE.md` | Locked structure and package boundaries |
@@ -32,6 +40,74 @@ Human-facing documentation for the AI Development Framework.
 | `EVENT_SYSTEM.md` | EventBus lifecycle events |
 | `HOOK_SYSTEM.md` | before/after hooks |
 | `EXTENSION_API.md` | Public extension surface |
+| `TEMPLATE_ENGINE.md` | Template Engine overview |
+| `TEMPLATE_MANIFEST.md` | `template.yaml` contract |
+| `VARIABLE_SYSTEM.md` | `{{variable}}` resolution |
+| `TEMPLATE_REGISTRY.md` | Template discovery/registry |
+| `PROJECT_GENERATOR.md` | Project generation overview |
+| `BOOTSTRAP_GENERATOR.md` | Bootstrap generation |
+| `CLI_GENERATOR.md` | init/new/generate CLI |
+| `SCAFFOLDER.md` | Locked-folder scaffolder |
+| `GENERATION_PIPELINE.md` | Manifest-driven generation steps |
+| `FILESYSTEM_ABSTRACTION.md` | Safe filesystem writers |
+| `DRY_RUN.md` | Dry-run preview model |
+| `PACKAGE_MANAGER.md` | APM overview |
+| `PACKAGE_SPEC.md` | `package.yaml` contract |
+| `PACKAGE_REGISTRY.md` | Registry backends |
+| `DEPENDENCY_RESOLUTION.md` | Dep graph + cycles |
+| `SEMVER_GUIDE.md` | Semver constraints |
+| `SERVICE_LAYER.md` | Service Layer overview |
+| `SERVICE_MANAGER.md` | ServiceManager API |
+| `SDK_GUIDE.md` | Public SDK guide |
+| `SDK_CLIENT.md` | SDKClient reference |
+| `PUBLIC_API.md` | `from adf import …` contract |
+| `REGISTRY.md` | Package registry SSOT |
+| `MARKETPLACE.md` | Marketplace presentation layer |
+| `REGISTRY_API.md` | Registry/Marketplace APIs |
+| `PUBLISHER_GUIDE.md` | Publisher profiles/publish |
+| `PACKAGE_SECURITY.md` | Checksum/signature/trust |
+| `DISTRIBUTION.md` | Distribution platform overview |
+| `INSTALLER.md` | InstallerManager |
+| `UPDATER.md` | UpdateManager |
+| `RELEASE_MANAGEMENT.md` | Channels + ReleaseManager |
+| `OFFLINE_MODE.md` | Offline bundles/snapshots |
+| `ENTERPRISE_DEPLOYMENT.md` | Enterprise profiles/bundles |
+| `STUDIO_ARCHITECTURE.md` | ADF Studio Control Center architecture |
+| `STUDIO_UI.md` | Shell, navigation, pages |
+| `STATE_MANAGEMENT.md` | Zustand + Query rules |
+| `THEME_SYSTEM.md` | Dark / Light / System |
+| `DESKTOP_PACKAGING.md` | Tauri packaging notes |
+| `WORKSPACE_SYSTEM.md` | Workspace hierarchy & manager |
+| `PROJECT_EXPLORER.md` | Project Explorer |
+| `SESSION_MANAGER.md` | Session Manager |
+| `ACTIVITY_FEED.md` | Activity feed |
+| `SEARCH_SYSTEM.md` | Search + command search |
+| `VISUAL_PLATFORM.md` | Visual Intelligence overview |
+| `GRAPH_ENGINE.md` | Graph engine |
+| `KNOWLEDGE_GRAPH.md` | Knowledge Graph view |
+| `DEPENDENCY_GRAPH.md` | Dependency Graph view |
+| `VISUAL_GUIDE.md` | Operator visual guide |
+| `RUNTIME_DASHBOARD.md` | AI Runtime Dashboard |
+| `OBSERVABILITY.md` | Timelines & event stream |
+| `COLLABORATION_PLATFORM.md` | AI Collaboration Platform |
+| `AI_PARTICIPANTS.md` | AI as first-class Participant |
+| `MULTI_AGENT_MODEL.md` | Multi-agent architecture (no automation) |
+| `REVIEW_WORKFLOW.md` | Review & approval workflow |
+| `NOTIFICATION_SYSTEM.md` | Collaboration notifications |
+| `ORCHESTRATION_PLATFORM.md` | AI Orchestration Platform |
+| `WORKFLOW_ENGINE.md` | Workflow lifecycle (non-executing) |
+| `PIPELINE_ENGINE.md` | Pipeline stages & transitions |
+| `ARTIFACT_FLOW.md` | Artifact kinds & dependencies |
+| `APPROVAL_SYSTEM.md` | Review & approval gates |
+| `ENTERPRISE_PLATFORM.md` | Enterprise Governance Platform |
+| `RBAC_MODEL.md` | Hierarchical RBAC |
+| `PERMISSION_SYSTEM.md` | Fine-grained permissions |
+| `AUDIT_SYSTEM.md` | Immutable audit trail |
+| `COMPLIANCE.md` | Compliance dashboard |
+| `IDENTITY.md` | Identity & SSO catalog |
+| `METRICS_SYSTEM.md` | Metrics presentation |
+| `LOGGING_SYSTEM.md` | Log viewer |
+| `DIAGNOSTICS.md` | Diagnostics panels |
 | `README.md` | This index |
 
 ## Reading Order

@@ -1,10 +1,13 @@
 ADF
 
 Version:
-0.6.0-alpha
+1.0.0-rc1
 
 Current Build:
-BUILD-006
+BUILD-020
 
 Branch:
 develop
+
+Notes:
+Legal Package initialized (post-RC1 enhancement under /legal). Not BUILD-021.

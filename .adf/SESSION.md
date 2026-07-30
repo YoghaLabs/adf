@@ -1,14 +1,12 @@
 # Session
 
-## Latest Session — 2026-07-29 (BUILD-006)
+| Field | Value |
+|-------|-------|
+| Build | BUILD-020 complete (`1.0.0-rc1`) |
+| Focus | Idle — RC1 ready for demo / packaging |
 
-### Done
+## Next operator steps
 
-- Plugin architecture in `adf-core` (contracts, manager, builtins, events, hooks, extensions)
-- RuntimeEngine discovers/loads plugins via PluginManager
-- CLI `plugins` skeleton; pytest 9 passed (foundation + plugin suite)
-- Version `0.6.0-alpha`; BUILD-007 not started
-
-### Remaining
-
-- Human Architecture Review of BUILD-006
+1. Resume via `RESUME_ME.md`
+2. Execute release checklist (`release/checklists/readiness.md`)
+3. Tag RC1 when gates recorded; plan GA `1.0.0` signing

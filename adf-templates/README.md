@@ -4,36 +4,23 @@ Reusable templates for ADF projects and artifacts.
 
 ## Purpose
 
-`adf-templates` will store generation templates for:
+`adf-templates` stores generation templates consumed by `TemplateManager` /
+`GeneratorManager`. **Project structure is declared here** — not hardcoded in
+`adf-core/generator`.
 
-- New ADF repositories (folder + `.adf` seed set)
-- Prompt packs and handoff documents
-- Build checklists and release notes stubs
-- Documentation skeletons that meet the no-placeholder quality bar
+## Built-in packages (BUILD-008)
 
-## Status
-
-**Scaffold only in BUILD-001.**  
-Template system implementation is planned for **BUILD-009**.
-
-## Design Constraints
-
-- Templates must emit the locked architecture only
-- Generated files must contain useful starter content, not empty stubs
-- Template metadata should declare which BUILD introduced them
-- Outputs must remain compatible with `.adf/AI_CONTRACT.md`
-
-## Planned Template Categories
-
-| Category | Examples |
-|----------|----------|
-| Repository | Full ADF tree seed |
-| Operating | `.adf` file set for a new project |
-| Prompts | build / resume / handoff / audit variants |
-| Docs | Architecture and getting-started starters |
+| Package | Description |
+|---------|-------------|
+| `foundation/` | Base ADF layout + `.adf` operating set |
+| `generic/` | Generic project (inherits foundation) |
+| `python/` | Python package seed |
+| `fastapi/` | FastAPI app seed |
+| `laravel/` | Laravel/composer seed |
+| `nextjs/` | Next.js app seed |
 
 ## Related Docs
 
-- `bootstrap/README.md`
-- `adf-examples/README.md`
-- `ROADMAP.md` (BUILD-009)
+- `adf-docs/TEMPLATE_ENGINE.md`
+- `adf-docs/PROJECT_GENERATOR.md`
+- `.adf/adr/ADR-006-Project-Generation-Model.md`

@@ -7,7 +7,17 @@ Prompt library for operating ADF across sessions.
 | File | Use when |
 |------|----------|
 | `plugin.md`, `extension.md`, `event.md`, `hook.md`, `contract.md` | Plugin architecture prompts |
-| `runtime.md`, `engine.md`, `cli.md`, `registry.md`, `loader.md` | Runtime Engine implementation prompts |
+| `template.md`, `manifest.md`, `variables.md`, `renderer.md`, `registry.md` | Template Engine prompts |
+| `generator.md`, `scaffold.md`, `project.md`, `filesystem.md`, `bootstrap-generator.md`, `dry-run.md` | Bootstrap Generator prompts |
+| `package.md`, `registry.md`, `dependency.md`, `install.md`, `update.md` | Package Manager prompts |
+| `service.md`, `sdk.md`, `api.md`, `workspace.md`, `project.md` | Service Layer / SDK / Studio prompts |
+| `studio.md`, `dashboard.md`, `layout.md`, `ui.md` | ADF Studio Control Center prompts |
+| `workspace-manager.md`, `project-explorer.md`, `session-manager.md`, `activity-feed.md`, `search.md` | Workspace Experience prompts |
+| `graph.md`, `knowledge-graph.md`, `dependency-graph.md`, `visualization.md`, `relationships.md` | Visual Intelligence prompts |
+| `runtime-dashboard.md`, `metrics.md`, `logs.md`, `diagnostics.md`, `timeline.md` | Runtime observability prompts |
+| `marketplace.md`, `publisher.md`, `security.md`, `verification.md` | Marketplace / registry security prompts |
+| `distribution.md`, `installer.md`, `updater.md`, `release.md`, `rollback.md` | Distribution / release prompts |
+| `runtime.md`, `engine.md`, `cli.md`, `loader.md` | Runtime Engine implementation prompts |
 | `restore.md`, `context-engine.md`, `session.md`, `checkpoint.md`, `state.md` | Context Engine / session / state machine |
 | `knowledge.md`, `adr.md`, `documentation.md`, `context.md`, `bootstrap.md` | Knowledge-layer / ADR / bootstrap packs |
 | `architecture.md`, `planning.md`, `review.md`, `release.md`, `generator.md` | Expanded operator modes |
