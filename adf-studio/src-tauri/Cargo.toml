@@ -1,0 +1,10 @@
+[package]
+name = "adf-studio"
+version = "0.13.0"
+description = "ADF Studio desktop shell scaffold"
+authors = ["YoghaLabs"]
+edition = "2021"
+
+[[bin]]
+name = "adf-studio-scaffold"
+path = "src/main.rs"
