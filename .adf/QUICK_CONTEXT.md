@@ -2,9 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Version | `0.19.0-alpha` |
+| Version | `1.0.0-rc1` |
 | Branch | `develop` |
-| Build | `BUILD-019` Enterprise Governance — **complete** |
-| Phase | 4 Production — BUILD-019 done |
-| Next | `BUILD-020` Production v1.0 / RC — **not started** |
-| Rule | Governance modular & service-driven; audit immutable; UI → SDK → Services → Core |
+| Build | `BUILD-020` Production RC — **complete** |
+| Phase | 4 Production — RC1 shipped |
+| Next | GA `1.0.0` gates (signing/coverage) — not a new platform BUILD |
+| Rule | Architecture frozen; docs authoritative; no BUILD-021 without charter |

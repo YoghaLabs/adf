@@ -2,9 +2,9 @@
 
 **Locked roadmap** (operator-approved). Theme overrides require ADR + explicit master prompt.
 
-**Current version:** `0.19.0-alpha`  
-**Current build:** `BUILD-019` — Enterprise Governance Platform (**completed**)  
-**Next:** `BUILD-020` — Production v1.0 / Release Candidate (**not started**)
+**Current version:** `1.0.0-rc1`  
+**Current build:** `BUILD-020` — Production Release Candidate (**completed**)  
+**Next:** GA `1.0.0` signing/coverage gates — **not a new BUILD platform**
 
 ---
 
@@ -46,21 +46,17 @@
 
 ---
 
-## Phase 4 — Production
+## Phase 4 — Production ✅ (RC1)
 
 | Build | Focus | Status |
 |-------|--------|--------|
 | BUILD-017 | AI Collaboration Platform | ✅ |
 | BUILD-018 | AI Orchestration Platform | ✅ |
 | BUILD-019 | Enterprise Governance Platform | ✅ |
-| BUILD-020 | Production v1.0 / Release Candidate | ⏳ |
+| BUILD-020 | Production Release Candidate | ✅ |
 
-> **Notes:** Theme overrides via master prompt + ADR:  
-> BUILD-017 Testing → Collaboration (ADR-015); BUILD-018 Audit → Orchestration (ADR-016);  
-> BUILD-019 RC → Enterprise Governance (ADR-017). Deferred themes remain on the backlog.
-
----
+> Phase 4 complete at **RC1**. GA (`1.0.0`) is a release gate (signing/coverage), not BUILD-021.
 
 ## Continuity
 
-When switching AI, use `.adf/RESUME_ME.md`. Do **not** start BUILD-020 until an explicit master prompt.
+Use `.adf/RESUME_ME.md`. Do **not** invent BUILD-021 without a new program charter.

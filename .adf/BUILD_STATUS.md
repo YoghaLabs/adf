@@ -2,12 +2,12 @@
 
 | Build | Status |
 |-------|--------|
-| BUILD-001 … BUILD-018 | Completed |
-| BUILD-019 | Completed |
-| BUILD-020 | Pending |
+| BUILD-001 … BUILD-019 | Completed |
+| BUILD-020 | Completed |
+| BUILD-021+ | **Not opened** |
 
 ## Notes
 
-- Last completed: **BUILD-019** (`0.19.0-alpha`) — Enterprise Governance Platform
-- Release Candidate deferred to BUILD-020 (ADR-017)
-- Next: **BUILD-020** (Pending — do not start until explicit prompt)
+- Last completed: **BUILD-020** (`1.0.0-rc1`) — Production Release Candidate
+- Phase 4 RC1 complete
+- Next program work: GA signing/coverage — not a new platform BUILD

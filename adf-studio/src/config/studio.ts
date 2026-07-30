@@ -1,7 +1,7 @@
 export const studioConfig = {
   name: "ADF Studio",
-  version: "0.19.0-alpha",
-  build: "BUILD-019",
+  version: "1.0.0-rc1",
+  build: "BUILD-020",
   defaultWorkspace: "ws-adf",
   navigation: [
     { id: "dashboard", label: "Dashboard", path: "/" },

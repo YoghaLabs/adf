@@ -1,12 +1,17 @@
 # Current Task
 
-BUILD-019 complete. Enterprise Governance Platform shipped (modular governance only).
+BUILD-020 complete. ADF **1.0.0-rc1** Production Release Candidate shipped.
 
-**STOP** — do not start BUILD-020 until an explicit master prompt.
+**STOP** — do not invent BUILD-021 or new platforms.
+
+## Allowed follow-ups (not new builds)
+
+- Sign/notarize installers for GA `1.0.0`
+- Run/record coverage thresholds in CI
+- Capture marketplace screenshots
 
 ## Forbidden
 
-- Start BUILD-020 unprompted
-- Redesign / new platform product
-- Mutable audit history in Studio
-- Business logic / enforcement in Studio
+- New top-level folders / platforms
+- Architectural redesign
+- Autonomous agent execution as a silent add-on

@@ -290,6 +290,23 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Audit is immutable
 - Enterprise features remain modular (no redesign / no new platform)
 
+## BUILD-020 — Production Release Candidate
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `1.0.0-rc1` |
+| Branch | `develop` |
+| Purpose | Production readiness, packaging, docs freeze, RC assets |
+| Result | **Completed.** ADR-018; architecture frozen; stop — no BUILD-021. |
+
+### Outcomes That Must Not Be Undone
+
+- Architecture frozen for v1
+- Documentation authoritative for RC1
+- v1.0 marks API stability intent
+- No new platforms invented in release candidate
+
 ## Template for Future Entries
 
 ```markdown

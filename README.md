@@ -1,8 +1,9 @@
 # ADF — AI Development Framework
 
-**Version:** `0.9.0-alpha` (see root `VERSION`)  
+**Version:** `1.0.0-rc1` (see root `VERSION`)  
 **Branch:** `develop`  
-**Current Build:** `BUILD-009` — ADF Package Manager (APM)
+**Current Build:** `BUILD-020` — Production Release Candidate
+
 
 ADF is an AI-first development framework that keeps project knowledge, architecture decisions, build state, and AI operating contracts inside the repository. Humans and AI agents share the same source of truth so work can pause, hand off, and resume without losing context.
 
