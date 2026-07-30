@@ -1,12 +1,32 @@
 # Changelog
 
-**Version source of truth:** root `VERSION` — **ADF** / **0.17.0-alpha** / **BUILD-017** / **develop**
+**Version source of truth:** root `VERSION` — **ADF** / **0.18.0-alpha** / **BUILD-018** / **develop**
 
 ## [Unreleased]
 
 ### Planned
-- BUILD-018 Audit Framework (Phase 4 — after Architecture Review of BUILD-017)
-- Testing Framework deferred from original BUILD-017 slot (see ADR-015)
+- BUILD-019 Release Candidate (Phase 4 — after Architecture Review of BUILD-018)
+- Audit Framework deferred from original BUILD-018 slot (see ADR-016)
+
+## [0.18.0-alpha] — 2026-07-30
+
+### Added
+- AI Orchestration Platform under `adf-studio/src/features/orchestration/`
+- Workflow + pipeline engines (model/UI/SDK); stages, artifacts, gates, execution plans
+- Visual pipeline board (board/kanban/timeline/dependency/graph) + execution view
+- SDK: WorkflowClient, PipelineClient, ArtifactClient, ExecutionClient, ApprovalClient
+- Docs: ORCHESTRATION_PLATFORM, WORKFLOW_ENGINE, PIPELINE_ENGINE, ARTIFACT_FLOW, APPROVAL_SYSTEM
+- ADR-016 AI Orchestration Architecture
+- Prompts + `bootstrap/BUILD-018/`
+- Vitest orchestration suite
+
+### Changed
+- Version identity advanced to `0.18.0-alpha` / BUILD-018
+- ROADMAP BUILD-018 theme: Audit Framework → AI Orchestration (operator master prompt)
+
+### Locked
+- No AI automation / no autonomous execution
+- Orchestration separated from execution; workflow owns lifecycle
 
 ## [0.17.0-alpha] — 2026-07-30
 

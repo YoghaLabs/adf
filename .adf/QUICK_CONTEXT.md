@@ -2,9 +2,9 @@
 
 | Field | Value |
 |-------|-------|
-| Version | `0.17.0-alpha` |
+| Version | `0.18.0-alpha` |
 | Branch | `develop` |
-| Build | `BUILD-017` AI Collaboration — **complete** |
-| Phase | 4 Production — BUILD-017 done |
-| Next | `BUILD-018` Audit Framework — **not started** |
-| Rule | AI is a Participant; UI → SDK → Services → Core; no agent automation yet |
+| Build | `BUILD-018` AI Orchestration — **complete** |
+| Phase | 4 Production — BUILD-018 done |
+| Next | `BUILD-019` Release Candidate — **not started** |
+| Rule | Orchestration ≠ execution; no AI automation; UI → SDK → Services → Core |

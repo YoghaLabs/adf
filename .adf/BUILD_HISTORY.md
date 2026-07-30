@@ -257,6 +257,22 @@ Ledger of completed (and notable) BUILD increments. **Why:** future AIs must kno
 - Collaboration is service-driven; Studio presentation-only
 - Multi-agent graph is architecture-only until explicitly unlocked
 
+## BUILD-018 — AI Orchestration Platform
+
+| Field | Value |
+|-------|-------|
+| Date | 2026-07-30 |
+| Version | `0.18.0-alpha` |
+| Branch | `develop` |
+| Purpose | Workflow/pipeline/gates/artifacts/execution planning — no autonomous run |
+| Result | **Completed.** ADR-016; theme override from Audit Framework. Stop before BUILD-019. |
+
+### Outcomes That Must Not Be Undone
+
+- Orchestration separated from execution
+- AI Participants are orchestrated (not demoted to tools)
+- Workflow owns lifecycle; no AI automation in this build
+
 ## Template for Future Entries
 
 ```markdown

@@ -2,12 +2,12 @@
 
 | Build | Status |
 |-------|--------|
-| BUILD-001 … BUILD-016 | Completed |
-| BUILD-017 | Completed |
-| BUILD-018 … BUILD-020 | Pending |
+| BUILD-001 … BUILD-017 | Completed |
+| BUILD-018 | Completed |
+| BUILD-019 … BUILD-020 | Pending |
 
 ## Notes
 
-- Last completed: **BUILD-017** (`0.17.0-alpha`) — AI Collaboration Platform
-- Phase 4 started; Testing Framework deferred (ADR-015)
-- Next: **BUILD-018** (Pending — do not start until explicit prompt)
+- Last completed: **BUILD-018** (`0.18.0-alpha`) — AI Orchestration Platform
+- Audit Framework deferred (ADR-016)
+- Next: **BUILD-019** (Pending — do not start until explicit prompt)

@@ -44,7 +44,7 @@ describe("runtime dashboard", () => {
 
   it("is linked from navigation config", () => {
     expect(studioConfig.navigation.map((n) => n.id)).toContain("runtime");
-    expect(studioConfig.version).toBe("0.17.0-alpha");
+    expect(studioConfig.version).toBe("0.18.0-alpha");
   });
 });
 

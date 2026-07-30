@@ -113,8 +113,8 @@ describe("SDK", () => {
 
   it("is linked from navigation config", () => {
     expect(studioConfig.navigation.map((n) => n.id)).toContain("collaboration");
-    expect(studioConfig.version).toBe("0.17.0-alpha");
-    expect(studioConfig.build).toBe("BUILD-017");
+    expect(studioConfig.version).toBe("0.18.0-alpha");
+    expect(studioConfig.build).toBe("BUILD-018");
   });
 });
 

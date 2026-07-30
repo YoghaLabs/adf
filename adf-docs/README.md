@@ -86,6 +86,11 @@ Human-facing documentation for the AI Development Framework.
 | `MULTI_AGENT_MODEL.md` | Multi-agent architecture (no automation) |
 | `REVIEW_WORKFLOW.md` | Review & approval workflow |
 | `NOTIFICATION_SYSTEM.md` | Collaboration notifications |
+| `ORCHESTRATION_PLATFORM.md` | AI Orchestration Platform |
+| `WORKFLOW_ENGINE.md` | Workflow lifecycle (non-executing) |
+| `PIPELINE_ENGINE.md` | Pipeline stages & transitions |
+| `ARTIFACT_FLOW.md` | Artifact kinds & dependencies |
+| `APPROVAL_SYSTEM.md` | Review & approval gates |
 | `METRICS_SYSTEM.md` | Metrics presentation |
 | `LOGGING_SYSTEM.md` | Log viewer |
 | `DIAGNOSTICS.md` | Diagnostics panels |
