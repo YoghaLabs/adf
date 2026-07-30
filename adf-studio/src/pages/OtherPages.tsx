@@ -96,18 +96,7 @@ export function RuntimePage() {
   );
 }
 
-export function SessionsPage() {
-  return (
-    <PageFrame testId="page-sessions" title="Sessions" subtitle="AI session list (presentation only).">
-      <Card>
-        <ul className="space-y-2 text-sm">
-          <li>BOOT → RESTORE skeleton</li>
-          <li>No local session mutation in Studio Core</li>
-        </ul>
-      </Card>
-    </PageFrame>
-  );
-}
+export { SessionManagerPage as SessionsPage } from "@/features/workspace/pages/SessionManagerPage";
 
 export function ReleasePage() {
   const [channels, setChannels] = useState<{ channel: string; label: string }[]>([]);
