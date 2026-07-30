@@ -1,12 +1,14 @@
 # Session
 
-| Field | Value |
-|-------|-------|
-| Build | BUILD-020 complete (`1.0.0-rc1`) |
-| Focus | Idle — RC1 ready for demo / packaging |
+## 2026-07-31 — Lock FO + start BUILD-021 L1
 
-## Next operator steps
+Operator locked Full Operation roadmap and asked to execute toward FO with
+documentation for AI handoff before context limit.
 
-1. Resume via `RESUME_ME.md`
-2. Execute release checklist (`release/checklists/readiness.md`)
-3. Tag RC1 when gates recorded; plan GA `1.0.0` signing
+Delivered:
+
+- LOCKED `adf-docs/OPERABILITY_ROADMAP.md`
+- BUILD-021 L1 live bridge implementation
+- SSOT resume pack updated
+
+Next session: verify Live badge; continue L2.

@@ -57,8 +57,15 @@ the desktop host; routing stays client-side inside the shell.
 
 ## Bridge
 
-`src/sdk/bridge.ts` currently serves fixture envelopes shaped like Core
-`ServiceEnvelope`. Production path invokes Tauri/`adf` SDK (`invoke("adf_sdk", …)`).
+`src/sdk/bridge.ts` (BUILD-021 L1) tries **live** transport first:
+
+```text
+POST /adf-bridge/invoke  →  python -m adf.studio_bridge  →  SDKClient / Service Layer
+```
+
+Vite middleware: `adf-studio/vite.bridgePlugin.ts`. Unwired methods and Vitest
+fall back to `localFixtureProvider`. TopBar badge shows Live Core vs Demo fixtures.
+Future desktop path may also use Tauri `invoke("adf_sdk", …)`.
 
 ## Related
 

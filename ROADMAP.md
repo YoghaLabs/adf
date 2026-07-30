@@ -3,8 +3,10 @@
 **Locked roadmap** (operator-approved). Theme overrides require ADR + explicit master prompt.
 
 **Current version:** `1.0.0-rc1`  
-**Current build:** `BUILD-020` — Production Release Candidate (**completed**)  
-**Next:** GA `1.0.0` signing/coverage gates — **not a new BUILD platform**
+**Current build:** `BUILD-021` — Live Control Center L1 (**in progress**)  
+**Completed through:** `BUILD-020` RC1  
+**Full Operation SSOT (LOCKED):** `adf-docs/OPERABILITY_ROADMAP.md`  
+**Parallel:** Track G GA `1.0.0` gates (signing/coverage) — does not replace Track L
 
 ---
 
@@ -55,12 +57,19 @@
 | BUILD-019 | Enterprise Governance Platform | ✅ |
 | BUILD-020 | Production Release Candidate | ✅ |
 
-> Phase 4 complete at **RC1**. GA (`1.0.0`) is a release gate (signing/coverage), not BUILD-021.
+> Phase 4 complete at **RC1**.
+
+## Phase 5 — Full Operation (Track L) 🟡
+
+| Build | Focus | Status |
+|-------|--------|--------|
+| BUILD-021 | Live SDK bridge (Studio → Core) | 🟡 in progress |
+| BUILD-022+ | L2–L6 live surfaces (see OPERABILITY_ROADMAP) | ⏳ planned |
+
+Operator-locked path: `adf-docs/OPERABILITY_ROADMAP.md`.  
+Handoff: `adf-docs/BUILD-021_LIVE_CONTROL_CENTER.md`.
 
 ## Continuity
 
-Use `.adf/RESUME_ME.md`. Do **not** invent BUILD-021 without a new program charter.
-
-**Post-RC1 draft (review):** path to Full Operation (live control center → ecosystem → cloud)
-is drafted in `adf-docs/OPERABILITY_ROADMAP.md`. That document does **not** open BUILD-021
-until explicitly approved.
+Use `.adf/RESUME_ME.md`. Continue BUILD-021 acceptance, then L2+ per locked FO roadmap.
+Do **not** jump to Interactive/Ecosystem/Cloud tracks before FO unless operator reorders.

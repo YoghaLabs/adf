@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { Bell, Command, PanelLeft, Search, Compass } from "lucide-react";
 import { Button, Input } from "@/components/ui";
 import { useSettingsStore } from "@/stores/settingsStore";
 import { useUiStore } from "@/stores";
 import { WorkspaceSelector } from "@/shell/WorkspaceSelector";
 import { useOnboardingStore } from "@/stores/onboardingStore";
+import { getBridgeMode, subscribeBridgeMode, type BridgeTransport } from "@/sdk/bridgeMode";
 
 export function TopBar() {
   const toggleSidebar = useSettingsStore((s) => s.toggleSidebar);
@@ -12,6 +14,9 @@ export function TopBar() {
   const setGlobalSearch = useUiStore((s) => s.setGlobalSearch);
   const notifications = useSettingsStore((s) => s.notifications);
   const openWelcome = useOnboardingStore((s) => s.openWelcome);
+  const [bridgeMode, setBridgeModeUi] = useState<BridgeTransport>(() => getBridgeMode().mode);
+
+  useEffect(() => subscribeBridgeMode((mode) => setBridgeModeUi(mode)), []);
 
   return (
     <header
@@ -22,6 +27,17 @@ export function TopBar() {
         <PanelLeft className="h-4 w-4" />
       </Button>
       <WorkspaceSelector />
+      <span
+        data-testid="bridge-mode-badge"
+        title="Studio → Core transport (BUILD-021)"
+        className={
+          bridgeMode === "live"
+            ? "rounded border border-emerald-500/40 px-2 py-0.5 text-[11px] font-medium text-emerald-400"
+            : "rounded border border-amber-500/40 px-2 py-0.5 text-[11px] font-medium text-amber-400"
+        }
+      >
+        {bridgeMode === "live" ? "Live Core" : "Demo fixtures"}
+      </span>
       <div className="relative mx-auto w-full max-w-xl">
         <Search className="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-ink-muted" />
         <Input

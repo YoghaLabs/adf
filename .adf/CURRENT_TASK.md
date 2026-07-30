@@ -1,17 +1,27 @@
 # Current Task
 
-BUILD-020 complete. ADF **1.0.0-rc1** Production Release Candidate shipped.
+## Active
 
-**STOP** — do not invent BUILD-021 or new platforms.
+**BUILD-021 / Track L1 — Live Control Center bridge** (in progress)
 
-## Allowed follow-ups (not new builds)
+Full Operation roadmap is **LOCKED**. Execute Track L to completion before Track I/E/C/A.
 
-- Sign/notarize installers for GA `1.0.0`
-- Run/record coverage thresholds in CI
-- Capture marketplace screenshots
+## Done this slice
+
+- Locked `adf-docs/OPERABILITY_ROADMAP.md`
+- `adf.studio_bridge` + Vite `/adf-bridge/invoke` + hybrid `bridge.ts`
+- TopBar Live/Demo badge
+- Bootstrap + handoff docs under `bootstrap/BUILD-021/` and `adf-docs/BUILD-021_LIVE_CONTROL_CENTER.md`
+
+## Next actions (for continuing AI)
+
+1. Manual verify badge → Live Core when Studio loads Dashboard
+2. Close checkboxes in `bootstrap/BUILD-021/ACCEPTANCE.md`
+3. Start L2: deeper live workspace/projects/activity (BUILD-022 when L1 accepted)
+4. Parallel optional: Track G GA gates (signing/coverage) — does not replace L
 
 ## Forbidden
 
-- New top-level folders / platforms
-- Architectural redesign
-- Autonomous agent execution as a silent add-on
+- Treating Studio as an IDE / opening Track I as FO requirement
+- New top-level platforms
+- Skipping SSOT handoff updates when finishing a slice

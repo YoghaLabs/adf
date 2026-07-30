@@ -1,13 +1,18 @@
 /**
  * Bridge from Studio UI → ADF Core SDK/Service Layer.
  *
- * In desktop builds this will invoke Tauri commands that call Python SDKClient.
- * For UI development and Vitest, a local fixture provider is used.
- * No business rules live here — only transport + fixture envelopes.
+ * BUILD-021 L1: try live transport via Vite `/adf-bridge/invoke` (python -m adf.studio_bridge).
+ * Fall back to local fixtures for Vitest, offline, or methods not yet live.
+ * No business rules — transport + envelopes only.
  */
 
 import type { ServiceEnvelope } from "@/types/studio";
 import { localFixtureProvider } from "@/sdk/fixtures";
+import {
+  LIVE_BRIDGE_METHODS,
+  setBridgeMode,
+  type BridgeTransport,
+} from "@/sdk/bridgeMode";
 
 type BridgePayload = Record<string, unknown> | undefined;
 
@@ -16,12 +21,54 @@ export type StudioBridge = {
     method: string,
     payload?: BridgePayload,
   ): Promise<ServiceEnvelope<T>>;
+  lastTransport(): BridgeTransport;
 };
+
+let lastTransport: BridgeTransport = "fixture";
+
+async function invokeLive<T>(
+  method: string,
+  payload?: BridgePayload,
+): Promise<ServiceEnvelope<T> | null> {
+  if (typeof window === "undefined") return null;
+  if (import.meta.env.MODE === "test") return null;
+  if (!LIVE_BRIDGE_METHODS.has(method)) return null;
+
+  try {
+    const res = await fetch("/adf-bridge/invoke", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ method, payload: payload ?? {} }),
+    });
+    if (!res.ok) return null;
+    const envelope = (await res.json()) as ServiceEnvelope<T> & {
+      data?: { bridge?: string };
+      error?: string;
+    };
+    if (!envelope || typeof envelope !== "object") return null;
+    if (envelope.ok === false && envelope.error?.includes("unsupported")) return null;
+    if (envelope.ok === false && !envelope.data) return null;
+    return envelope;
+  } catch {
+    return null;
+  }
+}
 
 function createBridge(): StudioBridge {
   return {
+    lastTransport() {
+      return lastTransport;
+    },
     async invoke<T>(method: string, payload?: BridgePayload) {
-      // Future: window.__TAURI__.invoke("adf_sdk", { method, payload })
+      const live = await invokeLive<T>(method, payload);
+      if (live?.ok) {
+        lastTransport = "live";
+        setBridgeMode("live", method);
+        return live;
+      }
+
+      lastTransport = "fixture";
+      setBridgeMode("fixture", method);
       return localFixtureProvider(method, payload) as Promise<ServiceEnvelope<T>>;
     },
   };
