@@ -21,5 +21,20 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./src/test/setup.ts"],
     css: true,
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "html", "lcov"],
+      reportsDirectory: "./coverage",
+      // GA floor (release/GA_GATES.md) — raise only with intentional PR.
+      thresholds: {
+        lines: 35,
+      },
+      exclude: [
+        "src/test/**",
+        "src/**/*.d.ts",
+        "vite.config.ts",
+        "vite.bridgePlugin.ts",
+      ],
+    },
   },
 });

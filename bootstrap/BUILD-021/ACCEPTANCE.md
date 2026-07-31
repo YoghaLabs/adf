@@ -44,14 +44,20 @@
 ## Track G (partial)
 
 - [x] G3 version metadata aligned (`1.0.0-rc1` / BUILD-021)
-- [ ] G2 coverage / signing / packaging for GA tag
+- [x] G2 scaffold: `release/GA_GATES.md`, `release/SIGNING.md`, CI, tools/ga/*
+- [ ] G2 complete: CI green on GitHub + real signing secrets + GA tag
+
+## FO review
+
+- [x] `adf-docs/FULL_OPERATION_REVIEW.md` written (FO-1…FO-5 practical; FO-6 open)
+- [ ] Operator accept / defer / waive (checkbox in FO review)
 
 ## Remaining for Full Operation
 
 | Slice | FO | Work |
 |-------|----|------|
-| G2 | FO-6 | Coverage / signing / packaging for GA tag |
-| FO declare | FO-* | Operator review after VPS durable session check |
+| G2 finish | FO-6 | Secrets + signed installers + tag `1.0.0` |
+| FO declare | FO-* | Operator signs `FULL_OPERATION_REVIEW.md` |
 
 ## Stop rule
 

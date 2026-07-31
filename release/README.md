@@ -14,12 +14,14 @@ Release packaging, versioning, and ship checklists for ADF.
 
 ## Status
 
-**Active for BUILD-020 — ADF `1.0.0-rc1`.**
+**Active for BUILD-021 era — ADF `1.0.0-rc1` → GA gates.**
 
 ## Layout
 
 | Path | Role |
 |------|------|
+| `GA_GATES.md` | **SSOT for GA `1.0.0` hard gates** (coverage / signing / tag) |
+| `SIGNING.md` | Authenticode / notarization / GPG procedures |
 | `PRODUCTION_REVIEW.md` | Architecture / module review |
 | `SECURITY_HARDENING.md` | Security checklist |
 | `PERFORMANCE.md` | Performance checklist |

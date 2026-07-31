@@ -2,23 +2,23 @@
 
 ## Active
 
-**BUILD-021 / Track G3 + L5+** — version align + durable sessions (shipping)
+**Track G2 + FO review** (shipping scaffold)
 
 ## Done
 
-- Align product version: `VERSION`, `PACKAGE_VERSION`, Studio build → `1.0.0-rc1` / `BUILD-021`
-- Durable sessions via `SessionManager` → `.adf/local/sessions/`
-- Bridge `sessions.create|list|current|resume|close|timeline` on durable store
-- Sessions UI: **New session** + durable copy
+- `release/GA_GATES.md` + `release/SIGNING.md`
+- CI `.github/workflows/ga-gates.yml` (pytest-cov ≥55%, vitest coverage ≥35%)
+- `tools/ga/check_signing_env.py`, `write_checksums.py`
+- `adf-docs/FULL_OPERATION_REVIEW.md` — FO-1…FO-5 practical; FO-6 open
 
-## Next AI
+## Next AI / operator
 
-1. VPS: Sessions → New session → resume/close persists after restart  
-2. Remaining Track G: coverage/signing gates for GA tag  
-3. Declare FO when FO-2…FO-6 closed  
-4. Do not start Track I until FO  
+1. Confirm GitHub Actions green on `main`  
+2. Load signing secrets; `workflow_dispatch` with check_signing  
+3. Operator checkboxes in `FULL_OPERATION_REVIEW.md`  
+4. Only then bump VERSION → `1.0.0` and tag  
 
 ## Forbidden
 
-- Studio-as-IDE scope creep  
-- Skipping finish-ship loop  
+- Declaring GA without signing  
+- Starting Track I before FO operator decision  

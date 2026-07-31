@@ -1,6 +1,6 @@
 # Session
 
-## 2026-08-01 — Track G3 + L5+ durable sessions
+## 2026-08-01 — Track G2 + FO review
 
-- Aligned version metadata to `1.0.0-rc1` / BUILD-021
-- Expanded `SessionManager` + bridge/UI for durable `.adf/local/sessions/`
+- Added GA gates CI, signing docs/tools, coverage floors
+- Wrote FULL_OPERATION_REVIEW (FO-1…FO-5 practical; FO-6 open)

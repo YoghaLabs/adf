@@ -123,7 +123,7 @@ describe("SDK", () => {
   it("is linked from navigation config", () => {
     expect(studioConfig.navigation.map((n) => n.id)).toContain("orchestration");
     expect(studioConfig.version).toBe("1.0.0-rc1");
-    expect(studioConfig.build).toBe("BUILD-020");
+    expect(studioConfig.build).toBe("BUILD-021");
   });
 });
 

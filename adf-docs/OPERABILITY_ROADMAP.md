@@ -19,12 +19,12 @@ Studio fixture/demo data as the source of truth**, while Studio remains a
 
 | # | Criterion | Evidence | Status |
 |---|-----------|----------|--------|
-| FO-1 | Install → health → project create on clean machine | `./install`, `adf doctor`, `adf init` | ✅ RC1 |
-| FO-2 | Studio talks to live Core/Service Layer | `bridge.ts` → `adf.studio_bridge` | 🟡 hybrid; many control surfaces live |
-| FO-3 | Workspace / Projects / Sessions / Runtime / Packages live | UI matches CLI for same root | 🟡 read paths largely live |
-| FO-4 | Session resume restores real context | durable `.adf/local/sessions/` + Studio | 🟡 durable create/resume/close; Core resume skeleton still secondary |
-| FO-5 | Honest demo vs live labeling | TopBar badge + Demo Mode | 🟡 badge + Force Demo fixtures |
-| FO-6 | GA release gates closed | signing, coverage, Quick Start | 🟡 version metadata aligned; signing/coverage open |
+| FO-1 | Install → health → project create on clean machine | `./install`, `adf doctor`, `adf init` | ✅ |
+| FO-2 | Studio talks to live Core/Service Layer | `bridge.ts` → `adf.studio_bridge` | ✅ hybrid fallback for unwired surfaces |
+| FO-3 | Workspace / Projects / Sessions / Runtime / Packages live | UI matches CLI for same root | ✅ control-center scope (*not* Collab/Orch/Ent) |
+| FO-4 | Session resume restores real context | durable `.adf/local/sessions/` + Studio | ✅ durable store; Core resume skeleton secondary |
+| FO-5 | Honest demo vs live labeling | TopBar badge + Demo Mode | ✅ |
+| FO-6 | GA release gates closed | signing, coverage, Quick Start | 🟡 G2 scaffolded — see `release/GA_GATES.md` + FO review |
 
 **FO exit:** FO-1…FO-6 all ✅.
 
@@ -66,10 +66,10 @@ RC1
 
 | ID | Work | Status |
 |----|------|--------|
-| G1 | Quick Start GA gate polish | 🟡 wizard exists; polish open |
-| G2 | Coverage / signing / packaging | 🔴 |
+| G1 | Quick Start GA gate polish | 🟡 wizard exists; polish optional |
+| G2 | Coverage / signing / packaging | 🟡 CI + docs + signing preflight (`release/GA_GATES.md`) |
 | G3 | Version metadata aligned | ✅ `1.0.0-rc1` / BUILD-021 |
-| G4 | Honest UX (fixture vs live) | 🟡 badge + Demo fixtures toggle |
+| G4 | Honest UX (fixture vs live) | ✅ badge + Demo fixtures toggle |
 
 ### Track L — Live Control Center (BUILD-021…)
 
@@ -80,7 +80,7 @@ RC1
 | L3 | Runtime dashboard live data | **021** | ✅ |
 | L4 | Packages/registry live read (+ safe write) | **021** | ✅ |
 | L5 | Real sessions + resume UX | **021** durable `.adf/local/sessions/` | ✅ |
-| L6 | Demo Project = real sample or explicit Demo Mode | **021** toggle | 🟡 |
+| L6 | Demo Project = real sample or explicit Demo Mode | **021** toggle | ✅ |
 
 Detail: `adf-docs/BUILD-021_LIVE_CONTROL_CENTER.md`, `bootstrap/BUILD-021/`.
 

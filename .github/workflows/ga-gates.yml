@@ -1,0 +1,82 @@
+name: GA gates
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop, main]
+  workflow_dispatch:
+    inputs:
+      check_signing:
+        description: "Run signing env preflight (needs secrets)"
+        type: boolean
+        default: false
+
+jobs:
+  core-coverage:
+    name: adf-core pytest + coverage
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: adf-core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: |
+          python -m pip install -U pip
+          python -m pip install -e .
+          python -m pip install pytest pytest-cov
+      - name: Test with coverage floor
+        run: |
+          python -m pytest --cov=. --cov-report=term-missing --cov-report=xml --cov-fail-under=55
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: core-coverage-xml
+          path: adf-core/coverage.xml
+
+  studio-coverage:
+    name: adf-studio vitest + coverage
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: adf-studio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: adf-studio/package-lock.json
+      - name: Install
+        run: npm ci
+      - name: Test with coverage floor
+        run: npm run test:coverage
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-coverage
+          path: adf-studio/coverage
+
+  signing-preflight:
+    name: signing env preflight
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && inputs.check_signing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check signing secrets
+        env:
+          ADF_WIN_CERT_PFX: ${{ secrets.ADF_WIN_CERT_PFX }}
+          ADF_WIN_CERT_PASSWORD: ${{ secrets.ADF_WIN_CERT_PASSWORD }}
+          ADF_APPLE_ID: ${{ secrets.ADF_APPLE_ID }}
+          ADF_APPLE_TEAM_ID: ${{ secrets.ADF_APPLE_TEAM_ID }}
+          ADF_APPLE_APP_PASSWORD: ${{ secrets.ADF_APPLE_APP_PASSWORD }}
+          ADF_GPG_PRIVATE_KEY: ${{ secrets.ADF_GPG_PRIVATE_KEY }}
+          ADF_GPG_PASSPHRASE: ${{ secrets.ADF_GPG_PASSPHRASE }}
+        run: python tools/ga/check_signing_env.py
