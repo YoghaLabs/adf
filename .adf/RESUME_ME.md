@@ -3,9 +3,9 @@
 ## Identity
 
 - Product: ADF
-- Version: `1.0.0-rc1` (GA not tagged)
+- Version: `1.0.0-rc1` (aligned across VERSION / Core / Studio)
+- Build marker: **BUILD-021**
 - Branch: `develop`
-- Active: **BUILD-021** Track L (L1 done; L2/L3/L5/L6 expanded)
 - FO charter: **LOCKED** → `adf-docs/OPERABILITY_ROADMAP.md`
 
 ## Boot order
@@ -18,18 +18,17 @@
 
 ## Immediate next
 
-1. Review VPS Packages/Marketplace — Install/Remove `demo-core`  
-2. Continue **L5+** durable sessions under `.adf/`  
-3. Track G GA gates (version metadata align)  
-4. Ship rule: commit → push develop → merge main → VPS pull  
+1. VPS: Sessions → **New session** → restart Studio → session still listed  
+2. Track G2: coverage / signing for GA `1.0.0` tag  
+3. Operator FO review when satisfied  
 
-## FO status snapshot
+## FO snapshot
 
 | FO | State |
 |----|--------|
 | FO-1 | ✅ |
-| FO-2 | 🟡 live bridge hybrid |
-| FO-3 | 🟡 workspace/runtime/packages read largely live |
-| FO-4 | 🟡 resume skeleton exposed; not durable multi-session |
-| FO-5 | 🟡 Demo fixtures toggle + badge |
-| FO-6 | 🔴 GA gates |
+| FO-2 | 🟡 hybrid live bridge |
+| FO-3 | 🟡 read + package writes live |
+| FO-4 | 🟡 durable sessions on disk |
+| FO-5 | 🟡 Demo fixtures toggle |
+| FO-6 | 🟡 version aligned; signing/coverage open |

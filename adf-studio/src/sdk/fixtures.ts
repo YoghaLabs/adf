@@ -388,6 +388,18 @@ export async function localFixtureProvider(
         .slice(0, 5);
       return { ok: true, data: { sessions, count: sessions.length } };
     }
+    case "sessions.create": {
+      const created = {
+        id: `sess-fix-${Date.now()}`,
+        title: String(payload?.title ?? "Fixture session"),
+        projectId: "adf",
+        workspaceId: String(payload?.workspaceId ?? "ws-adf"),
+        status: "active" as const,
+        startedAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      return { ok: true, data: { session: created }, message: "fixture session created" };
+    }
     case "sessions.resume": {
       const session = SESSIONS.find((s) => s.id === payload?.sessionId);
       if (!session) return { ok: false, data: {}, error: "session not found" };

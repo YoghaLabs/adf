@@ -11,7 +11,7 @@ class UpdaterService(BaseService):
 
     metadata = ServiceMetadata(
         name="updater",
-        version="0.12.0",
+        version="1.0.0-rc1",
         description="Distribution update service",
         service_type="updater",
     )

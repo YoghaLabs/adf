@@ -267,6 +267,14 @@ export class SessionClient {
     return studioBridge.invoke("sessions.recent", workspaceId ? { workspaceId } : undefined);
   }
 
+  create(opts?: {
+    title?: string;
+    projectId?: string;
+    workspaceId?: string;
+  }): Promise<ServiceEnvelope<{ session: SessionSummary }>> {
+    return studioBridge.invoke("sessions.create", opts as Record<string, unknown> | undefined);
+  }
+
   resume(sessionId: string): Promise<ServiceEnvelope<{ session: SessionSummary }>> {
     return studioBridge.invoke("sessions.resume", { sessionId });
   }

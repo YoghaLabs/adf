@@ -4,10 +4,10 @@ Version:
 1.0.0-rc1
 
 Current Build:
-BUILD-020
+BUILD-021
 
 Branch:
 develop
 
 Notes:
-Legal Package initialized (post-RC1 enhancement under /legal). Not BUILD-021.
+Full Operation Track L in progress (BUILD-021). GA 1.0.0 gates still open.

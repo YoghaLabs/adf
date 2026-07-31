@@ -60,6 +60,7 @@ LIVE_METHODS = frozenset(
         "sessions.resume",
         "sessions.close",
         "sessions.timeline",
+        "sessions.create",
         "runtimeDashboard.overview",
         "runtimeDashboard.jobs",
         "runtimeDashboard.events",
@@ -148,43 +149,36 @@ def _normalize_runtime_status(raw: dict[str, Any], doctor: dict[str, Any] | None
     }
 
 
-def _session_from_resume(client: SDKClient) -> dict[str, Any]:
-    resume = client.runtime().resume()
-    data = resume.get("data") or {}
-    state = data.get("state") if isinstance(data.get("state"), dict) else {}
-    title = str(state.get("current_task") or state.get("phase") or "ADF live session")
-    return {
-        "id": "sess-live-001",
-        "title": title[:80],
-        "projectId": "adf",
-        "workspaceId": "ws-live",
-        "status": "active",
-        "startedAt": _now(),
-        "updatedAt": _now(),
-        "live": True,
-        "resume": {
-            "message": data.get("message"),
-            "hasCheckpoint": data.get("checkpoint") is not None,
-            "pluginCount": len(data.get("plugins") or [])
-            if isinstance(data.get("plugins"), list)
-            else 0,
-        },
-    }
+def _session_mgr(client: SDKClient):
+    from core.session_manager import SessionManager
+
+    client._ensure()  # noqa: SLF001
+    engine = client.manager.runtime_engine
+    if engine is None:
+        client.manager.configure_defaults()
+        engine = client.manager.runtime_engine
+    if engine is None:
+        return SessionManager(client.repo_root)
+    return engine.sessions
 
 
 def _live_overview(client: SDKClient) -> dict[str, Any]:
+    from core.session_manager import SessionManager
+
     doctor = _doctor(client)
     ddata = doctor.get("data") or {}
     version = client.runtime().version().get("data") or {}
     project = _project_item(client)
     profile = _workspace_profile(client)
     healthy = bool(doctor.get("ok"))
+    current = _session_mgr(client).current()
+    summary = SessionManager.to_studio_summary(current) if current else None
     return {
         "engineStatus": "healthy" if healthy else "degraded",
         "engineBuild": "BUILD-021",
         "packageVersion": version.get("version") or "",
-        "currentSessionId": "sess-live-001",
-        "currentSessionTitle": "Live Core session",
+        "currentSessionId": (summary or {}).get("id") or "",
+        "currentSessionTitle": (summary or {}).get("title") or "No durable session",
         "activeWorkspaceId": profile["id"],
         "activeWorkspaceName": profile["name"],
         "currentProjectId": project["id"],
@@ -322,19 +316,28 @@ def _live_inspectors(client: SDKClient) -> dict[str, list[dict[str, Any]]]:
         },
     ]
     project = _project_item(client)
+    from core.session_manager import SessionManager
+
+    current = _session_mgr(client).current()
+    summary = SessionManager.to_studio_summary(current) if current else None
+    session_rows = (
+        [
+            {
+                "id": summary["id"],
+                "label": summary["title"],
+                "status": summary["status"],
+                "meta": project["id"],
+            }
+        ]
+        if summary
+        else []
+    )
     return {
         "plugins": plugins,
         "packages": packages,
         "knowledge": [{"id": "ssot", "label": ".adf SSOT", "status": "active", "meta": "live"}],
         "context": [{"id": "ctx-live", "label": "Service Layer context", "status": "loaded", "meta": "live"}],
-        "session": [
-            {
-                "id": "sess-live-001",
-                "label": "Live Core session",
-                "status": "active",
-                "meta": project["id"],
-            }
-        ],
+        "session": session_rows,
     }
 
 
@@ -648,31 +651,89 @@ def invoke(method: str, payload: dict[str, Any] | None = None, *, root: Path | N
         return client.release().channels()
 
     if method in {"sessions.list", "sessions.history", "sessions.recent"}:
-        session = _session_from_resume(client)
-        return {"ok": True, "data": {"sessions": [session], "count": 1, "bridge": "live"}}
+        from core.session_manager import SessionManager
+
+        mgr = _session_mgr(client)
+        include_closed = method != "sessions.recent"
+        rows = mgr.list(include_closed=include_closed)
+        if method == "sessions.recent":
+            rows = rows[:10]
+        workspace_id = payload.get("workspaceId")
+        summaries = []
+        for row in rows:
+            summary = SessionManager.to_studio_summary(row)
+            if workspace_id and summary["workspaceId"] != workspace_id:
+                continue
+            summaries.append(summary)
+        return {
+            "ok": True,
+            "data": {"sessions": summaries, "count": len(summaries), "bridge": "live", "durable": True},
+        }
 
     if method == "sessions.current":
-        return {"ok": True, "data": {"session": _session_from_resume(client), "bridge": "live"}}
+        from core.session_manager import SessionManager
+
+        current = _session_mgr(client).current()
+        summary = SessionManager.to_studio_summary(current) if current else None
+        return {"ok": True, "data": {"session": summary, "bridge": "live", "durable": True}}
+
+    if method == "sessions.create":
+        from core.session_manager import SessionManager
+        from runtime.constants import ENGINE_BUILD
+
+        mgr = _session_mgr(client)
+        created = mgr.create(
+            build=str(payload.get("build") or ENGINE_BUILD),
+            title=str(payload.get("title") or "") or None,
+            project_id=str(payload.get("projectId") or "adf"),
+            workspace_id=str(payload.get("workspaceId") or "ws-live"),
+        )
+        return {
+            "ok": True,
+            "data": {"session": SessionManager.to_studio_summary(created), "bridge": "live", "durable": True},
+            "message": "durable session created",
+        }
 
     if method == "sessions.resume":
-        resume = client.runtime().resume()
-        session = _session_from_resume(client)
+        from core.session_manager import SessionManager
+
+        session_id = str(payload.get("sessionId") or "").strip()
+        if not session_id:
+            return {"ok": False, "data": {"bridge": "live"}, "error": "sessionId required"}
+        mgr = _session_mgr(client)
+        restored = mgr.restore(session_id)
+        # Also surface Core resume skeleton alongside durable pointer.
+        core_resume = client.runtime().resume()
         return {
-            "ok": bool(resume.get("ok", True)),
-            "data": {"session": session, "resume": resume.get("data") or {}, "bridge": "live"},
-            "message": resume.get("message") or "live resume skeleton",
+            "ok": True,
+            "data": {
+                "session": SessionManager.to_studio_summary(restored),
+                "resume": core_resume.get("data") or {},
+                "bridge": "live",
+                "durable": True,
+            },
+            "message": "durable session resumed",
         }
 
     if method == "sessions.close":
-        return {"ok": True, "data": {"closed": True, "sessionId": payload.get("sessionId"), "bridge": "live"}}
+        from core.session_manager import SessionManager
+
+        session_id = str(payload.get("sessionId") or "").strip()
+        if not session_id:
+            return {"ok": False, "data": {"bridge": "live"}, "error": "sessionId required"}
+        closed = _session_mgr(client).close(session_id)
+        return {
+            "ok": True,
+            "data": {"session": SessionManager.to_studio_summary(closed), "closed": True, "bridge": "live", "durable": True},
+            "message": "durable session closed",
+        }
 
     if method == "sessions.timeline":
-        events = [
-            {"id": "t1", "sessionId": payload.get("sessionId") or "sess-live-001", "label": "Live session opened", "at": _now()},
-            {"id": "t2", "sessionId": payload.get("sessionId") or "sess-live-001", "label": "Doctor snapshot loaded", "at": _now()},
-            {"id": "t3", "sessionId": payload.get("sessionId") or "sess-live-001", "label": "Resume skeleton available", "at": _now()},
-        ]
-        return {"ok": True, "data": {"events": events, "count": len(events), "bridge": "live"}}
+        session_id = str(payload.get("sessionId") or "").strip()
+        if not session_id:
+            return {"ok": False, "data": {"bridge": "live"}, "error": "sessionId required"}
+        events = _session_mgr(client).timeline(session_id)
+        return {"ok": True, "data": {"events": events, "count": len(events), "bridge": "live", "durable": True}}
 
     if method == "runtimeDashboard.overview":
         return {"ok": True, "data": _live_overview(client)}

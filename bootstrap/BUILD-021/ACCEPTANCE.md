@@ -22,16 +22,6 @@
 - [x] Live `metrics.snapshot|series`, `logs.list|filter`, `diagnostics.snapshot`
 - [x] Live `timeline.list|byKind`
 
-## L5 — Sessions (partial)
-
-- [x] Live `sessions.list|current|recent|history|resume|close|timeline` from Core resume skeleton
-- [ ] Persist durable multi-session history under `.adf/` (BUILD-022+)
-
-## L6 — Demo honesty
-
-- [x] Settings **Force Demo fixtures** toggle (`settings-demo-fixtures`)
-- [x] TopBar badge reflects transport
-
 ## L4 — Packages / marketplace writes
 
 - [x] Live `packages.list|search|install|remove|update|verify`
@@ -40,13 +30,29 @@
 - [x] Marketplace Install/Update → PackageClient (not fake notify)
 - [x] Live errors not masked by fixture fallback
 
+## L5 — Durable sessions
+
+- [x] `SessionManager` list/create/restore/close/timeline under `.adf/local/sessions/`
+- [x] Bridge sessions.* use durable store (not synthetic sess-live-001)
+- [x] Studio Sessions page: New session / resume / close / timeline
+
+## L6 — Demo honesty
+
+- [x] Settings **Force Demo fixtures** toggle (`settings-demo-fixtures`)
+- [x] TopBar badge reflects transport
+
+## Track G (partial)
+
+- [x] G3 version metadata aligned (`1.0.0-rc1` / BUILD-021)
+- [ ] G2 coverage / signing / packaging for GA tag
+
 ## Remaining for Full Operation
 
 | Slice | FO | Work |
 |-------|----|------|
-| L5+ | FO-4 | Durable session store beyond resume skeleton |
-| G* | FO-6 | GA signing/coverage/version align |
+| G2 | FO-6 | Coverage / signing / packaging for GA tag |
+| FO declare | FO-* | Operator review after VPS durable session check |
 
 ## Stop rule
 
-Do not start Track I (Interactive IDE-like) until FO-2…FO-5 accepted. BUILD-022 may continue L4/L5+ only.
+Do not start Track I (Interactive IDE-like) until FO-2…FO-5 accepted.

@@ -99,7 +99,7 @@ Open the URL Vite prints (typically `http://localhost:5173`).
 
 ## Notes
 
-- Root `VERSION` is `1.0.0-rc1`. The Python package metadata may still report an
-  older package version string — prefer root `VERSION` for product identity.
+- Root `VERSION`, Studio, and `adf-core` runtime constants report **`1.0.0-rc1`**
+  (PEP 440 package metadata may use `1.0.0rc1`). Prefer root `VERSION` for product identity.
 - There is no global `adf` binary required; `python -m adf` is the supported entry
   until a packaged installer ships for GA.

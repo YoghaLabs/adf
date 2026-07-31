@@ -52,4 +52,4 @@ __all__ = [
     "UpdaterService",
 ]
 
-__version__ = "0.12.0a0"
+__version__ = "1.0.0rc1"

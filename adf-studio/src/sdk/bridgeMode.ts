@@ -84,6 +84,7 @@ export const LIVE_BRIDGE_METHODS = new Set([
   "sessions.resume",
   "sessions.close",
   "sessions.timeline",
+  "sessions.create",
   "runtimeDashboard.overview",
   "runtimeDashboard.jobs",
   "runtimeDashboard.events",
