@@ -78,7 +78,7 @@ RC1
 | L1 | Live SDK bridge + hybrid fallback + badge | **021** | ✅ |
 | L2 | Live workspace/projects/activity depth | **021** | ✅ |
 | L3 | Runtime dashboard live data | **021** | ✅ |
-| L4 | Packages/registry live read (+ safe write) | 022 | 🔴 |
+| L4 | Packages/registry live read (+ safe write) | **021** | ✅ |
 | L5 | Real sessions + resume UX | **021** partial / 022 durable | 🟡 |
 | L6 | Demo Project = real sample or explicit Demo Mode | **021** toggle | 🟡 |
 

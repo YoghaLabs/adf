@@ -40,6 +40,16 @@ LIVE_METHODS = frozenset(
         "projects.archived",
         "projects.recent",
         "packages.listInstalled",
+        "packages.list",
+        "packages.search",
+        "packages.install",
+        "packages.remove",
+        "packages.update",
+        "packages.verify",
+        "marketplace.browse",
+        "marketplace.search",
+        "marketplace.featured",
+        "marketplace.categories",
         "generator.types",
         "registry.status",
         "release.channels",
@@ -328,6 +338,31 @@ def _live_inspectors(client: SDKClient) -> dict[str, list[dict[str, Any]]]:
     }
 
 
+def _normalize_packages(rows: list[Any], *, featured_ids: set[str] | None = None) -> list[dict[str, Any]]:
+    featured_ids = featured_ids or set()
+    out: list[dict[str, Any]] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        pkg_id = str(row.get("id") or "")
+        if not pkg_id:
+            continue
+        out.append(
+            {
+                "id": pkg_id,
+                "name": str(row.get("name") or pkg_id),
+                "version": str(row.get("version") or ""),
+                "category": str(row.get("type") or row.get("category") or "package"),
+                "description": str(row.get("description") or row.get("path") or ""),
+                "verified": bool(row.get("verified", True)),
+                "featured": pkg_id in featured_ids or bool(row.get("featured", False)),
+                "path": row.get("path"),
+                "live": True,
+            }
+        )
+    return out
+
+
 def _activity_items(client: SDKClient) -> list[dict[str, Any]]:
     doctor = _doctor(client)
     project = _project_item(client)
@@ -468,17 +503,131 @@ def invoke(method: str, payload: dict[str, Any] | None = None, *, root: Path | N
     if method == "projects.archived":
         return {"ok": True, "data": {"projects": [], "count": 0, "bridge": "live"}}
 
-    if method == "packages.listInstalled":
-        result = client.packages().list(installed=True)
+    if method in {"packages.listInstalled", "packages.list"}:
+        installed = method == "packages.listInstalled" or bool(payload.get("installed"))
+        result = client.packages().list(installed=installed)
         data = result.get("data") or {}
-        packages = data.get("packages") or data.get("items") or []
-        if not isinstance(packages, list):
-            packages = []
+        packages = _normalize_packages(list(data.get("packages") or data.get("items") or []))
+        return {
+            "ok": bool(result.get("ok", True)),
+            "data": {
+                "count": len(packages),
+                "packages": packages,
+                "installed": installed,
+                "bridge": "live",
+            },
+            "message": result.get("message") or "",
+        }
+
+    if method == "packages.search":
+        query = str(payload.get("query") or "")
+        package_type = payload.get("package_type") or payload.get("packageType")
+        if package_type:
+            result = client.packages().search(query, package_type=str(package_type))
+        else:
+            result = client.packages().search(query)
+        data = result.get("data") or {}
+        packages = _normalize_packages(list(data.get("packages") or []))
         return {
             "ok": bool(result.get("ok", True)),
             "data": {"count": len(packages), "packages": packages, "bridge": "live"},
             "message": result.get("message") or "",
         }
+
+    if method == "packages.install":
+        package_id = str(payload.get("packageId") or payload.get("id") or "").strip()
+        if not package_id:
+            return {"ok": False, "data": {"bridge": "live"}, "error": "packageId required"}
+        overwrite = bool(payload.get("overwrite", False))
+        result = client.packages().install(package_id, overwrite=overwrite)
+        data = dict(result.get("data") or {})
+        data["bridge"] = "live"
+        return {
+            "ok": bool(result.get("ok", True)),
+            "data": data,
+            "message": result.get("message") or f"installed {package_id}",
+            "error": result.get("error"),
+        }
+
+    if method == "packages.remove":
+        package_id = str(payload.get("packageId") or payload.get("id") or "").strip()
+        if not package_id:
+            return {"ok": False, "data": {"bridge": "live"}, "error": "packageId required"}
+        result = client.packages().remove(package_id)
+        data = dict(result.get("data") or {})
+        data["bridge"] = "live"
+        return {
+            "ok": bool(result.get("ok", True)),
+            "data": data,
+            "message": result.get("message") or f"removed {package_id}",
+            "error": result.get("error"),
+        }
+
+    if method == "packages.update":
+        package_id = str(payload.get("packageId") or payload.get("id") or "").strip()
+        if not package_id:
+            return {"ok": False, "data": {"bridge": "live"}, "error": "packageId required"}
+        result = client.packages().update(package_id)
+        data = dict(result.get("data") or {})
+        data["bridge"] = "live"
+        return {
+            "ok": bool(result.get("ok", True)),
+            "data": data,
+            "message": result.get("message") or f"updated {package_id}",
+            "error": result.get("error"),
+        }
+
+    if method == "packages.verify":
+        package_id = payload.get("packageId") or payload.get("id")
+        result = client.packages().verify(str(package_id) if package_id else None)
+        data = dict(result.get("data") or {})
+        data["bridge"] = "live"
+        return {
+            "ok": bool(result.get("ok", True)),
+            "data": data,
+            "message": result.get("message") or "verify complete",
+            "error": result.get("error"),
+        }
+
+    if method in {"marketplace.browse", "marketplace.search"}:
+        query = str(payload.get("query") or "")
+        if method == "marketplace.search" and query:
+            result = client.packages().search(query)
+        else:
+            result = client.packages().list(installed=False)
+        data = result.get("data") or {}
+        items = _normalize_packages(
+            list(data.get("packages") or []),
+            featured_ids={"demo-core", "demo-template"},
+        )
+        return {
+            "ok": True,
+            "data": {"items": items, "count": len(items), "bridge": "live"},
+        }
+
+    if method == "marketplace.featured":
+        result = client.packages().list(installed=False)
+        data = result.get("data") or {}
+        items = _normalize_packages(
+            list(data.get("packages") or []),
+            featured_ids={"demo-core", "demo-template"},
+        )
+        featured = [i for i in items if i.get("featured")] or items[:2]
+        return {
+            "ok": True,
+            "data": {"title": "Featured (live registry)", "items": featured, "bridge": "live"},
+        }
+
+    if method == "marketplace.categories":
+        result = client.packages().list(installed=False)
+        data = result.get("data") or {}
+        items = _normalize_packages(list(data.get("packages") or []))
+        counts: dict[str, int] = {}
+        for item in items:
+            cat = str(item.get("category") or "package")
+            counts[cat] = counts.get(cat, 0) + 1
+        categories = [{"id": k, "label": k, "count": v} for k, v in sorted(counts.items())]
+        return {"ok": True, "data": {"categories": categories, "bridge": "live"}}
 
     if method == "generator.types":
         doctor = _doctor(client)

@@ -113,32 +113,71 @@ export async function localFixtureProvider(
         data: { projectTypes: ["generic", "python", "fastapi", "nextjs", "laravel"] },
       };
     case "packages.listInstalled":
+    case "packages.list": {
+      const packages = [
+        {
+          id: "demo-core",
+          name: "demo-core",
+          version: "1.0.0",
+          category: "plugin",
+          description: "Demo core plugin",
+          verified: true,
+          featured: false,
+        },
+        {
+          id: "demo-template",
+          name: "demo-template",
+          version: "1.1.0",
+          category: "template",
+          description: "Demo template",
+          verified: true,
+          featured: true,
+        },
+      ];
       return {
         ok: true,
         data: {
-          count: 2,
-          packages: [
-            {
-              id: "demo-core",
-              name: "demo-core",
-              version: "1.0.0",
-              category: "plugin",
-              description: "Demo core plugin",
-              verified: true,
-              featured: false,
-            },
-            {
-              id: "demo-template",
-              name: "demo-template",
-              version: "1.1.0",
-              category: "template",
-              description: "Demo template",
-              verified: true,
-              featured: true,
-            },
-          ],
+          count: packages.length,
+          packages,
+          installed: method === "packages.listInstalled" || Boolean(payload?.installed),
         },
       };
+    }
+    case "packages.search": {
+      const q = String(payload?.query ?? "").toLowerCase();
+      const packages = [
+        {
+          id: "demo-core",
+          name: "demo-core",
+          version: "1.0.0",
+          category: "plugin",
+          description: "Demo core plugin",
+          verified: true,
+          featured: false,
+        },
+        {
+          id: "demo-template",
+          name: "demo-template",
+          version: "1.1.0",
+          category: "template",
+          description: "Demo template",
+          verified: true,
+          featured: true,
+        },
+      ].filter((p) => !q || p.id.includes(q) || p.name.includes(q));
+      return { ok: true, data: { packages, count: packages.length } };
+    }
+    case "packages.install":
+    case "packages.remove":
+    case "packages.update":
+    case "packages.verify": {
+      const packageId = String(payload?.packageId ?? payload?.id ?? "demo-core");
+      return {
+        ok: true,
+        data: { package: packageId, action: method.split(".")[1], bridge: "fixture" },
+        message: `${method} ok (fixture)`,
+      };
+    }
     case "marketplace.browse":
     case "marketplace.search": {
       const q = String(payload?.query ?? "").toLowerCase();

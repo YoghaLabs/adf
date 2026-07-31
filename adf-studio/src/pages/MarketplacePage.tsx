@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Badge, Button, Card, Input } from "@/components/ui";
 import { useMarketplaceStore } from "@/stores/marketplaceStore";
 import { useSettingsStore } from "@/stores/settingsStore";
+import { studioSdk } from "@/sdk";
 
 export function MarketplacePage() {
   const browse = useMarketplaceStore((s) => s.browse);
@@ -12,16 +13,52 @@ export function MarketplacePage() {
   const setQuery = useMarketplaceStore((s) => s.setQuery);
   const loading = useMarketplaceStore((s) => s.loading);
   const notify = useSettingsStore((s) => s.pushNotification);
+  const [busyId, setBusyId] = useState<string | null>(null);
 
   useEffect(() => {
     void browse();
   }, [browse]);
 
+  async function install(packageId: string) {
+    if (!window.confirm(`Install "${packageId}" from registry via Live Core?`)) return;
+    setBusyId(packageId);
+    try {
+      const result = await studioSdk.packages.install(packageId);
+      notify({
+        title: result.ok ? "Installed" : "Install failed",
+        body: result.ok
+          ? result.message || `${packageId} installed`
+          : result.error || "install failed",
+        tone: result.ok ? "success" : "danger",
+      });
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function update(packageId: string) {
+    setBusyId(packageId);
+    try {
+      const result = await studioSdk.packages.update(packageId);
+      notify({
+        title: result.ok ? "Updated" : "Update failed",
+        body: result.ok
+          ? result.message || `${packageId} updated`
+          : result.error || "update failed",
+        tone: result.ok ? "success" : "danger",
+      });
+    } finally {
+      setBusyId(null);
+    }
+  }
+
   return (
     <div data-testid="page-marketplace" className="space-y-6">
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">Marketplace</h1>
-        <p className="studio-muted mt-1">Browse / search / featured — MarketplaceClient only.</p>
+        <p className="studio-muted mt-1">
+          Browse / search live registry — Install goes through PackageClient (BUILD-021 L4).
+        </p>
       </div>
       <div className="flex flex-wrap gap-2">
         <Input
@@ -47,6 +84,15 @@ export function MarketplacePage() {
                 <Badge>{item.category}</Badge>
               </div>
               <p className="studio-muted mt-1">{item.description}</p>
+              <div className="mt-3">
+                <Button
+                  variant="accent"
+                  disabled={busyId === item.id}
+                  onClick={() => void install(item.id)}
+                >
+                  Install
+                </Button>
+              </div>
             </Card>
           ))}
         </div>
@@ -67,17 +113,19 @@ export function MarketplacePage() {
               <div className="mt-3 flex gap-2">
                 <Button
                   variant="accent"
-                  onClick={() =>
-                    notify({
-                      title: "Install requested",
-                      body: `${item.id} queued via SDK (no local install logic)`,
-                      tone: "info",
-                    })
-                  }
+                  data-testid={`marketplace-install-${item.id}`}
+                  disabled={busyId === item.id}
+                  onClick={() => void install(item.id)}
                 >
                   Install
                 </Button>
-                <Button variant="outline">Update</Button>
+                <Button
+                  variant="outline"
+                  disabled={busyId === item.id}
+                  onClick={() => void update(item.id)}
+                >
+                  Update
+                </Button>
               </div>
             </Card>
           ))}

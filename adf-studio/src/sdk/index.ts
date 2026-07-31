@@ -105,6 +105,39 @@ export class PackageClient {
   listInstalled(): Promise<ServiceEnvelope<{ packages: MarketplaceItem[]; count: number }>> {
     return studioBridge.invoke("packages.listInstalled");
   }
+
+  list(installed = false): Promise<ServiceEnvelope<{ packages: MarketplaceItem[]; count: number }>> {
+    return studioBridge.invoke("packages.list", { installed });
+  }
+
+  search(query: string): Promise<ServiceEnvelope<{ packages: MarketplaceItem[]; count: number }>> {
+    return studioBridge.invoke("packages.search", { query });
+  }
+
+  install(
+    packageId: string,
+    opts?: { overwrite?: boolean },
+  ): Promise<ServiceEnvelope<Record<string, unknown>>> {
+    return studioBridge.invoke("packages.install", {
+      packageId,
+      overwrite: opts?.overwrite ?? false,
+    });
+  }
+
+  remove(packageId: string): Promise<ServiceEnvelope<Record<string, unknown>>> {
+    return studioBridge.invoke("packages.remove", { packageId });
+  }
+
+  update(packageId: string): Promise<ServiceEnvelope<Record<string, unknown>>> {
+    return studioBridge.invoke("packages.update", { packageId });
+  }
+
+  verify(packageId?: string): Promise<ServiceEnvelope<Record<string, unknown>>> {
+    return studioBridge.invoke(
+      "packages.verify",
+      packageId ? { packageId } : undefined,
+    );
+  }
 }
 
 export class MarketplaceClient {

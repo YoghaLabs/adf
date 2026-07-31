@@ -32,11 +32,18 @@
 - [x] Settings **Force Demo fixtures** toggle (`settings-demo-fixtures`)
 - [x] TopBar badge reflects transport
 
+## L4 — Packages / marketplace writes
+
+- [x] Live `packages.list|search|install|remove|update|verify`
+- [x] Live `marketplace.browse|search|featured|categories` from registry
+- [x] Packages page install/remove/update/verify with confirm
+- [x] Marketplace Install/Update → PackageClient (not fake notify)
+- [x] Live errors not masked by fixture fallback
+
 ## Remaining for Full Operation
 
 | Slice | FO | Work |
 |-------|----|------|
-| L4 | FO-3 | Packages/marketplace write paths (install/remove) |
 | L5+ | FO-4 | Durable session store beyond resume skeleton |
 | G* | FO-6 | GA signing/coverage/version align |
 

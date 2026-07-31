@@ -1,6 +1,6 @@
 # Session
 
-## 2026-08-01 — BUILD-021 L2/L3/L5/L6 expansion
+## 2026-08-01 — BUILD-021 L4 packages write path
 
-Expanded live bridge methods for workspace depth, runtime dashboard,
-sessions from resume skeleton, Demo fixtures toggle. Smoke OK on overview/stats/sessions/diagnostics.
+Live APM install/remove/update/verify + marketplace registry browse wired through
+studio_bridge and Packages/Marketplace UI. Bridge no longer masks live write errors with fixtures.

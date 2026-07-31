@@ -18,9 +18,10 @@
 
 ## Immediate next
 
-1. Review VPS `http://100.64.209.99:1420/` — badge Live Core; Runtime/Workspace pages  
-2. Continue **L4** package write paths or **L5+** durable sessions  
-3. Ship rule: commit → push develop → merge main → VPS pull  
+1. Review VPS Packages/Marketplace — Install/Remove `demo-core`  
+2. Continue **L5+** durable sessions under `.adf/`  
+3. Track G GA gates (version metadata align)  
+4. Ship rule: commit → push develop → merge main → VPS pull  
 
 ## FO status snapshot
 

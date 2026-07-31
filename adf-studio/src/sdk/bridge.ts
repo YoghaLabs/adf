@@ -63,9 +63,10 @@ function createBridge(): StudioBridge {
     },
     async invoke<T>(method: string, payload?: BridgePayload) {
       const live = await invokeLive<T>(method, payload);
-      if (live?.ok) {
+      // Prefer any live envelope (ok or error) so write failures are not masked by fixtures.
+      if (live) {
         lastTransport = "live";
-        setBridgeMode("live", method);
+        setBridgeMode("live", live.ok ? method : `${method}:error`);
         return live;
       }
 

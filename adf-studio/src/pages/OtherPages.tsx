@@ -36,15 +36,163 @@ export function TemplatesPage() {
 }
 
 export function PackagesPage() {
-  const [count, setCount] = useState(0);
+  const [installed, setInstalled] = useState<
+    { id: string; name: string; version: string; category: string; description: string }[]
+  >([]);
+  const [catalog, setCatalog] = useState<typeof installed>([]);
+  const [packageId, setPackageId] = useState("demo-core");
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const notify = useSettingsStore((s) => s.pushNotification);
+
+  async function reload() {
+    const [inst, avail] = await Promise.all([
+      studioSdk.packages.listInstalled(),
+      studioSdk.packages.list(false),
+    ]);
+    if (inst.ok) setInstalled(inst.data.packages ?? []);
+    if (avail.ok) setCatalog(avail.data.packages ?? []);
+  }
+
   useEffect(() => {
-    void studioSdk.packages.listInstalled().then((r) => setCount(Number(r.data.count ?? 0)));
+    void reload();
   }, []);
+
+  async function runWrite(
+    action: "install" | "remove" | "update" | "verify",
+    id: string,
+  ) {
+    if (!id.trim()) return;
+    if (action === "remove" && !window.confirm(`Remove package "${id}"?`)) return;
+    if (action === "install" && !window.confirm(`Install package "${id}" from local registry?`)) return;
+    setBusy(true);
+    setMessage(null);
+    try {
+      const result =
+        action === "install"
+          ? await studioSdk.packages.install(id)
+          : action === "remove"
+            ? await studioSdk.packages.remove(id)
+            : action === "update"
+              ? await studioSdk.packages.update(id)
+              : await studioSdk.packages.verify(id);
+      const body = result.ok
+        ? result.message || `${action} ok`
+        : result.error || `${action} failed`;
+      setMessage(body);
+      notify({
+        title: result.ok ? `Package ${action}` : `Package ${action} failed`,
+        body,
+        tone: result.ok ? "success" : "danger",
+      });
+      await reload();
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
-    <PageFrame testId="page-packages" title="Packages" subtitle="Installed packages via PackageClient.">
+    <PageFrame
+      testId="page-packages"
+      title="Packages"
+      subtitle="Live APM via PackageClient → Service Layer (BUILD-021 L4)."
+    >
+      <Card className="space-y-3">
+        <div className="flex flex-wrap items-end gap-2">
+          <label className="grid gap-1 text-sm">
+            Package id
+            <input
+              data-testid="packages-id-input"
+              className="h-9 rounded-lg border border-line bg-canvas-elevated px-3"
+              value={packageId}
+              onChange={(e) => setPackageId(e.target.value)}
+            />
+          </label>
+          <Button
+            variant="accent"
+            data-testid="packages-install"
+            disabled={busy}
+            onClick={() => void runWrite("install", packageId)}
+          >
+            Install
+          </Button>
+          <Button
+            variant="outline"
+            data-testid="packages-remove"
+            disabled={busy}
+            onClick={() => void runWrite("remove", packageId)}
+          >
+            Remove
+          </Button>
+          <Button variant="outline" disabled={busy} onClick={() => void runWrite("update", packageId)}>
+            Update
+          </Button>
+          <Button variant="ghost" disabled={busy} onClick={() => void runWrite("verify", packageId)}>
+            Verify
+          </Button>
+        </div>
+        {message ? <p className="text-xs text-ink-muted">{message}</p> : null}
+      </Card>
+
       <Card>
-        <div className="text-2xl font-semibold">{count}</div>
-        <p className="studio-muted">Installed packages reported by SDK</p>
+        <h2 className="text-sm font-semibold">Installed ({installed.length})</h2>
+        <ul className="mt-3 space-y-2" data-testid="packages-installed-list">
+          {installed.length === 0 ? (
+            <li className="text-xs text-ink-muted">No packages installed yet.</li>
+          ) : (
+            installed.map((pkg) => (
+              <li
+                key={pkg.id}
+                className="flex flex-wrap items-center justify-between gap-2 border-b border-line py-2 last:border-0"
+              >
+                <div>
+                  <div className="text-sm font-medium">
+                    {pkg.name} <span className="text-ink-muted">@{pkg.version}</span>
+                  </div>
+                  <div className="text-xs text-ink-muted">
+                    {pkg.id} · {pkg.category}
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  disabled={busy}
+                  onClick={() => void runWrite("remove", pkg.id)}
+                >
+                  Remove
+                </Button>
+              </li>
+            ))
+          )}
+        </ul>
+      </Card>
+
+      <Card>
+        <h2 className="text-sm font-semibold">Registry catalog ({catalog.length})</h2>
+        <ul className="mt-3 space-y-2" data-testid="packages-catalog-list">
+          {catalog.map((pkg) => (
+            <li
+              key={pkg.id}
+              className="flex flex-wrap items-center justify-between gap-2 border-b border-line py-2 last:border-0"
+            >
+              <div>
+                <div className="text-sm font-medium">
+                  {pkg.name} <span className="text-ink-muted">@{pkg.version}</span>
+                </div>
+                <div className="text-xs text-ink-muted">{pkg.description || pkg.id}</div>
+              </div>
+              <Button
+                variant="accent"
+                disabled={busy}
+                onClick={() => {
+                  setPackageId(pkg.id);
+                  void runWrite("install", pkg.id);
+                }}
+              >
+                Install
+              </Button>
+            </li>
+          ))}
+        </ul>
       </Card>
     </PageFrame>
   );
