@@ -26,18 +26,23 @@ export function TimelinePanel({
         </div>
       </div>
       <ol className="space-y-3">
-        {events.map((event) => (
-          <li key={event.id} className="flex items-start justify-between gap-3 border-b border-line pb-2 last:border-0">
-            <div>
-              <div className="text-sm font-medium">{event.title}</div>
-              <div className="studio-muted text-xs">{event.detail}</div>
-            </div>
-            <div className="text-right">
-              <Badge>{event.kind}</Badge>
-              <div className="mt-1 text-[10px] text-ink-muted">{new Date(event.at).toLocaleTimeString()}</div>
-            </div>
-          </li>
-        ))}
+        {events.map((event) => {
+          const legacy = event as TimelineEvent & { label?: string };
+          const title = event.title || legacy.label || event.id;
+          const at = event.at ? new Date(event.at).toLocaleTimeString() : "—";
+          return (
+            <li key={event.id} className="flex items-start justify-between gap-3 border-b border-line pb-2 last:border-0">
+              <div>
+                <div className="text-sm font-medium">{title}</div>
+                <div className="studio-muted text-xs">{event.detail}</div>
+              </div>
+              <div className="text-right">
+                <Badge>{event.kind}</Badge>
+                <div className="mt-1 text-[10px] text-ink-muted">{at}</div>
+              </div>
+            </li>
+          );
+        })}
         {events.length === 0 && <li className="studio-muted text-sm">No timeline events</li>}
       </ol>
     </Card>

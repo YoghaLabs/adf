@@ -40,14 +40,22 @@ export const useProjectStore = create<ProjectExplorerState>((set) => ({
       studioSdk.projects.pinned(workspaceId),
       studioSdk.projects.archived(workspaceId),
     ]);
+    const asList = (r: { ok: boolean; data?: Record<string, unknown> }, ...keys: string[]) => {
+      if (!r.ok || !r.data) return [] as ProjectExplorerItem[];
+      for (const key of keys) {
+        const value = r.data[key];
+        if (Array.isArray(value)) return value as ProjectExplorerItem[];
+      }
+      return [];
+    };
     set({
-      projects: list.ok ? list.data.projects : [],
-      explorer: explorer.ok ? explorer.data.projects : [],
-      tree: tree.ok ? tree.data.tree : [],
-      recent: recent.ok ? recent.data.projects : [],
-      favorites: favorites.ok ? favorites.data.projects : [],
-      pinned: pinned.ok ? pinned.data.projects : [],
-      archived: archived.ok ? archived.data.projects : [],
+      projects: list.ok ? (list.data.projects ?? []) : [],
+      explorer: asList(explorer, "projects", "items", "tree"),
+      tree: asList(tree, "tree", "projects", "items"),
+      recent: asList(recent, "projects", "items"),
+      favorites: asList(favorites, "projects", "items"),
+      pinned: asList(pinned, "projects", "items"),
+      archived: asList(archived, "projects", "items"),
       loading: false,
     });
   },

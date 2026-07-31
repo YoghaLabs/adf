@@ -75,15 +75,21 @@ export function EventStreamPanel({ events }: { events: RuntimeEvent[] }) {
     <Card data-testid="event-stream">
       <h3 className="mb-3 text-sm font-semibold">Visual Event Stream</h3>
       <ul className="max-h-56 space-y-2 overflow-auto text-sm">
-        {events.map((event) => (
-          <li key={event.id} className="flex items-start justify-between gap-2 border-b border-line pb-2 last:border-0">
-            <div>
-              <div className="font-medium">{event.name}</div>
-              <div className="studio-muted text-xs">{event.detail}</div>
-            </div>
-            <Badge>{event.category}</Badge>
-          </li>
-        ))}
+        {events.map((event) => {
+          const legacy = event as RuntimeEvent & { title?: string; kind?: string };
+          const name = event.name || legacy.title || event.id;
+          const category = event.category || legacy.kind || "runtime";
+          return (
+            <li key={event.id} className="flex items-start justify-between gap-2 border-b border-line pb-2 last:border-0">
+              <div>
+                <div className="font-medium">{name}</div>
+                <div className="studio-muted text-xs">{event.detail}</div>
+              </div>
+              <Badge>{category}</Badge>
+            </li>
+          );
+        })}
+        {events.length === 0 && <li className="studio-muted text-sm">No events</li>}
       </ul>
     </Card>
   );
@@ -98,22 +104,38 @@ export function DiagnosticsPanel({ diagnostics }: { diagnostics: RuntimeDiagnost
     );
   }
 
+  const runtime = diagnostics.runtime ?? { ok: false, checks: [] };
+  const checks = Array.isArray(runtime.checks) ? runtime.checks : [];
+  const sdk = diagnostics.sdk ?? { ok: false, bridge: "unknown", clients: [] as string[] };
+  const environment = diagnostics.environment ?? { node: "—", platform: "—", cwd: "—" };
+  const configuration = diagnostics.configuration ?? {
+    channel: "—",
+    registry: "—",
+    theme: "—",
+  };
+
   return (
     <div data-testid="diagnostics-panel" className="grid gap-3 lg:grid-cols-2">
       <Card>
         <div className="mb-2 flex items-center justify-between">
           <h3 className="text-sm font-semibold">Runtime Diagnostics</h3>
-          <HealthIndicator level={diagnostics.runtime.ok ? "healthy" : "critical"} />
+          <HealthIndicator level={runtime.ok ? "healthy" : "critical"} />
         </div>
         <ul className="space-y-2 text-sm">
-          {diagnostics.runtime.checks.map((c) => (
-            <li key={c.name} className="flex justify-between gap-2">
-              <span>{c.name}</span>
-              <span className="text-xs text-ink-muted">
-                {c.ok ? "ok" : "fail"} · {c.detail}
-              </span>
-            </li>
-          ))}
+          {checks.map((c, idx) => {
+            const name = c.name || (c as { label?: string }).label || `check-${idx}`;
+            const detail = c.detail || (c as { id?: string }).id || "";
+            return (
+              <li key={name} className="flex justify-between gap-2">
+                <span>{name}</span>
+                <span className="text-xs text-ink-muted">
+                  {c.ok ? "ok" : "fail"}
+                  {detail ? ` · ${detail}` : ""}
+                </span>
+              </li>
+            );
+          })}
+          {checks.length === 0 && <li className="studio-muted text-sm">No checks</li>}
         </ul>
       </Card>
       <Card>
@@ -121,11 +143,11 @@ export function DiagnosticsPanel({ diagnostics }: { diagnostics: RuntimeDiagnost
         <dl className="space-y-2 text-sm">
           <div>
             <dt className="studio-muted">Bridge</dt>
-            <dd>{diagnostics.sdk.bridge}</dd>
+            <dd>{sdk.bridge}</dd>
           </div>
           <div>
             <dt className="studio-muted">Clients</dt>
-            <dd className="text-xs text-ink-muted">{diagnostics.sdk.clients.join(", ")}</dd>
+            <dd className="text-xs text-ink-muted">{(sdk.clients ?? []).join(", ") || "—"}</dd>
           </div>
         </dl>
       </Card>
@@ -134,15 +156,15 @@ export function DiagnosticsPanel({ diagnostics }: { diagnostics: RuntimeDiagnost
         <dl className="space-y-2 text-sm">
           <div>
             <dt className="studio-muted">Node</dt>
-            <dd>{diagnostics.environment.node}</dd>
+            <dd>{environment.node}</dd>
           </div>
           <div>
             <dt className="studio-muted">Platform</dt>
-            <dd>{diagnostics.environment.platform}</dd>
+            <dd>{environment.platform}</dd>
           </div>
           <div>
             <dt className="studio-muted">CWD</dt>
-            <dd className="font-mono text-xs">{diagnostics.environment.cwd}</dd>
+            <dd className="font-mono text-xs">{environment.cwd}</dd>
           </div>
         </dl>
       </Card>
@@ -151,15 +173,15 @@ export function DiagnosticsPanel({ diagnostics }: { diagnostics: RuntimeDiagnost
         <dl className="space-y-2 text-sm">
           <div>
             <dt className="studio-muted">Channel</dt>
-            <dd>{diagnostics.configuration.channel}</dd>
+            <dd>{configuration.channel}</dd>
           </div>
           <div>
             <dt className="studio-muted">Registry</dt>
-            <dd>{diagnostics.configuration.registry}</dd>
+            <dd>{configuration.registry}</dd>
           </div>
           <div>
             <dt className="studio-muted">Theme</dt>
-            <dd>{diagnostics.configuration.theme}</dd>
+            <dd>{configuration.theme}</dd>
           </div>
         </dl>
       </Card>

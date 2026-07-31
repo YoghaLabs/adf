@@ -266,17 +266,49 @@ def _live_diagnostics(client: SDKClient) -> dict[str, Any]:
     doctor = _doctor(client)
     ddata = doctor.get("data") or {}
     layout = ddata.get("layout") if isinstance(ddata.get("layout"), dict) else {}
+    packages = ddata.get("packages") if isinstance(ddata.get("packages"), dict) else {}
     checks = [
-        {"id": "layout", "label": "Locked layout", "ok": bool(layout.get("ok"))},
         {
-            "id": "validation",
-            "label": "State validation",
-            "ok": not bool(ddata.get("validation_errors")),
+            "name": "layout",
+            "ok": bool(layout.get("ok")),
+            "detail": f"missing={layout.get('missing') or layout.get('missing_dirs') or []}",
         },
-        {"id": "doctor", "label": "Doctor aggregate", "ok": bool(doctor.get("ok"))},
+        {
+            "name": "validation",
+            "ok": not bool(ddata.get("validation_errors")),
+            "detail": f"errors={len(ddata.get('validation_errors') or [])}",
+        },
+        {
+            "name": "doctor",
+            "ok": bool(doctor.get("ok")),
+            "detail": "aggregate",
+        },
     ]
     return {
         "runtime": {"ok": bool(doctor.get("ok")), "checks": checks},
+        "sdk": {
+            "ok": True,
+            "bridge": "live",
+            "clients": [
+                "RuntimeDashboardClient",
+                "MetricsClient",
+                "LogsClient",
+                "DiagnosticsClient",
+                "TimelineClient",
+            ],
+        },
+        "environment": {
+            "node": "n/a (vite+python bridge)",
+            "platform": sys.platform,
+            "cwd": str(client.repo_root),
+        },
+        "configuration": {
+            "channel": "live",
+            "registry": "local",
+            "theme": "system",
+            "packagesInstalled": int(packages.get("installed_count") or 0),
+            "registryCount": int(packages.get("registry_count") or 0),
+        },
         "bridge": "live",
         "rawDoctor": ddata,
     }
@@ -500,11 +532,19 @@ def invoke(method: str, payload: dict[str, Any] | None = None, *, root: Path | N
         "projects.recent",
     }:
         item = _project_item(client)
-        key = "items" if method in {"projects.explorer", "projects.tree"} else "projects"
-        return {"ok": True, "data": {key: [item], "count": 1, "bridge": "live"}}
+        # Studio stores expect fixtures shape: projects (+ tree for explorer/tree).
+        data: dict[str, Any] = {
+            "projects": [item],
+            "count": 1,
+            "bridge": "live",
+        }
+        if method in {"projects.explorer", "projects.tree"}:
+            data["tree"] = [item]
+            data["items"] = [item]  # backward-compatible alias
+        return {"ok": True, "data": data}
 
     if method == "projects.archived":
-        return {"ok": True, "data": {"projects": [], "count": 0, "bridge": "live"}}
+        return {"ok": True, "data": {"projects": [], "tree": [], "count": 0, "bridge": "live"}}
 
     if method in {"packages.listInstalled", "packages.list"}:
         installed = method == "packages.listInstalled" or bool(payload.get("installed"))
@@ -755,11 +795,18 @@ def invoke(method: str, payload: dict[str, Any] | None = None, *, root: Path | N
         events = [
             {
                 "id": "ev-live-1",
-                "kind": "runtime",
-                "title": "Live bridge",
+                "category": "runtime",
+                "name": "bridge.ready",
                 "detail": "Studio connected to Core",
                 "at": _now(),
-            }
+            },
+            {
+                "id": "ev-live-2",
+                "category": "session",
+                "name": "session.current",
+                "detail": str((_live_overview(client).get("currentSessionId") or "")),
+                "at": _now(),
+            },
         ]
         return {"ok": True, "data": {"events": events, "count": len(events), "bridge": "live"}}
 
@@ -799,22 +846,32 @@ def invoke(method: str, payload: dict[str, Any] | None = None, *, root: Path | N
         return {"ok": True, "data": _live_diagnostics(client)}
 
     if method in {"timeline.list", "timeline.byKind"}:
+        doctor_ok = bool(_doctor(client).get("ok"))
         events = [
             {
                 "id": "tl-live-1",
                 "kind": "runtime",
-                "label": "Live Core bridge ready",
+                "title": "Live Core bridge ready",
+                "detail": "studio_bridge -> SDKClient",
                 "at": _now(),
             },
             {
                 "id": "tl-live-2",
-                "kind": "doctor",
-                "label": f"Doctor ok={_doctor(client).get('ok')}",
+                "kind": "runtime",
+                "title": "Doctor check",
+                "detail": f"ok={doctor_ok}",
+                "at": _now(),
+            },
+            {
+                "id": "tl-live-3",
+                "kind": "session",
+                "title": "Durable session",
+                "detail": str((_live_overview(client).get("currentSessionId") or "none")),
                 "at": _now(),
             },
         ]
         kind = str(payload.get("kind") or "")
-        if method == "timeline.byKind" and kind:
+        if method == "timeline.byKind" and kind and kind != "all":
             events = [e for e in events if e["kind"] == kind]
         return {"ok": True, "data": {"events": events, "count": len(events), "bridge": "live"}}
 
