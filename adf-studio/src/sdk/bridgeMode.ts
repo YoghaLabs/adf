@@ -21,7 +21,25 @@ export function subscribeBridgeMode(fn: Listener): () => void {
   return () => listeners.delete(fn);
 }
 
-/** Methods BUILD-021 L1 attempts live before fixture fallback. */
+const FORCE_FIXTURE_KEY = "adf.studio.forceFixture.v1";
+
+export function getForceFixture(): boolean {
+  try {
+    return localStorage.getItem(FORCE_FIXTURE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+export function setForceFixture(value: boolean) {
+  try {
+    localStorage.setItem(FORCE_FIXTURE_KEY, value ? "1" : "0");
+  } catch {
+    /* ignore */
+  }
+}
+
+/** Methods BUILD-021 L1–L3/L5 attempt live before fixture fallback. */
 export const LIVE_BRIDGE_METHODS = new Set([
   "runtime.status",
   "runtime.version",
@@ -31,11 +49,42 @@ export const LIVE_BRIDGE_METHODS = new Set([
   "workspace.readiness",
   "workspace.list",
   "workspace.profile",
+  "workspace.switch",
+  "workspace.settings",
+  "workspace.stats",
+  "workspace.activity",
+  "workspace.favorites",
+  "workspace.search",
   "projects.info",
   "projects.list",
   "projects.explorer",
+  "projects.tree",
+  "projects.favorites",
+  "projects.pinned",
+  "projects.archived",
+  "projects.recent",
   "packages.listInstalled",
   "generator.types",
   "registry.status",
   "release.channels",
+  "sessions.list",
+  "sessions.history",
+  "sessions.current",
+  "sessions.recent",
+  "sessions.resume",
+  "sessions.close",
+  "sessions.timeline",
+  "runtimeDashboard.overview",
+  "runtimeDashboard.jobs",
+  "runtimeDashboard.events",
+  "runtimeDashboard.inspectors",
+  "metrics.snapshot",
+  "metrics.series",
+  "logs.list",
+  "logs.filter",
+  "diagnostics.snapshot",
+  "timeline.list",
+  "timeline.byKind",
+  "activity.feed",
+  "activity.recent",
 ]);

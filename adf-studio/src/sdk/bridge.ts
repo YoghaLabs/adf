@@ -10,6 +10,7 @@ import type { ServiceEnvelope } from "@/types/studio";
 import { localFixtureProvider } from "@/sdk/fixtures";
 import {
   LIVE_BRIDGE_METHODS,
+  getForceFixture,
   setBridgeMode,
   type BridgeTransport,
 } from "@/sdk/bridgeMode";
@@ -32,6 +33,7 @@ async function invokeLive<T>(
 ): Promise<ServiceEnvelope<T> | null> {
   if (typeof window === "undefined") return null;
   if (import.meta.env.MODE === "test") return null;
+  if (getForceFixture()) return null;
   if (!LIVE_BRIDGE_METHODS.has(method)) return null;
 
   try {

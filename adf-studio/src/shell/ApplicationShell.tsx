@@ -8,6 +8,7 @@ import { CommandPalette } from "@/shell/CommandPalette";
 import { ThemeManager } from "@/themes/ThemeManager";
 import { WelcomeWizard, DemoGuide } from "@/features/onboarding";
 import { useOnboardingStore } from "@/stores/onboardingStore";
+import { studioSdk } from "@/sdk";
 
 export function ApplicationShell() {
   const hydrate = useOnboardingStore((s) => s.hydrate);
@@ -15,6 +16,11 @@ export function ApplicationShell() {
   useEffect(() => {
     hydrate();
   }, [hydrate]);
+
+  useEffect(() => {
+    // Probe live bridge early so TopBar badge reflects Core connectivity.
+    void studioSdk.runtime.version();
+  }, []);
 
   return (
     <div data-testid="application-shell" className="flex h-screen flex-col overflow-hidden">

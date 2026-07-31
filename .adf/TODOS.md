@@ -2,18 +2,15 @@
 
 ## Now
 
-- [ ] Verify BUILD-021 L1: TopBar shows **Live Core** after Dashboard load
-- [ ] VPS: ensure `ADF_PYTHON` points at `.venv/bin/python` if needed
-- [ ] Close `bootstrap/BUILD-021/ACCEPTANCE.md` manual boxes
+- [ ] Operator confirm VPS TopBar **Live Core** + `/runtime` live panels
+- [ ] L4 package install/remove via bridge (BUILD-022)
 
-## Next (BUILD-022+ / Track L)
+## Next
 
-- [ ] L2 live workspace/projects/activity depth
-- [ ] L3 runtime dashboard live panels
-- [ ] L4 packages live paths
-- [ ] L5 real sessions + resume UX
-- [ ] L6 Demo Mode honesty
+- [ ] L5+ durable session store under `.adf/`
+- [ ] Track G: version align (`0.12.0a0` vs `1.0.0-rc1`), coverage, signing
+- [ ] Declare FO when FO-2…FO-6 closed
 
 ## Later (post-FO)
 
-- [ ] Track I / E / C / A per OPERABILITY_ROADMAP
+- [ ] Track I / E / C / A

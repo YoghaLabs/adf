@@ -77,6 +77,9 @@ const en = {
   "settings.language": "Language",
   "settings.channels": "Channels",
   "settings.registry": "Registry",
+  "settings.demoMode": "Force Demo fixtures",
+  "settings.demoMode.help":
+    "When enabled, Studio skips Live Core and uses fixture data (FO-5 Demo Mode).",
 } as const;
 
 export type MessageKey = keyof typeof en;
@@ -159,6 +162,9 @@ const id: Record<MessageKey, string> = {
   "settings.language": "Bahasa",
   "settings.channels": "Channel",
   "settings.registry": "Registry",
+  "settings.demoMode": "Paksa Demo fixtures",
+  "settings.demoMode.help":
+    "Jika aktif, Studio melewati Live Core dan memakai data fixture (FO-5 Demo Mode).",
 };
 
 const catalogs: Record<Locale, Record<MessageKey, string>> = { en, id };

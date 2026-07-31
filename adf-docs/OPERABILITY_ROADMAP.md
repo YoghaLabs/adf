@@ -20,10 +20,10 @@ Studio fixture/demo data as the source of truth**, while Studio remains a
 | # | Criterion | Evidence | Status |
 |---|-----------|----------|--------|
 | FO-1 | Install → health → project create on clean machine | `./install`, `adf doctor`, `adf init` | ✅ RC1 |
-| FO-2 | Studio talks to live Core/Service Layer | `bridge.ts` → `adf.studio_bridge` | 🟡 BUILD-021 L1 started |
-| FO-3 | Workspace / Projects / Sessions / Runtime / Packages live | UI matches CLI for same root | 🟡 partial (list/status) |
-| FO-4 | Session resume restores real context | `adf resume` + Studio sessions | 🔴 skeleton only |
-| FO-5 | Honest demo vs live labeling | TopBar badge + Demo Mode | 🟡 badge shipped |
+| FO-2 | Studio talks to live Core/Service Layer | `bridge.ts` → `adf.studio_bridge` | 🟡 hybrid; many control surfaces live |
+| FO-3 | Workspace / Projects / Sessions / Runtime / Packages live | UI matches CLI for same root | 🟡 read paths largely live |
+| FO-4 | Session resume restores real context | `adf resume` + Studio sessions | 🟡 skeleton exposed via sessions.* |
+| FO-5 | Honest demo vs live labeling | TopBar badge + Demo Mode | 🟡 badge + Force Demo fixtures |
 | FO-6 | GA release gates closed | signing, coverage, Quick Start | 🔴 open |
 
 **FO exit:** FO-1…FO-6 all ✅.
@@ -75,12 +75,12 @@ RC1
 
 | ID | Work | BUILD | Status |
 |----|------|-------|--------|
-| L1 | Live SDK bridge + hybrid fallback + badge | **021** | 🟡 in progress |
-| L2 | Live workspace/projects/activity depth | 022 (planned) | 🔴 |
-| L3 | Runtime dashboard live data | 022/023 | 🔴 |
-| L4 | Packages/registry live read (+ safe write) | 023/024 | 🔴 |
-| L5 | Real sessions + resume UX | 024/025 | 🔴 |
-| L6 | Demo Project = real sample or explicit Demo Mode | 025/026 | 🔴 |
+| L1 | Live SDK bridge + hybrid fallback + badge | **021** | ✅ |
+| L2 | Live workspace/projects/activity depth | **021** | ✅ |
+| L3 | Runtime dashboard live data | **021** | ✅ |
+| L4 | Packages/registry live read (+ safe write) | 022 | 🔴 |
+| L5 | Real sessions + resume UX | **021** partial / 022 durable | 🟡 |
+| L6 | Demo Project = real sample or explicit Demo Mode | **021** toggle | 🟡 |
 
 Detail: `adf-docs/BUILD-021_LIVE_CONTROL_CENTER.md`, `bootstrap/BUILD-021/`.
 

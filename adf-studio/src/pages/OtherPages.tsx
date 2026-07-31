@@ -5,6 +5,7 @@ import { studioSdk } from "@/sdk";
 import { useSettingsStore } from "@/stores/settingsStore";
 import { useOnboardingStore } from "@/stores/onboardingStore";
 import { useT } from "@/i18n";
+import { getForceFixture, setForceFixture } from "@/sdk/bridgeMode";
 import type { ThemeMode } from "@/types/studio";
 
 export function TemplatesPage() {
@@ -191,6 +192,7 @@ function SettingsForm() {
   const setChannel = useSettingsStore((s) => s.setChannel);
   const registry = useSettingsStore((s) => s.registry);
   const setRegistry = useSettingsStore((s) => s.setRegistry);
+  const [demoFixtures, setDemoFixtures] = useState(() => getForceFixture());
 
   return (
     <Card className="grid max-w-xl gap-4">
@@ -217,6 +219,23 @@ function SettingsForm() {
           <option value="en">English</option>
           <option value="id">Bahasa Indonesia</option>
         </select>
+      </label>
+      <label className="flex items-start gap-3 text-sm">
+        <input
+          type="checkbox"
+          className="mt-1"
+          data-testid="settings-demo-fixtures"
+          checked={demoFixtures}
+          onChange={(e) => {
+            const next = e.target.checked;
+            setDemoFixtures(next);
+            setForceFixture(next);
+          }}
+        />
+        <span>
+          <span className="font-medium">{t("settings.demoMode")}</span>
+          <span className="mt-0.5 block text-xs text-ink-muted">{t("settings.demoMode.help")}</span>
+        </span>
       </label>
       <label className="grid gap-1 text-sm">
         {t("settings.channels")}
