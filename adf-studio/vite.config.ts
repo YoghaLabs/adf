@@ -2,12 +2,18 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { adfBridgePlugin } from "./vite.bridgePlugin";
+import { adfIdentityPlugin } from "./vite.identityPlugin";
 
 export default defineConfig({
-  plugins: [react(), adfBridgePlugin()],
+  plugins: [
+    react(),
+    adfBridgePlugin(),
+    ...(process.env.VITEST ? [] : [adfIdentityPlugin()]),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
+      "@adf/identity": path.resolve(__dirname, "../adf-identity/src"),
     },
   },
   clearScreen: false,
