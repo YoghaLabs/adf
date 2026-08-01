@@ -23,7 +23,13 @@ async function invokeIdentity<T>(
 
 export class IdentityAuthClient {
   health() {
-    return invokeIdentity<{ layer: string; provider: string; coreAgnostic: true }>("identity.health");
+    return invokeIdentity<{
+      layer: string;
+      provider: string;
+      database?: string;
+      engine?: "postgresql" | string;
+      coreAgnostic: true;
+    }>("identity.health");
   }
 }
 

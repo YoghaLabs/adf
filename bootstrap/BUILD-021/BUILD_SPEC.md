@@ -11,9 +11,9 @@ Live Studio bridge, packages, durable sessions, demo mode, FO review scaffold.
 | Provider | Better Auth in `adf-identity/` |
 | UI | `adf-studio/src/features/identity/**` |
 | API | `/api/auth/*`, `/adf-identity/invoke` |
-| DB | `.adf/local/identity/*.sqlite` |
+| DB | PostgreSQL 17 database `adf_identity` (domain-separated from `adf_runtime`) |
 | RBAC | Hierarchical ADF roles in `rbac.ts` |
-| Docs | `adf-docs/identity/*`, ADR-019 |
+| Docs | `adf-docs/identity/*`, ADR-019, DATABASE.md |
 | Version | `1.0.0-rc2` |
 
 ## Non-goals

@@ -6,14 +6,18 @@ ADF Enterprise Identity Platform (BUILD-021 / `1.0.0-rc2`).
 
 ```
 UI (adf-studio features/identity)
-  → Identity Layer (adf-identity + Better Auth)
-    → Studio SDK / identitySdk
-      → Service envelopes
-        → Core Runtime (auth-agnostic)
+  → Better Auth
+    → PostgreSQL 17 / database adf_identity
+      → Identity services (RBAC, org, audit, PAT)
+        → Service Layer
+          → Core Runtime (auth-agnostic; never reads identity tables)
 ```
+
+See `DATABASE.md` for domain split (`adf_identity` / `adf_runtime` / `adf_business`).
 
 ## Non-goals
 
 - No authentication inside `adf-core`
+- No identity SQL from Core
 - Passkeys deferred
 - Cloud IdP federation beyond configured OAuth env vars

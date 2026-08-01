@@ -14,4 +14,4 @@
 
 - OAuth providers need secrets
 - Magic link needs SMTP for production
-- better-sqlite3 native addon required on host
+- `ADF_IDENTITY_DATABASE_URL` must be set on every Studio host (PostgreSQL 17)

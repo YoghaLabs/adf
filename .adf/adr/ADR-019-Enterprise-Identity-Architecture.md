@@ -22,32 +22,37 @@ browser sessions and break authentication-agnostic operation.
 
 1. **Better Auth is the primary identity provider** for Studio-facing auth
    (email/password, magic link, OAuth providers when configured, organization
-   plugin, sessions/cookies).
+   plugin, sessions/cookies, MFA/SSO-ready).
 2. **Identity is a separate layer** (`adf-identity/`), not Core Runtime.
-   Architecture: UI → Identity Layer → SDK → Service Layer → Core Runtime.
-3. **Studio owns identity UX** (login/register/org/RBAC pages) as Presentation
+   Architecture: UI → Better Auth → PostgreSQL `adf_identity` → Identity
+   services → Service Layer → Core Runtime.
+3. **PostgreSQL 17 is the identity database engine.** Domain DB `adf_identity`
+   is separated from `adf_runtime` (and optional `adf_business`). SQLite is not
+   used for identity.
+4. **Studio owns identity UX** (login/register/org/RBAC pages) as Presentation
    Layer only — no business rules beyond form validation and display.
-4. **Services validate permissions** in the Identity Layer (RBAC matrix, audit,
+5. **Services validate permissions** in the Identity Layer (RBAC matrix, audit,
    PAT hashing). Core APIs stay auth-agnostic; callers may attach identity
    context at the service edge later without Core changes.
-5. **Runtime never authenticates users directly.** No Better Auth / password /
-   OAuth code in `adf-core`.
+6. **Runtime never authenticates users directly** and **never queries identity
+   tables**. No Better Auth / password / OAuth / `adf_identity` SQL in `adf-core`.
 
 ## Consequences
 
-- Clear FO/enterprise path for multi-user Studio without rewriting Core
-- Local SQLite under `.adf/local/identity/` (Better Auth DB + ADF extensions)
-- Hybrid demo fixtures remain available when Identity middleware is down
-- OAuth requires env client IDs/secrets; passkeys deferred
+- Enterprise-grade foundation comparable to GitHub/GitLab/Vercel/Linear tenancy
+- Secrets via `ADF_IDENTITY_DATABASE_URL` only (never committed)
+- Hybrid demo fixtures remain when Identity middleware is down
+- OAuth/SMTP/SSO secrets are environment-gated; passkeys deferred
 
 ## Alternatives Considered
 
 | Alternative | Why rejected |
 |-------------|--------------|
 | Auth inside Core Runtime | Violates CLI/automation agnostic Core |
+| SQLite identity DB | Not aligned with ADF PostgreSQL roadmap / enterprise ops |
+| Shared app DB with runtime tables | Domain coupling; harder compliance boundaries |
 | Auth-only in React stores | No secure sessions/tokens; violates ADR-011 |
 | Custom auth from scratch | Reinvention; Better Auth covers providers + org plugin |
-| Force all CLI through Identity | Breaks local operator FO-1/FO-2 paths |
 
 ## References
 

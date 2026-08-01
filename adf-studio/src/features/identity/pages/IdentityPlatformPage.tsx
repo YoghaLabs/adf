@@ -57,7 +57,19 @@ export function IdentityPlatformPage() {
     void loadInv();
     void loadSessions();
     void identitySdk.auth.health().then((r) => {
-      setHealth(r.ok ? `${r.data.provider} · coreAgnostic=${r.data.coreAgnostic}` : r.error || "down");
+      if (!r.ok) {
+        setHealth(r.error || "down");
+        return;
+      }
+      const d = r.data as {
+        provider?: string;
+        engine?: string;
+        database?: string;
+        coreAgnostic?: boolean;
+      };
+      setHealth(
+        `${d.provider ?? "identity"} · ${d.engine ?? "db"} · ${d.database ?? ""} · coreAgnostic=${d.coreAgnostic}`,
+      );
     });
   }, [hydrate, loadAudit, loadInv, loadOrgs, loadPerms, loadRoles, loadSessions]);
 

@@ -42,7 +42,7 @@ export async function handleIdentityInvoke(req: IncomingMessage, res: ServerResp
     const body = JSON.parse(raw || "{}") as { method?: string; payload?: Record<string, unknown> };
     const method = String(body.method || "");
     const payload = body.payload || {};
-    const result = dispatch(method, payload);
+    const result = await dispatch(method, payload);
     sendJson(res, 200, result);
   } catch (err) {
     sendJson(res, 200, {
@@ -53,7 +53,10 @@ export async function handleIdentityInvoke(req: IncomingMessage, res: ServerResp
   }
 }
 
-function dispatch(method: string, payload: Record<string, unknown>): Envelope<unknown> {
+async function dispatch(
+  method: string,
+  payload: Record<string, unknown>,
+): Promise<Envelope<unknown>> {
   switch (method) {
     case "identity.health":
       return identityService.health();
@@ -97,7 +100,10 @@ function dispatch(method: string, payload: Record<string, unknown>): Envelope<un
         scopes: Array.isArray(payload.scopes) ? (payload.scopes as string[]) : [],
       });
     case "tokens.revokePat":
-      return identityService.revokePat(String(payload.userId || "user_local"), String(payload.patId || ""));
+      return identityService.revokePat(
+        String(payload.userId || "user_local"),
+        String(payload.patId || ""),
+      );
     case "invitations.list":
       return identityService.listInvitations(
         payload.organizationId ? String(payload.organizationId) : undefined,

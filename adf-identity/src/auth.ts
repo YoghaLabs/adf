@@ -1,10 +1,9 @@
 import { betterAuth } from "better-auth";
 import { magicLink, organization } from "better-auth/plugins";
-import Database from "better-sqlite3";
-import { betterAuthDbPath, resolveAdfRoot } from "./paths.js";
+import { getIdentityPool } from "./db.js";
+import { loadIdentityEnv } from "./config.js";
 
-const root = resolveAdfRoot();
-const dbFile = betterAuthDbPath(root);
+loadIdentityEnv();
 
 function oauthFromEnv(id: "github" | "gitlab" | "google" | "microsoft") {
   const map = {
@@ -27,11 +26,11 @@ for (const id of ["github", "gitlab", "google", "microsoft"] as const) {
 }
 
 /**
- * Better Auth instance — Identity Layer only.
- * Core Runtime must never import this module.
+ * Better Auth → PostgreSQL `adf_identity`.
+ * Core Runtime must never import this module or query these tables.
  */
 export const auth = betterAuth({
-  database: new Database(dbFile),
+  database: getIdentityPool(),
   baseURL: process.env.ADF_IDENTITY_BASE_URL || "http://127.0.0.1:1420",
   secret: process.env.ADF_IDENTITY_SECRET || "adf-dev-identity-secret-change-me",
   emailAndPassword: {
@@ -57,7 +56,6 @@ export const auth = betterAuth({
   plugins: [
     magicLink({
       sendMagicLink: async ({ email, url }) => {
-        // Dev/local: log only — wire SMTP in production.
         console.info(`[adf-identity] magic link for ${email}: ${url}`);
       },
     }),

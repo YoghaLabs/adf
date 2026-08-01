@@ -16,19 +16,10 @@ export function resolveAdfRoot(from = process.cwd()): string {
   return path.resolve(from, "..");
 }
 
+/** Local cache / secrets dir (not the identity database). */
 export function identityDataDir(root?: string): string {
   const base = root ?? resolveAdfRoot();
   const dir = path.join(base, ".adf", "local", "identity");
   fs.mkdirSync(dir, { recursive: true });
   return dir;
-}
-
-/** Better Auth owned tables. */
-export function betterAuthDbPath(root?: string): string {
-  return path.join(identityDataDir(root), "better-auth.sqlite");
-}
-
-/** ADF Identity extensions (org/workspace/rbac/audit/tokens). */
-export function identityDbPath(root?: string): string {
-  return path.join(identityDataDir(root), "adf-identity.sqlite");
 }

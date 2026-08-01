@@ -17,7 +17,8 @@
 
 ## Immediate next
 
-1. Verify `/identity` + login on Studio
-2. Configure OAuth/SMTP secrets for non-dev
-3. Operator FO checkboxes still open for GA
-4. Do **not** open BUILD-022 until Identity acceptance closed
+1. Verify `/identity` health shows `postgresql` + `adf_identity`
+2. Keep `ADF_IDENTITY_DATABASE_URL` only in env (never git)
+3. Configure OAuth/SMTP/SSO secrets for non-dev
+4. Operator FO checkboxes still open for GA
+5. Do **not** open BUILD-022 until Identity acceptance closed
