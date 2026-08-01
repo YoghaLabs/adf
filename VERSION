@@ -1,7 +1,7 @@
 ADF
 
 Version:
-1.0.0-rc1
+1.0.0-rc2
 
 Current Build:
 BUILD-021
@@ -10,4 +10,4 @@ Branch:
 develop
 
 Notes:
-Full Operation Track L in progress (BUILD-021). GA 1.0.0 gates still open.
+Enterprise Identity Platform (Better Auth) + Track L Live Control Center. GA 1.0.0 gates still open.

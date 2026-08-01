@@ -31,8 +31,31 @@ import {
 import { CollaborationPlatformPage } from "@/features/collaboration/pages/CollaborationPlatformPage";
 import { OrchestrationPlatformPage } from "@/features/orchestration/pages/OrchestrationPlatformPage";
 import { EnterpriseGovernancePage } from "@/features/enterprise/pages/EnterpriseGovernancePage";
+import {
+  ApiKeysPage,
+  AuditPage,
+  ForgotPasswordPage,
+  IdentityPlatformPage,
+  InvitationsPage,
+  LoginPage,
+  MembersPage,
+  OrganizationSelectorPage,
+  PermissionsPage,
+  ProfilePage,
+  RegisterPage,
+  ResetPasswordPage,
+  RolesPage,
+  SecurityPage,
+  SessionsPage as IdentitySessionsPage,
+  TeamsPage,
+  WorkspaceSelectorPage,
+} from "@/features/identity";
 
 export const studioRouter = createBrowserRouter([
+  { path: "/identity/login", element: <LoginPage /> },
+  { path: "/identity/register", element: <RegisterPage /> },
+  { path: "/identity/forgot-password", element: <ForgotPasswordPage /> },
+  { path: "/identity/reset-password", element: <ResetPasswordPage /> },
   {
     path: "/",
     element: <ApplicationShell />,
@@ -41,6 +64,21 @@ export const studioRouter = createBrowserRouter([
       { path: "workspace", element: <WorkspacePage /> },
       { path: "projects", element: <ProjectsPage /> },
       { path: "sessions", element: <SessionsPage /> },
+      { path: "identity", element: <IdentityPlatformPage /> },
+      { path: "identity/organizations", element: <OrganizationSelectorPage /> },
+      { path: "identity/workspaces", element: <WorkspaceSelectorPage /> },
+      { path: "identity/profile", element: <ProfilePage /> },
+      { path: "identity/security", element: <SecurityPage /> },
+      { path: "identity/sessions", element: <IdentitySessionsPage /> },
+      { path: "identity/devices", element: <IdentitySessionsPage /> },
+      { path: "identity/tokens", element: <ApiKeysPage /> },
+      { path: "identity/api-keys", element: <ApiKeysPage /> },
+      { path: "identity/invitations", element: <InvitationsPage /> },
+      { path: "identity/members", element: <MembersPage /> },
+      { path: "identity/roles", element: <RolesPage /> },
+      { path: "identity/permissions", element: <PermissionsPage /> },
+      { path: "identity/audit", element: <AuditPage /> },
+      { path: "identity/teams", element: <TeamsPage /> },
       { path: "collaboration", element: <CollaborationPlatformPage /> },
       { path: "orchestration", element: <OrchestrationPlatformPage /> },
       { path: "enterprise", element: <EnterpriseGovernancePage /> },

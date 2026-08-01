@@ -4,7 +4,7 @@ from __future__ import annotations
 
 PACKAGE_NAME = "adf-core"
 # Product identity aligns with root VERSION (Track G / FO-6 prep).
-PACKAGE_VERSION = "1.0.0-rc1"
+PACKAGE_VERSION = "1.0.0-rc2"
 ENGINE_BUILD = "BUILD-021"
 
 # Locked top-level folders (ADR-001) — used by doctor/validate.

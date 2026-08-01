@@ -10,6 +10,7 @@ export const featureIds = {
   collaboration: "collaboration",
   orchestration: "orchestration",
   enterprise: "enterprise",
+  identity: "identity",
 } as const;
 
 /** Named surface exports — avoid barrel-exporting fixture constants (name collisions). */
@@ -18,3 +19,4 @@ export { OrchestrationPlatformPage } from "@/features/orchestration/pages/Orches
 export { EnterpriseGovernancePage } from "@/features/enterprise/pages/EnterpriseGovernancePage";
 export { VisualIntelligencePage } from "@/features/visual/pages/VisualIntelligencePage";
 export { RuntimeDashboardPage } from "@/features/runtime/dashboard/RuntimeDashboardPage";
+export { IdentityPlatformPage } from "@/features/identity/pages/IdentityPlatformPage";

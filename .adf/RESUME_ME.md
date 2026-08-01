@@ -2,29 +2,22 @@
 
 ## Identity
 
-- Product: ADF `1.0.0-rc1` / BUILD-021
+- Product: ADF `1.0.0-rc2` / BUILD-021
 - Branch: `develop`
-- FO charter: **LOCKED**
-- FO review: `adf-docs/FULL_OPERATION_REVIEW.md` (awaiting operator)
+- Active slice: **Enterprise Identity Platform** (Better Auth)
+- Prior in same build: Track L Live Control Center
 
 ## Boot order
 
-1. This file  
-2. `adf-docs/FULL_OPERATION_REVIEW.md`  
-3. `release/GA_GATES.md`  
-4. `adf-docs/OPERABILITY_ROADMAP.md`  
-5. `.adf/CURRENT_TASK.md`
+1. This file
+2. `.adf/adr/ADR-019-Enterprise-Identity-Architecture.md`
+3. `bootstrap/BUILD-021/ACCEPTANCE.md`
+4. `adf-docs/identity/IDENTITY.md`
+5. `adf-docs/FULL_OPERATION_REVIEW.md`
 
 ## Immediate next
 
-1. Operator: accept/defer FO checkboxes in FO review  
-2. GitHub: confirm `GA gates` workflow green  
-3. Configure signing secrets → signed installers → tag `1.0.0`  
-4. Do **not** open Track I until FO decision  
-
-## FO snapshot
-
-| FO | State |
-|----|--------|
-| FO-1…FO-5 | ✅ practical (control-center) |
-| FO-6 | 🟡 G2 scaffolded; secrets + GA tag pending |
+1. Verify `/identity` + login on Studio
+2. Configure OAuth/SMTP secrets for non-dev
+3. Operator FO checkboxes still open for GA
+4. Do **not** open BUILD-022 until Identity acceptance closed
