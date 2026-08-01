@@ -1,18 +1,21 @@
-# BUILD-021 — Live Control Center (Track L start)
+# BUILD-021
 
-**Program:** Full Operation (`adf-docs/OPERABILITY_ROADMAP.md`) — **LOCKED**  
-**Slice:** L1 Live SDK Bridge (+ partial L2/L3 read paths)  
-**Version context:** post `1.0.0-rc1`  
-**Status:** In progress (handoff-ready)
+**Version:** `1.0.0-rc2`  
+**Branch:** `develop`  
+**Status:** Identity Platform + Track L (cumulative)
 
-## Mission
+## Missions in this build
 
-Wire Studio UI → real ADF Core Service Layer for a first set of read methods,
-with honest Demo/Live badge and fixture fallback for unwired surfaces.
+1. **Track L — Live Control Center** (shipped earlier in BUILD-021 / rc1)
+2. **Enterprise Identity Platform** (this slice / rc2) — Better Auth, org model, RBAC, sessions, security, audit
 
-## Non-goals
+## Key paths
 
-- Rich editor / IDE (Track I)
-- Extensions / cloud (Track E/C)
-- Autonomous orchestration
-- Opening BUILD-022 until L1 acceptance is closed
+- Identity Layer: `adf-identity/`
+- Studio UI: `adf-studio/src/features/identity/`
+- ADR: `.adf/adr/ADR-019-Enterprise-Identity-Architecture.md`
+- Docs: `adf-docs/identity/`
+
+## Stop
+
+Do **not** continue BUILD-022 from Identity acceptance alone.
