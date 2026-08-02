@@ -10,6 +10,10 @@
     "./auth": "./src/auth.ts",
     "./rbac": "./src/rbac.ts"
   },
+  "scripts": {
+    "migrate:adf": "node ./scripts/migrate-adf.mjs",
+    "migrate:auth": "node ./scripts/migrate-better-auth.mjs"
+  },
   "dependencies": {
     "better-auth": "^1.3.4",
     "pg": "^8.16.3"

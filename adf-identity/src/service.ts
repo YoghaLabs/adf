@@ -2,6 +2,7 @@ import { createHash, randomBytes } from "node:crypto";
 import { identityDbHostLabel } from "./config.js";
 import { migrateIdentitySchema, queryIdentity } from "./db.js";
 import { ADF_PERMISSIONS, ADF_ROLES, resolvePermissions, type AdfRole } from "./rbac.js";
+import { IDENTITY_SECURITY } from "./security.js";
 
 export type Envelope<T> = { ok: boolean; data: T; error?: string; message?: string };
 
@@ -81,6 +82,7 @@ export class IdentityService {
       database: string;
       engine: "postgresql";
       coreAgnostic: true;
+      security: typeof IDENTITY_SECURITY;
     }>
   > {
     await ensureSeed();
@@ -93,6 +95,7 @@ export class IdentityService {
         database: identityDbHostLabel(),
         engine: "postgresql",
         coreAgnostic: true,
+        security: IDENTITY_SECURITY,
       },
     };
   }

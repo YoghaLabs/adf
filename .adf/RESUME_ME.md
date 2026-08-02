@@ -4,21 +4,20 @@
 
 - Product: ADF `1.0.0-rc2` / BUILD-021
 - Branch: `develop`
-- Active slice: **Enterprise Identity Platform** (Better Auth)
-- Prior in same build: Track L Live Control Center
+- Identity Platform: **ACCEPTANCE CLOSED** (engineering)
+- Stack: Better Auth → PostgreSQL 17 → `adf_identity` → Service Layer → Core (auth-agnostic)
 
 ## Boot order
 
 1. This file
-2. `.adf/adr/ADR-019-Enterprise-Identity-Architecture.md`
-3. `bootstrap/BUILD-021/ACCEPTANCE.md`
-4. `adf-docs/identity/IDENTITY.md`
-5. `adf-docs/FULL_OPERATION_REVIEW.md`
+2. `bootstrap/BUILD-021/ACCEPTANCE.md`
+3. `.adf/adr/ADR-019-Enterprise-Identity-Architecture.md`
+4. `adf-docs/identity/DATABASE.md`
+5. `adf-docs/FULL_OPERATION_REVIEW.md` (operator FO still open)
 
-## Immediate next
+## Immediate next (post BUILD-021 Identity)
 
-1. Verify `/identity` health shows `postgresql` + `adf_identity`
-2. Keep `ADF_IDENTITY_DATABASE_URL` only in env (never git)
-3. Configure OAuth/SMTP/SSO secrets for non-dev
-4. Operator FO checkboxes still open for GA
-5. Do **not** open BUILD-022 until Identity acceptance closed
+1. Operator: FO review checkboxes (Accept / Defer / Waive FO-6)
+2. FO-6 / GA: signing secrets + CI green → tag `1.0.0`
+3. Optional: wire real OAuth/SMTP/SSO IdP secrets
+4. Do **not** open BUILD-022 until operator FO decision

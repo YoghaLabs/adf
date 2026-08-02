@@ -114,9 +114,11 @@ export function SecurityPage() {
     <Shell title="Security" testId="page-security">
       <Card className="space-y-2 text-sm">
         <p>Password policy: min 10 characters</p>
-        <p>MFA: ready (provider hooks)</p>
+        <p>MFA: ready (TOTP / WebAuthn hooks)</p>
+        <p>SSO: ready (OIDC / SAML hooks)</p>
         <p>Email verification: Better Auth</p>
-        <p>CSRF / secure cookies: Identity Layer headers</p>
+        <p>CSRF / secure cookies / rate-limit: Identity Layer</p>
+        <p>Immutable audit: on</p>
         <p>Passkeys: future</p>
       </Card>
     </Shell>

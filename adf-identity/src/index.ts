@@ -1,6 +1,8 @@
 export { auth } from "./auth.js";
 export { identityService, IdentityService, writeAudit } from "./service.js";
-export { handleBetterAuth, handleIdentityInvoke } from "./handler.js";
+export { handleBetterAuth } from "./handler.js";
+export { handleIdentityInvoke } from "./invoke.js";
+export { IDENTITY_SECURITY } from "./security.js";
 export {
   ADF_ROLES,
   ADF_PERMISSIONS,
