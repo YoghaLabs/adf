@@ -47,11 +47,18 @@ export function identityDatabaseUrl(): string {
   return url;
 }
 
-export function identityDbHostLabel(): string {
+/** Public-safe DB label for Studio UI — never expose host/port/credentials. */
+export function identityDbPublicLabel(): string {
   try {
     const u = new URL(identityDatabaseUrl());
-    return `${u.hostname}:${u.port || "5432"}/${u.pathname.replace(/^\//, "")}`;
+    const name = u.pathname.replace(/^\//, "") || "adf_identity";
+    return name;
   } catch {
-    return "postgresql://adf_identity";
+    return "adf_identity";
   }
+}
+
+/** @deprecated Use identityDbPublicLabel() — host/port must not reach the UI. */
+export function identityDbHostLabel(): string {
+  return identityDbPublicLabel();
 }

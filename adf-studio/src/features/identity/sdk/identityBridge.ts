@@ -26,8 +26,10 @@ export class IdentityAuthClient {
     return invokeIdentity<{
       layer: string;
       provider: string;
+      /** Logical DB name only (never host:port). */
       database?: string;
       engine?: "postgresql" | string;
+      status?: string;
       coreAgnostic: true;
     }>("identity.health");
   }

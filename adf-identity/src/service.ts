@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from "node:crypto";
-import { identityDbHostLabel } from "./config.js";
+import { identityDbPublicLabel } from "./config.js";
 import { migrateIdentitySchema, queryIdentity } from "./db.js";
 import { ADF_PERMISSIONS, ADF_ROLES, resolvePermissions, type AdfRole } from "./rbac.js";
 import { IDENTITY_SECURITY } from "./security.js";
@@ -92,8 +92,9 @@ export class IdentityService {
       data: {
         layer: "identity",
         provider: "better-auth",
-        database: identityDbHostLabel(),
+        database: identityDbPublicLabel(), // logical name only — no host/port
         engine: "postgresql",
+        status: "ready",
         coreAgnostic: true,
         security: IDENTITY_SECURITY,
       },

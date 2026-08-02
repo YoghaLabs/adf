@@ -19,6 +19,14 @@ function sendJson(res: ServerResponse, status: number, body: unknown): void {
   res.end(JSON.stringify(body));
 }
 
+function safeError(err: unknown): string {
+  const msg = err instanceof Error ? err.message : String(err);
+  return msg
+    .replace(/postgresql:\/\/\S+/gi, "[redacted]")
+    .replace(/\b\d{1,3}(?:\.\d{1,3}){3}(?::\d+)?/g, "[redacted-host]")
+    .replace(/password\s*=\s*\S+/gi, "password=[redacted]");
+}
+
 /**
  * ADF Identity service API (RBAC/org/workspace/audit/PAT).
  * Does NOT import Better Auth — safe when auth package resolution differs.
@@ -40,7 +48,7 @@ export async function handleIdentityInvoke(req: IncomingMessage, res: ServerResp
     sendJson(res, 200, {
       ok: false,
       data: {},
-      error: err instanceof Error ? err.message : String(err),
+      error: safeError(err),
     });
   }
 }

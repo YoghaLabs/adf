@@ -58,17 +58,19 @@ export function IdentityPlatformPage() {
     void loadSessions();
     void identitySdk.auth.health().then((r) => {
       if (!r.ok) {
-        setHealth(r.error || "down");
+        // Never surface raw connection/host errors in the UI.
+        setHealth("Identity layer unavailable");
         return;
       }
       const d = r.data as {
         provider?: string;
         engine?: string;
-        database?: string;
+        status?: string;
         coreAgnostic?: boolean;
       };
+      // Public-safe only — no host, port, or connection URL.
       setHealth(
-        `${d.provider ?? "identity"} · ${d.engine ?? "db"} · ${d.database ?? ""} · coreAgnostic=${d.coreAgnostic}`,
+        `${d.provider ?? "identity"} · ${d.engine ?? "db"} · ${d.status ?? "ready"} · coreAgnostic=${d.coreAgnostic}`,
       );
     });
   }, [hydrate, loadAudit, loadInv, loadOrgs, loadPerms, loadRoles, loadSessions]);

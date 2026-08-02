@@ -12,5 +12,10 @@ export {
 } from "./rbac.js";
 export type { AdfRole, AdfPermission } from "./rbac.js";
 export { getIdentityPool, queryIdentity, migrateIdentitySchema } from "./db.js";
-export { identityDatabaseUrl, identityDbHostLabel, loadIdentityEnv } from "./config.js";
+export {
+  identityDatabaseUrl,
+  identityDbPublicLabel,
+  identityDbHostLabel,
+  loadIdentityEnv,
+} from "./config.js";
 export { identityDataDir, resolveAdfRoot } from "./paths.js";
