@@ -1,4 +1,5 @@
 import type { Plugin } from "vite";
+import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
@@ -7,7 +8,25 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 
 function resolvePkg(name: string): string {
-  return path.dirname(require.resolve(`${name}/package.json`));
+  const local = path.resolve(__dirname, "node_modules", name);
+  if (fs.existsSync(path.join(local, "package.json"))) return local;
+  // Walk up from resolved entry — some packages block ./package.json exports.
+  let dir = path.dirname(require.resolve(name));
+  for (let i = 0; i < 6; i++) {
+    const pkgPath = path.join(dir, "package.json");
+    if (fs.existsSync(pkgPath)) {
+      try {
+        const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8")) as { name?: string };
+        if (pkg.name === name) return dir;
+      } catch {
+        /* continue */
+      }
+    }
+    const parent = path.dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  return local;
 }
 
 /**
