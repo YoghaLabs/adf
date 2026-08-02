@@ -16,8 +16,10 @@ import {
   useRuntimeDashboardStore,
   useTimelineStore,
 } from "@/features/runtime/stores";
+import { useT } from "@/i18n";
 
 export function RuntimeDashboardPage() {
+  const t = useT();
   const loadDashboard = useRuntimeDashboardStore((s) => s.load);
   const overview = useRuntimeDashboardStore((s) => s.overview);
   const jobs = useRuntimeDashboardStore((s) => s.jobs);
@@ -55,14 +57,11 @@ export function RuntimeDashboardPage() {
   return (
     <div data-testid="page-runtime-dashboard" className="space-y-6">
       <div>
-        <h1 className="font-display text-3xl font-semibold tracking-tight">AI Runtime Dashboard</h1>
-        <p className="studio-muted mt-1">
-          Read-only observability — prompts, context, plugins, packages, health, tokens, jobs.
-          Studio does not own runtime state.
-        </p>
+        <h1 className="font-display text-3xl font-semibold tracking-tight">{t("runtime.title")}</h1>
+        <p className="studio-muted mt-1">{t("runtime.subtitle")}</p>
       </div>
 
-      {loading && <p className="studio-muted text-sm">Loading runtime envelope…</p>}
+      {loading && <p className="studio-muted text-sm">{t("common.loading")}</p>}
 
       <RuntimeOverviewCards overview={overview} />
       <MetricsPanel metrics={metrics} series={series} />

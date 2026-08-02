@@ -3,10 +3,12 @@ import { Button, Card } from "@/components/ui";
 import { ProjectCard, ProjectTree } from "@/features/workspace/components";
 import { useVisibleProjects } from "@/features/workspace/hooks/useProjectExplorer";
 import { useProjectExplorerStore, useWorkspaceStore } from "@/features/workspace/stores";
+import { useT } from "@/i18n";
 
 const filters = ["all", "recent", "favorites", "pinned", "archived"] as const;
 
 export function ProjectExplorerPage() {
+  const t = useT();
   const activeId = useWorkspaceStore((s) => s.activeId);
   const loadWorkspace = useWorkspaceStore((s) => s.loadAll);
   const load = useProjectExplorerStore((s) => s.load);
@@ -32,10 +34,8 @@ export function ProjectExplorerPage() {
   return (
     <div data-testid="page-projects" className="space-y-6">
       <div>
-        <h1 className="font-display text-3xl font-semibold tracking-tight">Projects</h1>
-        <p className="studio-muted mt-1">
-          Project Explorer — tree, cards, recent, favorites, pinned, archived, status.
-        </p>
+        <h1 className="font-display text-3xl font-semibold tracking-tight">{t("projects.title")}</h1>
+        <p className="studio-muted mt-1">{t("projects.subtitle")}</p>
       </div>
 
       <div className="flex flex-wrap gap-2">

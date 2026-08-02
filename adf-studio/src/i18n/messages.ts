@@ -80,9 +80,99 @@ const en = {
   "settings.demoMode": "Force Demo fixtures",
   "settings.demoMode.help":
     "When enabled, Studio skips Live Core and uses fixture data (FO-5 Demo Mode).",
+
+  "nav.dashboard": "Dashboard",
+  "nav.workspace": "Workspace",
+  "nav.projects": "Projects",
+  "nav.sessions": "Sessions",
+  "nav.identity": "Identity",
+  "nav.collaboration": "Collaboration",
+  "nav.orchestration": "Orchestration",
+  "nav.enterprise": "Enterprise",
+  "nav.visual": "Visual",
+  "nav.runtime": "Runtime",
+  "nav.marketplace": "Marketplace",
+  "nav.knowledge": "Knowledge",
+  "nav.packages": "Packages",
+  "nav.templates": "Templates",
+  "nav.settings": "Settings",
+  "nav.search": "Search",
+  "nav.release": "Release",
+  "nav.help": "Help",
+
+  "shell.product": "ADF Studio",
+  "shell.controlCenter": "Control Center",
+  "shell.searchPlaceholder": "Search projects, packages, knowledge…",
+  "shell.searchAria": "Global search",
+  "shell.toggleSidebar": "Toggle sidebar",
+  "shell.welcome": "Welcome",
+  "shell.command": "Command",
+  "shell.notifications": "Notifications",
+  "shell.liveCore": "Live Core",
+  "shell.demoFixtures": "Demo fixtures",
+  "shell.bridgeTitle": "Studio → Core transport",
+  "shell.language": "Language",
+  "shell.runtimeHealthy": "healthy",
+  "shell.runtimeUnknown": "unknown",
+  "shell.runtimeLabel": "Runtime {status} · plugins {plugins}",
+
+  "common.loading": "Loading…",
+  "common.save": "Save",
+  "common.cancel": "Cancel",
+  "common.create": "Create",
+  "common.delete": "Delete",
+  "common.refresh": "Refresh",
+  "common.signOut": "Sign out",
+  "common.login": "Login",
+  "common.profile": "Profile",
+  "common.security": "Security",
+  "common.select": "Select",
+  "common.empty": "Empty",
+  "common.none": "None",
+
+  "dashboard.title": "Dashboard",
+  "dashboard.subtitle": "Workspace health overview for the ADF control center.",
+
+  "projects.title": "Projects",
+  "projects.subtitle":
+    "Project Explorer — tree, cards, recent, favorites, pinned, archived, status.",
+
+  "runtime.title": "AI Runtime Dashboard",
+  "runtime.subtitle":
+    "Read-only observability — prompts, context, plugins, packages, health, tokens, jobs.",
+
+  "identity.title": "Identity",
+  "identity.subtitle":
+    "Enterprise Identity Platform — Better Auth · Organization · RBAC · Sessions · Audit",
+  "identity.signedIn": "Signed in",
+  "identity.demoSession": "Demo session",
+  "identity.liveSession": "Live Better Auth session",
+  "identity.health": "Identity health",
+  "identity.healthUnavailable": "Identity layer unavailable",
+  "identity.quickLinks": "Quick links",
+  "identity.organizations": "Organizations",
+  "identity.workspaces": "Workspaces",
+  "identity.roles": "Roles",
+  "identity.rbac": "RBAC",
+  "identity.rbacMeta": "{roles} roles · {permissions} permissions",
+  "identity.sessions": "Sessions",
+  "identity.tokens": "API tokens",
+  "identity.audit": "Immutable audit",
+  "identity.devices": "Devices / sessions",
+  "identity.invitations": "Invitations",
+  "identity.pat": "Personal access tokens",
+  "identity.mint": "Mint",
+  "identity.noOrganizations": "No organizations yet",
+  "identity.selectOrg": "Select or create an organization",
+  "identity.noEvents": "No audit events",
+  "identity.active": "active",
+  "identity.hub": "Identity hub",
 } as const;
 
 export type MessageKey = keyof typeof en;
+
+/** All catalog keys (EN is source of truth; ID is typed as Record<MessageKey, string>). */
+export const messageKeys = Object.keys(en) as MessageKey[];
 
 const id: Record<MessageKey, string> = {
   "welcome.title": "Selamat datang di ADF",
@@ -150,7 +240,7 @@ const id: Record<MessageKey, string> = {
   "help.path.1": "Jalankan Selamat Datang → pilih Proyek Demo (tur terpandu).",
   "help.path.2": "Kesehatan CLI:",
   "help.path.3": "Buat proyek nyata:",
-  "help.path.4": "Kembali ke Studio → Projects / Runtime / Visual / Marketplace.",
+  "help.path.4": "Kembali ke Studio → Proyek / Runtime / Visual / Marketplace.",
   "help.docs": "Docs:",
 
   "settings.title": "Pengaturan",
@@ -165,6 +255,93 @@ const id: Record<MessageKey, string> = {
   "settings.demoMode": "Paksa Demo fixtures",
   "settings.demoMode.help":
     "Jika aktif, Studio melewati Live Core dan memakai data fixture (FO-5 Demo Mode).",
+
+  "nav.dashboard": "Dasbor",
+  "nav.workspace": "Workspace",
+  "nav.projects": "Proyek",
+  "nav.sessions": "Sesi",
+  "nav.identity": "Identitas",
+  "nav.collaboration": "Kolaborasi",
+  "nav.orchestration": "Orkestrasi",
+  "nav.enterprise": "Enterprise",
+  "nav.visual": "Visual",
+  "nav.runtime": "Runtime",
+  "nav.marketplace": "Marketplace",
+  "nav.knowledge": "Pengetahuan",
+  "nav.packages": "Paket",
+  "nav.templates": "Template",
+  "nav.settings": "Pengaturan",
+  "nav.search": "Cari",
+  "nav.release": "Rilis",
+  "nav.help": "Bantuan",
+
+  "shell.product": "ADF Studio",
+  "shell.controlCenter": "Pusat Kendali",
+  "shell.searchPlaceholder": "Cari proyek, paket, pengetahuan…",
+  "shell.searchAria": "Pencarian global",
+  "shell.toggleSidebar": "Lipat bilah sisi",
+  "shell.welcome": "Selamat datang",
+  "shell.command": "Perintah",
+  "shell.notifications": "Notifikasi",
+  "shell.liveCore": "Core Live",
+  "shell.demoFixtures": "Fixture Demo",
+  "shell.bridgeTitle": "Transport Studio → Core",
+  "shell.language": "Bahasa",
+  "shell.runtimeHealthy": "sehat",
+  "shell.runtimeUnknown": "tidak diketahui",
+  "shell.runtimeLabel": "Runtime {status} · plugin {plugins}",
+
+  "common.loading": "Memuat…",
+  "common.save": "Simpan",
+  "common.cancel": "Batal",
+  "common.create": "Buat",
+  "common.delete": "Hapus",
+  "common.refresh": "Muat ulang",
+  "common.signOut": "Keluar",
+  "common.login": "Masuk",
+  "common.profile": "Profil",
+  "common.security": "Keamanan",
+  "common.select": "Pilih",
+  "common.empty": "Kosong",
+  "common.none": "Tidak ada",
+
+  "dashboard.title": "Dasbor",
+  "dashboard.subtitle": "Ringkasan kesehatan workspace untuk pusat kendali ADF.",
+
+  "projects.title": "Proyek",
+  "projects.subtitle":
+    "Penjelajah Proyek — pohon, kartu, terkini, favorit, pin, arsip, status.",
+
+  "runtime.title": "Dasbor Runtime AI",
+  "runtime.subtitle":
+    "Observabilitas baca-saja — prompt, konteks, plugin, paket, kesehatan, token, job.",
+
+  "identity.title": "Identitas",
+  "identity.subtitle":
+    "Platform Identitas Enterprise — Better Auth · Organisasi · RBAC · Sesi · Audit",
+  "identity.signedIn": "Masuk sebagai",
+  "identity.demoSession": "Sesi demo",
+  "identity.liveSession": "Sesi Better Auth live",
+  "identity.health": "Kesehatan identitas",
+  "identity.healthUnavailable": "Lapisan identitas tidak tersedia",
+  "identity.quickLinks": "Tautan cepat",
+  "identity.organizations": "Organisasi",
+  "identity.workspaces": "Workspace",
+  "identity.roles": "Peran",
+  "identity.rbac": "RBAC",
+  "identity.rbacMeta": "{roles} peran · {permissions} izin",
+  "identity.sessions": "Sesi",
+  "identity.tokens": "Token API",
+  "identity.audit": "Audit immutable",
+  "identity.devices": "Perangkat / sesi",
+  "identity.invitations": "Undangan",
+  "identity.pat": "Personal access token",
+  "identity.mint": "Buat",
+  "identity.noOrganizations": "Belum ada organisasi",
+  "identity.selectOrg": "Pilih atau buat organisasi",
+  "identity.noEvents": "Tidak ada peristiwa audit",
+  "identity.active": "aktif",
+  "identity.hub": "Pusat Identitas",
 };
 
 const catalogs: Record<Locale, Record<MessageKey, string>> = { en, id };
@@ -186,4 +363,10 @@ export function t(
     }
   }
   return text;
+}
+
+/** Nav id → message key helper */
+export function navKey(id: string): MessageKey | null {
+  const key = `nav.${id}` as MessageKey;
+  return key in en ? key : null;
 }

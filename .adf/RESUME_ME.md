@@ -21,3 +21,4 @@
 2. FO-6 / GA: signing secrets + CI green → tag `1.0.0`
 3. Optional: wire real OAuth/SMTP/SSO IdP secrets
 4. Do **not** open BUILD-022 until operator FO decision
+5. **i18n:** every new Studio UI progress must add EN+ID keys (`adf-docs/I18N.md`, rule `i18n-indonesia.mdc`) — toggle ID/EN in TopBar

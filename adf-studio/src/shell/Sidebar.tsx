@@ -18,9 +18,12 @@ import {
   Users,
   Workflow,
   Building2,
+  Fingerprint,
 } from "lucide-react";
 import { studioConfig } from "@/config/studio";
 import { useSettingsStore } from "@/stores/settingsStore";
+import { useT } from "@/i18n";
+import { navKey } from "@/i18n/messages";
 import { cn } from "@/utils/cn";
 
 const icons: Record<string, ComponentType<{ className?: string }>> = {
@@ -28,6 +31,7 @@ const icons: Record<string, ComponentType<{ className?: string }>> = {
   workspace: Compass,
   projects: FolderKanban,
   sessions: Timer,
+  identity: Fingerprint,
   collaboration: Users,
   orchestration: Workflow,
   enterprise: Building2,
@@ -45,6 +49,7 @@ const icons: Record<string, ComponentType<{ className?: string }>> = {
 
 export function Sidebar() {
   const collapsed = useSettingsStore((s) => s.sidebarCollapsed);
+  const t = useT();
 
   return (
     <aside
@@ -60,14 +65,16 @@ export function Sidebar() {
         </div>
         {!collapsed && (
           <div>
-            <div className="text-sm font-semibold tracking-tight">ADF Studio</div>
-            <div className="text-[11px] text-ink-muted">Control Center</div>
+            <div className="text-sm font-semibold tracking-tight">{t("shell.product")}</div>
+            <div className="text-[11px] text-ink-muted">{t("shell.controlCenter")}</div>
           </div>
         )}
       </div>
       <nav className="flex-1 space-y-1 overflow-y-auto p-2">
         {studioConfig.navigation.map((item) => {
           const Icon = icons[item.id] ?? LayoutDashboard;
+          const key = navKey(item.id);
+          const label = key ? t(key) : item.label;
           return (
             <NavLink
               key={item.id}
@@ -83,7 +90,7 @@ export function Sidebar() {
               }
             >
               <Icon className="h-4 w-4 shrink-0" />
-              {!collapsed && <span>{item.label}</span>}
+              {!collapsed && <span>{label}</span>}
             </NavLink>
           );
         })}

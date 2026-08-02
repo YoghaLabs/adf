@@ -16,8 +16,10 @@ import { studioConfig } from "@/config/studio";
 import { studioSdk } from "@/sdk";
 import type { MarketplaceItem } from "@/types/studio";
 import { GettingStartedBanner } from "@/features/onboarding";
+import { useT } from "@/i18n";
 
 export function DashboardPage() {
+  const t = useT();
   const loadWorkspace = useWorkspaceStore((s) => s.loadAll);
   const profile = useWorkspaceStore((s) => s.profile);
   const stats = useWorkspaceStore((s) => s.stats);
@@ -51,10 +53,8 @@ export function DashboardPage() {
   return (
     <div data-testid="page-dashboard" className="space-y-6">
       <div>
-        <h1 className="font-display text-3xl font-semibold tracking-tight">Dashboard</h1>
-        <p className="studio-muted mt-1">
-          Workspace Experience overview — UI only; all actions go through the SDK.
-        </p>
+        <h1 className="font-display text-3xl font-semibold tracking-tight">{t("dashboard.title")}</h1>
+        <p className="studio-muted mt-1">{t("dashboard.subtitle")}</p>
       </div>
 
       <GettingStartedBanner />

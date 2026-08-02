@@ -1,0 +1,16 @@
+---
+description: Every new Studio UI string must ship EN + Bahasa Indonesia via i18n catalog
+alwaysApply: true
+---
+
+# Studio i18n — Bahasa Indonesia required
+
+When adding or changing **user-facing** text in `adf-studio`:
+
+1. Add keys to `adf-studio/src/i18n/messages.ts` in **both** `en` and `id`.
+2. Render with `useT()` / `t("key")` — do not hardcode new copy in JSX.
+3. Keep English as the key source of truth; Indonesian must be natural, not machine-garbled.
+4. Nav labels use `nav.<id>` keys (see `navKey()`).
+5. Document large localization batches in `adf-docs/I18N.md`.
+
+Out of scope for i18n: technical IDs, log payloads, CLI-only strings, secrets.
